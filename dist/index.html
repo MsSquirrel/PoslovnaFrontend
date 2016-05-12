@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Preduzece</title>
+  		<meta charset="utf-8">
+  		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script type="text/javascript" src ="jquery-2.2.0.js" ></script>
+        <script type="text/javascript" src="dependencies.js"></script>
+		<script type="text/javascript" src="sve.js"></script>
+		
+		
+		<link rel="stylesheet" href="css/bootstrap.css" >
+		<link rel="stylesheet" href="css/bootstrap-theme.css" >
+		<link href="css/signin.css" rel="stylesheet">
+
+		<style>
+  			.carousel-inner > .item > img,
+  			.carousel-inner > .item > a > img {
+      				width: 70%;
+    			  margin: auto;
+  				}
+  		</style>
+
+	</head>
+
+
+	<body  ng-app="preduzeceApp" ng-controller="preduzeceCtrl" ng-class="{loading:loadingView}">
+		
+		<div class="container">
+			<div ng-view=""></div>
+
+		</div>
+		
+
+	</body>
+
+</html>

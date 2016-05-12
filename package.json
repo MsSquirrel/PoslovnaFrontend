@@ -1,0 +1,25 @@
+{
+  "name": "xmlfrontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MsSquirrel/XMLFrontend.git"
+  },
+  "author": "Kristina Satara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MsSquirrel/XMLFrontend/issues"
+  },
+  "homepage": "https://github.com/MsSquirrel/XMLFrontend#readme",
+  "dependencies": {
+    "angular": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "angular-ui-bootstrap": "^1.3.2",
+    "bootstrap": "^3.3.6"
+  }
+}
