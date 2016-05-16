@@ -1,5 +1,5 @@
 {
-  "name": "xmlfrontend",
+  "name": "poslovnafrontend",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MsSquirrel/XMLFrontend.git"
+    "url": "git+https://github.com/MsSquirrel/PoslovnaFrontend.git"
   },
-  "author": "Kristina Satara",
+  "author": "Tim13",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MsSquirrel/XMLFrontend/issues"
+    "url": "https://github.com/MsSquirrel/PoslovnaFrontend/issues"
   },
-  "homepage": "https://github.com/MsSquirrel/XMLFrontend#readme"
+  "homepage": "https://github.com/MsSquirrel/PoslovnaFrontend#readme"
 }
