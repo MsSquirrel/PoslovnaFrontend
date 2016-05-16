@@ -7,29 +7,31 @@ module.exports = [
 ];
 },{}],2:[function(require,module,exports){
 var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap']);
-myApp.controller('loginCtrl', require('./loginController.js'));
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
-      when('/login', {
-        templateUrl: './templates/login.html',
-        controller: 'loginCtrl'
+      when('/main', {
+        templateUrl: './templates/main.html',
+        controller: 'preduzeceCtrl'
       }).
-      when('/documentsList', {
+      when('/documents', {
         templateUrl: './templates/documentsList.html',
         controller: 'documentsCtrl'
       }).
       otherwise({
-      	redirectTo: '/login'
+      	redirectTo: '/main'
       });
 
 }]);
 
-},{"./documentsListController.js":1,"./loginController.js":3,"./preduzeceController.js":4}],3:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],4:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}]},{},[2]);
+},{"./documentsListController.js":1,"./preduzeceController.js":3}],3:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+	}
+];
+},{}]},{},[2]);
