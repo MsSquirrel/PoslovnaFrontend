@@ -5,6 +5,6 @@ module.exports = [
 		$http.get("http://localhost:61769/api/mesto").then(function(response) {
         	$scope.places = response.data;
     	});
-	}
 
+	}
 ];

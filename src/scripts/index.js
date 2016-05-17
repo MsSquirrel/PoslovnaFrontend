@@ -1,4 +1,4 @@
-var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 myApp.controller('placesCtrl', require('./placesController.js'));

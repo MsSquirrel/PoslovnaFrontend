@@ -6,7 +6,7 @@ module.exports = [
 	}
 ];
 },{}],2:[function(require,module,exports){
-var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 myApp.controller('placesCtrl', require('./placesController.js'));
@@ -44,8 +44,8 @@ module.exports = [
 		$http.get("http://localhost:61769/api/mesto").then(function(response) {
         	$scope.places = response.data;
     	});
-	}
 
+	}
 ];
 },{}],4:[function(require,module,exports){
 module.exports = [
