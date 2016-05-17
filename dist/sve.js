@@ -36,8 +36,12 @@ myApp.config(['$routeProvider',
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
-		alert('radi');
+		
+		$http.get("http://localhost:61769/api/mesto").then(function(response) {
+        	$scope.places = response.data;
+    	});
 	}
+
 ];
 },{}],4:[function(require,module,exports){
 module.exports = [
