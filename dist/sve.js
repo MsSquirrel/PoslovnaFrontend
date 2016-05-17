@@ -26,6 +26,10 @@ myApp.config(['$routeProvider',
         templateUrl: './templates/places.html',
         controller: 'placesCtrl'
       }).
+      when('/preduzeca', {
+        templateUrl: './templates/preduzeca.html',
+        controller: 'preduzeceCtrl'
+      }).
       otherwise({
       	redirectTo: '/main'
       });
@@ -48,6 +52,10 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
+        	$scope.preduzeca = response.data;
+    	});
+
 	}
 ];
 },{}]},{},[2]);

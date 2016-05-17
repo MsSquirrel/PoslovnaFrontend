@@ -18,6 +18,10 @@ myApp.config(['$routeProvider',
         templateUrl: './templates/places.html',
         controller: 'placesCtrl'
       }).
+      when('/preduzeca', {
+        templateUrl: './templates/preduzeca.html',
+        controller: 'preduzeceCtrl'
+      }).
       otherwise({
       	redirectTo: '/main'
       });
