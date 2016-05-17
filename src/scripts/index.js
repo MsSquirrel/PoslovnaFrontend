@@ -1,6 +1,7 @@
 var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
+myApp.controller('placesCtrl', require('./placesController.js'));
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
@@ -12,6 +13,10 @@ myApp.config(['$routeProvider',
       when('/documents', {
         templateUrl: './templates/documentsList.html',
         controller: 'documentsCtrl'
+      }).
+      when('/places', {
+        templateUrl: './templates/places.html',
+        controller: 'placesCtrl'
       }).
       otherwise({
       	redirectTo: '/main'

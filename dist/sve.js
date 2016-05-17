@@ -9,6 +9,7 @@ module.exports = [
 var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
+myApp.controller('placesCtrl', require('./placesController.js'));
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
@@ -21,13 +22,24 @@ myApp.config(['$routeProvider',
         templateUrl: './templates/documentsList.html',
         controller: 'documentsCtrl'
       }).
+      when('/places', {
+        templateUrl: './templates/places.html',
+        controller: 'placesCtrl'
+      }).
       otherwise({
       	redirectTo: '/main'
       });
 
 }]);
 
-},{"./documentsListController.js":1,"./preduzeceController.js":3}],3:[function(require,module,exports){
+},{"./documentsListController.js":1,"./placesController.js":3,"./preduzeceController.js":4}],3:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		alert('radi');
+	}
+];
+},{}],4:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
