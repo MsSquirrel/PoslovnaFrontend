@@ -3,7 +3,7 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
-		$http.get("http://localhost:61769/api/mesto").then(function(response) {
+		$http.get("http://localhost:61769/api/analitika_magacinske_kartice").then(function(response) {
         	$scope.data = response.data;
     	});
 
@@ -17,11 +17,29 @@ module.exports = [
 	}
 ];
 },{}],3:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],4:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],5:[function(require,module,exports){
-var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid']);
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/faktura").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],4:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/grupa_roba").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],5:[function(require,module,exports){
+var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 myApp.controller('mestaCtrl', require('./mestaController.js'));
@@ -117,36 +135,153 @@ myApp.config(['$routeProvider',
 }]);
 
 },{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./mestaController.js":8,"./pdvController.js":9,"./poslovne-godineController.js":10,"./poslovni-partneriController.js":11,"./preduzeceController.js":12,"./prijemni-dokumentiController.js":13,"./robaController.js":14,"./robne-karticeController.js":15,"./stavke-dokumenataController.js":16,"./stope-pdv-aController.js":17}],6:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],7:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],8:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],9:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],10:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],11:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],12:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$http.get("http://localhost:61769/api/magacin").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],7:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/jedinica_mere").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],8:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/mesto").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],9:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/pdv").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],10:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/poslovna_godina").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],11:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/poslovni_partner").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],12:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 
+		  $scope.gridOptions.columnDefs = [
+		    { name:'Id_Preduzece', width:'10%', displayName:'Id'},
+		    { name:'Naziv_Preduzece', width:'20%', displayName: 'Naziv'},
+		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Maticni broj'},
+		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
+		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
+		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto' },
+		    
+		  ];
+
 		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
-        	$scope.preduzeca = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
 ];
 },{}],13:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],14:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],15:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],16:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}],17:[function(require,module,exports){
-arguments[4][1][0].apply(exports,arguments)
-},{"dup":1}]},{},[5]);
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/prijemni_dokument").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],14:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/roba").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],15:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/robna_kartica").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],16:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/stavka_dokumenta").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}],17:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http',
+	function myController($scope, $http){
+		
+		$http.get("http://localhost:61769/api/stopa_pdva").then(function(response) {
+        	$scope.data = response.data;
+    	});
+
+	}
+];
+},{}]},{},[5]);
