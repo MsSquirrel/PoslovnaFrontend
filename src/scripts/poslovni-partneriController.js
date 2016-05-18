@@ -18,7 +18,6 @@ module.exports = [
 		    { name:'PIB_Partner', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Partner', width:'20%', displayName: 'Adresa'},
 		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto' },
-		    
 		  ];
 
 		$http.get("http://localhost:61769/api/poslovni_partner").then(function(response) {

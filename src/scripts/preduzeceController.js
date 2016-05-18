@@ -17,7 +17,6 @@ module.exports = [
 		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
 		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto' },
-		    
 		  ];
 
 		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
