@@ -172,8 +172,7 @@ module.exports = [
 		  $scope.gridOptions.columnDefs = [
 		    { name:'Id', width:'20%', displayName:'Id'},
 		    { name:'Naziv_Mesto', width:'50%', displayName: 'Naziv'},
-		    { name:'Postansk__broj_Mesto', width:'30%', displayName: 'Poštanski broj'},
-		    
+		    { name:'Postansk__broj_Mesto', width:'30%', displayName: 'Poštanski broj'}, 
 		  ];
 
 		$http.get("http://localhost:61769/api/mesto").then(function(response) {
@@ -198,8 +197,23 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 
+		 $scope.gridOptions.columnDefs = [
+		    { name:'Id_Poslovna_godina', width:'15%', displayName:'Id'},
+		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina'},
+		    { name:'Zakljucena_Poslovna_godina', width:'15%', displayName: 'Zaključena'},
+		    { name:'Preduzece.Naziv_Preduzece', width:'45%', displayName: 'Preduzećes'},
+		  ];
+
 		$http.get("http://localhost:61769/api/poslovna_godina").then(function(response) {
-        	$scope.data = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -225,7 +239,6 @@ module.exports = [
 		    { name:'PIB_Partner', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Partner', width:'20%', displayName: 'Adresa'},
 		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto' },
-		    
 		  ];
 
 		$http.get("http://localhost:61769/api/poslovni_partner").then(function(response) {
@@ -254,7 +267,6 @@ module.exports = [
 		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
 		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto' },
-		    
 		  ];
 
 		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
