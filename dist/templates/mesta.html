@@ -1,0 +1,16 @@
+<div>
+	<h2>Mesta</h2>
+
+	<table border='1'>
+		<tr ng-repeat="place in data"> 
+			<td>{{place.Id}}</td>
+			<td>{{place.Naziv_Mesto}}</td>
+			<td>{{place.Postansk__broj_Mesto}}</td>
+		</tr>
+	</table>
+
+	<div style="width: 500; height: 250px">
+		<div ui-grid="{ data: data }" class="myGrid"></div>
+	</div>
+
+</div>
