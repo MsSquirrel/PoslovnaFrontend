@@ -9,8 +9,8 @@ module.exports = [
     		multiSelect: false,
     		enableFullRowSelection: true
 		  };
- 
-		  $scope.gridOptions.columnDefs = [
+ 			
+ 		 $scope.gridOptions.columnDefs = [
 		    { name:'Id_Preduzece', width:'10%', displayName:'Id'},
 		    { name:'Naziv_Preduzece', width:'20%', displayName: 'Naziv'},
 		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Maticni broj'},
