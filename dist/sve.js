@@ -32,8 +32,23 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_Grupa_roba', width:'15%', displayName:'Id'},
+		    { name:'Id_PDV', width:'15%', displayName: 'Po PDV'},
+		    { name:'Naziv_Grupa_roba', width:'35%', displayName:'Naziv'}
+		];
+
 		$http.get("http://localhost:61769/api/grupa_roba").then(function(response) {
-        	$scope.data = response.data;
+
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -139,8 +154,24 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_Magacin', width:'15%', displayName:'Id'},
+		    { name:'Naziv_Magacin', width:'35%', displayName:'Naziv magacina'},
+		    { name:'Id', width:'15%', displayName: 'Mesto'},
+		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa'}
+		];
+
 		$http.get("http://localhost:61769/api/magacin").then(function(response) {
-        	$scope.data = response.data;
+
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -150,8 +181,22 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_Jedinica_mere', width:'30%', displayName:'Id'},
+		    { name:'Naziv_Jedinica_mere', width:'70%', displayName:'Naziv'}
+		];
+
 		$http.get("http://localhost:61769/api/jedinica_mere").then(function(response) {
-        	$scope.data = response.data;
+
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -186,8 +231,21 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
-		$http.get("http://localhost:61769/api/pdv").then(function(response) {
-        	$scope.data = response.data;
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_PDV', width:'25%', displayName:'Id'},
+		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
+		];
+
+		$http.get("http://localhost:61769/api/PDV").then(function(response) {
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -209,7 +267,7 @@ module.exports = [
 		    { name:'Id_Poslovna_godina', width:'15%', displayName:'Id'},
 		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina'},
 		    { name:'Zakljucena_Poslovna_godina', width:'15%', displayName: 'Zaključena'},
-		    { name:'Preduzece.Naziv_Preduzece', width:'45%', displayName: 'Preduzećes'},
+		    { name:'Preduzece.Naziv_Preduzece', width:'45%', displayName: 'Preduzeće'},
 		  ];
 
 		$http.get("http://localhost:61769/api/poslovna_godina").then(function(response) {
@@ -291,8 +349,24 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_Roba', width:'15%', displayName:'Id'},
+		    { name:'Id_Grupa_roba', width:'20%', displayName: 'Pripada grupi'},
+		    { name:'Id_Jedinica_mere', width:'15%', displayName:'Jedinica mere'},
+		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv'}
+		];
+
 		$http.get("http://localhost:61769/api/roba").then(function(response) {
-        	$scope.data = response.data;
+
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -324,8 +398,24 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_Stopa_PDV_a', width:'25%', displayName:'Id'},
+		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa'},
+		    { name:'Id_PDV', width:'40%', displayName: 'Za PDV'}
+		];
+
 		$http.get("http://localhost:61769/api/stopa_pdva").then(function(response) {
-        	$scope.data = response.data;
+
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}

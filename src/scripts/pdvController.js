@@ -2,8 +2,21 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
-		$http.get("http://localhost:61769/api/pdv").then(function(response) {
-        	$scope.data = response.data;
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		};
+
+		$scope.gridOptions.columnDefs = [
+		    { name:'Id_PDV', width:'25%', displayName:'Id'},
+		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
+		];
+
+		$http.get("http://localhost:61769/api/PDV").then(function(response) {
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
