@@ -180,7 +180,11 @@ myApp.config(['$routeProvider',
 
 }]);
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./mestaController.js":8,"./pdvController.js":9,"./poslovne-godineController.js":10,"./poslovni-partneriController.js":11,"./preduzeceController.js":12,"./prijemni-dokumentiController.js":13,"./robaController.js":14,"./robne-karticeController.js":15,"./stavke-dokumenataController.js":16,"./stope-pdv-aController.js":17}],6:[function(require,module,exports){
+
+myApp
+.service('mestaService', require('./mestaService.js'));
+
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./mestaController.js":8,"./mestaService.js":9,"./pdvController.js":10,"./poslovne-godineController.js":11,"./poslovni-partneriController.js":12,"./preduzeceController.js":13,"./prijemni-dokumentiController.js":14,"./robaController.js":15,"./robne-karticeController.js":16,"./stavke-dokumenataController.js":17,"./stope-pdv-aController.js":18}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -232,8 +236,14 @@ module.exports = [
 ];
 },{}],8:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', 'mestaService', '$routeParams','$window',
+	function myController($scope, $http, mestaService,$routeParams, $window){
+
+		$scope.placeId = -1;
+		$scope.placeName = "";
+		$scope.placeNumber = "00000";
+		$scope.placeUrl = "";
+
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -248,13 +258,78 @@ module.exports = [
 		    { name:'Postansk__broj_Mesto', width:'50%', displayName: 'Poštanski broj'}, 
 		  ];
 
-		$http.get("http://localhost:61769/api/mesto").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+		 function fillData(){
+    		mestaService.get_all_places()
+				.then(function(response){
+				$scope.gridOptions.data = response;
+			});
+		}
+
+		fillData();
+
+
+		$scope.add_place = function()
+		{
+			console.log("Add place "+$scope.placeId + ", "+$scope.placeName+ ", "+$scope.placeNumber);
+			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
+				//$scope.reservationUrl = response.url;
+				//$window.location ="#/mesta";
+				console.log("Refreshovati stranicu da se izmene vide odmah. Iz nekog razloga ne radi komentarisani kod..");
+			});
+		}
+
+
+
+
 
 	}
 ];
 },{}],9:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function mestaService($http, $window, $q){
+
+		function get_all_places()
+		{
+			var resUrl = "http://localhost:61769/api/mesto";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+		function get_place(placeId)
+		{
+			return "TODO TODO TODO TODO TODOOOOO";
+		}
+
+		function create_place(placeId, placeName, placeNumber)
+		{
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/mesto",
+                    data: {
+						Id: placeId, 
+						Naziv_Mesto: placeName,
+						Postansk__broj_Mesto: placeNumber
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+
+		return {
+			get_all_places: get_all_places,
+			get_place: get_place,
+			create_place: create_place,
+		};
+
+
+		}
+];
+},{}],10:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -277,7 +352,7 @@ module.exports = [
 
 	}
 ];
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -302,7 +377,7 @@ module.exports = [
 
 	}
 ];
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -330,7 +405,7 @@ module.exports = [
 
 	}
 ];
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -357,7 +432,7 @@ module.exports = [
 
 	}
 ];
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -385,7 +460,7 @@ module.exports = [
 
 	}
 ];
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -411,7 +486,7 @@ module.exports = [
 
 	}
 ];
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -439,7 +514,7 @@ module.exports = [
 
 	}
 ];
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -467,7 +542,7 @@ module.exports = [
 
 	}
 ];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){

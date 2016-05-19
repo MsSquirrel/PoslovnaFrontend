@@ -69694,7 +69694,6 @@ require('angular');
 require('angular-ui-bootstrap');
 require('angular-route');
 require('bootstrap');
-require('angular-ui-grid');
+require('angular-ui-grid/ui-grid');
 
-
-},{"angular":7,"angular-route":2,"angular-ui-bootstrap":4,"angular-ui-grid":5,"bootstrap":8}]},{},[21]);
+},{"angular":7,"angular-route":2,"angular-ui-bootstrap":4,"angular-ui-grid/ui-grid":5,"bootstrap":8}]},{},[21]);
