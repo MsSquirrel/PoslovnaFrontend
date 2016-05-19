@@ -92,3 +92,7 @@ myApp.config(['$routeProvider',
       });
 
 }]);
+
+
+myApp
+.service('mestaService', require('./mestaService.js'));
