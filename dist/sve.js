@@ -3,8 +3,24 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 			
+ 		 $scope.gridOptions.columnDefs = [
+ 		 	{ name:'Robna_kartica.Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
+		    { name:'Redni_broj_Analitika_magacinske_kartice', width:'20%', displayName: 'Rbr.'},
+		    { name:'Smer_Analitika_magacinske_kartice', width:'20%', displayName: 'Smer'},
+		    { name:'Kolicina_Analitika_magacinske_kartice', width:'20%', displayName: 'Ukupna kolicina'},
+		    { name:'Cena_Analitika_magacinske_kartice', width:'20%', displayName: 'Cena'}
+		  ];
+
 		$http.get("http://localhost:61769/api/analitika_magacinske_kartice").then(function(response) {
-        	$scope.data = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -21,8 +37,24 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 			
+ 		 $scope.gridOptions.columnDefs = [
+ 		 	{ name:'Poslovni_partner.Naziv_Partner', width:'20%', displayName: 'Partner'},
+		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'20%', displayName: 'Poslovna godina'},
+		    { name:'Datum_fakture_Faktura', width:'20%', displayName: 'Datum fakture'},
+		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Valuta fakture'},
+		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za placanje'}
+		  ];
+
 		$http.get("http://localhost:61769/api/faktura").then(function(response) {
-        	$scope.data = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -41,9 +73,8 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Grupa_roba', width:'15%', displayName:'Id'},
-		    { name:'Id_PDV', width:'15%', displayName: 'Po PDV'},
-		    { name:'Naziv_Grupa_roba', width:'35%', displayName:'Naziv'}
+		    { name:'Naziv_Grupa_roba', width:'75%', displayName:'Naziv'},
+		    { name:'PDV.Naziv_PDV', width:'25%', displayName: 'Po PDV'}
 		];
 
 		$http.get("http://localhost:61769/api/grupa_roba").then(function(response) {
@@ -163,9 +194,8 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Magacin', width:'15%', displayName:'Id'},
 		    { name:'Naziv_Magacin', width:'35%', displayName:'Naziv magacina'},
-		    { name:'Id', width:'15%', displayName: 'Mesto'},
+		    { name:'Mesto.Naziv_Mesto', width:'30%', displayName: 'Mesto'},
 		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa'}
 		];
 
@@ -190,8 +220,7 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Jedinica_mere', width:'30%', displayName:'Id'},
-		    { name:'Naziv_Jedinica_mere', width:'70%', displayName:'Naziv'}
+		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv'}
 		];
 
 		$http.get("http://localhost:61769/api/jedinica_mere").then(function(response) {
@@ -215,9 +244,8 @@ module.exports = [
 		  };
 
 		  $scope.gridOptions.columnDefs = [
-		    { name:'Id', width:'20%', displayName:'Id'},
 		    { name:'Naziv_Mesto', width:'50%', displayName: 'Naziv'},
-		    { name:'Postansk__broj_Mesto', width:'30%', displayName: 'Poštanski broj'}, 
+		    { name:'Postansk__broj_Mesto', width:'50%', displayName: 'Poštanski broj'}, 
 		  ];
 
 		$http.get("http://localhost:61769/api/mesto").then(function(response) {
@@ -240,7 +268,6 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_PDV', width:'25%', displayName:'Id'},
 		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
 		];
 
@@ -264,10 +291,9 @@ module.exports = [
 		  };
  
 		 $scope.gridOptions.columnDefs = [
-		    { name:'Id_Poslovna_godina', width:'15%', displayName:'Id'},
 		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina'},
-		    { name:'Zakljucena_Poslovna_godina', width:'15%', displayName: 'Zaključena'},
-		    { name:'Preduzece.Naziv_Preduzece', width:'45%', displayName: 'Preduzeće'},
+		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena'},
+		    { name:'Preduzece.Naziv_Preduzece', width:'50%', displayName: 'Preduzeće'},
 		  ];
 
 		$http.get("http://localhost:61769/api/poslovna_godina").then(function(response) {
@@ -290,13 +316,12 @@ module.exports = [
 		  };
  
 		 $scope.gridOptions.columnDefs = [
-		    { name:'Id_Partner', width:'5%', displayName:'Id'},
 		    { name:'Naziv_Partner', width:'15%', displayName: 'Partner'},
 		    { name:'Tip_Partner', width:'15%', displayName: 'Tip partnera'},
 		    { name:'Maticni_broj_Partner', width:'15%', displayName: 'Matični broj'},
 		    { name:'PIB_Partner', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Partner', width:'20%', displayName: 'Adresa'},
-		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto' },
+		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto' },
 		  ];
 
 		$http.get("http://localhost:61769/api/poslovni_partner").then(function(response) {
@@ -319,12 +344,11 @@ module.exports = [
 		  };
  			
  		 $scope.gridOptions.columnDefs = [
-		    { name:'Id_Preduzece', width:'10%', displayName:'Id'},
-		    { name:'Naziv_Preduzece', width:'20%', displayName: 'Naziv'},
+		    { name:'Naziv_Preduzece', width:'25%', displayName: 'Naziv'},
 		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Maticni broj'},
 		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
-		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto' },
+		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' }
 		  ];
 
 		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
@@ -338,8 +362,25 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 			//Koji je magacin za sta? xD
+ 		 $scope.gridOptions.columnDefs = [
+ 		 	{ name:'Magacin1.Naziv_Magacin', width:'20%', displayName: 'Odeljenje'},
+		    { name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
+		    { name:'Poslovni_partner.Naziv_Partner', width:'20%', displayName: 'Partner'},
+		    { name:'Redni_broj_Prijemni_dokument', width:'10%', displayName: 'Redni broj'},
+		    { name:'Datum_formiranja_Prijemni_dokument', width:'20%', displayName: 'Datum formiranja'},
+		    { name:'Ukupna_vrednost_Prijemni_dokument', width:'10%', displayName: 'Ukupna vrednost'}
+		  ];
+
 		$http.get("http://localhost:61769/api/prijemni_dokument").then(function(response) {
-        	$scope.data = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -358,10 +399,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Roba', width:'15%', displayName:'Id'},
-		    { name:'Id_Grupa_roba', width:'20%', displayName: 'Pripada grupi'},
-		    { name:'Id_Jedinica_mere', width:'15%', displayName:'Jedinica mere'},
-		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv'}
+		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv'},
+			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere'},
+		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa'}
 		];
 
 		$http.get("http://localhost:61769/api/roba").then(function(response) {
@@ -376,8 +416,25 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 			
+ 		 $scope.gridOptions.columnDefs = [
+		    { name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
+		    { name:'Roba.Naziv_Roba', width:'20%', displayName:'Roba'},
+		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina'},
+		    { name:'Ukupna_kolicina_Robna_kartica', width:'20%', displayName: 'Ukupna kolicina'},
+		    { name:'Roba.Jedinica_mere.Naziv_Jedinica_mere', width:'10%', displayName: 'Merna jedinica'},
+		    { name:'Ukupna_vrednost_Robna_kartica', width:'20%', displayName: 'Ukupna vrednost' }
+		  ];
+
 		$http.get("http://localhost:61769/api/robna_kartica").then(function(response) {
-        	$scope.data = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -387,8 +444,25 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		$scope.gridOptions = {
+		    enableRowSelection: true,
+		    enableSelectAll: false,
+    		selectionRowHeaderWidth: 0,
+    		multiSelect: false,
+    		enableFullRowSelection: true
+		  };
+ 		
+ 		 $scope.gridOptions.columnDefs = [
+ 		 	{ name:'Prijemni_dokument.Magacin1.Naziv_Magacin', width:'20%', displayName: 'Odeljenje'},
+		    { name:'Prijemni_dokument.Redni_broj_Prijemni_dokument', width:'20%', displayName: 'Rbr prijemnog dok.'},
+		    { name:'Roba.Naziv_Roba', width:'20%', displayName: 'Naziv robe'},
+		    { name:'Kolicina_Stavka_dokumenta', width:'10%', displayName: 'Kolicina'},
+		    { name:'Roba.Jedinica_mere.Naziv_Jedinica_mere', width:'20%', displayName: 'Mera'},
+		    { name:'Ukupna_vrednost_Stavka_dokumenta', width:'10%', displayName: 'Ukupna vrednost'}
+		  ];
+
 		$http.get("http://localhost:61769/api/stavka_dokumenta").then(function(response) {
-        	$scope.data = response.data;
+        	$scope.gridOptions.data = response.data;
     	});
 
 	}
@@ -408,9 +482,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Stopa_PDV_a', width:'25%', displayName:'Id'},
+			{ name:'PDV.Naziv_PDV', width:'30%', displayName: 'Za PDV'},
 		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa'},
-		    { name:'Id_PDV', width:'40%', displayName: 'Za PDV'}
+		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Vazi od'}
 		];
 
 		$http.get("http://localhost:61769/api/stopa_pdva").then(function(response) {

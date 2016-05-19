@@ -12,9 +12,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Stopa_PDV_a', width:'25%', displayName:'Id'},
+			{ name:'PDV.Naziv_PDV', width:'30%', displayName: 'Za PDV'},
 		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa'},
-		    { name:'Id_PDV', width:'40%', displayName: 'Za PDV'}
+		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Vazi od'}
 		];
 
 		$http.get("http://localhost:61769/api/stopa_pdva").then(function(response) {

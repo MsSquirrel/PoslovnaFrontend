@@ -11,9 +11,8 @@ module.exports = [
 		  };
 
 		  $scope.gridOptions.columnDefs = [
-		    { name:'Id', width:'20%', displayName:'Id'},
 		    { name:'Naziv_Mesto', width:'50%', displayName: 'Naziv'},
-		    { name:'Postansk__broj_Mesto', width:'30%', displayName: 'Poštanski broj'}, 
+		    { name:'Postansk__broj_Mesto', width:'50%', displayName: 'Poštanski broj'}, 
 		  ];
 
 		$http.get("http://localhost:61769/api/mesto").then(function(response) {

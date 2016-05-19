@@ -11,9 +11,8 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Grupa_roba', width:'15%', displayName:'Id'},
-		    { name:'Id_PDV', width:'15%', displayName: 'Po PDV'},
-		    { name:'Naziv_Grupa_roba', width:'35%', displayName:'Naziv'}
+		    { name:'Naziv_Grupa_roba', width:'75%', displayName:'Naziv'},
+		    { name:'PDV.Naziv_PDV', width:'25%', displayName: 'Po PDV'}
 		];
 
 		$http.get("http://localhost:61769/api/grupa_roba").then(function(response) {

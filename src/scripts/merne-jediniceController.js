@@ -11,8 +11,7 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Jedinica_mere', width:'30%', displayName:'Id'},
-		    { name:'Naziv_Jedinica_mere', width:'70%', displayName:'Naziv'}
+		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv'}
 		];
 
 		$http.get("http://localhost:61769/api/jedinica_mere").then(function(response) {

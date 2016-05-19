@@ -11,9 +11,8 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_Magacin', width:'15%', displayName:'Id'},
 		    { name:'Naziv_Magacin', width:'35%', displayName:'Naziv magacina'},
-		    { name:'Id', width:'15%', displayName: 'Mesto'},
+		    { name:'Mesto.Naziv_Mesto', width:'30%', displayName: 'Mesto'},
 		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa'}
 		];
 

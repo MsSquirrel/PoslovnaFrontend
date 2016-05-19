@@ -11,7 +11,6 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Id_PDV', width:'25%', displayName:'Id'},
 		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
 		];
 
