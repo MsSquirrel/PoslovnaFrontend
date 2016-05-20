@@ -303,7 +303,6 @@ module.exports = [
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			mestaService.remove_place($scope.selectedRow[0].Id).then(function(response){
-				console.log(response);
 				$window.location.reload();
 			});
 		};
@@ -501,10 +500,41 @@ module.exports = [
 			});
 		}
 
+		function remove_company(companyId)
+		{
+			var urlDelete = "http://localhost:61769/api/preduzece/"+companyId+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+
+		function update_company(id, name, mbr, pib, address, place)
+		{
+			var url = "http://localhost:61769/api/preduzece/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+                    	Id_Preduzece: id, 
+						Id: place,
+						Naziv_Preduzece: name,
+						Maticni_broj_Preduzece: mbr,
+						PIB_Preduzece: pib,
+						Adresa_Preduzece: address
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
 
 		return {
 			get_all_companies: get_all_companies,
 			create_company: create_company,
+			remove_company: remove_company,
+			update_company: update_company, 
 		};
 
 	}
@@ -521,6 +551,25 @@ module.exports = [
 		$scope.companyAddress="";
 		$scope.companyPlace= "";
 		$scope.allPlaces = {};
+		$scope.check = "";
+		$scope.changePlace = "";
+
+
+		$scope.selectedRow =  {};
+   		$scope.selectedCompanyId = -1;
+   		$scope.selectedCompanyName = "";
+   		$scope.selectedCompanyMBR = "";
+   		$scope.selectedCompanyPIB = "";
+   		$scope.selectedCompanyAddress ="";
+   		$scope.selectedCompanyPlace ="";
+
+   	
+   		$scope.editCompanyName = "";
+   		$scope.editCompanyMBR = "";
+   		$scope.editCompanyPIB = "";
+   		$scope.editCompanyAddress ="";
+   		$scope.editCompanyPlace ="";
+
 
 
 
@@ -532,13 +581,37 @@ module.exports = [
     		enableFullRowSelection: true
 		  };
  			
- 		 $scope.gridOptions.columnDefs = [
+ 		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Preduzece', width:'25%', displayName: 'Naziv'},
 		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Maticni broj'},
 		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
 		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' }
-		  ];
+		];
+
+
+		$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
+
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				$scope.selectedCompanyId = $scope.selectedRow.Id_Preduzece;
+   				$scope.selectedCompanyName = $scope.selectedRow.Naziv_Preduzece;
+   				$scope.selectedCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
+   				$scope.selectedCompanyPIB = $scope.selectedRow.PIB_Preduzece;
+   				$scope.selectedCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
+   				$scope.selectedCompanyPlace = $scope.selectedRow.Mesto.Id;
+
+   				$scope.editCompanyName = $scope.selectedRow.Naziv_Preduzece;
+   				$scope.editCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
+   				$scope.editCompanyPIB = $scope.selectedRow.PIB_Preduzece;
+   				$scope.editCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
+   				$scope.editCompanyPlace = $scope.selectedRow.Mesto.Id;
+
+		  });
+   		};
+
+		
 
     	function fillData(){
     		preduzecaService.get_all_companies()
@@ -550,30 +623,35 @@ module.exports = [
 				.then(function(response){
 				$scope.allPlaces = response;
 			});
-		}
+		};
 
 		fillData();
 
 		$scope.add_company = function()
 		{
-			//console.log("Uneto "+$scope.companyId+", "+$scope.companyName+", "+$scope.companyMBR+", "+$scope.companyPIB);
-			//console.log("Adresa i mesto "+$scope.companyAddress+", "+$scope.companyPlace);
-
-			console.log("Odabrano mesto sa id "+$scope.check);
 			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
 				$window.location.reload();
 			});
-
-
 		};
 
-		$scope.check = "";
-
-		$scope.chose_place = function()
-		{	
+	
+		$scope.remove_selected_company = function()
+		{
+			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
+			console.log("ID preduzeca je "+$scope.selectedRow[0].Id_Preduzece);
+			preduzecaService.remove_company($scope.selectedRow[0].Id_Preduzece).then(function(response){
+				$window.location.reload();
+			});
 		};
 
 
+		$scope.edit_selected_company = function(id, name, mbr, pib, address, place)
+		{
+			console.log("Promenjeno: "+id+", "+name+", "+mbr+", "+pib+", "+address+", "+place);
+			preduzecaService.update_company(id, name, mbr, pib, address, place).then(function(response){
+				$window.location.reload();
+			});
+		};
 
 	}
 ];

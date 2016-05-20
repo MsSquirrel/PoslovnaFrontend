@@ -65,7 +65,6 @@ module.exports = [
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			mestaService.remove_place($scope.selectedRow[0].Id).then(function(response){
-				console.log(response);
 				$window.location.reload();
 			});
 		};
