@@ -95,4 +95,5 @@ myApp.config(['$routeProvider',
 
 
 myApp
-.service('mestaService', require('./mestaService.js'));
+.service('mestaService', require('./mestaService.js'))
+.service('preduzecaService', require('./preduzecaService.js'));

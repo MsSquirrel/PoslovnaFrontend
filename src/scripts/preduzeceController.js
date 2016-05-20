@@ -1,6 +1,16 @@
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
+	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
+
+		$scope.companyId =-1;
+		$scope.companyName ="";
+		$scope.companyMBR = "";
+		$scope.companyPIB = "";
+		$scope.companyAddress="";
+		$scope.companyPlace= "";
+		$scope.allPlaces = {};
+
+
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -18,9 +28,40 @@ module.exports = [
 		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' }
 		  ];
 
-		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+    	function fillData(){
+    		preduzecaService.get_all_companies()
+				.then(function(response){
+				$scope.gridOptions.data = response;
+			});
+
+			mestaService.get_all_places()
+				.then(function(response){
+				$scope.allPlaces = response;
+			});
+		}
+
+		fillData();
+
+		$scope.add_company = function()
+		{
+			//console.log("Uneto "+$scope.companyId+", "+$scope.companyName+", "+$scope.companyMBR+", "+$scope.companyPIB);
+			//console.log("Adresa i mesto "+$scope.companyAddress+", "+$scope.companyPlace);
+
+			console.log("Odabrano mesto sa id "+$scope.check);
+			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
+				$window.location.reload();
+			});
+
+
+		};
+
+		$scope.check = "";
+
+		$scope.chose_place = function()
+		{	
+		};
+
+
 
 	}
 ];

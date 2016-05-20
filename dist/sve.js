@@ -182,9 +182,10 @@ myApp.config(['$routeProvider',
 
 
 myApp
-.service('mestaService', require('./mestaService.js'));
+.service('mestaService', require('./mestaService.js'))
+.service('preduzecaService', require('./preduzecaService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./mestaController.js":8,"./mestaService.js":9,"./pdvController.js":10,"./poslovne-godineController.js":11,"./poslovni-partneriController.js":12,"./preduzeceController.js":13,"./prijemni-dokumentiController.js":14,"./robaController.js":15,"./robne-karticeController.js":16,"./stavke-dokumenataController.js":17,"./stope-pdv-aController.js":18}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./mestaController.js":8,"./mestaService.js":9,"./pdvController.js":10,"./poslovne-godineController.js":11,"./poslovni-partneriController.js":12,"./preduzecaService.js":13,"./preduzeceController.js":14,"./prijemni-dokumentiController.js":15,"./robaController.js":16,"./robne-karticeController.js":17,"./stavke-dokumenataController.js":18,"./stope-pdv-aController.js":19}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -296,7 +297,7 @@ module.exports = [
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
 				$window.location.reload();
 			});
-		}
+		};
 
 		$scope.remove_selected_place = function()
 		{
@@ -305,7 +306,7 @@ module.exports = [
 				console.log(response);
 				$window.location.reload();
 			});
-		}
+		};
 
 		$scope.edit_selected_place = function(name, number)
 		{
@@ -314,7 +315,7 @@ module.exports = [
 			mestaService.update_place($scope.selectedRow[0].Id, name, number).then(function(response){
 				$window.location.reload();
 			});
-		}
+		};
 
 
 
@@ -470,8 +471,58 @@ module.exports = [
 ];
 },{}],13:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$http', '$window', '$q',
+	function preduzecaService($http, $window, $q){
+
+		function get_all_companies()
+		{
+			var resUrl = "http://localhost:61769/api/preduzece";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+		function create_company(id, name, mbr, pib, address, place)
+		{
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/preduzece",
+                    data: {
+						Id_Preduzece: id, 
+						Id: place,
+						Naziv_Preduzece: name,
+						Maticni_broj_Preduzece: mbr,
+						PIB_Preduzece: pib,
+						Adresa_Preduzece: address
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+		return {
+			get_all_companies: get_all_companies,
+			create_company: create_company,
+		};
+
+	}
+];
+},{}],14:[function(require,module,exports){
+module.exports = [
+	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
+	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
+
+		$scope.companyId =-1;
+		$scope.companyName ="";
+		$scope.companyMBR = "";
+		$scope.companyPIB = "";
+		$scope.companyAddress="";
+		$scope.companyPlace= "";
+		$scope.allPlaces = {};
+
+
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -489,13 +540,44 @@ module.exports = [
 		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' }
 		  ];
 
-		$http.get("http://localhost:61769/api/preduzece").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+    	function fillData(){
+    		preduzecaService.get_all_companies()
+				.then(function(response){
+				$scope.gridOptions.data = response;
+			});
+
+			mestaService.get_all_places()
+				.then(function(response){
+				$scope.allPlaces = response;
+			});
+		}
+
+		fillData();
+
+		$scope.add_company = function()
+		{
+			//console.log("Uneto "+$scope.companyId+", "+$scope.companyName+", "+$scope.companyMBR+", "+$scope.companyPIB);
+			//console.log("Adresa i mesto "+$scope.companyAddress+", "+$scope.companyPlace);
+
+			console.log("Odabrano mesto sa id "+$scope.check);
+			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
+				$window.location.reload();
+			});
+
+
+		};
+
+		$scope.check = "";
+
+		$scope.chose_place = function()
+		{	
+		};
+
+
 
 	}
 ];
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -523,7 +605,7 @@ module.exports = [
 
 	}
 ];
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -549,7 +631,7 @@ module.exports = [
 
 	}
 ];
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -577,7 +659,7 @@ module.exports = [
 
 	}
 ];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -605,7 +687,7 @@ module.exports = [
 
 	}
 ];
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){

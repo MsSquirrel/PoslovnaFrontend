@@ -59,7 +59,7 @@ module.exports = [
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
 				$window.location.reload();
 			});
-		}
+		};
 
 		$scope.remove_selected_place = function()
 		{
@@ -68,7 +68,7 @@ module.exports = [
 				console.log(response);
 				$window.location.reload();
 			});
-		}
+		};
 
 		$scope.edit_selected_place = function(name, number)
 		{
@@ -77,7 +77,7 @@ module.exports = [
 			mestaService.update_place($scope.selectedRow[0].Id, name, number).then(function(response){
 				$window.location.reload();
 			});
-		}
+		};
 
 
 
