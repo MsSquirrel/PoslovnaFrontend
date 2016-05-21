@@ -97,4 +97,5 @@ myApp.config(['$routeProvider',
 myApp
 .service('mestaService', require('./mestaService.js'))
 .service('preduzecaService', require('./preduzecaService.js'))
-.service('merneJediniceService', require('./merne-jediniceService.js'));
+.service('merneJediniceService', require('./merne-jediniceService.js'))
+.service('pdvService', require('./pdvService.js'));

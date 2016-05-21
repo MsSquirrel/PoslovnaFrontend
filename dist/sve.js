@@ -184,9 +184,10 @@ myApp.config(['$routeProvider',
 myApp
 .service('mestaService', require('./mestaService.js'))
 .service('preduzecaService', require('./preduzecaService.js'))
-.service('merneJediniceService', require('./merne-jediniceService.js'));
+.service('merneJediniceService', require('./merne-jediniceService.js'))
+.service('pdvService', require('./pdvService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./poslovne-godineController.js":12,"./poslovni-partneriController.js":13,"./preduzecaService.js":14,"./preduzeceController.js":15,"./prijemni-dokumentiController.js":16,"./robaController.js":17,"./robne-karticeController.js":18,"./stavke-dokumenataController.js":19,"./stope-pdv-aController.js":20}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovni-partneriController.js":14,"./preduzecaService.js":15,"./preduzeceController.js":16,"./prijemni-dokumentiController.js":17,"./robaController.js":18,"./robne-karticeController.js":19,"./stavke-dokumenataController.js":20,"./stope-pdv-aController.js":21}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -509,8 +510,18 @@ module.exports = [
 ];
 },{}],11:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http','pdvService', '$routeParams','$window',
+	function myController($scope, $http, pdvService, $routeParams, $window){
+
+		$scope.pdvId = -1;
+		$scope.pdvName = "";
+
+		$scope.selectedRow = {};
+		$scope.selectedPdvId = -1;
+		$scope.selectedPdvName = "";
+
+		$scope.editPdvName = "";
+
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -524,13 +535,112 @@ module.exports = [
 		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
 		];
 
-		$http.get("http://localhost:61769/api/PDV").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+    	$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				$scope.selectedPdvId = $scope.selectedRow.Id_PDV;
+   				$scope.selectedPdvName = $scope.selectedRow.Naziv_PDV;
+   				$scope.editPdvName = $scope.selectedRow.Naziv_PDV;
+		  	});
+   		};
 
+   		function fillData(){
+    		pdvService.get_all_pdvs()
+				.then(function(response){
+				$scope.gridOptions.data = response;
+			});
+		};
+
+		fillData();
+
+		$scope.add_pdv = function()
+		{
+			pdvService.create_pdv($scope.pdvId, $scope.pdvName).then(function(response){
+				$window.location.reload();
+			});
+		};
+
+		$scope.remove_selected_pdv = function()
+		{
+			pdvService.remove_pdv($scope.selectedPdvId).then(function(response){
+				$window.location.reload();
+			});
+		};
+
+		$scope.edit_selected_pdv = function(name)
+		{
+			pdvService.update_pdv($scope.selectedPdvId, name).then(function(response){
+				$window.location.reload();
+			});
+		};
 	}
 ];
 },{}],12:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function pdvService($http, $window, $q){
+
+		function get_all_pdvs()
+		{
+			var resUrl = "http://localhost:61769/api/PDV";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
+		function create_pdv(id, name)
+		{
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/PDV",
+                    data: {
+						Id_PDV: id, 
+						Naziv_PDV: name,
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+		function remove_pdv(id)
+		{
+			var urlDelete = "http://localhost:61769/api/PDV/"+id+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+		function update_pdv(id, name)
+		{
+			var url = "http://localhost:61769/api/PDV/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+                    	Id_PDV: id, 
+						Naziv_PDV: name,
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+		return {
+			get_all_pdvs: get_all_pdvs,
+			remove_pdv: remove_pdv, 
+			create_pdv: create_pdv,
+			update_pdv: update_pdv,
+		};
+	}
+
+];
+},{}],13:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -555,7 +665,7 @@ module.exports = [
 
 	}
 ];
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -583,7 +693,7 @@ module.exports = [
 
 	}
 ];
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function preduzecaService($http, $window, $q){
@@ -654,7 +764,7 @@ module.exports = [
 
 	}
 ];
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
 	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
@@ -770,7 +880,7 @@ module.exports = [
 
 	}
 ];
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -798,7 +908,7 @@ module.exports = [
 
 	}
 ];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -824,7 +934,7 @@ module.exports = [
 
 	}
 ];
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -852,7 +962,7 @@ module.exports = [
 
 	}
 ];
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -880,7 +990,7 @@ module.exports = [
 
 	}
 ];
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
