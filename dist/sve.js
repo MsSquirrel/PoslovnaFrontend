@@ -185,9 +185,10 @@ myApp
 .service('mestaService', require('./mestaService.js'))
 .service('preduzecaService', require('./preduzecaService.js'))
 .service('merneJediniceService', require('./merne-jediniceService.js'))
-.service('pdvService', require('./pdvService.js'));
+.service('pdvService', require('./pdvService.js'))
+.service('poslovneGodineService', require('./poslovne-godineService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovni-partneriController.js":14,"./preduzecaService.js":15,"./preduzeceController.js":16,"./prijemni-dokumentiController.js":17,"./robaController.js":18,"./robne-karticeController.js":19,"./stavke-dokumenataController.js":20,"./stope-pdv-aController.js":21}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovne-godineService.js":14,"./poslovni-partneriController.js":15,"./preduzecaService.js":16,"./preduzeceController.js":17,"./prijemni-dokumentiController.js":18,"./robaController.js":19,"./robne-karticeController.js":20,"./stavke-dokumenataController.js":21,"./stope-pdv-aController.js":22}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -642,9 +643,27 @@ module.exports = [
 ];
 },{}],13:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
-		
+	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window',
+	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window){
+
+		$scope.businessYearId = -1;
+		$scope.businessYear = 0;
+		$scope.businessYearFinished = 0;
+		$scope.businessYearCompany="";
+		$scope.changeCompany = "";
+
+		$scope.allCompanies = {};
+
+		$scope.selectedRow = {};
+		$scope.selectedBusinessYearId = -1;
+   		$scope.selectedBusinessYear = 0;
+   		$scope.selectedBusinessYearFinished = 0;
+   		$scope.selectedBusinessYearCompany = "";
+
+   		$scope.editBusinessYear = 0;
+   		$scope.editBusinessYearFinished = 0;
+   		$scope.editBusinessYearCompany = 0;
+	
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -659,13 +678,132 @@ module.exports = [
 		    { name:'Preduzece.Naziv_Preduzece', width:'50%', displayName: 'Preduzeće'},
 		  ];
 
-		$http.get("http://localhost:61769/api/poslovna_godina").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+
+		$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
+
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				$scope.selectedBusinessYearId = $scope.selectedRow.Id_Poslovna_godina;
+   				$scope.selectedBusinessYear = $scope.selectedRow.Godina_Poslovna_godina;
+   				$scope.selectedBusinessYearFinished = $scope.selectedRow.Zakljucena_Poslovna_godina;
+   				$scope.selectedBusinessYearCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+
+   				$scope.editBusinessYear = $scope.selectedRow.Godina_Poslovna_godina;
+   				$scope.editBusinessYearFinished = $scope.selectedRow.Zakljucena_Poslovna_godina;
+   				$scope.editBusinessYearCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+
+		 	});
+   		};
+
+    	function fillData()
+    	{
+    		poslovneGodineService.get_all_businessYears()
+				.then(function(response){
+				$scope.gridOptions.data = response;
+			});
+
+			preduzecaService.get_all_companies()
+				.then(function(response){
+				$scope.allCompanies = response;
+			});
+    	};
+
+    	fillData();
+
+    	$scope.add_businessYear = function()
+    	{
+    		poslovneGodineService.create_businessYear($scope.businessYearId, $scope.businessYear, $scope.businessYearFinished, $scope.businessYearCompany).then(function(response){
+				$window.location.reload();
+			});
+    	};
+
+    	$scope.remove_selected_businessYear = function()
+    	{
+    		poslovneGodineService.remove_businessYear($scope.selectedBusinessYearId).then(function(response){
+				$window.location.reload();
+			});
+    	};
+
+
+    	$scope.edit_selected_businessYear = function()
+    	{
+    		console.log("Saljemo "+$scope.selectedBusinessYearId+", "+$scope.editBusinessYear+", "+$scope.editBusinessYearFinished+","+$scope.editBusinessYearCompany);
+    		poslovneGodineService.update_businessYear($scope.selectedBusinessYearId, $scope.editBusinessYear, $scope.editBusinessYearFinished, $scope.editBusinessYearCompany).then(function(response){
+				$window.location.reload();
+			});
+    	}
 
 	}
 ];
 },{}],14:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function poslovneGodineService($http, $window, $q){
+
+		function get_all_businessYears()
+		{
+			var resUrl = "http://localhost:61769/api/poslovna_godina";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+		function create_businessYear(id, godina, zakljucena, preduzece)
+		{	
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/poslovna_godina",
+                    data: {
+						Id_Poslovna_godina: id, 
+						Id_Preduzece: preduzece,
+						Godina_Poslovna_godina: godina,
+						Zakljucena_Poslovna_godina: zakljucena
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		function remove_businessYear(id)
+		{
+			var urlDelete = "http://localhost:61769/api/poslovna_godina/"+id+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+		function update_businessYear(id, godina, zakljucena, preduzece)
+		{	
+			var url = "http://localhost:61769/api/poslovna_godina/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+                    	Id_Poslovna_godina: id, 
+						Id_Preduzece: preduzece,
+						Godina_Poslovna_godina: godina,
+						Zakljucena_Poslovna_godina: zakljucena
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+		return {
+			get_all_businessYears: get_all_businessYears, 
+			create_businessYear: create_businessYear, 
+			update_businessYear: update_businessYear, 
+			remove_businessYear: remove_businessYear,
+		};
+
+
+	}
+];
+},{}],15:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -693,7 +831,7 @@ module.exports = [
 
 	}
 ];
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function preduzecaService($http, $window, $q){
@@ -764,7 +902,7 @@ module.exports = [
 
 	}
 ];
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
 	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
@@ -880,7 +1018,7 @@ module.exports = [
 
 	}
 ];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -908,7 +1046,7 @@ module.exports = [
 
 	}
 ];
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -934,7 +1072,7 @@ module.exports = [
 
 	}
 ];
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -962,7 +1100,7 @@ module.exports = [
 
 	}
 ];
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -990,7 +1128,7 @@ module.exports = [
 
 	}
 ];
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
