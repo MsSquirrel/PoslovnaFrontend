@@ -183,9 +183,10 @@ myApp.config(['$routeProvider',
 
 myApp
 .service('mestaService', require('./mestaService.js'))
-.service('preduzecaService', require('./preduzecaService.js'));
+.service('preduzecaService', require('./preduzecaService.js'))
+.service('merneJediniceService', require('./merne-jediniceService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./mestaController.js":8,"./mestaService.js":9,"./pdvController.js":10,"./poslovne-godineController.js":11,"./poslovni-partneriController.js":12,"./preduzecaService.js":13,"./preduzeceController.js":14,"./prijemni-dokumentiController.js":15,"./robaController.js":16,"./robne-karticeController.js":17,"./stavke-dokumenataController.js":18,"./stope-pdv-aController.js":19}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./poslovne-godineController.js":12,"./poslovni-partneriController.js":13,"./preduzecaService.js":14,"./preduzeceController.js":15,"./prijemni-dokumentiController.js":16,"./robaController.js":17,"./robne-karticeController.js":18,"./stavke-dokumenataController.js":19,"./stope-pdv-aController.js":20}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -213,8 +214,18 @@ module.exports = [
 ];
 },{}],7:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http','merneJediniceService', '$routeParams','$window',
+	function myController($scope, $http, merneJediniceService, $routeParams, $window){
+
+		$scope.measUnitId = -1;
+		$scope.measUnitName ="";
+
+		$scope.selectedRow =  {};
+   		$scope.selectedMeasUnitId = -1;
+   		$scope.selectedMeasUnitName = "";
+
+   		$scope.editMeasUnitName = "";
+
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -228,14 +239,118 @@ module.exports = [
 		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv'}
 		];
 
-		$http.get("http://localhost:61769/api/jedinica_mere").then(function(response) {
+    	$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
 
-        	$scope.gridOptions.data = response.data;
-    	});
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				$scope.selectedMeasUnitId = $scope.selectedRow.Id_Jedinica_mere;
+   				$scope.selectedMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
+
+   				$scope.editMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
+   			});
+   		};
+
+
+    	function fillData(){
+    		merneJediniceService.get_all_measUnits().then(function(response){
+    			$scope.gridOptions.data = response;
+    		});
+    	};
+
+    	fillData();
+
+
+
+    	$scope.add_measUnit = function(){
+    		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName).then(function(response){
+    			$window.location.reload();
+    		});
+    	};
+
+    	$scope.remove_selected_measUnit = function()
+    	{
+    		$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
+    		merneJediniceService.remove_measUnit($scope.selectedRow[0].Id_Jedinica_mere).then(function(response){
+    			$window.location.reload();
+    		});
+    	};
+
+    	$scope.edit_selected_measUnit = function(name)
+    	{
+    		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name).then(function(response){
+    			$window.location.reload();
+    		});
+    	};
 
 	}
 ];
 },{}],8:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function merneJediniceService($http, $window, $q){
+
+
+		function get_all_measUnits()
+		{
+			var resUrl = "http://localhost:61769/api/jedinica_mere";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
+		function add_measUnit(id, name)
+		{	
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/jedinica_mere",
+                    data: {
+						Id_Jedinica_mere: id, 
+						Naziv_Jedinica_mere: name,
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		function remove_measUnit(id)
+		{
+			var urlDelete = "http://localhost:61769/api/jedinica_mere/"+id+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+
+		function update_measUnit(id, name)
+		{
+			var url = "http://localhost:61769/api/jedinica_mere/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+                    	Id_Jedinica_mere: id, 
+						Naziv_Jedinica_mere: name,
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+		return {
+			get_all_measUnits: get_all_measUnits,
+			add_measUnit: add_measUnit,
+			remove_measUnit: remove_measUnit,
+			update_measUnit: update_measUnit,
+		};
+
+	}
+];
+},{}],9:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'mestaService', '$routeParams','$window',
 	function myController($scope, $http, mestaService,$routeParams, $window){
@@ -320,7 +435,7 @@ module.exports = [
 
 	}
 ];
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function mestaService($http, $window, $q){
@@ -392,7 +507,7 @@ module.exports = [
 
 	}
 ];
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -415,7 +530,7 @@ module.exports = [
 
 	}
 ];
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -440,7 +555,7 @@ module.exports = [
 
 	}
 ];
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -468,7 +583,7 @@ module.exports = [
 
 	}
 ];
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function preduzecaService($http, $window, $q){
@@ -539,7 +654,7 @@ module.exports = [
 
 	}
 ];
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
 	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
@@ -655,7 +770,7 @@ module.exports = [
 
 	}
 ];
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -683,7 +798,7 @@ module.exports = [
 
 	}
 ];
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -709,7 +824,7 @@ module.exports = [
 
 	}
 ];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -737,7 +852,7 @@ module.exports = [
 
 	}
 ];
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -765,7 +880,7 @@ module.exports = [
 
 	}
 ];
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
