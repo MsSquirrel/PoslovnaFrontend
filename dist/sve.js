@@ -186,9 +186,10 @@ myApp
 .service('preduzecaService', require('./preduzecaService.js'))
 .service('merneJediniceService', require('./merne-jediniceService.js'))
 .service('pdvService', require('./pdvService.js'))
-.service('poslovneGodineService', require('./poslovne-godineService.js'));
+.service('poslovneGodineService', require('./poslovne-godineService.js'))
+.service('stopePDVService', require('./stope-pdv-aService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovne-godineService.js":14,"./poslovni-partneriController.js":15,"./preduzecaService.js":16,"./preduzeceController.js":17,"./prijemni-dokumentiController.js":18,"./robaController.js":19,"./robne-karticeController.js":20,"./stavke-dokumenataController.js":21,"./stope-pdv-aController.js":22}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovne-godineService.js":14,"./poslovni-partneriController.js":15,"./preduzecaService.js":16,"./preduzeceController.js":17,"./prijemni-dokumentiController.js":18,"./robaController.js":19,"./robne-karticeController.js":20,"./stavke-dokumenataController.js":21,"./stope-pdv-aController.js":22,"./stope-pdv-aService.js":23}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1130,9 +1131,27 @@ module.exports = [
 ];
 },{}],22:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window',
+	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window){
 		
+
+		$scope.pdvRateId = -1;
+		$scope.pdvRate = 0.00;
+		$scope.pdvRateDate = "";
+		$scope.pdvRatePdv=0;
+
+		$scope.allPDVs = {};
+
+		$scope.selectedPdvRateId = -1;
+		$scope.selectedPdvRate = 0.00;
+		$scope.selectedPdvRateDate = "";
+		$scope.selectedPdvRatePdv=0;
+
+
+		$scope.editPdvRate = 0.00;
+		$scope.editPdvRateDate = "";
+		$scope.editPdvRatePdv=0;
+
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -1148,10 +1167,183 @@ module.exports = [
 		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Vazi od'}
 		];
 
-		$http.get("http://localhost:61769/api/stopa_pdva").then(function(response) {
 
-        	$scope.gridOptions.data = response.data;
-    	});
+		$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
+
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+				$scope.selectedPdvRateId = $scope.selectedRow.Id_Stopa_PDV_a;
+				$scope.selectedPdvRate = $scope.selectedRow.Stopa_Stopa_PDV_a;
+				$scope.selectedPdvRateDate = $scope.selectedRow.Datum_vazenja_Stopa_PDV_a;
+				$scope.selectedPdvRatePdv= $scope.selectedRow.Id_PDV;
+
+
+				$scope.editPdvRate = $scope.selectedPdvRate;
+				$scope.editPdvRateDate = $scope.selectedPdvRateDate;
+				$scope.editPdvRatePdv=$scope.selectedPdvRatePdv;
+
+   			  });
+   		};
+
+    	function fillData()
+    	{
+    		stopePDVService.get_all_PDVRates().then(function(response){
+    			$scope.gridOptions.data = response;
+    		});
+
+    		pdvService.get_all_pdvs().then(function(response){
+    			$scope.allPDVs = response;
+    		});
+    	};
+
+    	fillData();
+
+    	$scope.add_PDVRate = function()
+    	{
+    		var god = $scope.dt.getYear()+1900;
+    		var m = $scope.dt.getMonth()+1;
+    		var date = god+"-"+m+"-"+$scope.dt.getDate();
+    		console.log("DATUM "+date);
+    		console.log("Uneto "+$scope.pdvRateId+", "+$scope.pdvRate+", "+date+", "+$scope.pdvRatePdv);
+    		stopePDVService.create_pdvRate($scope.pdvRateId, $scope.pdvRate, date, $scope.pdvRatePdv).then(function(response){
+    			$window.location.reload();
+    		});
+    	};
+
+    	$scope.remove_PDVRate = function()
+    	{
+    		stopePDVService.remove_pdvRate($scope.selectedPdvRateId).then(function(response){
+    			$window.location.reload();
+    		});
+    	};
+
+
+    	$scope.edit_PDVRate = function()
+    	{
+       		var god = $scope.editPdvRateDate.getYear()+1900;
+    		var m = $scope.editPdvRateDate.getMonth()+1;
+    		var date = god+"-"+m+"-"+$scope.editPdvRateDate.getDate();
+    		stopePDVService.update_pdvRate($scope.selectedPdvRateId, $scope.editPdvRate, date ,$scope.editPdvRatePdv).then(function(response){
+    			$window.location.reload();
+    		});
+    	};
+
+
+
+    	// time picker
+  		 $scope.mytime = new Date();
+  		 $scope.options = {
+    		hour_step: [1, 2, 3],
+    		minute_step: [1, 5, 10, 15, 25, 30]
+  		};
+
+ 		 $scope.hour_step = 1;
+ 		 $scope.minute_step = 15;
+ 		 $scope.ismeridian = true;
+
+		// date picker
+ 		$scope.open1 = function() {
+    	$scope.popup1.opened = true;
+  		};
+  		
+  		$scope.today = function(){
+  			$scope.dt = new Date();
+  		}
+
+ 		$scope.minDate =  new Date();
+
+ 		$scope.today();
+  		$scope.formats = ['yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+ 		$scope.format = $scope.formats[0];
+ 		
+
+ 		 $scope.popup1 = {
+    		opened: false
+ 		 };
+
+  		$scope.dateOptions = {
+    		formatYear: 'yy',
+    		startingDay: 1
+  		};
+
+ 		$scope.altInputFormats = ['yyyy/MM/dd'];
+
+ 		 $scope.setDate = function(year, month, day) {
+    		$scope.dt = new Date(year, month, day);
+  		};
+
+  		$scope.dateChanged = function() {
+			console.log("Date chenged function "+$scope.dt.getMonth() +" "+$scope.dt.getDate());
+			console.log("ODABRANO VREME "+$scope.dt);
+		}
+
+
+	}
+];
+},{}],23:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function stopePDVService($http, $window, $q){
+
+		function get_all_PDVRates()
+		{
+			var resUrl = "http://localhost:61769/api/stopa_pdva";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+		function create_pdvRate(id, rate, date, pdvId)
+		{
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/stopa_pdva",
+                    data: {
+						Id_Stopa_PDV_a: id, 
+						Id_PDV: pdvId,
+						Stopa_Stopa_PDV_a: rate,
+						Datum_vazenja_Stopa_PDV_a: date
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		function remove_pdvRate(id)
+		{
+			var urlDelete = "http://localhost:61769/api/stopa_pdva/"+id+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+
+		function update_pdvRate(id, rate, date, pdvId)
+		{
+			var url = "http://localhost:61769/api/stopa_pdva/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+                    	Id_Stopa_PDV_a: id, 
+						Id_PDV: pdvId,
+						Stopa_Stopa_PDV_a: rate,
+						Datum_vazenja_Stopa_PDV_a: date
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		return {
+			get_all_PDVRates: get_all_PDVRates,
+			create_pdvRate: create_pdvRate, 
+			remove_pdvRate: remove_pdvRate,
+			update_pdvRate: update_pdvRate,
+		};
 
 	}
 ];
