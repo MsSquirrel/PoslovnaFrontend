@@ -49,7 +49,7 @@ module.exports = [
 
     	$scope.add_measUnit = function(){
     		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
@@ -57,14 +57,14 @@ module.exports = [
     	{
     		$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
     		merneJediniceService.remove_measUnit($scope.selectedRow[0].Id_Jedinica_mere).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
     	$scope.edit_selected_measUnit = function(name)
     	{
     		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 

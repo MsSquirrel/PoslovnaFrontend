@@ -30,7 +30,7 @@ module.exports = [
  
 		 $scope.gridOptions.columnDefs = [
 		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina'},
-		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena'},
+		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena', cellFilter: 'true_false'},
 		    { name:'Preduzece.Naziv_Preduzece', width:'50%', displayName: 'Preduzeće'},
 		  ];
 
@@ -70,14 +70,14 @@ module.exports = [
     	$scope.add_businessYear = function()
     	{
     		poslovneGodineService.create_businessYear($scope.businessYearId, $scope.businessYear, $scope.businessYearFinished, $scope.businessYearCompany).then(function(response){
-				$window.location.reload();
+        fillData();
 			});
     	};
 
     	$scope.remove_selected_businessYear = function()
     	{
     		poslovneGodineService.remove_businessYear($scope.selectedBusinessYearId).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
     	};
 
@@ -86,7 +86,7 @@ module.exports = [
     	{
     		console.log("Saljemo "+$scope.selectedBusinessYearId+", "+$scope.editBusinessYear+", "+$scope.editBusinessYearFinished+","+$scope.editBusinessYearCompany);
     		poslovneGodineService.update_businessYear($scope.selectedBusinessYearId, $scope.editBusinessYear, $scope.editBusinessYearFinished, $scope.editBusinessYearCompany).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
     	}
 

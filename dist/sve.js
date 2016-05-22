@@ -102,6 +102,14 @@ myApp.controller('robaCtrl', require('./robaController.js'));
 myApp.controller('robne-karticeCtrl', require('./robne-karticeController.js'));
 myApp.controller('stavke-dokumenataCtrl', require('./stavke-dokumenataController.js'));
 myApp.controller('stope-pdv-aCtrl', require('./stope-pdv-aController.js'));
+myApp.filter('true_false', function() {
+    return function(text, length, end) {
+        if (text) {
+            return 'Da';
+        }
+        return 'Ne';
+    }
+});
 
 myApp.config(['$routeProvider',
   function($routeProvider) {
@@ -267,7 +275,7 @@ module.exports = [
 
     	$scope.add_measUnit = function(){
     		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
@@ -275,14 +283,14 @@ module.exports = [
     	{
     		$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
     		merneJediniceService.remove_measUnit($scope.selectedRow[0].Id_Jedinica_mere).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
     	$scope.edit_selected_measUnit = function(name)
     	{
     		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
@@ -413,7 +421,7 @@ module.exports = [
 		$scope.add_place = function()
 		{
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -421,7 +429,7 @@ module.exports = [
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			mestaService.remove_place($scope.selectedRow[0].Id).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -430,7 +438,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("Promenjeno: "+$scope.selectedRow[0].Id+","+name+", "+number);
 			mestaService.update_place($scope.selectedRow[0].Id, name, number).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -559,21 +567,21 @@ module.exports = [
 		$scope.add_pdv = function()
 		{
 			pdvService.create_pdv($scope.pdvId, $scope.pdvName).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
 		$scope.remove_selected_pdv = function()
 		{
 			pdvService.remove_pdv($scope.selectedPdvId).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
 		$scope.edit_selected_pdv = function(name)
 		{
 			pdvService.update_pdv($scope.selectedPdvId, name).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 	}
@@ -675,7 +683,7 @@ module.exports = [
  
 		 $scope.gridOptions.columnDefs = [
 		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina'},
-		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena'},
+		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena', cellFilter: 'true_false'},
 		    { name:'Preduzece.Naziv_Preduzece', width:'50%', displayName: 'Preduzeće'},
 		  ];
 
@@ -715,14 +723,14 @@ module.exports = [
     	$scope.add_businessYear = function()
     	{
     		poslovneGodineService.create_businessYear($scope.businessYearId, $scope.businessYear, $scope.businessYearFinished, $scope.businessYearCompany).then(function(response){
-				$window.location.reload();
+        fillData();
 			});
     	};
 
     	$scope.remove_selected_businessYear = function()
     	{
     		poslovneGodineService.remove_businessYear($scope.selectedBusinessYearId).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
     	};
 
@@ -731,7 +739,7 @@ module.exports = [
     	{
     		console.log("Saljemo "+$scope.selectedBusinessYearId+", "+$scope.editBusinessYear+", "+$scope.editBusinessYearFinished+","+$scope.editBusinessYearCompany);
     		poslovneGodineService.update_businessYear($scope.selectedBusinessYearId, $scope.editBusinessYear, $scope.editBusinessYearFinished, $scope.editBusinessYearCompany).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
     	}
 
@@ -994,7 +1002,7 @@ module.exports = [
 		$scope.add_company = function()
 		{
 			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -1004,7 +1012,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("ID preduzeca je "+$scope.selectedRow[0].Id_Preduzece);
 			preduzecaService.remove_company($scope.selectedRow[0].Id_Preduzece).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -1013,7 +1021,7 @@ module.exports = [
 		{
 			console.log("Promenjeno: "+id+", "+name+", "+mbr+", "+pib+", "+address+", "+place);
 			preduzecaService.update_company(id, name, mbr, pib, address, place).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -1207,14 +1215,14 @@ module.exports = [
     		console.log("DATUM "+date);
     		console.log("Uneto "+$scope.pdvRateId+", "+$scope.pdvRate+", "+date+", "+$scope.pdvRatePdv);
     		stopePDVService.create_pdvRate($scope.pdvRateId, $scope.pdvRate, date, $scope.pdvRatePdv).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
     	$scope.remove_PDVRate = function()
     	{
     		stopePDVService.remove_pdvRate($scope.selectedPdvRateId).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
@@ -1225,7 +1233,7 @@ module.exports = [
     		var m = $scope.editPdvRateDate.getMonth()+1;
     		var date = god+"-"+m+"-"+$scope.editPdvRateDate.getDate();
     		stopePDVService.update_pdvRate($scope.selectedPdvRateId, $scope.editPdvRate, date ,$scope.editPdvRatePdv).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 

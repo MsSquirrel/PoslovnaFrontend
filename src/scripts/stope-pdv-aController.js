@@ -75,14 +75,14 @@ module.exports = [
     		console.log("DATUM "+date);
     		console.log("Uneto "+$scope.pdvRateId+", "+$scope.pdvRate+", "+date+", "+$scope.pdvRatePdv);
     		stopePDVService.create_pdvRate($scope.pdvRateId, $scope.pdvRate, date, $scope.pdvRatePdv).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
     	$scope.remove_PDVRate = function()
     	{
     		stopePDVService.remove_pdvRate($scope.selectedPdvRateId).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 
@@ -93,7 +93,7 @@ module.exports = [
     		var m = $scope.editPdvRateDate.getMonth()+1;
     		var date = god+"-"+m+"-"+$scope.editPdvRateDate.getDate();
     		stopePDVService.update_pdvRate($scope.selectedPdvRateId, $scope.editPdvRate, date ,$scope.editPdvRatePdv).then(function(response){
-    			$window.location.reload();
+    			fillData();
     		});
     	};
 

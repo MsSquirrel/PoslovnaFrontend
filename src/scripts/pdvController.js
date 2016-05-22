@@ -46,21 +46,21 @@ module.exports = [
 		$scope.add_pdv = function()
 		{
 			pdvService.create_pdv($scope.pdvId, $scope.pdvName).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
 		$scope.remove_selected_pdv = function()
 		{
 			pdvService.remove_pdv($scope.selectedPdvId).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
 		$scope.edit_selected_pdv = function(name)
 		{
 			pdvService.update_pdv($scope.selectedPdvId, name).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 	}

@@ -88,7 +88,7 @@ module.exports = [
 		$scope.add_company = function()
 		{
 			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -98,7 +98,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("ID preduzeca je "+$scope.selectedRow[0].Id_Preduzece);
 			preduzecaService.remove_company($scope.selectedRow[0].Id_Preduzece).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -107,7 +107,7 @@ module.exports = [
 		{
 			console.log("Promenjeno: "+id+", "+name+", "+mbr+", "+pib+", "+address+", "+place);
 			preduzecaService.update_company(id, name, mbr, pib, address, place).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 

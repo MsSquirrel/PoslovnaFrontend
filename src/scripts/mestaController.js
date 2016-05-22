@@ -57,7 +57,7 @@ module.exports = [
 		$scope.add_place = function()
 		{
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -65,7 +65,7 @@ module.exports = [
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			mestaService.remove_place($scope.selectedRow[0].Id).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -74,7 +74,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("Promenjeno: "+$scope.selectedRow[0].Id+","+name+", "+number);
 			mestaService.update_place($scope.selectedRow[0].Id, name, number).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
