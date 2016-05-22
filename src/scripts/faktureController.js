@@ -13,8 +13,8 @@ module.exports = [
  		 $scope.gridOptions.columnDefs = [
  		 	{ name:'Poslovni_partner.Naziv_Partner', width:'25%', displayName: 'Partner'},
 		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina'},
-		    { name:'Datum_fakture_Faktura', width:'20%', displayName: 'Datum fakture'},
-		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Datum valute'},
+		    { name:'Datum_fakture_Faktura', width:'20%', displayName: 'Datum fakture', cellFilter: 'date:\'dd.MM.yyyy\''},
+		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\''},
 		    { name:'Ukupno_za_placanje_Faktura', width:'25%', displayName: 'Ukupno za plaćanje'}
 		  ];
 

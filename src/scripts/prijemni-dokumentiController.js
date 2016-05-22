@@ -15,7 +15,7 @@ module.exports = [
 		    { name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
 		    { name:'Poslovni_partner.Naziv_Partner', width:'20%', displayName: 'Partner'},
 		    { name:'Redni_broj_Prijemni_dokument', width:'10%', displayName: 'Redni broj'},
-		    { name:'Datum_formiranja_Prijemni_dokument', width:'20%', displayName: 'Datum formiranja'},
+		    { name:'Datum_formiranja_Prijemni_dokument', width:'20%', displayName: 'Datum formiranja', cellFilter: 'date:\'dd.MM.yyyy\''},
 		    { name:'Ukupna_vrednost_Prijemni_dokument', width:'10%', displayName: 'Ukupna vrednost'}
 		  ];
 

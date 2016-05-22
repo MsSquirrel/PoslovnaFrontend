@@ -48,8 +48,8 @@ module.exports = [
  		 $scope.gridOptions.columnDefs = [
  		 	{ name:'Poslovni_partner.Naziv_Partner', width:'25%', displayName: 'Partner'},
 		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina'},
-		    { name:'Datum_fakture_Faktura', width:'20%', displayName: 'Datum fakture'},
-		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Datum valute'},
+		    { name:'Datum_fakture_Faktura', width:'20%', displayName: 'Datum fakture', cellFilter: 'date:\'dd.MM.yyyy\''},
+		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\''},
 		    { name:'Ukupno_za_placanje_Faktura', width:'25%', displayName: 'Ukupno za plaćanje'}
 		  ];
 
@@ -357,7 +357,7 @@ module.exports = [
 module.exports = [
 	'$scope', '$http', 'mestaService', '$routeParams','$window',
 	function myController($scope, $http, mestaService,$routeParams, $window){
-
+	
 		$scope.placeId = -1;
 		$scope.placeName = "";
 		$scope.placeNumber = "00000";
@@ -1037,7 +1037,7 @@ module.exports = [
 		    { name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
 		    { name:'Poslovni_partner.Naziv_Partner', width:'20%', displayName: 'Partner'},
 		    { name:'Redni_broj_Prijemni_dokument', width:'10%', displayName: 'Redni broj'},
-		    { name:'Datum_formiranja_Prijemni_dokument', width:'20%', displayName: 'Datum formiranja'},
+		    { name:'Datum_formiranja_Prijemni_dokument', width:'20%', displayName: 'Datum formiranja', cellFilter: 'date:\'dd.MM.yyyy\''},
 		    { name:'Ukupna_vrednost_Prijemni_dokument', width:'10%', displayName: 'Ukupna vrednost'}
 		  ];
 
@@ -1164,7 +1164,7 @@ module.exports = [
 		$scope.gridOptions.columnDefs = [
 			{ name:'PDV.Naziv_PDV', width:'30%', displayName: 'Za PDV'},
 		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa'},
-		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Važi od'}
+		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Važi od', cellFilter: 'date:\'dd.MM.yyyy\''}
 		];
 
 

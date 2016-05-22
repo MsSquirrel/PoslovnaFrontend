@@ -1,7 +1,7 @@
 module.exports = [
 	'$scope', '$http', 'mestaService', '$routeParams','$window',
 	function myController($scope, $http, mestaService,$routeParams, $window){
-
+	
 		$scope.placeId = -1;
 		$scope.placeName = "";
 		$scope.placeNumber = "00000";
