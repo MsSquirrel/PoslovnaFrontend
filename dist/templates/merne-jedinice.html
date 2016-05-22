@@ -25,7 +25,8 @@
 
 	<br><br>
 
-	<div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
+	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
+	 </div>
 
 
 	 <div class="modal fade" id="addModal" role="dialog">
@@ -38,7 +39,7 @@
 		    		</div>
 		    		<div class="modal-body">
 		      			<form novalidate>
-							Id merne jedinice:<input type="text"  class="form-control" ng-model="measUnitId"><br>
+							
 							Naziv merne jedinice: <input type="text" class="form-control" ng-model="measUnitName">
 							<br><br>
 							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_measUnit()">Sačuvaj</button>

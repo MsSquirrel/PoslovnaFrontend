@@ -21,7 +21,7 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
+		    { name:'Naziv_PDV', width:'100%', displayName: 'Naziv'}
 		];
 
     	$scope.gridOptions.onRegisterApi = function(gridApi) {

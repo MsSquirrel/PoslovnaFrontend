@@ -24,7 +24,8 @@
 
 	<br><br>
 
-	 <div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
+	 <div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
+	 </div>
 
 
 	  <div class="modal fade" id="addModal" role="dialog">
@@ -37,7 +38,7 @@
 		    		</div>
 		    		<div class="modal-body">
 		      			<form novalidate>
-							Id:<input type="text"  class="form-control" ng-model="companyId"><br>
+						
 							Naziv preduzeća: <input type="text" class="form-control" ng-model="companyName"><br>
 							Matični broj: <input type="text"  class="form-control" ng-model="companyMBR"><br>
 							PIB preduzeća: <input type="text" class="form-control" ng-model="companyPIB"><br>

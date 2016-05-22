@@ -25,9 +25,8 @@
 
 	<br><br>
 
-	<div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
-
-
+	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
+	 </div>
 
 	 <div class="modal fade" id="addModal" role="dialog">
     		<div class="modal-dialog">
@@ -39,7 +38,7 @@
 		    		</div>
 		    		<div class="modal-body">
 		      			<form novalidate>
-							Id poslovne godine:<input type="text"  class="form-control" ng-model="businessYearId"><br>
+							
 							Godina: <input type="text" class="form-control" ng-model="businessYear"><br>
 							Zaključena:<input type="checkbox" ng-model="businessYearFinished"
           					 ng-true-value=1 ng-false-value=0><br><br>

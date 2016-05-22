@@ -12,11 +12,11 @@ module.exports = [
 		  };
  			
  		 $scope.gridOptions.columnDefs = [
- 		 	{ name:'Robna_kartica.Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
-		    { name:'Redni_broj_Analitika_magacinske_kartice', width:'20%', displayName: 'Rbr.'},
-		    { name:'Smer_Analitika_magacinske_kartice', width:'20%', displayName: 'Smer'},
-		    { name:'Kolicina_Analitika_magacinske_kartice', width:'20%', displayName: 'Ukupna kolicina'},
-		    { name:'Cena_Analitika_magacinske_kartice', width:'20%', displayName: 'Cena'}
+ 		 	{ name:'Robna_kartica.Magacin.Naziv_Magacin', width:'30%', displayName: 'Magacin'},
+		    { name:'Redni_broj_Analitika_magacinske_kartice', width:'10%', displayName: 'Rbr.'},
+		    { name:'Smer_Analitika_magacinske_kartice', width:'15%', displayName: 'Smer'},
+		    { name:'Kolicina_Analitika_magacinske_kartice', width:'20%', displayName: 'Ukupna količina'},
+		    { name:'Cena_Analitika_magacinske_kartice', width:'25%', displayName: 'Cena'}
 		  ];
 
 		$http.get("http://localhost:61769/api/analitika_magacinske_kartice").then(function(response) {
@@ -46,11 +46,11 @@ module.exports = [
 		  };
  			
  		 $scope.gridOptions.columnDefs = [
- 		 	{ name:'Poslovni_partner.Naziv_Partner', width:'20%', displayName: 'Partner'},
-		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'20%', displayName: 'Poslovna godina'},
+ 		 	{ name:'Poslovni_partner.Naziv_Partner', width:'25%', displayName: 'Partner'},
+		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina'},
 		    { name:'Datum_fakture_Faktura', width:'20%', displayName: 'Datum fakture'},
-		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Valuta fakture'},
-		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za placanje'}
+		    { name:'Datum_valute_Faktura', width:'20%', displayName: 'Datum valute'},
+		    { name:'Ukupno_za_placanje_Faktura', width:'25%', displayName: 'Ukupno za plaćanje'}
 		  ];
 
 		$http.get("http://localhost:61769/api/faktura").then(function(response) {
@@ -85,7 +85,7 @@ module.exports = [
 	}
 ];
 },{}],5:[function(require,module,exports){
-var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection']);
+var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.resizeColumns']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 myApp.controller('mestaCtrl', require('./mestaController.js'));
@@ -534,7 +534,7 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_PDV', width:'75%', displayName: 'Naziv'}
+		    { name:'Naziv_PDV', width:'100%', displayName: 'Naziv'}
 		];
 
     	$scope.gridOptions.onRegisterApi = function(gridApi) {
@@ -947,7 +947,7 @@ module.exports = [
  			
  		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Preduzece', width:'25%', displayName: 'Naziv'},
-		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Maticni broj'},
+		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Matični broj'},
 		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
 		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
 		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' }
@@ -1062,8 +1062,8 @@ module.exports = [
 
 		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv'},
-			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere'},
-		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa'}
+			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'20%', displayName:'Jedinica mere'},
+		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'30%', displayName: 'Grupa'}
 		];
 
 		$http.get("http://localhost:61769/api/roba").then(function(response) {
@@ -1090,7 +1090,7 @@ module.exports = [
 		    { name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Magacin'},
 		    { name:'Roba.Naziv_Roba', width:'20%', displayName:'Roba'},
 		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina'},
-		    { name:'Ukupna_kolicina_Robna_kartica', width:'20%', displayName: 'Ukupna kolicina'},
+		    { name:'Ukupna_kolicina_Robna_kartica', width:'20%', displayName: 'Ukupna količina'},
 		    { name:'Roba.Jedinica_mere.Naziv_Jedinica_mere', width:'10%', displayName: 'Merna jedinica'},
 		    { name:'Ukupna_vrednost_Robna_kartica', width:'20%', displayName: 'Ukupna vrednost' }
 		  ];
@@ -1118,7 +1118,7 @@ module.exports = [
  		 	{ name:'Prijemni_dokument.Magacin1.Naziv_Magacin', width:'20%', displayName: 'Odeljenje'},
 		    { name:'Prijemni_dokument.Redni_broj_Prijemni_dokument', width:'20%', displayName: 'Rbr prijemnog dok.'},
 		    { name:'Roba.Naziv_Roba', width:'20%', displayName: 'Naziv robe'},
-		    { name:'Kolicina_Stavka_dokumenta', width:'10%', displayName: 'Kolicina'},
+		    { name:'Kolicina_Stavka_dokumenta', width:'10%', displayName: 'Količina'},
 		    { name:'Roba.Jedinica_mere.Naziv_Jedinica_mere', width:'20%', displayName: 'Mera'},
 		    { name:'Ukupna_vrednost_Stavka_dokumenta', width:'10%', displayName: 'Ukupna vrednost'}
 		  ];
@@ -1164,7 +1164,7 @@ module.exports = [
 		$scope.gridOptions.columnDefs = [
 			{ name:'PDV.Naziv_PDV', width:'30%', displayName: 'Za PDV'},
 		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa'},
-		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Vazi od'}
+		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Važi od'}
 		];
 
 

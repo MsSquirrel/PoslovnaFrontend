@@ -25,7 +25,8 @@
 
 	<br><br>
 
-	<div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
+	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
+	 </div>
 
 	  <div class="modal fade" id="addModal" role="dialog">
     		<div class="modal-dialog">
@@ -37,7 +38,7 @@
 		    		</div>
 		    		<div class="modal-body">
 		      			<form novalidate>
-							Id stope PDV-a:<input type="text"  class="form-control" ng-model="pdvRateId"><br>
+							
 							Vrednost stope PDV-a: <input type="text" class="form-control" ng-model="pdvRate"><br>
 							Važi od: 
 							<p class="input-group">

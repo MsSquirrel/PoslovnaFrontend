@@ -26,7 +26,8 @@
 	<br><br>
 
 
-	<div ui-grid="gridOptions" ui-grid-selection class="grid"></div>
+	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
+	 </div>
 
 
 	 <div class="modal fade" id="addModal" role="dialog">
@@ -39,7 +40,7 @@
 		    		</div>
 		    		<div class="modal-body">
 		      			<form novalidate>
-							Id PDV:<input type="text"  class="form-control" ng-model="pdvId"><br>
+							
 							Naziv PDV: <input type="text" class="form-control" ng-model="pdvName"><br>
 							
 							<br><br>
