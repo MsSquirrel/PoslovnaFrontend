@@ -1,8 +1,10 @@
 module.exports = [
-	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
-	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
+	'$scope', '$http', 'robaService', 'merneJediniceService', 'preduzecaService', '$routeParams', '$window',
+	function myController($scope, $http, robaService, merneJediniceService, preduzecaService, $routeParams, $window){
 		
-		
+	//'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
+	//function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
+				
 		$scope.goodsId = -1;
 		$scope.goodsName = "";
 		$scope.goodsCategory = "";
@@ -24,7 +26,7 @@ module.exports = [
 		$scope.editGoodsCategory = "";
 		$scope.editGoodsMeasUnit = "";
 		$scope.editGoodsCompany = "";
-		
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -56,17 +58,17 @@ module.exports = [
 				$scope.editGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
 				$scope.editGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
 		 	});
-   		};		
-		
+   		};	
+
 		function fillData(){
     		robaService.get_all_goods().then(function(response){
 				$scope.gridOptions.data = response;
 			});
 
-			// TODO proveriti ime funkcije kad bude napisana 
-			grupeRobaService.get_all_categories().then(function(response){
-				$scope.allCategories = response;
-			});
+			// TODO proveriti ime funkcije kad bude napisan servis i zameniti prve linije fajla
+			//grupeRobaService.get_all_categories().then(function(response){
+			//	$scope.allCategories = response;
+			//});
 
 			merneJediniceService.get_all_measUnits().then(function(response){
 				$scope.allMeasUnits = response;
@@ -76,7 +78,7 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		}
-		
+
 		fillData();
 
 		$scope.add_goods = function()

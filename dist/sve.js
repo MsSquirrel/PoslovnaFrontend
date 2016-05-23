@@ -197,13 +197,34 @@ myApp
 .service('poslovneGodineService', require('./poslovne-godineService.js'))
 .service('stopePDVService', require('./stope-pdv-aService.js'))
 .service('partneriService', require('./poslovni-partneriService.js'))
-.service('robaService', require('./robaService.js'));
+.service('robaService', require('./robaService.js'))
+.service('magaciniService', require('./magaciniService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovne-godineService.js":14,"./poslovni-partneriController.js":15,"./poslovni-partneriService.js":16,"./preduzecaService.js":17,"./preduzeceController.js":18,"./prijemni-dokumentiController.js":19,"./robaController.js":20,"./robaService.js":21,"./robne-karticeController.js":22,"./stavke-dokumenataController.js":23,"./stope-pdv-aController.js":24,"./stope-pdv-aService.js":25}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./magaciniService.js":7,"./merne-jediniceController.js":8,"./merne-jediniceService.js":9,"./mestaController.js":10,"./mestaService.js":11,"./pdvController.js":12,"./pdvService.js":13,"./poslovne-godineController.js":14,"./poslovne-godineService.js":15,"./poslovni-partneriController.js":16,"./poslovni-partneriService.js":17,"./preduzecaService.js":18,"./preduzeceController.js":19,"./prijemni-dokumentiController.js":20,"./robaController.js":21,"./robaService.js":22,"./robne-karticeController.js":23,"./stavke-dokumenataController.js":24,"./stope-pdv-aController.js":25,"./stope-pdv-aService.js":26}],6:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', 'magaciniService', 'mestaService', 'preduzecaService', '$routeParams','$window',
+	function myController($scope, $http, magaciniService, mestaService, preduzecaService, $routeParams, $window){
 		
+		$scope.warehouseId = -1;
+		$scope.warehouseName = "";
+		$scope.warehouseAddress = "";
+		$scope.warehousePlace = "";
+		$scope.warehouseCompany = "";
+		$scope.allPlaces = {};
+		$scope.allCompanies = {};
+
+		$scope.selectedRow = {};
+   		$scope.selectedWarehouseId = -1;
+   		$scope.selectedWarehouseName = "";
+   		$scope.selectedWarehouseAddress = "";
+   		$scope.selectedWarehousePlace = "";
+   		$scope.selectedWarehouseCompany ="";
+   	
+		$scope.editWarehouseName = "";
+		$scope.editWarehouseAddress = "";
+		$scope.editWarehousePlace = "";
+		$scope.editWarehouseCompany = "";
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -213,19 +234,139 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Magacin', width:'35%', displayName:'Naziv magacina'},
-		    { name:'Mesto.Naziv_Mesto', width:'30%', displayName: 'Mesto'},
-		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa'}
+		    { name:'Naziv_Magacin', width:'30%', displayName:'Naziv magacina'},
+		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa'},
+		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto'},
+		    { name:'Preduzece.Naziv_Preduzece', width:'20%', displayName:'Preduzece'}
 		];
 
-		$http.get("http://localhost:61769/api/magacin").then(function(response) {
+		$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
 
-        	$scope.gridOptions.data = response.data;
-    	});
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
 
+		   		$scope.selectedWarehouseId = $scope.selectedRow.Id_Magacin;
+		   		$scope.selectedWarehouseName = $scope.selectedRow.Naziv_Magacin;
+		   		$scope.selectedWarehouseAddress = $scope.selectedRow.Adresa_Magacin;
+		   		$scope.selectedWarehousePlace = $scope.selectedRow.Mesto.Id;
+		   		$scope.selectedWarehouseCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+   	
+				$scope.editWarehouseName = $scope.selectedRow.Naziv_Magacin;
+				$scope.editWarehouseAddress = $scope.selectedRow.Adresa_Magacin;
+				$scope.editWarehousePlace = $scope.selectedRow.Mesto.Id;
+				$scope.editWarehouseCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+		  });
+   		};
+
+    	function fillData(){
+    		magaciniService.get_all_warehouses().then(function(response){
+				$scope.gridOptions.data = response;
+			});
+
+			mestaService.get_all_places().then(function(response){
+				$scope.allPlaces = response;
+			});
+
+			preduzecaService.get_all_companies().then(function(response){
+				$scope.allCompanies = response;
+			});
+		};
+
+		fillData();
+
+		$scope.add_warehouse = function()
+		{
+			magaciniService.create_warehouse($scope.warehouseId, $scope.warehouseName, $scope.warehouseAddress, $scope.warehousePlace, $scope.warehouseCompany).then(function(response){
+				fillData();
+			});
+		};
+	
+		$scope.remove_selected_warehouse = function()
+		{
+			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
+			console.log("ID magacina je "+$scope.selectedRow[0].Id_Magacin);
+			magaciniService.remove_warehouse($scope.selectedRow[0].Id_Magacin).then(function(response){
+				fillData();
+			});
+		};
+
+		$scope.edit_selected_warehouse = function()
+		{
+			console.log("Promenjeno: "+$scope.selectedWarehouseId+", "+$scope.editWarehouseName+", "+$scope.editWaarehouseAddress+", "+$scope.editWaarehousePlace+", "+$scope.editWaarehouseCompany);
+			magaciniService.update_warehouse($scope.selectedWarehouseId, $scope.editWarehouseName, $scope.editWaarehouseAddress, $scope.editWaarehousePlace, $scope.editWaarehouseCompany).then(function(response){
+				fillData();
+			});
+		};
 	}
 ];
 },{}],7:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function magaciniService($http, $window, $q){
+
+		function get_all_warehouses()
+		{
+			var resUrl = "http://localhost:61769/api/magacin";
+			return $http.get(resUrl).then(function(response) {
+				return response.data;
+			});
+		}
+
+		function create_warehouse(id, name, address, place, company)
+		{
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/magacin",
+                    data: {
+				   		Id_Magacin: id,
+				   		Naziv_Magacin: name,
+				   		Adresa_Magacin: address,
+				   		Id: place,
+				   		Id_Preduzece: company
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		function remove_warehouse(warehouseId)
+		{
+			var urlDelete = "http://localhost:61769/api/magacin/"+warehouseId+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+		function update_warehouse(id, name, address, place, company)
+		{
+			var url = "http://localhost:61769/api/magacin/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+				   		Id_Magacin: id,
+				   		Naziv_Magacin: name,
+				   		Adresa_Magacin: address,
+				   		Id: place,
+				   		Id_Preduzece: company
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		return {
+			get_all_warehouses: get_all_warehouses,
+			create_warehouse: create_warehouse,
+			remove_warehouse: remove_warehouse,
+			update_warehouse: update_warehouse, 
+		};
+
+	}
+];
+},{}],8:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http','merneJediniceService', '$routeParams','$window',
 	function myController($scope, $http, merneJediniceService, $routeParams, $window){
@@ -298,7 +439,7 @@ module.exports = [
 
 	}
 ];
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function merneJediniceService($http, $window, $q){
@@ -363,7 +504,7 @@ module.exports = [
 
 	}
 ];
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'mestaService', '$routeParams','$window',
 	function myController($scope, $http, mestaService,$routeParams, $window){
@@ -449,7 +590,7 @@ module.exports = [
 
 	}
 ];
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function mestaService($http, $window, $q){
@@ -521,7 +662,7 @@ module.exports = [
 
 	}
 ];
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http','pdvService', '$routeParams','$window',
 	function myController($scope, $http, pdvService, $routeParams, $window){
@@ -589,7 +730,7 @@ module.exports = [
 		};
 	}
 ];
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function pdvService($http, $window, $q){
@@ -653,7 +794,7 @@ module.exports = [
 	}
 
 ];
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window',
 	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window){
@@ -748,7 +889,7 @@ module.exports = [
 
 	}
 ];
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function poslovneGodineService($http, $window, $q){
@@ -815,7 +956,7 @@ module.exports = [
 
 	}
 ];
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'partneriService','preduzecaService', 'mestaService','$routeParams','$window',
 	function myController($scope, $http, partneriService, preduzecaService, mestaService, $routeParams, $window){
@@ -941,7 +1082,7 @@ module.exports = [
 
 	}
 ];
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function partneriService($http, $window, $q){
@@ -1016,7 +1157,7 @@ module.exports = [
 
 	}
 ];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function preduzecaService($http, $window, $q){
@@ -1087,7 +1228,7 @@ module.exports = [
 
 	}
 ];
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
 	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
@@ -1200,7 +1341,7 @@ module.exports = [
 
 	}
 ];
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1228,12 +1369,14 @@ module.exports = [
 
 	}
 ];
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
-	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
+	'$scope', '$http', 'robaService', 'merneJediniceService', 'preduzecaService', '$routeParams', '$window',
+	function myController($scope, $http, robaService, merneJediniceService, preduzecaService, $routeParams, $window){
 		
-		
+	//'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
+	//function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
+				
 		$scope.goodsId = -1;
 		$scope.goodsName = "";
 		$scope.goodsCategory = "";
@@ -1255,7 +1398,7 @@ module.exports = [
 		$scope.editGoodsCategory = "";
 		$scope.editGoodsMeasUnit = "";
 		$scope.editGoodsCompany = "";
-		
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -1287,17 +1430,18 @@ module.exports = [
 				$scope.editGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
 				$scope.editGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
 		 	});
-   		};		
-		
+   		};	
+
 		function fillData(){
     		robaService.get_all_goods().then(function(response){
 				$scope.gridOptions.data = response;
 			});
 
-			// TODO proveriti ime funkcije kad bude napisana 
-			grupeRobaService.get_all_categories().then(function(response){
-				$scope.allCategories = response;
-			});
+			// TODO proveriti ime funkcije kad bude napisan servis i 
+			// zameniti prve linije fajla
+			//grupeRobaService.get_all_categories().then(function(response){
+			//	$scope.allCategories = response;
+			//});
 
 			merneJediniceService.get_all_measUnits().then(function(response){
 				$scope.allMeasUnits = response;
@@ -1307,7 +1451,7 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		}
-		
+
 		fillData();
 
 		$scope.add_goods = function()
@@ -1335,7 +1479,7 @@ module.exports = [
 		};
 	}
 ];
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function robaService($http, $window, $q) {		
@@ -1404,7 +1548,7 @@ module.exports = [
 		
 	}
 ];
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1432,7 +1576,7 @@ module.exports = [
 
 	}
 ];
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1460,7 +1604,7 @@ module.exports = [
 
 	}
 ];
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window',
 	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window){
@@ -1612,7 +1756,7 @@ module.exports = [
 
 	}
 ];
-},{}],25:[function(require,module,exports){
+},{}],26:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function stopePDVService($http, $window, $q){
