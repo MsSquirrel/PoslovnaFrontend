@@ -11,7 +11,7 @@ module.exports = [
 			});
 		}
 
-		function create_businessYear(id, naziv, kategorija, mernaJedinica, preduzece)
+		function create_goods(id, naziv, kategorija, mernaJedinica, preduzece)
 		{	
 			return $http({
                     method: "post",
@@ -28,7 +28,7 @@ module.exports = [
 			});
 		}
 
-		function remove_businessYear(id)
+		function remove_goods(id)
 		{
 			var urlDelete = "http://localhost:61769/api/roba/"+id+"/";
 		    return $http({
@@ -37,7 +37,7 @@ module.exports = [
            	});
 		}
 
-		function update_businessYear(id, naziv, kategorija, mernaJedinica, preduzece)
+		function update_goods(id, naziv, kategorija, mernaJedinica, preduzece)
 		{	
 			var url = "http://localhost:61769/api/roba/"+id+"/";
 			return $http({

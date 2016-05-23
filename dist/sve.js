@@ -1313,7 +1313,7 @@ module.exports = [
 		$scope.add_goods = function()
 		{
 			robaService.create_goods($scope.goodsId, $scope.goodsName, $scope.goodsCategory, $scope.goodsMeasUnit, $scope.goodsCompany).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -1321,7 +1321,7 @@ module.exports = [
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			robaService.remove_goods($scope.selectedRow[0].Id).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -1330,7 +1330,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("Promenjeno: "+$scope.selectedGoodsId+", "+$scope.editGoodsName+", "+$scope.editGoodsCategory+", "+$scope.editGoodsMeasUnit+", "+$scope.editGoodsCompany);
 			robaService.update_goods($scope.selectedGoodsId, $scope.editGoodsName, $scope.editGoodsCategory, $scope.editGoodsMeasUnit, $scope.editGoodsCompany).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 	}
@@ -1349,7 +1349,7 @@ module.exports = [
 			});
 		}
 
-		function create_businessYear(id, naziv, kategorija, mernaJedinica, preduzece)
+		function create_goods(id, naziv, kategorija, mernaJedinica, preduzece)
 		{	
 			return $http({
                     method: "post",
@@ -1366,7 +1366,7 @@ module.exports = [
 			});
 		}
 
-		function remove_businessYear(id)
+		function remove_goods(id)
 		{
 			var urlDelete = "http://localhost:61769/api/roba/"+id+"/";
 		    return $http({
@@ -1375,7 +1375,7 @@ module.exports = [
            	});
 		}
 
-		function update_businessYear(id, naziv, kategorija, mernaJedinica, preduzece)
+		function update_goods(id, naziv, kategorija, mernaJedinica, preduzece)
 		{	
 			var url = "http://localhost:61769/api/roba/"+id+"/";
 			return $http({

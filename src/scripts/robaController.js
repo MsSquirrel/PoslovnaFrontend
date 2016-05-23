@@ -82,7 +82,7 @@ module.exports = [
 		$scope.add_goods = function()
 		{
 			robaService.create_goods($scope.goodsId, $scope.goodsName, $scope.goodsCategory, $scope.goodsMeasUnit, $scope.goodsCompany).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -90,7 +90,7 @@ module.exports = [
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			robaService.remove_goods($scope.selectedRow[0].Id).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 
@@ -99,7 +99,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("Promenjeno: "+$scope.selectedGoodsId+", "+$scope.editGoodsName+", "+$scope.editGoodsCategory+", "+$scope.editGoodsMeasUnit+", "+$scope.editGoodsCompany);
 			robaService.update_goods($scope.selectedGoodsId, $scope.editGoodsName, $scope.editGoodsCategory, $scope.editGoodsMeasUnit, $scope.editGoodsCompany).then(function(response){
-				$window.location.reload();
+				fillData();
 			});
 		};
 	}
