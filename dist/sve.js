@@ -196,9 +196,10 @@ myApp
 .service('pdvService', require('./pdvService.js'))
 .service('poslovneGodineService', require('./poslovne-godineService.js'))
 .service('stopePDVService', require('./stope-pdv-aService.js'))
-.service('partneriService', require('./poslovni-partneriService.js'));
+.service('partneriService', require('./poslovni-partneriService.js'))
+.service('robaService', require('./robaService.js'));
 
-},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovne-godineService.js":14,"./poslovni-partneriController.js":15,"./poslovni-partneriService.js":16,"./preduzecaService.js":17,"./preduzeceController.js":18,"./prijemni-dokumentiController.js":19,"./robaController.js":20,"./robne-karticeController.js":21,"./stavke-dokumenataController.js":22,"./stope-pdv-aController.js":23,"./stope-pdv-aService.js":24}],6:[function(require,module,exports){
+},{"./analitikaController.js":1,"./documentsListController.js":2,"./faktureController.js":3,"./grupe-robaController.js":4,"./magaciniController.js":6,"./merne-jediniceController.js":7,"./merne-jediniceService.js":8,"./mestaController.js":9,"./mestaService.js":10,"./pdvController.js":11,"./pdvService.js":12,"./poslovne-godineController.js":13,"./poslovne-godineService.js":14,"./poslovni-partneriController.js":15,"./poslovni-partneriService.js":16,"./preduzecaService.js":17,"./preduzeceController.js":18,"./prijemni-dokumentiController.js":19,"./robaController.js":20,"./robaService.js":21,"./robne-karticeController.js":22,"./stavke-dokumenataController.js":23,"./stope-pdv-aController.js":24,"./stope-pdv-aService.js":25}],6:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1229,8 +1230,31 @@ module.exports = [
 ];
 },{}],20:[function(require,module,exports){
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
+	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
+		
+		
+		$scope.goodsId = -1;
+		$scope.goodsName = "";
+		$scope.goodsCategory = "";
+		$scope.goodsMeasUnit = "";
+		$scope.goodsCompany = "";
+		
+		$scope.allCategories = {};
+		$scope.allMeasUnits = {};
+		$scope.allCompanies = {};
+		
+		$scope.selectedRow = {};
+		$scope.selectedGoodsId = -1;
+		$scope.selectedGoodsName = "";
+		$scope.selectedGoodsCategory = "";
+		$scope.selectedGoodsMeasUnit = "";
+		$scope.selectedGoodsCompany = "";
+		
+		$scope.editGoodsName = "";
+		$scope.editGoodsCategory = "";
+		$scope.editGoodsMeasUnit = "";
+		$scope.editGoodsCompany = "";
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -1242,18 +1266,145 @@ module.exports = [
 
 		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv'},
-			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'20%', displayName:'Jedinica mere'},
-		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'30%', displayName: 'Grupa'}
+		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa'},
+			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere'},
+		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzece'}
 		];
 
-		$http.get("http://localhost:61769/api/roba").then(function(response) {
+		$scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
 
-        	$scope.gridOptions.data = response.data;
-    	});
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+				$scope.selectedGoodsId = $scope.selectedRow.Id_Roba;
+				$scope.selectedGoodsName = $scope.selectedRow.Naziv_Roba;
+				$scope.selectedGoodsCategory = $scope.selectedRow.Grupa_roba.Id_Grupa_roba;
+				$scope.selectedGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
+				$scope.selectedGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+		
+				$scope.editGoodsName = $scope.selectedRow.Naziv_Roba;
+				$scope.editGoodsCategory = $scope.selectedRow.Grupa_roba.Id_Grupa_roba;
+				$scope.editGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
+				$scope.editGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+		 	});
+   		};		
+		
+		function fillData(){
+    		robaService.get_all_goods().then(function(response){
+				$scope.gridOptions.data = response;
+			});
 
+			// TODO proveriti ime funkcije kad bude napisana 
+			grupeRobaService.get_all_categories().then(function(response){
+				$scope.allCategories = response;
+			});
+
+			merneJediniceService.get_all_measUnits().then(function(response){
+				$scope.allMeasUnits = response;
+			});
+
+			preduzecaService.get_all_companies().then(function(response){
+				$scope.allCompanies = response;
+			});
+		}
+		
+		fillData();
+
+		$scope.add_goods = function()
+		{
+			robaService.create_goods($scope.goodsId, $scope.goodsName, $scope.goodsCategory, $scope.goodsMeasUnit, $scope.goodsCompany).then(function(response){
+				$window.location.reload();
+			});
+		};
+
+		$scope.remove_selected_goods = function()
+		{
+			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
+			robaService.remove_goods($scope.selectedRow[0].Id).then(function(response){
+				$window.location.reload();
+			});
+		};
+
+		$scope.edit_selected_goods = function()
+		{
+			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
+			console.log("Promenjeno: "+$scope.selectedGoodsId+", "+$scope.editGoodsName+", "+$scope.editGoodsCategory+", "+$scope.editGoodsMeasUnit+", "+$scope.editGoodsCompany);
+			robaService.update_goods($scope.selectedGoodsId, $scope.editGoodsName, $scope.editGoodsCategory, $scope.editGoodsMeasUnit, $scope.editGoodsCompany).then(function(response){
+				$window.location.reload();
+			});
+		};
 	}
 ];
 },{}],21:[function(require,module,exports){
+module.exports = [
+	'$http', '$window', '$q',
+	function robaService($http, $window, $q) {		
+		
+		function get_all_goods()
+		{
+			var resUrl = "http://localhost:61769/api/roba";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+		function create_businessYear(id, naziv, kategorija, mernaJedinica, preduzece)
+		{	
+			return $http({
+                    method: "post",
+                    url: "http://localhost:61769/api/roba",
+                    data: {
+						Id_Roba: id, 
+						Naziv_Roba: naziv,
+						Id_Grupa_roba: kategorija,
+						Id_Jedinica_mere: mernaJedinica,
+						Id_Preduzece: preduzece
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+		function remove_businessYear(id)
+		{
+			var urlDelete = "http://localhost:61769/api/roba/"+id+"/";
+		    return $http({
+                method: "delete",
+                url: urlDelete
+           	});
+		}
+
+		function update_businessYear(id, naziv, kategorija, mernaJedinica, preduzece)
+		{	
+			var url = "http://localhost:61769/api/roba/"+id+"/";
+			return $http({
+                    method: "put",
+                    url: url,
+                    data: {
+						Id_Roba: id, 
+						Naziv_Roba: naziv,
+						Id_Grupa_roba: kategorija,
+						Id_Jedinica_mere: mernaJedinica,
+						Id_Preduzece: preduzece
+					}
+           	}).then(function(response){
+				return response.data;				
+			});
+		}
+
+
+		return {
+			get_all_goods: get_all_goods, 
+			create_goods: create_goods, 
+			update_goods: update_goods, 
+			remove_goods: remove_goods,
+		};
+		
+		
+	}
+];
+},{}],22:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1281,7 +1432,7 @@ module.exports = [
 
 	}
 ];
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
@@ -1309,7 +1460,7 @@ module.exports = [
 
 	}
 ];
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 module.exports = [
 	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window',
 	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window){
@@ -1461,7 +1612,7 @@ module.exports = [
 
 	}
 ];
-},{}],24:[function(require,module,exports){
+},{}],25:[function(require,module,exports){
 module.exports = [
 	'$http', '$window', '$q',
 	function stopePDVService($http, $window, $q){

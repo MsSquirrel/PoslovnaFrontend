@@ -109,4 +109,5 @@ myApp
 .service('pdvService', require('./pdvService.js'))
 .service('poslovneGodineService', require('./poslovne-godineService.js'))
 .service('stopePDVService', require('./stope-pdv-aService.js'))
-.service('partneriService', require('./poslovni-partneriService.js'));
+.service('partneriService', require('./poslovni-partneriService.js'))
+.service('robaService', require('./robaService.js'));
