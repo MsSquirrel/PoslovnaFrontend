@@ -72,6 +72,7 @@ module.exports = [
 		$scope.edit_selected_place = function(name, number)
 		{
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
+			alert($scope.selectedRow);
 			console.log("Promenjeno: "+$scope.selectedRow[0].Id+","+name+", "+number);
 			mestaService.update_place($scope.selectedRow[0].Id, name, number).then(function(response){
 				fillData();
