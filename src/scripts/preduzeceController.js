@@ -12,7 +12,6 @@ module.exports = [
 		$scope.check = "";
 		$scope.changePlace = "";
 
-
 		$scope.selectedRow =  {};
    		$scope.selectedCompanyId = -1;
    		$scope.selectedCompanyName = "";
@@ -27,8 +26,6 @@ module.exports = [
    		$scope.editCompanyPIB = "";
    		$scope.editCompanyAddress ="";
    		$scope.editCompanyPlace ="";
-
-
 
 
 		$scope.gridOptions = {
