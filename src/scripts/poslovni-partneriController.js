@@ -5,6 +5,8 @@ module.exports = [
 		$scope.allCompanies = {};
 		$scope.allPlaces = {};
 
+		$scope.typeOptions = ['Kupac', 'Dobavljac', 'Kupac i dobavljac'];
+
 		$scope.selectedRow =  {};
    		$scope.selectedPartnerId = -1;
    		$scope.selectedPartnerName = "";
@@ -22,6 +24,7 @@ module.exports = [
    		$scope.editPartnerPlace ="";
    		$scope.editPartnerType = "";
    		$scope.editPartnerCompany = "";
+   		$scope.editPartnerType = "";
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -53,7 +56,7 @@ module.exports = [
    				$scope.selectedPartnerAddress = $scope.selectedRow.Adresa_Partner;
    				$scope.selectedPartnerPlace = $scope.selectedRow.Mesto.Id;
    				$scope.selectedPartnerCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
-   				$scope.selectedPartnerType;
+   				$scope.selectedPartnerType = $scope.selectedRow.Tip_Partner;
 
    				$scope.editPartnerName = $scope.selectedRow.Naziv_Partner;
    				$scope.editPartnerMBR = $scope.selectedRow.Maticni_broj_Partner;
@@ -61,6 +64,7 @@ module.exports = [
    				$scope.editPartnerAddress = $scope.selectedRow.Adresa_Partner;
    				$scope.editPartnerPlace = $scope.selectedRow.Mesto.Id;
    				$scope.editPartnerCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+   				$scope.editPartnerType = $scope.selectedRow.Tip_Partner;
 
 		  });
    		};

@@ -60,12 +60,8 @@
 				<div class="modal-body">
 					<form novalidate>
 						Naziv grupe: <input type="text" class="form-control" ng-model="editGroupName"><br>											
-						PDV:  		<select class="form-control" ng-model="editGroupPdv" ng-click="chose_place()">
-										<option  ng-repeat="pdv in allPdv" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
-									</select><br>
-						Preduzece:  <select class="form-control" ng-model="editGroupCompany" ng-click="chose_place()">
-										<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-									</select><br>				
+						PDV:  		<select class="form-control" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv" ></select><br>
+						Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany"></select><br>				
 					<br>
 					<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_group()">Sačuvaj</button>
 					<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>

@@ -71,22 +71,15 @@
 		    		<div class="modal-body">
 		      			<form novalidate>
 							Naziv: <input type="text" class="form-control" ng-model="editPartnerName"><br>
-							Tip: <select class="form-control" ng-model="changeType" ng-click="chose_place()">
-       							 		<option value="Kupac">Kupac</option>
-       							 		<option value="Dobavljac">Dobavljač</option>
-       							 		<option value="Kupac i dobavljac">Kupac i dobavljač</option>
+							Tip: <select class="form-control" ng-model="editPartnerType" ng-options="option for option in typeOptions">
        							 	</select><br>
 							Matični broj: <input type="text"  class="form-control" ng-model="editPartnerMBR"><br>
 							PIB preduzeća: <input type="text" class="form-control" ng-model="editPartnerPIB"><br>
 							Adresa preduzeća: <input type="text" class="form-control" ng-model="editPartnerAddress"><br>
-							Mesto:  <select class="form-control" ng-model="changePlace" ng-click="chose_place()">
-       							 		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-       							 	</select><br>
-       						Partner: <select class="form-control" ng-model="changeCompany" ng-click="chose_place()">
-       							 		<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-       							 	</select>
+							Mesto:  <select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace"></select><br>
+       						Partner: <select class="form-control" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 							<br><br>
-							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_partner(selectedPartnerId, editPartnerName, editPartnerMBR, editPartnerPIB, editPartnerAddress, changePlace, changeCompany, changeType)">Sačuvaj</button>
+							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_partner(selectedPartnerId, editPartnerName, editPartnerMBR, editPartnerPIB, editPartnerAddress, editPartnerPlace, editPartnerCompany, editPartnerType)">Sačuvaj</button>
 							<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
 	  					</form>
 		    		</div>

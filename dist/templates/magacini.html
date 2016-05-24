@@ -36,10 +36,10 @@
 						
 						Naziv magacina: <input type="text" class="form-control" ng-model="warehouseName"><br>
 						Adresa magacina: <input type="text" class="form-control" ng-model="warehouseAddress"><br>
-						Mesto:  	<select class="form-control" ng-model="warehousePlace" ng-click="chose_place()">
+						Mesto:  	<select class="form-control" ng-model="warehousePlace">
 										<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
 									</select><br>
-						Preduzece:  <select class="form-control" ng-model="warehouseCompany" ng-click="chose_place()">
+						Preduzece:  <select class="form-control" ng-model="warehouseCompany">
 										<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 									</select><br>
 						
@@ -65,11 +65,9 @@
 
 						Naziv magacina: <input type="text" class="form-control" ng-model="editWarehouseName"><br>
 						Adresa magacina: <input type="text" class="form-control" ng-model="editWarehouseAddress"><br>
-						Mesto:  	<select class="form-control" ng-model="editWarehousePlace" ng-click="chose_place()">
-										<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
+						Mesto:  	<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace">
 									</select><br>
-						Preduzece:  <select class="form-control" ng-model="editWarehouseCompany" ng-click="chose_place()">
-										<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+						Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany">
 									</select><br>
 
 						<br>

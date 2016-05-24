@@ -65,9 +65,7 @@
 							Zaključena:<input type="checkbox" ng-model="editBusinessYearFinished"
           					 ng-true-value=1 ng-false-value=0><br><br>
 							
-							Preduzeće:  <select class="form-control" ng-model="editBusinessYearCompany" ng-click="chose_place()">
-       							 		<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-       							 	</select>
+							Preduzeće:  <select class="form-control" ng-model="editBusinessYearCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 							<br><br>
 							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_businessYear()">Sačuvaj</button>
 							<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>

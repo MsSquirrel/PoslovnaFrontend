@@ -66,15 +66,10 @@
 					
 						Naziv robe: 	<input type="text" class="form-control" ng-model="editGoodsName"><br>
 											
-						Grupa robe:  	<select class="form-control" ng-model="editGoodsCategory" ng-click="chose_place()">
-											<option  ng-repeat="category in allCategories" ng-value="category.Id_Grupa_roba">{{category.Naziv_Grupa_roba}}</option>
+						Grupa robe:  	<select class="form-control" ng-model="editGoodsCategory" ng-options="category.Id_Grupa_roba as category.Naziv_Grupa_roba for category in allCategories">
 										</select><br>
-						Jedinica mere:  <select class="form-control" ng-model="editGoodsMeasUnit" ng-click="chose_place()">
-											<option  ng-repeat="measUnit in allMeasUnits" ng-value="measUnit.Id_Jedinica_mere">{{measUnit.Naziv_Jedinica_mere}}</option>
-										</select><br>
-						Preduzece:  	<select class="form-control" ng-model="editGoodsCompany" ng-click="chose_place()">
-											<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-										</select>
+						Jedinica mere:  <select class="form-control" ng-model="editGoodsMeasUnit" ng-options="measUnit.Id_Jedinica_mere as measUnit.Naziv_Jedinica_mere for measUnit in allMeasUnits"/><br>
+						Preduzece:  	<select class="form-control" ng-model="editGoodsCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 						
 					<br><br>
 					<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_goods(editName, editNumber)">Sačuvaj</button>

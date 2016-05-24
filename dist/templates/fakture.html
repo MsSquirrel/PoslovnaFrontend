@@ -70,12 +70,10 @@
 	      			<form novalidate>
 
 						Broj fakture: <input type="text" class="form-control" ng-model="editInvoiceNumber"><br>
-						Poslovna godina: <select class="form-control" ng-model="editInvoiceYear" ng-click="chose_place()">
-											<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+						Poslovna godina: <select class="form-control" ng-model="editInvoiceYear" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears">
 										</select><br>
-						Poslovni partner: <select class="form-control" ng-model="editInvoicePartner" ng-click="chose_place()">
-											<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
-										</select><br>
+						Poslovni partner: <select class="form-control" ng-model="editInvoicePartner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners">
+					</select><br>
 						Datum fakture: <input type="text" class="form-control" ng-model="editInvoiceDate"><br>
 						Datum valute: <input type="text" class="form-control" ng-model="editInvoiceCurrency"><br>
 						Ukupan rabat: <input type="text" class="form-control" ng-model="editInvoiceRabat"><br>

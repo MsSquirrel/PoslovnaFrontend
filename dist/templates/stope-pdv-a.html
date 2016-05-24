@@ -76,9 +76,7 @@
               					</span>
      						 </p>
 
-							PDV:  <select class="form-control" ng-model="editPdvRatePdv" ng-click="chose_place()">
-       							 		<option  ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
-       							 	</select>
+							PDV:  <select class="form-control" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs"></select>
 
 							<br><br>
 							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_PDVRate()">Sačuvaj</button>
