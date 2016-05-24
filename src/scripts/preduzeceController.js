@@ -12,12 +12,11 @@ module.exports = [
    		$scope.selectedCompanyAddress ="";
    		$scope.selectedCompanyPlace ="";
 
-   	
    		$scope.editCompanyName = "";
    		$scope.editCompanyMBR = "";
    		$scope.editCompanyPIB = "";
    		$scope.editCompanyAddress ="";
-   		$scope.editCompanyPlace ="";
+   		$scope.editCompanyPlace = "";
 
 
 		$scope.gridOptions = {

@@ -50,8 +50,6 @@
       		</div>
       	</div>	
 
-
-
       	 <div class="modal fade" id="editModal" role="dialog">
     		<div class="modal-dialog">
    		   <!-- Modal content-->
@@ -66,11 +64,9 @@
 							Matični broj: <input type="text"  class="form-control" ng-model="editCompanyMBR"><br>
 							PIB preduzeća: <input type="text" class="form-control" ng-model="editCompanyPIB"><br>
 							Adresa preduzeća: <input type="text" class="form-control" ng-model="editCompanyAddress"><br>
-							Mesto:  <select class="form-control" ng-model="changePlace" >
-       							 		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-       							 	</select>
+							Mesto:  <select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace"></select>
 							<br><br>
-							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_company(selectedCompanyId, editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, changePlace)">Sačuvaj</button>
+							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_company(selectedCompanyId, editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)">Sačuvaj</button>
 							<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
 	  					</form>
 		    		</div>
