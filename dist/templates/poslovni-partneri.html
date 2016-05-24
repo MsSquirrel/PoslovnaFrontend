@@ -35,10 +35,7 @@
 		      			<form novalidate>
 						
 							Naziv: <input type="text" class="form-control" ng-model="partnerName"><br>
-							Tip: <select class="form-control" ng-model="checkType" ng-click="chose_place()">
-       							 		<option value="Kupac">Kupac</option>
-       							 		<option value="Dobavljac">Dobavljač</option>
-       							 		<option value="Kupac i dobavljac">Kupac i dobavljač</option>
+							Tip: <select class="form-control" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions">
        							 	</select><br>
 							Matični broj: <input type="text"  class="form-control" ng-model="partnerMBR"><br>
 							PIB preduzeća: <input type="text" class="form-control" ng-model="partnerPIB"><br>
