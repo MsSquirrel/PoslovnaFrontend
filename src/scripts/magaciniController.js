@@ -81,9 +81,8 @@ module.exports = [
 	
 		$scope.remove_selected_warehouse = function()
 		{
-			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
-			console.log("ID magacina je "+$scope.selectedRow[0].Id_Magacin);
-			magaciniService.remove_warehouse($scope.selectedRow[0].Id_Magacin).then(function(response){
+			console.log("ID magacina je "+$scope.selectedWarehouseId);
+			magaciniService.remove_warehouse($scope.selectedWarehouseId).then(function(response){
 				fillData();
 			});
 		};

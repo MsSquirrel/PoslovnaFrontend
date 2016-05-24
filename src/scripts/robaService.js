@@ -61,8 +61,6 @@ module.exports = [
 			create_goods: create_goods, 
 			update_goods: update_goods, 
 			remove_goods: remove_goods,
-		};
-		
-		
+		};		
 	}
 ];

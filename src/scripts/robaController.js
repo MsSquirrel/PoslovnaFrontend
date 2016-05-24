@@ -1,9 +1,6 @@
-module.exports = [
-	'$scope', '$http', 'robaService', 'merneJediniceService', 'preduzecaService', '$routeParams', '$window',
-	function myController($scope, $http, robaService, merneJediniceService, preduzecaService, $routeParams, $window){
-		
-	//'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
-	//function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
+module.exports = [		
+	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
+	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {		
 				
 		$scope.goodsId = -1;
 		$scope.goodsName = "";
@@ -65,10 +62,9 @@ module.exports = [
 				$scope.gridOptions.data = response;
 			});
 
-			// TODO proveriti ime funkcije kad bude napisan servis i zameniti prve linije fajla
-			//grupeRobaService.get_all_categories().then(function(response){
-			//	$scope.allCategories = response;
-			//});
+			grupeRobaService.get_all_groups().then(function(response){
+				$scope.allCategories = response;
+			});
 
 			merneJediniceService.get_all_measUnits().then(function(response){
 				$scope.allMeasUnits = response;
@@ -90,15 +86,14 @@ module.exports = [
 
 		$scope.remove_selected_goods = function()
 		{
-			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
-			robaService.remove_goods($scope.selectedRow[0].Id).then(function(response){
+			console.log("ID grupe je "+$scope.selectedGoodsId);
+			robaService.remove_goods($scope.selectedGoodsId).then(function(response){
 				fillData();
 			});
 		};
 
 		$scope.edit_selected_goods = function()
 		{
-			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			console.log("Promenjeno: "+$scope.selectedGoodsId+", "+$scope.editGoodsName+", "+$scope.editGoodsCategory+", "+$scope.editGoodsMeasUnit+", "+$scope.editGoodsCompany);
 			robaService.update_goods($scope.selectedGoodsId, $scope.editGoodsName, $scope.editGoodsCategory, $scope.editGoodsMeasUnit, $scope.editGoodsCompany).then(function(response){
 				fillData();
