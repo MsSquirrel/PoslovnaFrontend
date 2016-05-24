@@ -2,7 +2,94 @@
 
 	<h2>Fakture</h2>
 
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-1">
+
+			<button type="button" class="btn btn-success btn-xl" data-toggle="modal" data-target="#addModal">
+		  		<span class="glyphicon glyphicon-plus"></span>
+			</button>
+
+			<button type="button" class="btn btn-danger btn-xl" ng-click="remove_selected_invoice()">
+		  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+			</button>
+
+			<button type="button" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#editModal">
+		  		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+			</button>
+
+		</div>
+	</div>
+
 	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
-	 </div>
+	</div>
+
+	<div class="modal fade" id="addModal" role="dialog">
+		<div class="modal-dialog">
+		<!-- Modal content-->
+  			<div class="modal-content">
+	    		<div class="modal-header">
+	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<h4 class="modal-title">Dodaj novu fakturu</h4>
+	    		</div>
+	    		<div class="modal-body">
+	      			<form novalidate>
+
+						Broj fakture: <input type="text" class="form-control" ng-model="invoiceNumber"><br>
+						<!-- FORMAT ZA UNOS datuma, kada browser ne daje piker za datum je: "YYYY-MM-DD" -->
+						Poslovna godina: <select class="form-control" ng-model="invoiceYear" ng-click="chose_place()">
+											<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+										</select><br>
+						Poslovni partner: <select class="form-control" ng-model="invoicePartner" ng-click="chose_place()">
+											<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
+										</select><br>
+						Datum fakture: <input type="date" class="form-control" ng-model="invoiceDate"><br>
+						Datum valute: <input type="date" class="form-control" ng-model="invoiceCurrency"><br>
+						Ukupan rabat: <input type="text" class="form-control" ng-model="invoiceRabat"><br>
+						Ukupan iznos bez PDV-a: <input type="text" class="form-control" ng-model="invoiceIznosBezPdv"><br>
+						Ukupan PDV: <input type="text" class="form-control" ng-model="invoiceTotalPdv"><br>
+						Ukupno za placanje: <input type="text" class="form-control" ng-model="invoiceTotalPlacanje"><br>
+						
+						<br>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_invoice()">Sačuvaj</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
+  					</form>
+	    		</div>
+    		</div>
+      	</div>
+    </div>	
+
+  	<div class="modal fade" id="editModal" role="dialog">
+		<div class="modal-dialog">
+		   <!-- Modal content-->
+  			<div class="modal-content">
+	    		<div class="modal-header">
+	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
+	    		</div>
+	    		<div class="modal-body">
+	      			<form novalidate>
+
+						Broj fakture: <input type="text" class="form-control" ng-model="editInvoiceNumber"><br>
+						Poslovna godina: <select class="form-control" ng-model="editInvoiceYear" ng-click="chose_place()">
+											<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+										</select><br>
+						Poslovni partner: <select class="form-control" ng-model="editInvoicePartner" ng-click="chose_place()">
+											<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
+										</select><br>
+						Datum fakture: <input type="text" class="form-control" ng-model="editInvoiceDate"><br>
+						Datum valute: <input type="text" class="form-control" ng-model="editInvoiceCurrency"><br>
+						Ukupan rabat: <input type="text" class="form-control" ng-model="editInvoiceRabat"><br>
+						Ukupan iznos bez PDV-a: <input type="text" class="form-control" ng-model="editInvoiceIznosBezPdv"><br>
+						Ukupan PDV: <input type="text" class="form-control" ng-model="editInvoiceTotalPdv"><br>
+						Ukupno za placanje: <input type="text" class="form-control" ng-model="editInvoiceTotalPlacanje"><br>
+
+						<br>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_invoice()">Sačuvaj</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
+  					</form>
+	    		</div>
+    		</div>
+  		</div>
+  	</div>
 
 </div>
