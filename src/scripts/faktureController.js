@@ -100,11 +100,26 @@ module.exports = [
 
 		fillData();
 
+		$scope.clear_add = function() {
+			$scope.invoiceNumber = "";
+			$scope.invoiceYear = "";
+			$scope.invoicePartner = "";
+			$scope.invoiceDate = "";
+			$scope.invoiceCurrency = "";
+			$scope.invoiceRabat = "";
+			$scope.invoiceIznosBezPdv = "";
+			$scope.invoiceTotalPdv = "";
+			$scope.invoiceTotalPlacanje = "";
+		}
+
+		$scope.clear_add();
+
 		$scope.add_invoice = function()
 		{
 			console.log("Unesi: "+$scope.invoiceId+", "+$scope.invoiceNumber+", "+$scope.invoiceYear+", "+$scope.invoicePartner+", "+$scope.invoiceDate+", "+$scope.invoiceCurrency+", "+$scope.invoiceRabat+", "+$scope.invoiceIznosBezPdv+", "+$scope.invoiceTotalPdv+", "+$scope.invoiceTotalPlacanje);
 			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, $scope.invoiceDate, $scope.invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv, $scope.invoiceTotalPlacanje).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 	
