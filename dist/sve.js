@@ -137,7 +137,7 @@ module.exports = [
 
 		$scope.remove_selected_group = function()
 		{
-			console.log("ID grupe je "+$scope.selectedWarehouseId);
+			console.log("ID grupe je "+$scope.selectedGroupId);
 			grupeRobaService.remove_group($scope.selectedGroupId).then(function(response){
 				fillData();
 			});
@@ -179,9 +179,9 @@ module.exports = [
 			});
 		}
 
-		function remove_group(groupId)
+		function remove_group(grupaId)
 		{
-			var urlDelete = "http://localhost:61769/api/grupa_roba/"+groupId+"/";
+			var urlDelete = "http://localhost:61769/api/grupa_roba/"+grupaId+"/";
 		    return $http({
                 method: "delete",
                 url: urlDelete
@@ -190,7 +190,7 @@ module.exports = [
 
 		function update_group(grupaId, grupaNaziv, grupaPdv, grupaPreduzece)
 		{	
-			var url = "http://localhost:61769/api/grupa_roba/"+groupId+"/";
+			var url = "http://localhost:61769/api/grupa_roba/"+grupaId+"/";
 			return $http({
                     method: "put",
                     url: url,
@@ -423,8 +423,8 @@ module.exports = [
 
 		$scope.edit_selected_warehouse = function()
 		{
-			console.log("Promenjeno: "+$scope.selectedWarehouseId+", "+$scope.editWarehouseName+", "+$scope.editWaarehouseAddress+", "+$scope.editWaarehousePlace+", "+$scope.editWaarehouseCompany);
-			magaciniService.update_warehouse($scope.selectedWarehouseId, $scope.editWarehouseName, $scope.editWaarehouseAddress, $scope.editWaarehousePlace, $scope.editWaarehouseCompany).then(function(response){
+			console.log("Promenjeno: "+$scope.selectedWarehouseId+", "+$scope.editWarehouseName+", "+$scope.editWarehouseAddress+", "+$scope.editWarehousePlace+", "+$scope.editWarehouseCompany);
+			magaciniService.update_warehouse($scope.selectedWarehouseId, $scope.editWarehouseName, $scope.editWarehouseAddress, $scope.editWarehousePlace, $scope.editWarehouseCompany).then(function(response){
 				fillData();
 			});
 		};

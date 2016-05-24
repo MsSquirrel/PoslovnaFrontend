@@ -75,7 +75,7 @@ module.exports = [
 
 		$scope.remove_selected_group = function()
 		{
-			console.log("ID grupe je "+$scope.selectedWarehouseId);
+			console.log("ID grupe je "+$scope.selectedGroupId);
 			grupeRobaService.remove_group($scope.selectedGroupId).then(function(response){
 				fillData();
 			});

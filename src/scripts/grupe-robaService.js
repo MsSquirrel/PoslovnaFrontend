@@ -24,9 +24,9 @@ module.exports = [
 			});
 		}
 
-		function remove_group(groupId)
+		function remove_group(grupaId)
 		{
-			var urlDelete = "http://localhost:61769/api/grupa_roba/"+groupId+"/";
+			var urlDelete = "http://localhost:61769/api/grupa_roba/"+grupaId+"/";
 		    return $http({
                 method: "delete",
                 url: urlDelete
@@ -35,7 +35,7 @@ module.exports = [
 
 		function update_group(grupaId, grupaNaziv, grupaPdv, grupaPreduzece)
 		{	
-			var url = "http://localhost:61769/api/grupa_roba/"+groupId+"/";
+			var url = "http://localhost:61769/api/grupa_roba/"+grupaId+"/";
 			return $http({
                     method: "put",
                     url: url,

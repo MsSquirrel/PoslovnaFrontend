@@ -89,8 +89,8 @@ module.exports = [
 
 		$scope.edit_selected_warehouse = function()
 		{
-			console.log("Promenjeno: "+$scope.selectedWarehouseId+", "+$scope.editWarehouseName+", "+$scope.editWaarehouseAddress+", "+$scope.editWaarehousePlace+", "+$scope.editWaarehouseCompany);
-			magaciniService.update_warehouse($scope.selectedWarehouseId, $scope.editWarehouseName, $scope.editWaarehouseAddress, $scope.editWaarehousePlace, $scope.editWaarehouseCompany).then(function(response){
+			console.log("Promenjeno: "+$scope.selectedWarehouseId+", "+$scope.editWarehouseName+", "+$scope.editWarehouseAddress+", "+$scope.editWarehousePlace+", "+$scope.editWarehouseCompany);
+			magaciniService.update_warehouse($scope.selectedWarehouseId, $scope.editWarehouseName, $scope.editWarehouseAddress, $scope.editWarehousePlace, $scope.editWarehouseCompany).then(function(response){
 				fillData();
 			});
 		};
