@@ -2,15 +2,7 @@ module.exports = [
 	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
 	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
 
-		$scope.companyId =-1;
-		$scope.companyName ="";
-		$scope.companyMBR = "";
-		$scope.companyPIB = "";
-		$scope.companyAddress="";
-		$scope.companyPlace= "";
 		$scope.allPlaces = {};
-		$scope.check = "";
-		$scope.changePlace = "";
 
 		$scope.selectedRow =  {};
    		$scope.selectedCompanyId = -1;
@@ -82,10 +74,23 @@ module.exports = [
 
 		fillData();
 
+		$scope.clear_add = function(){
+			$scope.companyName ="";
+			$scope.companyMBR = "";
+			$scope.companyPIB = "";
+			$scope.companyAddress="";
+			$scope.companyPlace= "";
+			$scope.check = "";
+			$scope.changePlace = "";
+	    };
+
+	    $scope.clear_add();
+
 		$scope.add_company = function()
 		{
 			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 

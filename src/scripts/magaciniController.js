@@ -1,12 +1,7 @@
 module.exports = [
 	'$scope', '$http', 'magaciniService', 'mestaService', 'preduzecaService', '$routeParams','$window',
 	function myController($scope, $http, magaciniService, mestaService, preduzecaService, $routeParams, $window){
-		
-		$scope.warehouseId = -1;
-		$scope.warehouseName = "";
-		$scope.warehouseAddress = "";
-		$scope.warehousePlace = "";
-		$scope.warehouseCompany = "";
+
 		$scope.allPlaces = {};
 		$scope.allCompanies = {};
 
@@ -56,6 +51,7 @@ module.exports = [
 		  });
    		};
 
+
     	function fillData(){
     		magaciniService.get_all_warehouses().then(function(response){
 				$scope.gridOptions.data = response;
@@ -72,10 +68,20 @@ module.exports = [
 
 		fillData();
 
+		$scope.clear_add = function(){
+			$scope.warehouseName = "";
+			$scope.warehouseAddress = "";
+			$scope.warehousePlace = "";
+			$scope.warehouseCompany = "";
+		};
+
+		$scope.clear_add();
+
 		$scope.add_warehouse = function()
 		{
 			magaciniService.create_warehouse($scope.warehouseId, $scope.warehouseName, $scope.warehouseAddress, $scope.warehousePlace, $scope.warehouseCompany).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 	

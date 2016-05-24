@@ -2,9 +2,6 @@ module.exports = [
 	'$scope', '$http','pdvService', '$routeParams','$window',
 	function myController($scope, $http, pdvService, $routeParams, $window){
 
-		$scope.pdvId = -1;
-		$scope.pdvName = "";
-
 		$scope.selectedRow = {};
 		$scope.selectedPdvId = -1;
 		$scope.selectedPdvName = "";
@@ -43,10 +40,17 @@ module.exports = [
 
 		fillData();
 
+		$scope.clear_add = function(){
+			$scope.pdvName = "";
+	      }
+
+	      $scope.clear_add();
+
 		$scope.add_pdv = function()
 		{
 			pdvService.create_pdv($scope.pdvId, $scope.pdvName).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 

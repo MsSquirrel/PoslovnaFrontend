@@ -1,22 +1,9 @@
 module.exports = [
 	'$scope', '$http', 'partneriService','preduzecaService', 'mestaService','$routeParams','$window',
 	function myController($scope, $http, partneriService, preduzecaService, mestaService, $routeParams, $window){
-		
-		$scope.partnerName ="";
-		$scope.partnerMBR = "";
-		$scope.partnerPIB = "";
-		$scope.partnerAddress="";
-		$scope.partnerPlace= "";
-		$scope.allPlaces = {};
-		$scope.checkPlace = "";
-		$scope.changePlace = "";
-		$scope.partnerType = "";
-		$scope.changeType = "";
-		$scope.checkType = "";
-		$scope.partnerCompany = "";
+
 		$scope.allCompanies = {};
-		$scope.changeCompany = "";
-		$scope.checkCompany = "";
+		$scope.allPlaces = {};
 
 		$scope.selectedRow =  {};
    		$scope.selectedPartnerId = -1;
@@ -98,10 +85,29 @@ module.exports = [
 
 		fillData();
 
+		$scope.clear_add = function(){
+			$scope.partnerName ="";
+			$scope.partnerMBR = "";
+			$scope.partnerPIB = "";
+			$scope.partnerAddress="";
+			$scope.partnerPlace= "";
+			$scope.checkPlace = "";
+			$scope.changePlace = "";
+			$scope.partnerType = "";
+			$scope.changeType = "";
+			$scope.checkType = "";
+			$scope.partnerCompany = "";
+			$scope.changeCompany = "";
+			$scope.checkCompany = "";
+	    };
+
+	     $scope.clear_add();
+
 		$scope.add_partner = function()
 		{
 			partneriService.create_partner($scope.partnerId, $scope.partnerName, $scope.partnerMBR, $scope.partnerPIB, $scope.partnerAddress, $scope.checkPlace, $scope.checkCompany, $scope.checkType).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 

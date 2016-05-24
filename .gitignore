@@ -1,1 +1,3 @@
 node_modules
+/dist/sve.js
+/dist/dependencies.js

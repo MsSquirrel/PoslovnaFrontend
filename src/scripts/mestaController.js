@@ -1,10 +1,6 @@
 module.exports = [
 	'$scope', '$http', 'mestaService', '$routeParams','$window',
 	function myController($scope, $http, mestaService,$routeParams, $window){
-	
-		$scope.placeId = -1;
-		$scope.placeName = "";
-		$scope.placeNumber = "00000";
 
 		$scope.placeUrl = "";
 		$scope.selectedPlaceId = "-1";
@@ -53,11 +49,19 @@ module.exports = [
 		
 		fillData();
 
+		$scope.clear_add = function(){
+			
+			$scope.placeName = "";
+			$scope.placeNumber = "00000";
+		};
+
+		$scope.clear_add();
 
 		$scope.add_place = function()
 		{
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 
@@ -78,7 +82,6 @@ module.exports = [
 				fillData();
 			});
 		};
-
 
 
 	}

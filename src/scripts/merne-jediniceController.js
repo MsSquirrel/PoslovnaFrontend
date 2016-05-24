@@ -2,8 +2,6 @@ module.exports = [
 	'$scope', '$http','merneJediniceService', '$routeParams','$window',
 	function myController($scope, $http, merneJediniceService, $routeParams, $window){
 
-		$scope.measUnitId = -1;
-		$scope.measUnitName ="";
 
 		$scope.selectedRow =  {};
    		$scope.selectedMeasUnitId = -1;
@@ -45,11 +43,17 @@ module.exports = [
 
     	fillData();
 
+      $scope.clear_add = function(){
+        
+        $scope.measUnitName ="";
+      }
 
+      $scope.clear_add();
 
     	$scope.add_measUnit = function(){
     		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName).then(function(response){
     			fillData();
+          $scope.clear_add();
     		});
     	};
 

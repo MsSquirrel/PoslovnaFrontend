@@ -4,3 +4,11 @@
 	margin: 0 auto;
 	margin-top: 8px;
 }
+
+div.container div h2{
+	margin-top: -5px;
+}
+
+div.container div div.row{
+	margin-top: 5px;
+}

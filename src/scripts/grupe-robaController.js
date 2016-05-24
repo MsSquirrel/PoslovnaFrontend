@@ -2,11 +2,6 @@ module.exports = [
 	'$scope', '$http', 'grupeRobaService', 'pdvService', 'preduzecaService', '$routeParams', '$window',
 	function myController($scope, $http, grupeRobaService, pdvService, preduzecaService, $routeParams, $window) {
 		
-		$scope.groupId = -1;
-		$scope.groupName = "";
-		$scope.groupPdv = "";
-		$scope.groupCompany = "";
-		
 		$scope.allPdv = {};
 		$scope.allCompanies = {};
 		
@@ -66,10 +61,21 @@ module.exports = [
 
 		fillData();
 
+		$scope.clear_add = function(){
+
+			$scope.groupName = "";
+			$scope.groupPdv = "";
+			$scope.groupCompany = "";
+			
+		};
+
+		$scope.clear_add();
+
 		$scope.add_group = function()
 		{
 			grupeRobaService.create_group($scope.groupId, $scope.groupName, $scope.groupPdv, $scope.groupCompany).then(function(response){
 				fillData();
+				$scope.clear_add();
 			});
 		};
 

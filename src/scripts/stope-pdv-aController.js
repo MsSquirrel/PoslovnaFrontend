@@ -1,12 +1,6 @@
 module.exports = [
 	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window',
 	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window){
-		
-
-		$scope.pdvRateId = -1;
-		$scope.pdvRate = 0.00;
-		$scope.pdvRateDate = "";
-		$scope.pdvRatePdv=0;
 
 		$scope.allPDVs = {};
 
@@ -67,6 +61,14 @@ module.exports = [
 
     	fillData();
 
+      $scope.clear_add = function(){
+        $scope.pdvRate = 0.00;
+        $scope.pdvRateDate = "";
+        $scope.pdvRatePdv=0;
+      };
+
+      $scope.clear_add();
+
     	$scope.add_PDVRate = function()
     	{
     		var god = $scope.dt.getYear()+1900;
@@ -76,6 +78,7 @@ module.exports = [
     		console.log("Uneto "+$scope.pdvRateId+", "+$scope.pdvRate+", "+date+", "+$scope.pdvRatePdv);
     		stopePDVService.create_pdvRate($scope.pdvRateId, $scope.pdvRate, date, $scope.pdvRatePdv).then(function(response){
     			fillData();
+          $scope.clear_add();
     		});
     	};
 
@@ -83,6 +86,7 @@ module.exports = [
     	{
     		stopePDVService.remove_pdvRate($scope.selectedPdvRateId).then(function(response){
     			fillData();
+          $scope.clear_add();
     		});
     	};
 
