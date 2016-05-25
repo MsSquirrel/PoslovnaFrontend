@@ -36,7 +36,7 @@
 							
 							Godina: <input type="text" class="form-control" ng-model="businessYear"><br>
 							Zaključena:<input type="checkbox" ng-model="businessYearFinished"
-          					 ng-true-value=1 ng-false-value=0><br><br>
+          					 ng-true-value=true ng-false-value=false><br><br>
 							
 							Preduzeće:  <select class="form-control" ng-model="businessYearCompany" ng-click="chose_place()">
        							 		<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
@@ -63,7 +63,7 @@
 		      			<form novalidate>
 							Godina: <input type="text" class="form-control" ng-model="editBusinessYear"><br>
 							Zaključena:<input type="checkbox" ng-model="editBusinessYearFinished"
-          					 ng-true-value=1 ng-false-value=0><br><br>
+          					 ng-true-value=true ng-false-value=false><br><br>
 							
 							Preduzeće:  <select class="form-control" ng-model="editBusinessYearCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 							<br><br>
