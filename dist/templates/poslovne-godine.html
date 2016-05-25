@@ -9,7 +9,7 @@
 		  		<span class="glyphicon glyphicon-plus"></span>
 			</button>
 
-			<button type="button" class="btn btn-danger btn-xl" ng-click="remove_selected_businessYear()">
+			<button type="button" class="btn btn-danger btn-xl" data-toggle="modal" data-target="#confirmModal">
 		  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 			</button>
 
@@ -74,5 +74,28 @@
         		</div>
       		</div>
       	</div>
+
+
+      	<div class="modal fade" id="confirmModal" role="dialog">
+    		<div class="modal-dialog">
+   		   <!-- Modal content-->
+      			<div class="modal-content">
+		    		<div class="modal-header">
+		      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		      			<h4 class="modal-title">Potvrda brisanja</h4>
+		    		</div>
+		    		<div class="modal-body">
+		      			<form novalidate>
+							Da li si siguran da želiš da obrišeš? 
+
+							<br><br>
+							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="remove_selected_businessYear()">Da</button>
+							<button type="button" class="btn btn-info" data-dismiss="modal">Ne</button>
+	  					</form>
+		    		</div>
+        		</div>
+      		</div>
+      	</div>	
+
 
 </div>
