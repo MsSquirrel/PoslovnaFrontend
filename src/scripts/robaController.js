@@ -27,10 +27,10 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv'},
-		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa'},
-			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere'},
-		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzece'}
+		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
+		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa', cellTooltip: true, headerTooltip: true},
+			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere', cellTooltip: true, headerTooltip: true},
+		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzece', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {

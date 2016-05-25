@@ -28,11 +28,11 @@ module.exports = [
 		  };
  			
  		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Preduzece', width:'25%', displayName: 'Naziv'},
-		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Matični broj'},
-		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB'},
-		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa'},
-		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' }
+		    { name:'Naziv_Preduzece', width:'25%', displayName: 'Naziv', cellTooltip: true, headerTooltip: true},
+		    { name:'Maticni_broj_Preduzece', width:'15%', displayName: 'Matični broj', cellTooltip: true, headerTooltip: true},
+		    { name:'PIB_Preduzece', width:'15%', displayName: 'PIB', cellTooltip: true, headerTooltip: true},
+		    { name:'Adresa_Preduzece', width:'20%', displayName: 'Adresa', cellTooltip: true, headerTooltip: true},
+		    { name:'Mesto.Naziv_Mesto', width:'25%', displayName: 'Mesto' , cellTooltip: true, headerTooltip: true}
 		];
 
 

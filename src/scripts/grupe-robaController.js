@@ -24,9 +24,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Grupa_roba', width:'55%', displayName:'Naziv'},
-		    { name:'PDV.Naziv_PDV', width:'20%', displayName: 'Po PDV'},
-		    { name:'Preduzece.Naziv_Preduzece', width:'25%', displayName: 'Preduzece'}
+		    { name:'Naziv_Grupa_roba', width:'55%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
+		    { name:'PDV.Naziv_PDV', width:'20%', displayName: 'Po PDV', cellTooltip: true, headerTooltip: true},
+		    { name:'Preduzece.Naziv_Preduzece', width:'25%', displayName: 'Preduzece', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {

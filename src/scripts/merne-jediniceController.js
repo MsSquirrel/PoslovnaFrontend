@@ -19,7 +19,7 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv'}
+		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv', cellTooltip: true, headerTooltip: true}
 		];
 
     	$scope.gridOptions.onRegisterApi = function(gridApi) {

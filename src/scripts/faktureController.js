@@ -47,12 +47,12 @@ module.exports = [
 		};
  			
 		$scope.gridOptions.columnDefs = [
-			{ name:'Broj_fakture_Faktura', width:'15%', displayName: 'Broj fakture'},
-			{ name:'Poslovni_partner.Naziv_Partner', width:'25%', displayName: 'Partner'},
-		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina'},
-		    { name:'Datum_fakture_Faktura', width:'15%', displayName: 'Datum fakture', cellFilter: 'date:\'dd.MM.yyyy\''},
-		    { name:'Datum_valute_Faktura', width:'15%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\''},
-		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za plaćanje'}
+			{ name:'Broj_fakture_Faktura', width:'15%', displayName: 'Broj fakture', cellTooltip: true, headerTooltip: true},
+			{ name:'Poslovni_partner.Naziv_Partner', width:'25%', displayName: 'Partner', cellTooltip: true, headerTooltip: true},
+		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
+		    { name:'Datum_fakture_Faktura', width:'15%', displayName: 'Datum fakture', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
+		    { name:'Datum_valute_Faktura', width:'15%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
+		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za plaćanje', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {

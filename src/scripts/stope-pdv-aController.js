@@ -24,9 +24,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-			{ name:'PDV.Naziv_PDV', width:'30%', displayName: 'Za PDV'},
-		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa'},
-		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Važi od', cellFilter: 'date:\'dd.MM.yyyy\''}
+			{ name:'PDV.Naziv_PDV', width:'30%', displayName: 'Za PDV', cellTooltip: true, headerTooltip: true},
+		    { name:'Stopa_Stopa_PDV_a', width:'35%', displayName: 'Stopa', cellTooltip: true, headerTooltip: true},
+		    { name:'Datum_vazenja_Stopa_PDV_a', width:'35%', displayName: 'Važi od', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true}
 		];
 
 

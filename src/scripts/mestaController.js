@@ -20,8 +20,8 @@ module.exports = [
 		  };
 
 		  $scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Mesto', width:'50%', displayName: 'Naziv'},
-		    { name:'Postansk__broj_Mesto', width:'50%', displayName: 'Poštanski broj'}, 
+		    { name:'Naziv_Mesto', width:'50%', displayName: 'Naziv', cellTooltip: true, headerTooltip: true},
+		    { name:'Postansk__broj_Mesto', width:'50%', displayName: 'Poštanski broj', cellTooltip: true, headerTooltip: true}, 
 		  ];
 
 

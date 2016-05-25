@@ -26,10 +26,10 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Magacin', width:'30%', displayName:'Naziv magacina'},
-		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa'},
-		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto'},
-		    { name:'Preduzece.Naziv_Preduzece', width:'20%', displayName:'Preduzece'}
+		    { name:'Naziv_Magacin', width:'30%', displayName:'Naziv magacina', cellTooltip: true, headerTooltip: true},
+		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa', cellTooltip: true, headerTooltip: true},
+		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto', cellTooltip: true, headerTooltip: true},
+		    { name:'Preduzece.Naziv_Preduzece', width:'20%', displayName:'Preduzeće', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
