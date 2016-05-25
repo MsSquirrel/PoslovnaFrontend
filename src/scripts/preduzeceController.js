@@ -18,6 +18,10 @@ module.exports = [
    		$scope.editCompanyAddress ="";
    		$scope.editCompanyPlace = "";
 
+   		$scope.newPlaceName = "";
+   		$scope.newPlaceNumber = "00000";
+   		$scope.newPlaceId = -1;
+
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -111,6 +115,18 @@ module.exports = [
 				fillData();
 			});
 		};
+
+
+		$scope.add_place = function()
+		{
+			console.log("WHAAAT");
+			mestaService.create_place($scope.newPlaceId, $scope.newPlaceName, $scope.newPlaceNumber).then(function(response){
+				mestaService.get_all_places()
+				.then(function(response){
+					$scope.allPlaces = response;
+				});
+			});
+		}
 
 	}
 ];

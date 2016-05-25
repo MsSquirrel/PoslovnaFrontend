@@ -38,9 +38,18 @@
 							Matični broj: <input type="text"  class="form-control" ng-model="companyMBR"><br>
 							PIB preduzeća: <input type="text" class="form-control" ng-model="companyPIB"><br>
 							Adresa preduzeća: <input type="text" class="form-control" ng-model="companyAddress"><br>
-							Mesto:  <select class="form-control" ng-model="check" ng-click="chose_place()">
+							Mesto: 
+								
+									<select class="form-control" ng-model="check" ng-click="chose_place()">
        							 		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
        							 	</select>
+
+       					
+									<button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addPlaceModal">
+		  								<span class="glyphicon glyphicon-plus"></span>
+									</button>
+									
+								
 							<br><br>
 							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_company()">Sačuvaj</button>
 							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
@@ -96,6 +105,30 @@
         		</div>
       		</div>
       	</div>	
+
+
+
+      	<div class="modal fade" id="addPlaceModal" role="dialog">
+    		<div class="modal-dialog">
+   		   <!-- Modal content-->
+      			<div class="modal-content">
+		    		<div class="modal-header">
+		      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+		      			<h4 class="modal-title">Dodaj novo mesto</h4>
+		    		</div>
+		    		<div class="modal-body">
+		      			<form novalidate>
+							Naziv mesta: <input type="text" class="form-control" ng-model="newPlaceName"><br>
+							Poštanski broj: <input type="text"  class="form-control" ng-model="newPlaceNumber">
+							<br><br>
+							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_place()">Sačuvaj</button>
+							<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
+	  					</form>
+		    		</div>
+        		</div>
+      		</div>
+      	</div>	
+
 
 
 </div>
