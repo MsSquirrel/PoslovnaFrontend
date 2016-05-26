@@ -7,9 +7,6 @@ module.exports = [
 		
 		$scope.selectedRow = {};
 		$scope.selectedGroupId = -1;
-		$scope.selectedGroupName = "";
-		$scope.selectedGroupPdv = "";
-		$scope.selectedGroupCompany = "";
 		
 		$scope.editGroupName = "";
 		$scope.editGroupPdv = "";

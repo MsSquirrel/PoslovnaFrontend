@@ -7,10 +7,6 @@ module.exports = [
 
 		$scope.selectedRow = {};
    		$scope.selectedWarehouseId = -1;
-   		$scope.selectedWarehouseName = "";
-   		$scope.selectedWarehouseAddress = "";
-   		$scope.selectedWarehousePlace = "";
-   		$scope.selectedWarehouseCompany ="";
    	
 		$scope.editWarehouseName = "";
 		$scope.editWarehouseAddress = "";

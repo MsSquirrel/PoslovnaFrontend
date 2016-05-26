@@ -8,10 +8,6 @@ module.exports = [
 		
 		$scope.selectedRow = {};
 		$scope.selectedGoodsId = -1;
-		$scope.selectedGoodsName = "";
-		$scope.selectedGoodsCategory = "";
-		$scope.selectedGoodsMeasUnit = "";
-		$scope.selectedGoodsCompany = "";
 		
 		$scope.editGoodsName = "";
 		$scope.editGoodsCategory = "";
