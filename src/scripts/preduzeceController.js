@@ -76,6 +76,7 @@ module.exports = [
 		};
 
 		fillData();
+		console.log("PREDUZECE CONTROLLER");
 
 		$scope.clear_add = function(){
 			$scope.companyName ="";

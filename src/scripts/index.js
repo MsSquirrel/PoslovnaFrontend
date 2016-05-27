@@ -50,13 +50,23 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: './templates/preduzeca.html',
         controller: 'preduzeceCtrl'
       })
+      .state('preduzeca.createPlace', {
+        templateurl: './templates/createPlace.html',
+        controller: 'mestaCtrl'
+          /*views:{
+            "lksjdaflkasdjf":{
+              templateUrl: './templates/createPlace.html'
+            }
+          }
+          */
+      })
       .state('analitika', {
         url: '/analitika',
         templateUrl: './templates/analitika.html',
         controller: 'analitikaCtrl'
       })
       .state('fakture', {
-        url: 'fakture',
+        url: '/fakture',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl'
       })
