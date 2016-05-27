@@ -1,4 +1,4 @@
-var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.resizeColumns']);
+var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.router']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 myApp.controller('mestaCtrl', require('./mestaController.js'));
@@ -24,81 +24,97 @@ myApp.filter('true_false', function() {
     }
 });
 
-myApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider.
-      when('/main', {
+myApp.config(['$stateProvider', '$urlRouterProvider',
+  function($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise("/main");
+
+    $stateProvider
+      .state('main', {
+        url: '/main',
         templateUrl: './templates/main.html',
         controller: 'preduzeceCtrl'
-      }).
-      when('/documents', {
+      })
+      .state('documents', {
+        url:'/documents',
         templateUrl: './templates/documentsList.html',
         controller: 'documentsCtrl'
-      }).
-      when('/mesta', {
+      })
+      .state('mesta', {
+        url: '/mesta',
         templateUrl: './templates/mesta.html',
         controller: 'mestaCtrl'
-      }).
-      when('/preduzeca', {
+      })
+      .state('preduzeca', {
+        url: '/preduzeca',
         templateUrl: './templates/preduzeca.html',
         controller: 'preduzeceCtrl'
-      }).
-      when('/analitika', {
+      })
+      .state('analitika', {
+        url: '/analitika',
         templateUrl: './templates/analitika.html',
         controller: 'analitikaCtrl'
-      }).
-      when('/fakture', {
+      })
+      .state('fakture', {
+        url: 'fakture',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl'
-      }).
-      when('/grupe-roba', {
+      })
+      .state('grupe-roba', {
+        url: '/grupe-roba',
         templateUrl: './templates/grupe-roba.html',
         controller: 'grupe-robaCtrl'
-      }).
-      when('/magacini', {
+      })
+      .state('magacini', {
+        url: '/magacini',
         templateUrl: './templates/magacini.html',
         controller: 'magaciniCtrl'
-      }).
-      when('/merne-jedinice', {
+      })
+      .state('merne-jedinice', {
+        url: '/merne-jedinice',
         templateUrl: './templates/merne-jedinice.html',
         controller: 'merne-jediniceCtrl'
-      }).
-      when('/pdv', {
+      })
+      .state('pdv', {
+        url: '/pdv',
         templateUrl: './templates/pdv.html',
         controller: 'pdvCtrl'
-      }).
-      when('/poslovne-godine', {
+      })
+      .state('poslovne-godine', {
+        url: '/poslovne-godine',
         templateUrl: './templates/poslovne-godine.html',
         controller: 'poslovne-godineCtrl'
-      }).
-      when('/poslovni-partneri', {
+      })
+      .state('poslovni-partneri', {
+        url: '/poslovni-partneri',
         templateUrl: './templates/poslovni-partneri.html',
         controller: 'poslovni-partneriCtrl'
-      }).
-      when('/prijemni-dokumenti', {
+      })
+      .state('prijemni-dokumenti', {
+        url: '/prijemni-dokumenti',
         templateUrl: './templates/prijemni-dokumenti.html',
         controller: 'prijemni-dokumentiCtrl'
-      }).
-      when('/roba', {
+      })
+      .state('roba', {
+        url: '/roba',
         templateUrl: './templates/roba.html',
         controller: 'robaCtrl'
-      }).
-      when('/robne-kartice', {
+      })
+      .state('robne-kartice', {
+        url: '/robne-kartice',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
-      }).
-      when('/stavke-dokumenata', {
+      })
+      .state('stavke-dokumenata', {
+        url: '/stavke-dokumenata',
         templateUrl: './templates/stavke-dokumenata.html',
         controller: 'stavke-dokumenataCtrl'
-      }).
-      when('/stope-pdv-a', {
+      })
+      .state('stope-pdv-a', {
+        url: '/stope-pdv-a',
         templateUrl: './templates/stope-pdv-a.html',
         controller: 'stope-pdv-aCtrl'
-      }).
-      otherwise({
-      	redirectTo: '/main'
       });
-
 }]);
 
 

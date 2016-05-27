@@ -20,42 +20,42 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-				    <a class="navbar-brand" href="#">Preduzece</a>
+				    <a class="navbar-brand" ui-sref="#">Preduzece</a>
 				</div>
 				<ul class="nav navbar-nav">
-				  	<li class="active"><a href="#">Naslovna</a></li>
-				  	<li><a href="#/documents">Dokumenti</a></li>
+				  	<li class="active"><a ui-sref="#">Naslovna</a></li>
+				  	<li><a ui-sref="documents">Dokumenti</a></li>
 					<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">Tabele
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="#/mesta">Mesta</a></li>
-				          <li><a href="#/magacini">Magacini</a></li>
-				          <li><a href="#/robne-kartice">Robne kartice</a></li>
-				          <li><a href="#/roba">Roba</a></li>
-				          <li><a href="#/merne-jedinice">Merne jedinice</a></li> 
+				          <li><a ui-sref="mesta">Mesta</a></li>
+				          <li><a ui-sref="magacini">Magacini</a></li>
+				          <li><a ui-sref="robne-kartice">Robne kartice</a></li>
+				          <li><a ui-sref="roba">Roba</a></li>
+				          <li><a ui-sref="merne-jedinice">Merne jedinice</a></li> 
 				        </ul>
 			      	</li> 
 			      	<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">Tabele 2
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="#/analitika">Analitika</a></li>
-				          <li><a href="#/fakture">Fakture</a></li>
-				          <li><a href="#/pdv">PDV</a></li>
-				          <li><a href="#/stope-pdv-a">Stope PDV-a</a></li>
-				          <li><a href="#/prijemni-dokumenti">Prijemni dokumenti</a></li>
+				          <li><a ui-sref="analitika">Analitika</a></li>
+				          <li><a ui-sref="fakture">Fakture</a></li>
+				          <li><a ui-sref="pdv">PDV</a></li>
+				          <li><a ui-sref="stope-pdv-a">Stope PDV-a</a></li>
+				          <li><a ui-sref="prijemni-dokumenti">Prijemni dokumenti</a></li>
 				        </ul>
 			      	</li>
 			      	<li class="dropdown">
 				        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">Tabele 3
 				        <span class="caret"></span></a>
 				        <ul class="dropdown-menu">
-				          <li><a href="#/preduzeca">Preduzeća</a></li>
-				          <li><a href="#/poslovni-partneri">Poslovni partneri</a></li>
-				          <li><a href="#/poslovne-godine">Poslovne godine</a></li>
-				          <li><a href="#/grupe-roba">Grupe roba</a></li>
-				          <li><a href="#/stavke-dokumenata">Stavke dokumenata</a></li> 
+				          <li><a ui-sref="preduzeca">Preduzeća</a></li>
+				          <li><a ui-sref="poslovni-partneri">Poslovni partneri</a></li>
+				          <li><a ui-sref="poslovne-godine">Poslovne godine</a></li>
+				          <li><a ui-sref="grupe-roba">Grupe roba</a></li>
+				          <li><a ui-sref="stavke-dokumenata">Stavke dokumenata</a></li> 
 				        </ul>
 			      	</li>  
 				</ul>
@@ -63,7 +63,7 @@
 		</nav>
 
 		<div class="container">
-			<div ng-view=""></div>
+			<div ui-view=""></div>
 		</div>
 		
 		<div style="clear:both"></div>
