@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window',
-	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window){
+	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window', '$state',
+	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window, $state){
 
 		$scope.allPlaces = {};
 
@@ -86,15 +86,15 @@ module.exports = [
 			$scope.companyPlace= "";
 			$scope.check = "";
 			$scope.changePlace = "";
+			$state.go('^');
 	    };
-
-	    $scope.clear_add();
 
 		$scope.add_company = function()
 		{
 			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
-				fillData();
 				$scope.clear_add();
+				fillData();
+				//$state.go('^');
 			});
 		};
 
@@ -116,18 +116,6 @@ module.exports = [
 				fillData();
 			});
 		};
-
-
-		$scope.add_place = function()
-		{
-			console.log("WHAAAT");
-			mestaService.create_place($scope.newPlaceId, $scope.newPlaceName, $scope.newPlaceNumber).then(function(response){
-				mestaService.get_all_places()
-				.then(function(response){
-					$scope.allPlaces = response;
-				});
-			});
-		}
 
 	}
 ];

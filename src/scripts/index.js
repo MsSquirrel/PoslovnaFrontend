@@ -24,6 +24,22 @@ myApp.filter('true_false', function() {
     }
 });
 
+
+function generateOnEnterModal(tempUrl, ctrl){
+   return [
+      '$stateParams', '$state', '$uibModal', 
+          function($stateParams, $state, $uibModal) {
+          console.log('hello world!');
+
+          $uibModal.open({
+            templateUrl: tempUrl,
+            controller: ctrl
+        }).result.finally(function() {
+            $state.go('^');
+        });
+    }]
+};
+
 myApp.config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
@@ -50,15 +66,27 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: './templates/preduzeca.html',
         controller: 'preduzeceCtrl'
       })
-      .state('preduzeca.createPlace', {
-        templateurl: './templates/createPlace.html',
-        controller: 'mestaCtrl'
-          /*views:{
-            "lksjdaflkasdjf":{
-              templateUrl: './templates/createPlace.html'
+      .state('preduzeca.createCompany.createPlace', {
+       // onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl")
+        //templateurl: './templates/createPlace.html',
+        //controller: 'mestaCtrl'
+          views:{
+            "@preduzeca":{
+              templateUrl: './templates/createPlace.html', 
+              controller: "mestaCtrl"
             }
           }
-          */
+         
+      })
+      .state('preduzeca.createCompany', { 
+       // templateUrl: "./templates/createCompany.html",
+        //controller: "preduzeceCtrl"
+         views:{
+            "": {
+              templateUrl: './templates/createCompany.html', 
+              controller: "preduzeceCtrl"
+            }
+          }
       })
       .state('analitika', {
         url: '/analitika',
@@ -140,3 +168,10 @@ myApp
 .service('magaciniService', require('./magaciniService.js'))
 .service('grupeRobaService', require('./grupe-robaService.js'))
 .service('faktureService', require('./faktureService.js'));
+
+
+myApp
+.run(require('./run.js'));
+
+
+

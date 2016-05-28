@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'mestaService', '$routeParams','$window',
-	function myController($scope, $http, mestaService,$routeParams, $window){
+	'$scope', '$http', 'mestaService', '$routeParams','$window', '$state', '$rootScope',
+	function myController($scope, $http, mestaService,$routeParams, $window, $state, $rootScope){
 
 		$scope.placeUrl = "";
 		$scope.selectedPlaceId = "-1";
@@ -48,21 +48,27 @@ module.exports = [
 
 		
 		fillData();
+		console.log("MESTO CONTROLLER");
 
 		$scope.clear_add = function(){
 			
 			$scope.placeName = "";
 			$scope.placeNumber = "00000";
+			//$scope.$close(true);
+			$state.go('^');
 		};
-
-		$scope.clear_add();
 
 		$scope.add_place = function()
 		{
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
 				fillData();
 				$scope.clear_add();
+			}).then(function() {
+				//$scope.$close(true);
+				//$state.go('^');
+				//$state.go($rootScope.previousState);
 			});
+
 		};
 
 		$scope.remove_selected_place = function()
@@ -83,6 +89,17 @@ module.exports = [
 			});
 		};
 
+		/*
+		$scope.dismiss = function() {
+				console.log('dismiss');
+                $scope.$dismiss();
+              };
+
+        $scope.save = function() {
+        		console.log('save');
+               $scope.$close(true);
+        };
+		*/
 
 	}
 ];
