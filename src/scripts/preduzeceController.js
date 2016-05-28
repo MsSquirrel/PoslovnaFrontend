@@ -43,8 +43,10 @@ module.exports = [
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
 
+   			// setSelection();
+
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				/*$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
    				$scope.selectedCompanyId = $scope.selectedRow.Id_Preduzece;
    				$scope.selectedCompanyName = $scope.selectedRow.Naziv_Preduzece;
    				$scope.selectedCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
@@ -56,11 +58,29 @@ module.exports = [
    				$scope.editCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
    				$scope.editCompanyPIB = $scope.selectedRow.PIB_Preduzece;
    				$scope.editCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
-   				$scope.editCompanyPlace = $scope.selectedRow.Mesto.Id;
+   				$scope.editCompanyPlace = $scope.selectedRow.Mesto.Id;*/
+   				setSelection();
 
 		  });
    		};
 
+
+   		function setSelection()
+   		{
+   			$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   			$scope.selectedCompanyId = $scope.selectedRow.Id_Preduzece;
+   			$scope.selectedCompanyName = $scope.selectedRow.Naziv_Preduzece;
+   			$scope.selectedCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
+   			$scope.selectedCompanyPIB = $scope.selectedRow.PIB_Preduzece;
+   			$scope.selectedCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
+   			$scope.selectedCompanyPlace = $scope.selectedRow.Mesto.Id;
+
+   			$scope.editCompanyName = $scope.selectedRow.Naziv_Preduzece;
+   			$scope.editCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
+   			$scope.editCompanyPIB = $scope.selectedRow.PIB_Preduzece;
+   			$scope.editCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
+   			$scope.editCompanyPlace = $scope.selectedRow.Mesto.Id;
+   		};
 		
 
     	function fillData(){
@@ -76,6 +96,7 @@ module.exports = [
 		};
 
 		fillData();
+		//setSelection();
 		console.log("PREDUZECE CONTROLLER");
 
 		$scope.clear_add = function(){
@@ -86,8 +107,14 @@ module.exports = [
 			$scope.companyPlace= "";
 			$scope.check = "";
 			$scope.changePlace = "";
-			//$state.go('^');
 	    };
+
+
+	    $scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 
 		$scope.add_company = function()
 		{
@@ -112,7 +139,7 @@ module.exports = [
 		{
 			console.log("Promenjeno: "+id+", "+name+", "+mbr+", "+pib+", "+address+", "+place);
 			preduzecaService.update_company(id, name, mbr, pib, address, place).then(function(response){
-				fillData();
+				$state.go('^',{}, {reload:true});
 			});
 		};
 

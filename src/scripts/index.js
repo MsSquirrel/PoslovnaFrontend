@@ -15,6 +15,7 @@ myApp.controller('robaCtrl', require('./robaController.js'));
 myApp.controller('robne-karticeCtrl', require('./robne-karticeController.js'));
 myApp.controller('stavke-dokumenataCtrl', require('./stavke-dokumenataController.js'));
 myApp.controller('stope-pdv-aCtrl', require('./stope-pdv-aController.js'));
+myApp.controller('editCompanyCtrl', require('./editCompanyController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -71,23 +72,22 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('preduzeca.createCompany.createPlace', {
         onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl")
-        //templateurl: './templates/createPlace.html',
-        //controller: 'mestaCtrl'
-        /*  views:{
-            "@preduzeca":{
-              templateUrl: './templates/createPlace.html', 
-              controller: "mestaCtrl"
-            }
-          }
-         */
       })
       .state('preduzeca.createCompany', { 
-       // templateUrl: "./templates/createCompany.html",
-        //controller: "preduzeceCtrl"
          views:{
             "": {
               templateUrl: './templates/createCompany.html', 
               controller: "preduzeceCtrl"
+            }
+          }
+      })
+      .state('preduzeca.editCompany', { 
+        url: "/edit/:id",
+
+         views:{
+            "": {
+              templateUrl: './templates/editCompany.html', 
+              controller: "editCompanyCtrl",
             }
           }
       })

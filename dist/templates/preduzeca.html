@@ -10,15 +10,12 @@
 
 
 			<button type="button" class="btn btn-danger btn-xl" data-toggle="modal" data-target="#confirmModal">
-		  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+		  		<span class="glyphicon glyphicon-remove" ></span>
 			</button>
 
-			<button type="button" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#editModal">
-		  		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+			<button type="button" class="btn btn-primary btn-xl" ui-sref="preduzeca.editCompany({id: selectedCompanyId})">
+		  		<span class="glyphicon glyphicon-pencil" ></span>
 			</button>
-
-			
-			<button  ui-sref="preduzeca.createPlace" data-toggle="modal" data-target="#addPlaceModal">Preduzeća</button>
 
 		</div>
 	</div>
@@ -27,33 +24,6 @@
 
 	 <div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	 </div>
-
-
-      	 <div class="modal fade" id="editModal" role="dialog">
-    		<div class="modal-dialog">
-   		   <!-- Modal content-->
-      			<div class="modal-content">
-		    		<div class="modal-header">
-		      			<button type="button" class="close" data-dismiss="modal">&times;</button>
-		      			<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
-		    		</div>
-		    		<div class="modal-body">
-		      			<form novalidate>
-							Naziv preduzeća: <input type="text" class="form-control" ng-model="editCompanyName"><br>
-							Matični broj: <input type="text"  class="form-control" ng-model="editCompanyMBR"><br>
-							PIB preduzeća: <input type="text" class="form-control" ng-model="editCompanyPIB"><br>
-							Adresa preduzeća: <input type="text" class="form-control" ng-model="editCompanyAddress"><br>
-							Mesto:  <select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace"></select>
-							<br><br>
-							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_company(selectedCompanyId, editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)">Sačuvaj</button>
-							<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
-	  					</form>
-		    		</div>
-        		</div>
-      		</div>
-      	</div>
-
-
 
       	<div class="modal fade" id="confirmModal" role="dialog">
     		<div class="modal-dialog">

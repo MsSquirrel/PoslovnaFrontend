@@ -58,12 +58,21 @@ module.exports = [
 			});
 		}
 
+		function get_company_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/preduzece/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
 
 		return {
 			get_all_companies: get_all_companies,
 			create_company: create_company,
 			remove_company: remove_company,
 			update_company: update_company, 
+			get_company_by_id: get_company_by_id,
 		};
 
 	}
