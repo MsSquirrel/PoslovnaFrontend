@@ -93,7 +93,7 @@ module.exports = [
 
     	$scope.edit_PDVRate = function()
     	{
-       		var god = $scope.editPdvRateDate.getYear()+1900;
+       	var god = $scope.editPdvRateDate.getYear()+1900;
     		var m = $scope.editPdvRateDate.getMonth()+1;
     		var date = god+"-"+m+"-"+$scope.editPdvRateDate.getDate();
     		stopePDVService.update_pdvRate($scope.selectedPdvRateId, $scope.editPdvRate, date ,$scope.editPdvRatePdv).then(function(response){

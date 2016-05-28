@@ -18,15 +18,6 @@ module.exports = [
 
 		$scope.selectedRow = {};
 		$scope.selectedInvoiceId = -1;
-		$scope.selectedInvoiceNumber = "";
-		$scope.selectedInvoiceYear = "";
-		$scope.selectedInvoicePartner = "";
-		$scope.selectedInvoiceDate = "";
-		$scope.selectedInvoiceCurrency = "";
-		$scope.selectedInvoiceRabat = "";
-		$scope.selectedInvoiceIznosBezPdv = "";
-		$scope.selectedInvoiceTotalPdv = "";
-		$scope.selectedInvoiceTotalPlacanje = "";
 
 		$scope.editInvoiceNumber = "";
 		$scope.editInvoiceYear = "";
@@ -65,8 +56,8 @@ module.exports = [
 				$scope.selectedInvoiceNumber = $scope.selectedRow.Broj_fakture_Faktura;
 				$scope.selectedInvoiceYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
 				$scope.selectedInvoicePartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
-				$scope.selectedInvoiceDate = $scope.selectedRow.Datum_fakture_Faktura;
-				$scope.selectedInvoiceCurrency = $scope.selectedRow.Datum_valute_Faktura;
+				$scope.selectedDt1 = $scope.selectedRow.Datum_fakture_Faktura;
+				$scope.selectedDt2 = $scope.selectedRow.Datum_valute_Faktura;
 				$scope.selectedInvoiceRabat = $scope.selectedRow.Ukupan_rabat_Faktura;
 				$scope.selectedInvoiceIznosBezPdv = $scope.selectedRow.Ukupan_iznos_bez_PDV_a_Faktura;
 				$scope.selectedInvoiceTotalPdv = $scope.selectedRow.Ukupan_PDV_Faktura;
@@ -75,12 +66,17 @@ module.exports = [
 				$scope.editInvoiceNumber = $scope.selectedRow.Broj_fakture_Faktura;
 				$scope.editInvoiceYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
 				$scope.editInvoicePartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
-				$scope.editInvoiceDate = $scope.selectedRow.Datum_fakture_Faktura;
-				$scope.editInvoiceCurrency = $scope.selectedRow.Datum_valute_Faktura;
+
+		        $scope.editDt1 = ($scope.selectedRow.Datum_fakture_Faktura).split("T")[0];
+				$scope.editDt2 = ($scope.selectedRow.Datum_valute_Faktura).split("T")[0];
+
 				$scope.editInvoiceRabat = $scope.selectedRow.Ukupan_rabat_Faktura;
 				$scope.editInvoiceIznosBezPdv = $scope.selectedRow.Ukupan_iznos_bez_PDV_a_Faktura;
 				$scope.editInvoiceTotalPdv = $scope.selectedRow.Ukupan_PDV_Faktura;
 				$scope.editInvoiceTotalPlacanje = $scope.selectedRow.Ukupno_za_placanje_Faktura;
+
+				//$('$scope.editDt1').datepicker('setDate', $scope.editDt1);
+				//$('#datetimepicker1').datetimepicker({defaultDate: $scope.editDt1});
 		  });
    		};
 
@@ -104,8 +100,8 @@ module.exports = [
 			$scope.invoiceNumber = "";
 			$scope.invoiceYear = "";
 			$scope.invoicePartner = "";
-			$scope.invoiceDate = "";
-			$scope.invoiceCurrency = "";
+			$scope.dt1 = ""; // datum faktude
+			$scope.dt2 = ""; // datum valute
 			$scope.invoiceRabat = "";
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
@@ -116,8 +112,14 @@ module.exports = [
 
 		$scope.add_invoice = function()
 		{
-			console.log("Unesi: "+$scope.invoiceId+", "+$scope.invoiceNumber+", "+$scope.invoiceYear+", "+$scope.invoicePartner+", "+$scope.invoiceDate+", "+$scope.invoiceCurrency+", "+$scope.invoiceRabat+", "+$scope.invoiceIznosBezPdv+", "+$scope.invoiceTotalPdv+", "+$scope.invoiceTotalPlacanje);
-			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, $scope.invoiceDate, $scope.invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv, $scope.invoiceTotalPlacanje).then(function(response){
+    		var god1 = $scope.dt1.getYear()+1900;
+    		var m1 = $scope.dt1.getMonth()+1;
+    		var invoiceDate = god1+"-"+m1+"-"+$scope.dt1.getDate();
+    		var god2 = $scope.dt2.getYear()+1900;
+    		var m2 = $scope.dt2.getMonth()+1;
+    		var invoiceCurrency = god2+"-"+m2+"-"+$scope.dt2.getDate();
+			console.log("Unesi: "+$scope.invoiceId+", "+$scope.invoiceNumber+", "+$scope.invoiceYear+", "+$scope.invoicePartner+", "+invoiceDate+", "+invoiceCurrency+", "+$scope.invoiceRabat+", "+$scope.invoiceIznosBezPdv+", "+$scope.invoiceTotalPdv+", "+$scope.invoiceTotalPlacanje);
+			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, invoiceDate, invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv, $scope.invoiceTotalPlacanje).then(function(response){
 				fillData();
 				$scope.clear_add();
 			});
@@ -133,10 +135,72 @@ module.exports = [
 
 		$scope.edit_selected_invoice = function()
 		{
-			console.log("Promenjena: "+$scope.selectedInvoiceId+", "+$scope.editInvoiceNumber+", "+$scope.editInvoiceYear+", "+$scope.editInvoicePartner+", "+$scope.editInvoiceDate+", "+$scope.editInvoiceCurrency+", "+$scope.editInvoiceRabat+", "+$scope.editInvoiceIznosBezPdv+", "+$scope.editInvoiceTotalPdv+", "+$scope.editInvoiceTotalPlacanje);
-			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, $scope.editInvoiceDate, $scope.editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv, $scope.editInvoiceTotalPlacanje).then(function(response){
+    		var god1 = $scope.editDt1.getYear()+1900;
+    		var m1 = $scope.editDt1.getMonth()+1;
+    		var editInvoiceDate = god1+"-"+m1+"-"+$scope.editDt1.getDate();
+    		var god2 = $scope.editDt2.getYear()+1900;
+    		var m2 = $scope.editDt2.getMonth()+1;
+    		var editInvoiceCurrency = god2+"-"+m2+"-"+$scope.editDt2.getDate();
+			console.log("Promenjena: "+$scope.selectedInvoiceId+", "+$scope.editInvoiceNumber+", "+$scope.editInvoiceYear+", "+$scope.editInvoicePartner+", "+editInvoiceDate+", "+editInvoiceCurrency+", "+$scope.editInvoiceRabat+", "+$scope.editInvoiceIznosBezPdv+", "+$scope.editInvoiceTotalPdv+", "+$scope.editInvoiceTotalPlacanje);
+			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv, $scope.editInvoiceTotalPlacanje).then(function(response){
 				fillData();
 			});
 		};
+
+
+
+    	// time picker
+  		$scope.mytime = new Date();
+  		$scope.options = {
+    		hour_step: [1, 2, 3],
+    		minute_step: [1, 5, 10, 15, 25, 30]
+  		};
+
+ 		$scope.hour_step = 1;
+ 		$scope.minute_step = 15;
+ 		$scope.ismeridian = true;
+
+		// date picker
+ 		$scope.open1 = function() {
+    		$scope.popup1.opened = true;
+  		};
+ 		$scope.open2 = function() {
+    		$scope.popup2.opened = true;
+  		};
+  		
+  		$scope.today = function(){
+  			$scope.dt2 = new Date();
+  		}
+  		$scope.today = function(){
+  			$scope.dt1 = new Date();
+  		}
+
+ 		$scope.minDate =  new Date();
+
+ 		$scope.today();
+ 		$scope.popup1 = {
+    		opened: false
+ 		};
+ 		$scope.popup2 = {
+    		opened: false
+ 		};
+
+ 		$scope.setDate = function(year, month, day) {
+    		$scope.dt1 = new Date(year, month, day);
+  		};
+ 		$scope.setDate = function(year, month, day) {
+    		$scope.dt2 = new Date(year, month, day);
+  		};
+
+  		$scope.dateOptions = {
+    		formatYear: 'yy',
+    		startingDay: 1
+  		};
+  		$scope.formats = ['yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+ 		$scope.format = $scope.formats[0]; 		
+ 		$scope.altInputFormats = ['yyyy/MM/dd'];
+
+
+		$scope.clear_add();
 	}
 ];

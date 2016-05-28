@@ -1,5 +1,4 @@
 <div>
-
 	<h2>Magacini</h2>
 
 	<div class="row">
@@ -28,12 +27,11 @@
 		<!-- Modal content-->
   			<div class="modal-content">
 	    		<div class="modal-header">
-	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<button type="button" class="close" data-dismiss="modal" ng-click="clear_add()">&times;</button>
 	      			<h4 class="modal-title">Dodaj novi magacin</h4>
 	    		</div>
 	    		<div class="modal-body">
-	      			<form novalidate>
-						
+	      			<form novalidate>						
 						Naziv magacina: <input type="text" class="form-control" ng-model="warehouseName"><br>
 						Adresa magacina: <input type="text" class="form-control" ng-model="warehouseAddress"><br>
 						Mesto:  	<select class="form-control" ng-model="warehousePlace">
@@ -41,8 +39,7 @@
 									</select><br>
 						Preduzece:  <select class="form-control" ng-model="warehouseCompany">
 										<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-									</select><br>
-						
+									</select><br>						
 						<br>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_warehouse()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
@@ -62,7 +59,6 @@
 	    		</div>
 	    		<div class="modal-body">
 	      			<form novalidate>
-
 						Naziv magacina: <input type="text" class="form-control" ng-model="editWarehouseName"><br>
 						Adresa magacina: <input type="text" class="form-control" ng-model="editWarehouseAddress"><br>
 						Mesto:  	<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace">
@@ -79,29 +75,25 @@
   		</div>
   	</div>
 
-
-
-  	 <div class="modal fade" id="confirmModal" role="dialog">
-    		<div class="modal-dialog">
+  	<div class="modal fade" id="confirmModal" role="dialog">
+    	<div class="modal-dialog">
    		   <!-- Modal content-->
-      			<div class="modal-content">
-		    		<div class="modal-header">
-		      			<button type="button" class="close" data-dismiss="modal">&times;</button>
-		      			<h4 class="modal-title">Potvrda brisanja</h4>
-		    		</div>
-		    		<div class="modal-body">
-		      			<form novalidate>
-							Da li si siguran da želiš da obrišeš? 
+  			<div class="modal-content">
+	    		<div class="modal-header">
+	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<h4 class="modal-title">Potvrda brisanja</h4>
+	    		</div>
+	    		<div class="modal-body">
+	      			<form novalidate>
+						Da li si siguran da želiš da obrišeš? 
 
-							<br><br>
-							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="remove_selected_warehouse()">Da</button>
-							<button type="button" class="btn btn-info" data-dismiss="modal">Ne</button>
-	  					</form>
-		    		</div>
-        		</div>
-      		</div>
-      	</div>	
-
-
+						<br><br>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="remove_selected_warehouse()">Da</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Ne</button>
+  					</form>
+	    		</div>
+    		</div>
+  		</div>
+  	</div>	
 
 </div>
