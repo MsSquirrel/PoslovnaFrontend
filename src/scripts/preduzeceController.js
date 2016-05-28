@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window', '$state',
-	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window, $state){
+	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window', '$state','$rootScope',
+	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window, $state, $rootScope){
 
 		$scope.allPlaces = {};
 
@@ -86,15 +86,14 @@ module.exports = [
 			$scope.companyPlace= "";
 			$scope.check = "";
 			$scope.changePlace = "";
-			$state.go('^');
+			//$state.go('^');
 	    };
 
 		$scope.add_company = function()
 		{
 			preduzecaService.create_company($scope.companyId, $scope.companyName, $scope.companyMBR, $scope.companyPIB, $scope.companyAddress, $scope.check).then(function(response){
-				$scope.clear_add();
-				fillData();
-				//$state.go('^');
+				$scope.clear_add();	
+				$state.go('^',{}, {reload:true});
 			});
 		};
 

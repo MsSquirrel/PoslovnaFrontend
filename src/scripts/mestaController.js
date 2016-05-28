@@ -54,8 +54,9 @@ module.exports = [
 			
 			$scope.placeName = "";
 			$scope.placeNumber = "00000";
-			//$scope.$close(true);
-			$state.go('^');
+			$scope.$close(true);
+			console.log("clear_add");
+			//$state.go('^');
 		};
 
 		$scope.add_place = function()
@@ -63,9 +64,13 @@ module.exports = [
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
 				fillData();
 				$scope.clear_add();
+				console.log(1.1);
 			}).then(function() {
-				//$scope.$close(true);
+				console.log(1.2);
+				//console.log($rootScope.currentState);
+				$scope.$close(true);
 				//$state.go('^');
+				//console.log($rootScope.currentState);
 				//$state.go($rootScope.previousState);
 			});
 

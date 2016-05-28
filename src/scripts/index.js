@@ -27,15 +27,18 @@ myApp.filter('true_false', function() {
 
 function generateOnEnterModal(tempUrl, ctrl){
    return [
-      '$stateParams', '$state', '$uibModal', 
-          function($stateParams, $state, $uibModal) {
+      '$stateParams', '$state', '$uibModal', '$rootScope' ,
+          function($stateParams, $state, $uibModal, $rootScope) {
           console.log('hello world!');
 
           $uibModal.open({
             templateUrl: tempUrl,
             controller: ctrl
         }).result.finally(function() {
-            $state.go('^');
+            $state.go('^', {}, {reload:true}).then(function(){
+              console.log('here');
+              console.log($rootScope.currentState);
+            });
         });
     }]
 };
@@ -67,16 +70,16 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'preduzeceCtrl'
       })
       .state('preduzeca.createCompany.createPlace', {
-       // onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl")
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl")
         //templateurl: './templates/createPlace.html',
         //controller: 'mestaCtrl'
-          views:{
+        /*  views:{
             "@preduzeca":{
               templateUrl: './templates/createPlace.html', 
               controller: "mestaCtrl"
             }
           }
-         
+         */
       })
       .state('preduzeca.createCompany', { 
        // templateUrl: "./templates/createCompany.html",
