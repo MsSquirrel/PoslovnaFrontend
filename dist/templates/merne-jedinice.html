@@ -34,9 +34,10 @@
 	    		<div class="modal-body">
 	      			<form novalidate>
 						
-						Naziv merne jedinice: <input type="text" class="form-control" ng-model="measUnitName">
+						Naziv merne jedinice: <input type="text" class="form-control" ng-model="measUnitName"><br>
+						Oznaka merne jedinice: <input type="text" class="form-control" ng-model="measUnitMark">
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_measUnit()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_measUnit()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
   					</form>
 	    		</div>
@@ -55,8 +56,9 @@
 	    		<div class="modal-body">
 	      			<form novalidate>
 						Naziv merne jedinice: <input type="text" class="form-control" ng-model="editMeasUnitName"><br>
+						Oznaka merne jedinice: <input type="text" class="form-control" ng-model="editMeasUnitMark">
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_measUnit(editMeasUnitName)">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_measUnit(editMeasUnitName, editMeasUnitMark)">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

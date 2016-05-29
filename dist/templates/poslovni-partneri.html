@@ -36,8 +36,8 @@
 						Naziv: <input type="text" class="form-control" ng-model="partnerName"><br>
 						Tip: <select class="form-control" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions">
    							 	</select><br>
-						Matični broj: <input type="text"  class="form-control" ng-model="partnerMBR"><br>
-						PIB preduzeća: <input type="text" class="form-control" ng-model="partnerPIB"><br>
+						Matični broj: <input type="text"  class="form-control positiveInteger" ng-model="partnerMBR"><br>
+						PIB preduzeća: <input type="text" class="form-control positiveInteger" ng-model="partnerPIB"><br>
 						Adresa preduzeća: <input type="text" class="form-control" ng-model="partnerAddress"><br>
 						Mesto:  <select class="form-control" ng-model="checkPlace" ng-click="chose_place()">
    							 		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
@@ -46,7 +46,7 @@
    							 		<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
    							 	</select>
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_partner()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_partner()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
   					</form>
 	    		</div>
@@ -67,13 +67,13 @@
 						Naziv: <input type="text" class="form-control" ng-model="editPartnerName"><br>
 						Tip: <select class="form-control" ng-model="editPartnerType" ng-options="option for option in typeOptions">
    							 	</select><br>
-						Matični broj: <input type="text"  class="form-control" ng-model="editPartnerMBR"><br>
-						PIB preduzeća: <input type="text" class="form-control" ng-model="editPartnerPIB"><br>
+						Matični broj: <input type="text"  class="form-control positiveInteger" ng-model="editPartnerMBR"><br>
+						PIB preduzeća: <input type="text" class="form-control positiveInteger" ng-model="editPartnerPIB"><br>
 						Adresa preduzeća: <input type="text" class="form-control" ng-model="editPartnerAddress"><br>
 						Mesto:  <select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace"></select><br>
    						Partner: <select class="form-control" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_partner(selectedPartnerId, editPartnerName, editPartnerMBR, editPartnerPIB, editPartnerAddress, editPartnerPlace, editPartnerCompany, editPartnerType)">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_partner(selectedPartnerId, editPartnerName, editPartnerMBR, editPartnerPIB, editPartnerAddress, editPartnerPlace, editPartnerCompany, editPartnerType)">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

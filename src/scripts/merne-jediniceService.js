@@ -13,7 +13,7 @@ module.exports = [
 		}
 
 
-		function add_measUnit(id, name)
+		function add_measUnit(id, name, oznaka)
 		{	
 			return $http({
                     method: "post",
@@ -21,6 +21,7 @@ module.exports = [
                     data: {
 						Id_Jedinica_mere: id, 
 						Naziv_Jedinica_mere: name,
+						Oznaka_Jedinica_mere: oznaka,
 					}
            	}).then(function(response){
 				return response.data;				
@@ -37,7 +38,7 @@ module.exports = [
 		}
 
 
-		function update_measUnit(id, name)
+		function update_measUnit(id, name, oznaka)
 		{
 			var url = "http://localhost:61769/api/jedinica_mere/"+id+"/";
 			return $http({
@@ -46,6 +47,7 @@ module.exports = [
                     data: {
                     	Id_Jedinica_mere: id, 
 						Naziv_Jedinica_mere: name,
+						Oznaka_Jedinica_mere: oznaka,
 					}
            	}).then(function(response){
 				return response.data;				

@@ -33,7 +33,7 @@
 	    		<div class="modal-body">
 	      			<form novalidate>
 						
-						Godina: <input type="text" class="form-control" ng-model="businessYear"><br>
+						Godina: <input type="text" class="form-control positiveInteger" ng-model="businessYear"><br>
 						Zaključena:<input type="checkbox" ng-model="businessYearFinished"
       					 ng-true-value=true ng-false-value=false><br><br>
 						
@@ -41,7 +41,7 @@
    							 		<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
    							 	</select>
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_businessYear()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_businessYear()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
   					</form>
 	    		</div>
@@ -59,13 +59,13 @@
 	    		</div>
 	    		<div class="modal-body">
 	      			<form novalidate>
-						Godina: <input type="text" class="form-control" ng-model="editBusinessYear"><br>
+						Godina: <input type="text" class="form-control positiveInteger" ng-model="editBusinessYear"><br>
 						Zaključena:<input type="checkbox" ng-model="editBusinessYearFinished"
       					 ng-true-value=true ng-false-value=false><br><br>
 						
 						Preduzeće:  <select class="form-control" ng-model="editBusinessYearCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_businessYear()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_businessYear()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

@@ -6,8 +6,10 @@ module.exports = [
 		$scope.selectedRow =  {};
    		$scope.selectedMeasUnitId = -1;
    		$scope.selectedMeasUnitName = "";
+      $scope.selectedMeasUnitMark = "";
 
    		$scope.editMeasUnitName = "";
+      $scope.editMeasUnitMark = "";
 
 		
 		$scope.gridOptions = {
@@ -19,7 +21,8 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv', cellTooltip: true, headerTooltip: true}
+		    { name:'Naziv_Jedinica_mere', width:'80%', displayName:'Naziv', cellTooltip: true, headerTooltip: true },
+        { name:'Oznaka_Jedinica_mere', width:'20%', displayName:'Oznaka', cellTooltip: true, headerTooltip: true },
 		];
 
     	$scope.gridOptions.onRegisterApi = function(gridApi) {
@@ -29,8 +32,10 @@ module.exports = [
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
    				$scope.selectedMeasUnitId = $scope.selectedRow.Id_Jedinica_mere;
    				$scope.selectedMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
+          $scope.selectedMeasUnitMark = $scope.selectedRow.Oznaka_Jedinica_mere;
 
    				$scope.editMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
+          $scope.editMeasUnitMark = $scope.selectedRow.Oznaka_Jedinica_mere;
    			});
    		};
 
@@ -51,7 +56,7 @@ module.exports = [
       $scope.clear_add();
 
     	$scope.add_measUnit = function(){
-    		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName).then(function(response){
+    		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName, $scope.measUnitMark).then(function(response){
     			fillData();
           $scope.clear_add();
     		});
@@ -65,9 +70,9 @@ module.exports = [
     		});
     	};
 
-    	$scope.edit_selected_measUnit = function(name)
+    	$scope.edit_selected_measUnit = function(name, mark)
     	{
-    		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name).then(function(response){
+    		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name, mark).then(function(response){
     			fillData();
     		});
     	};
