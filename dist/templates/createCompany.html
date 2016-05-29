@@ -1,21 +1,53 @@
+<div>
 <h4 class="modal-title">Dodaj novo preduzeće</h4>
 
-Naziv preduzeća: <input type="text" class="form-control" ng-model="companyName"><br>
-Matični broj: <input type="text"  class="form-control" ng-model="companyMBR"><br>
-PIB preduzeća: <input type="text" class="form-control" ng-model="companyPIB"><br>
-Adresa preduzeća: <input type="text" class="form-control" ng-model="companyAddress"><br>
-Mesto: 
-								
-	<select class="form-control" ng-model="check" ng-click="chose_place()">
-    	<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-    </select>
+Naziv preduzeća:
+<div class="row">
+   	 <div class="col-sm-6">
+			<input type="text" class="form-control" ng-model="companyName">
+	 </div>
+</div>
+Matični broj: 
+<div class="row">
+   	 <div class="col-sm-6">
+		<input type="text"  class="form-control" ng-model="companyMBR">
+	 </div>
+</div>
+PIB preduzeća: 
+<div class="row">
+   	 <div class="col-sm-6">
+		<input type="text" class="form-control" ng-model="companyPIB">
+	</div>
+</div>
+Adresa preduzeća: 
+<div class="row">
+   	 <div class="col-sm-6">
+		<input type="text" class="form-control" ng-model="companyAddress">
+	</div>
+</div>
 
-       					
-	<button type="button" class="btn btn-success btn-xs" ui-sref="preduzeca.createCompany.createPlace">
-	<span class="glyphicon glyphicon-plus"></span>
-	</button>
-									
-								
+<div class="row">
+	<div class="col-sm-1">
+		<p>Mesto:</p> 
+	</div>
+	<div class="col-sm-1">
+		<button type="button" class="btn btn-success btn-xs" ui-sref="preduzeca.createCompany.createPlace">
+		<span class="glyphicon glyphicon-plus"></span>
+		</button>
+	</div>
+</div>	
+
+ 	<div class="row">
+   	 <div class="col-sm-6">
+		<select class="form-control" ng-model="check" ng-click="chose_place()">
+    		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
+   		</select>
+     </div>
+
+    </div>
+
+																
 	<br><br>
 <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_company()">Sačuvaj</button>
 <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
+</div>

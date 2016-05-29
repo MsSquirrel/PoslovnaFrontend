@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'mestaService', '$routeParams','$window', '$state', '$rootScope',
-	function myController($scope, $http, mestaService,$routeParams, $window, $state, $rootScope){
+	'$scope', '$http', 'mestaService', '$stateParams','$window', '$state', '$rootScope',
+	function myController($scope, $http, mestaService,$stateParams, $window, $state, $rootScope){
 
 		$scope.placeUrl = "";
 		$scope.selectedPlaceId = "-1";
@@ -9,6 +9,9 @@ module.exports = [
 		$scope.selectedRow = {};
 		$scope.editName="";
 		$scope.editNumber = "";
+
+		$scope.isModal = $stateParams.isModal;
+
 
 		
 		$scope.gridOptions = {
@@ -49,12 +52,15 @@ module.exports = [
 		
 		fillData();
 		console.log("MESTO CONTROLLER");
+		console.log("IS MODAL: "+$scope.isModal);
 
 		$scope.clear_add = function(){
 			
 			$scope.placeName = "";
 			$scope.placeNumber = "00000";
-			$scope.$close(true);
+			if($scope.isModal){
+				$scope.$close(true);
+			}
 			console.log("clear_add");
 			//$state.go('^');
 		};
@@ -67,11 +73,9 @@ module.exports = [
 				console.log(1.1);
 			}).then(function() {
 				console.log(1.2);
-				//console.log($rootScope.currentState);
-				$scope.$close(true);
-				//$state.go('^');
-				//console.log($rootScope.currentState);
-				//$state.go($rootScope.previousState);
+				if($scope.isModal){
+					$scope.$close(true);
+				}
 			});
 
 		};

@@ -34,6 +34,7 @@ function generateOnEnterModal(tempUrl, ctrl){
 
           $uibModal.open({
             templateUrl: tempUrl,
+            //template: '<div modal-data> <ng-include-template:' + tempUrl + '</ng-include-template></div modal-data>' + ... dugmici,
             controller: ctrl
         }).result.finally(function() {
             $state.go('^', {}, {reload:true}).then(function(){
@@ -71,7 +72,10 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'preduzeceCtrl'
       })
       .state('preduzeca.createCompany.createPlace', {
-        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl")
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         params: {
+            isModal: true
+        }
       })
       .state('preduzeca.createCompany', { 
          views:{
