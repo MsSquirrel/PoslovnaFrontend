@@ -1,0 +1,23 @@
+<div>
+
+<h4>Izmeni postojeće mesto</h4>
+
+	Naziv mesta:
+	<div class="row">
+   	 	<div class="col-sm-6">
+	 		<input type="text" class="form-control" ng-model="editName"></input><br>
+	 	</div>
+	</div>
+	
+	Poštanski broj: 
+	<div class="row">
+   		<div class="col-sm-6">
+			<input type="text"  class="form-control" ng-model="editNumber"></input>
+		</div>
+	</div>
+	
+	<br><br>
+	<button type="button" class="btn btn-info" ng-click="edit_selected_place()">Sačuvaj</button>
+	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+
+</div>
