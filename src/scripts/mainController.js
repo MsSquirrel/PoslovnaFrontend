@@ -1,12 +1,12 @@
 module.exports = [
 	'$scope', '$http', '$localStorage', 'loginService',
 	function myController($scope, $http, $localStorage, loginService){
-
-		$scope.test = function(){
-			alert("radi");
-		}
-
+		
 		$scope.currentUser  = $localStorage.currentUser;
+
+		if (!$scope.currentUser && window.location != "#/login"){
+			window.location = "#/login";
+		}
 
         $scope.logout=function () {
             loginService.logout();

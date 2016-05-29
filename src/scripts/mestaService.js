@@ -56,6 +56,14 @@ module.exports = [
 			});
 		}
 
+		function get_place_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/mesto/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
 
 
 		return {
@@ -64,6 +72,7 @@ module.exports = [
 			create_place: create_place,
 			remove_place: remove_place,
 			update_place: update_place,
+			get_place_by_id: get_place_by_id,
 		};
 
 

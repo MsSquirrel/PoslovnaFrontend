@@ -39,7 +39,6 @@ module.exports = [
 
 		$scope.close_edit = function()
 		{
-			console.log('HERE');
 			$state.go('^',{}, {reload:true});
 		};
 

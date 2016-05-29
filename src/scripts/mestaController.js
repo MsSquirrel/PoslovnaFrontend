@@ -2,6 +2,7 @@ module.exports = [
 	'$scope', '$http', 'mestaService', '$stateParams','$window', '$state', '$rootScope',
 	function myController($scope, $http, mestaService,$stateParams, $window, $state, $rootScope){
 
+
 		$scope.placeUrl = "";
 		$scope.selectedPlaceId = "-1";
 		$scope.selectedPlaceName="";
@@ -64,20 +65,13 @@ module.exports = [
 			}
 			$scope.clearInput($("h2").parent("div"));
 			console.log("clear_add");
-			//$state.go('^');
 		};
 
 		$scope.add_place = function()
 		{
 			mestaService.create_place($scope.placeId, $scope.placeName, $scope.placeNumber).then(function(response){
-				fillData();
 				$scope.clear_add();
-				console.log(1.1);
-			}).then(function() {
-				console.log(1.2);
-				if($scope.isModal){
-					$scope.$close(true);
-				}
+				$state.go('^',{}, {reload:true});
 			});
 
 		};

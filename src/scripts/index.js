@@ -18,6 +18,7 @@ myApp.controller('stope-pdv-aCtrl', require('./stope-pdv-aController.js'));
 myApp.controller('editCompanyCtrl', require('./editCompanyController.js'));
 myApp.controller('mainCtrl', require('./mainController.js'));
 myApp.controller('loginCtrl', require('./loginController.js'));
+myApp.controller('editPlaceCtrl', require('./editPlaceController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -67,6 +68,27 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/mesta',
         templateUrl: './templates/mesta.html',
         controller: 'mestaCtrl'
+      })
+      .state('mesta.createPlace',{
+         views:{
+            "": {
+              templateUrl: './templates/createPlace.html', 
+              controller: "mestaCtrl",
+            }
+          },
+          params: {
+                isModal: false
+          }
+      })
+       .state('mesta.editPlace', { 
+        url: "/edit/:id",
+
+        views:{
+            "": {
+              templateUrl: './templates/editPlace.html', 
+              controller: "editPlaceCtrl",
+            }
+        }
       })
       .state('preduzeca', {
         url: '/preduzeca',

@@ -41,6 +41,7 @@ module.exports = [
             // uklonimo korisnika iz lokalnog skladišta
             delete $localStorage.currentUser;
             $http.defaults.headers.common.Authorization = '';
+            $window.location = "#/login";
         }
 
         function getCurrentUser() {

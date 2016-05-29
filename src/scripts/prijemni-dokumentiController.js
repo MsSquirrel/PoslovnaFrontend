@@ -2,6 +2,10 @@ module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
 		
+		if (!$scope.currentUser && window.location != "#/login"){
+			window.location = "#/login";
+		}
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
