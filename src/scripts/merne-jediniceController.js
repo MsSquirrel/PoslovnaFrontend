@@ -1,14 +1,19 @@
 module.exports = [
-	'$scope', '$http','merneJediniceService', '$routeParams','$window',
-	function myController($scope, $http, merneJediniceService, $routeParams, $window){
+	'$scope', '$http','merneJediniceService', '$routeParams','$window', '$state',
+	function myController($scope, $http, merneJediniceService, $routeParams, $window, $state){
 
 
-		$scope.selectedRow =  {};
+		  $scope.selectedRow =  {};
    		$scope.selectedMeasUnitId = -1;
    		$scope.selectedMeasUnitName = "";
+      $scope.selectedMeasUnitMark = "";
+
+      $scope.measUnitName = "";
+      $scope.measUnitMark = "";
+
 
    		$scope.editMeasUnitName = "";
-
+      $scope.editMeasUnitMark = "";
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -19,8 +24,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Jedinica_mere', width:'100%', displayName:'Naziv', cellTooltip: true, headerTooltip: true}
-		];
+		    { name:'Naziv_Jedinica_mere', width:'50%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
+		    { name:'Oznaka_Jedinica_mere', width:'50%', displayName: 'Oznaka', cellTooltip: true, headerTooltip: true}
+    ];
 
     	$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
@@ -29,8 +35,10 @@ module.exports = [
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
    				$scope.selectedMeasUnitId = $scope.selectedRow.Id_Jedinica_mere;
    				$scope.selectedMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
+          $scope.selectedMeasUnitMark = $scope.selectedRow.Oznaka_Jedinica_mere;
 
    				$scope.editMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
+
    			});
    		};
 
@@ -44,16 +52,23 @@ module.exports = [
     	fillData();
 
       $scope.clear_add = function(){
-        
         $scope.measUnitName ="";
+      }
+
+
+      $scope.closeState = function()
+      {
+        $scope.clear_add();
+        $state.go('^',{}, {reload:true});
       }
 
       $scope.clear_add();
 
     	$scope.add_measUnit = function(){
-    		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName).then(function(response){
-    			fillData();
+        console.log("MEAS UNIT "+$scope.measUnitName+", "+$scope.measUnitMark);
+    		merneJediniceService.add_measUnit($scope.measUnitId, $scope.measUnitName, $scope.measUnitMark).then(function(response){
           $scope.clear_add();
+          $state.go('^',{}, {reload:true});
     		});
     	};
 

@@ -1,0 +1,25 @@
+<div>
+	<h4 class="modal-title">Izmeni postojeću mernu jedinicu</h4>
+
+	Naziv merne jedinice:
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="editMeasUnitName"></input>
+		</div>
+	</div>
+
+	Oznaka merne jedinice:
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="editMeasUnitMark"></input>
+		</div>
+	</div>
+
+
+	<br><br>
+	<button type="button" class="btn btn-info" ng-click="edit_selected_measUnit()">Sačuvaj</button>
+	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+
+</div>

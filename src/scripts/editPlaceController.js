@@ -5,7 +5,6 @@ module.exports = [
 		$scope.placeId = $stateParams.id;
 		$scope.editName = "";
 		$scope.editNumber = "";
-		console.log("ID MESTA "+$scope.placeId);
 
 		
 		function fillData(){
@@ -21,7 +20,6 @@ module.exports = [
 
 		$scope.edit_selected_place = function()
 		{
-			console.log("Promenjeno: "+$scope.placeId+", "+$scope.editName+", "+$scope.editNumber);
 			mestaService.update_place($scope.placeId, $scope.editName, $scope.editNumber).then(function(response){
 				$state.go('^',{}, {reload:true});
 			});

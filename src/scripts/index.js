@@ -19,6 +19,7 @@ myApp.controller('editCompanyCtrl', require('./editCompanyController.js'));
 myApp.controller('mainCtrl', require('./mainController.js'));
 myApp.controller('loginCtrl', require('./loginController.js'));
 myApp.controller('editPlaceCtrl', require('./editPlaceController.js'));
+myApp.controller('editMeasUnitCtrl', require('./editMeasUnitController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -143,6 +144,27 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/merne-jedinice',
         templateUrl: './templates/merne-jedinice.html',
         controller: 'merne-jediniceCtrl'
+      })
+      .state('merne-jedinice.createMeasUnit', { 
+          params: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createMeasUnit.html', 
+              controller: "merne-jediniceCtrl"
+            }
+          }
+      })
+      .state('merne-jedinice.editMeasUnit', { 
+        url: "/edit/:id",
+
+        views:{
+            "": {
+              templateUrl: './templates/editMeasUnit.html', 
+              controller: "editMeasUnitCtrl",
+            }
+        }
       })
       .state('pdv', {
         url: '/pdv',
