@@ -1,7 +1,7 @@
 module.exports = [
 	'$scope', '$http',
 	function myController($scope, $http){
-		
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,

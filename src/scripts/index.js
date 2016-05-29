@@ -16,6 +16,7 @@ myApp.controller('robne-karticeCtrl', require('./robne-karticeController.js'));
 myApp.controller('stavke-dokumenataCtrl', require('./stavke-dokumenataController.js'));
 myApp.controller('stope-pdv-aCtrl', require('./stope-pdv-aController.js'));
 myApp.controller('editCompanyCtrl', require('./editCompanyController.js'));
+myApp.controller('mainCtrl', require('./mainController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
