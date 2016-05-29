@@ -1,7 +1,7 @@
 module.exports = [		
 	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
 	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {	
-		
+
 		$scope.allCategories = {};
 		$scope.allMeasUnits = {};
 		$scope.allCompanies = {};

@@ -2,6 +2,7 @@ module.exports = [
 	'$scope', '$http', 'grupeRobaService', 'pdvService', 'preduzecaService', '$routeParams', '$window',
 	function myController($scope, $http, grupeRobaService, pdvService, preduzecaService, $routeParams, $window) {
 		
+
 		$scope.allPdv = {};
 		$scope.allCompanies = {};
 		

@@ -2,6 +2,7 @@ module.exports = [
 	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window',
 	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window){
 
+
     $scope.allCompanies = {};
     
 		$scope.selectedRow = {};

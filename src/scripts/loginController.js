@@ -1,9 +1,8 @@
-/**
- * Created by Vuletic on 25.5.2016.
- */
+
 module.exports = [
     '$scope', '$http', 'loginService', '$location',
     function myController($scope, $http, loginService,$location){
+
         $scope.user={
             username: "Username",
             password: "Password"

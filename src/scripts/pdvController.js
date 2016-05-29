@@ -2,6 +2,7 @@ module.exports = [
 	'$scope', '$http','pdvService', '$routeParams','$window',
 	function myController($scope, $http, pdvService, $routeParams, $window){
 
+
 		$scope.selectedRow = {};
 		$scope.selectedPdvId = -1;
 		$scope.selectedPdvName = "";

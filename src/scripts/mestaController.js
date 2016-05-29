@@ -2,6 +2,7 @@ module.exports = [
 	'$scope', '$http', 'mestaService', '$stateParams','$window', '$state', '$rootScope',
 	function myController($scope, $http, mestaService,$stateParams, $window, $state, $rootScope){
 
+
 		$scope.placeUrl = "";
 		$scope.selectedPlaceId = "-1";
 		$scope.selectedPlaceName="";
