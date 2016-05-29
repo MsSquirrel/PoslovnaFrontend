@@ -13,11 +13,10 @@ module.exports = [
 
         function login(username, password, callback) {
 
-            alert('serv');
-            $.post( '/api/korisnici/login', { username: username, password: password } )
-                .done(function (response) {
+            $http.post('http://localhost:61769/api/korisnik/', {Korisnicko_ime_Korisnik: username, Lozinka_Korisnik: password})
+                .success(function (response) {
                     // ukoliko postoji token, prijava je uspecna
-                    if (response) {
+                     if (response) {
                         // korisnicko ime, token i rola (ako postoji) cuvaju se u lokalnom skladištu
                         var currentUser = { username: username, token: response }
                         var tokenPayload = jwtHelper.decodeToken(response);
