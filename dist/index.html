@@ -59,6 +59,10 @@
 				        </ul>
 			      	</li>  
 				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li ng-hide="currentUser"><a href="#/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li ng-show="currentUser"><a href ng-click="logout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+				</ul>
 			</div>
 		</nav>
 

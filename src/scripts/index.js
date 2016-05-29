@@ -17,6 +17,7 @@ myApp.controller('stavke-dokumenataCtrl', require('./stavke-dokumenataController
 myApp.controller('stope-pdv-aCtrl', require('./stope-pdv-aController.js'));
 myApp.controller('editCompanyCtrl', require('./editCompanyController.js'));
 myApp.controller('mainCtrl', require('./mainController.js'));
+myApp.controller('loginCtrl', require('./loginController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -147,6 +148,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })
+      .state('login', {
+        url: '/login',
+        templateUrl: './templates/login.html',
+        controller: 'loginCtrl'
+      })
       .state('stavke-dokumenata', {
         url: '/stavke-dokumenata',
         templateUrl: './templates/stavke-dokumenata.html',
@@ -171,7 +177,8 @@ myApp
 .service('robaService', require('./robaService.js'))
 .service('magaciniService', require('./magaciniService.js'))
 .service('grupeRobaService', require('./grupe-robaService.js'))
-.service('faktureService', require('./faktureService.js'));
+.service('faktureService', require('./faktureService.js'))
+.service('loginService', require('./loginService.js'));
 
 
 myApp
