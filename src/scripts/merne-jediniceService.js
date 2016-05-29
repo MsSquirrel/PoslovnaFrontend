@@ -47,7 +47,7 @@ module.exports = [
                     data: {
                     	Id_Jedinica_mere: id, 
 						Naziv_Jedinica_mere: name, 
-						Oznaka_Jedinica_mere: oznaka
+						Oznaka_Jedinica_mere: oznaka,
 					}
            	}).then(function(response){
 				return response.data;				

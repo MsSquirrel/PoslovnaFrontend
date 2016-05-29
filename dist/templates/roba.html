@@ -44,7 +44,7 @@
 											<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 										</select><br>						
 						<br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_goods()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_goods()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
 					</form>
 				</div>
@@ -71,7 +71,7 @@
 						Preduzece:  	<select class="form-control" ng-model="editGoodsCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 						
 					<br><br>
-					<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_goods(editName, editNumber)">Sačuvaj</button>
+					<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_goods(editName, editNumber)">Sačuvaj</button>
 					<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
 					</form>
 				</div>

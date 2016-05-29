@@ -12,8 +12,6 @@ module.exports = [
 		$scope.editNumber = "";
 
 		$scope.isModal = $stateParams.isModal;
-
-
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -49,8 +47,11 @@ module.exports = [
 				$scope.gridOptions.data = response;
 			});
 		}
-
 		
+		$(".positiveInteger").blur(function() {
+			$scope.isPositiveInteger(this);
+		});
+
 		fillData();
 		console.log("MESTO CONTROLLER");
 		console.log("IS MODAL: "+$scope.isModal);
@@ -62,6 +63,7 @@ module.exports = [
 			if($scope.isModal){
 				$scope.$close(true);
 			}
+			$scope.clearInput($("h2").parent("div"));
 			console.log("clear_add");
 		};
 

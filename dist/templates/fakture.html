@@ -33,8 +33,7 @@
 	    		<div class="modal-body">
 	      			<form novalidate>
 
-						Broj fakture: <input type="text" class="form-control" ng-model="invoiceNumber"><br>
-						<!-- FORMAT ZA UNOS datuma, kada browser ne daje piker za datum je: "YYYY-MM-DD" -->
+						Broj fakture: <input type="text" class="form-control positiveInteger" ng-model="invoiceNumber"><br>
 						Poslovna godina: <select class="form-control" ng-model="invoiceYear" ng-click="chose_place()">
 											<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
 										</select><br>
@@ -43,25 +42,25 @@
 										</select><br>
 						Datum fakture:
 						<p class="input-group">
-    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
          					<span class="input-group-btn">
          						<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           					</span>
  						</p>
 						Datum valute:
 						<p class="input-group">
-    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
          					<span class="input-group-btn">
          						<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           					</span>
  						</p>
-						Ukupan rabat: <input type="text" class="form-control" ng-model="invoiceRabat"><br>
-						Ukupan iznos bez PDV-a: <input type="text" class="form-control" ng-model="invoiceIznosBezPdv"><br>
-						Ukupan PDV: <input type="text" class="form-control" ng-model="invoiceTotalPdv"><br>
-						Ukupno za placanje: <input type="text" class="form-control" ng-model="invoiceTotalPlacanje"><br>
+						Ukupan rabat: <input type="text" class="form-control positiveDecimal" ng-model="invoiceRabat"><br>
+						Ukupan iznos bez PDV-a: <input type="text" class="form-control positiveDecimal" ng-model="invoiceIznosBezPdv"><br>
+						Ukupan PDV: <input type="text" class="form-control positiveDecimal" ng-model="invoiceTotalPdv"><br>
+						Ukupno za placanje: <input type="text" class="form-control positiveDecimal" ng-model="invoiceTotalPlacanje"><br>
 						
 						<br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_invoice()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_invoice()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
   					</form>
 	    		</div>
@@ -87,25 +86,25 @@
 					</select><br>
 						Datum fakture:
 						<p class="input-group" id="datetimepicker1">
-    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editDt1" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editDt1" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
          					<span class="input-group-btn">
          						<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           					</span>
  						</p>
 						Datum valute:
 						<p class="input-group">
-    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editDt2" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editDt2" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
          					<span class="input-group-btn">
          						<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
           					</span>
  						</p>
-						Ukupan rabat: <input type="text" class="form-control" ng-model="editInvoiceRabat"><br>
-						Ukupan iznos bez PDV-a: <input type="text" class="form-control" ng-model="editInvoiceIznosBezPdv"><br>
-						Ukupan PDV: <input type="text" class="form-control" ng-model="editInvoiceTotalPdv"><br>
-						Ukupno za placanje: <input type="text" class="form-control" ng-model="editInvoiceTotalPlacanje"><br>
+						Ukupan rabat: <input type="text" class="form-control positiveDecimal" ng-model="editInvoiceRabat"><br>
+						Ukupan iznos bez PDV-a: <input type="text" class="form-control positiveDecimal" ng-model="editInvoiceIznosBezPdv"><br>
+						Ukupan PDV: <input type="text" class="form-control positiveDecimal" ng-model="editInvoiceTotalPdv"><br>
+						Ukupno za placanje: <input type="text" class="form-control positiveDecimal" ng-model="editInvoiceTotalPlacanje"><br>
 
 						<br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_invoice()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_invoice()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

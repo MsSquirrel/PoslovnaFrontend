@@ -14,7 +14,7 @@ module.exports = [
    		$scope.editBusinessYear = 0;
    		$scope.editBusinessYearFinished = 0;
    		$scope.editBusinessYearCompany = 0;
-	
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -59,6 +59,10 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
     	};
+    
+      $(".positiveInteger").blur(function() {
+        $scope.isPositiveInteger(this);
+      });
 
     	fillData();
 
@@ -67,6 +71,7 @@ module.exports = [
         $scope.businessYearFinished = 0;
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
+        $scope.clearInput($("h2").parent("div"));
       }
 
       $scope.clear_add();

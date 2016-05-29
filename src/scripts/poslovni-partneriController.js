@@ -34,6 +34,7 @@ module.exports = [
     		enableFullRowSelection: true
 		  };
  
+
 		 $scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Partner', width:'15%', displayName: 'Partner', cellTooltip: true, headerTooltip: true},
 		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzeću', cellTooltip: true, headerTooltip: true},
@@ -86,6 +87,10 @@ module.exports = [
 				$scope.allPlaces = response;
 			});
 		};
+		
+		$(".positiveInteger").blur(function() {
+			$scope.isPositiveInteger(this);
+		});
 
 		fillData();
 
@@ -103,6 +108,7 @@ module.exports = [
 			$scope.partnerCompany = "";
 			$scope.changeCompany = "";
 			$scope.checkCompany = "";
+			$scope.clearInput($("h2").parent("div"));
 	    };
 
 	     $scope.clear_add();

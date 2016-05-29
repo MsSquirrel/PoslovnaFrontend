@@ -17,7 +17,7 @@
 							Poštanski broj: 
 							<div class="row">
 								<div class="col-sm-6">
-									<input type="text"  class="form-control" ng-model="placeNumber"></input>
+									<input type="text" class="form-control positiveInteger" ng-model="placeNumber"></input>
 								</div>
 							</div>
 							<br><br>
@@ -27,7 +27,7 @@
 							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
 							-->
 
-							<button type="button" class="btn btn-info" ng-click="add_place()">Sačuvaj</button>
+							<button type="button" class="btn btn-info accept" ng-click="add_place()">Sačuvaj</button>
 							<button type="button" class="btn btn-info" ng-click="clear_add()">Otkaži</button>							
 	  					<!--</form-->
 		    		<!--</div-->

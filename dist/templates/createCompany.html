@@ -10,13 +10,13 @@ Naziv preduzeća:
 Matični broj: 
 <div class="row">
    	 <div class="col-sm-6">
-		<input type="text"  class="form-control" ng-model="companyMBR"></input>
+		<input type="text"  class="form-control positiveInteger" ng-model="companyMBR"></input>
 	 </div>
 </div>
 PIB preduzeća: 
 <div class="row">
    	 <div class="col-sm-6">
-		<input type="text" class="form-control" ng-model="companyPIB"></input>
+		<input type="text" class="form-control positiveInteger" ng-model="companyPIB"></input>
 	</div>
 </div>
 Adresa preduzeća: 
@@ -48,6 +48,6 @@ Adresa preduzeća:
 
 																
 	<br><br>
-<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_company()">Sačuvaj</button>
+<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_company()">Sačuvaj</button>
 <button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 </div>

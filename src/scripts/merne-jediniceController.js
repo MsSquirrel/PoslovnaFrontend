@@ -24,9 +24,9 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Jedinica_mere', width:'50%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
-		    { name:'Oznaka_Jedinica_mere', width:'50%', displayName: 'Oznaka', cellTooltip: true, headerTooltip: true}
-    ];
+		    { name:'Naziv_Jedinica_mere', width:'80%', displayName:'Naziv', cellTooltip: true, headerTooltip: true },
+        { name:'Oznaka_Jedinica_mere', width:'20%', displayName:'Oznaka', cellTooltip: true, headerTooltip: true },
+		];
 
     	$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
@@ -38,7 +38,7 @@ module.exports = [
           $scope.selectedMeasUnitMark = $scope.selectedRow.Oznaka_Jedinica_mere;
 
    				$scope.editMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
-
+          $scope.editMeasUnitMark = $scope.selectedRow.Oznaka_Jedinica_mere;
    			});
    		};
 
@@ -80,9 +80,9 @@ module.exports = [
     		});
     	};
 
-    	$scope.edit_selected_measUnit = function(name)
+    	$scope.edit_selected_measUnit = function(name, mark)
     	{
-    		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name).then(function(response){
+    		merneJediniceService.update_measUnit($scope.selectedMeasUnitId, name, mark).then(function(response){
     			fillData();
     		});
     	};

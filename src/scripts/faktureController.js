@@ -93,6 +93,14 @@ module.exports = [
 				$scope.allPartners = response;
 			});
 		};
+		
+		$(".positiveInteger").blur(function() {
+			$scope.isPositiveInteger(this);
+		});
+		
+		$(".positiveDecimal").blur(function() {
+			$scope.isPositiveDecimal(this);
+		});
 
 		fillData();
 
@@ -106,6 +114,7 @@ module.exports = [
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
 			$scope.invoiceTotalPlacanje = "";
+			$scope.clearInput($("h2").parent("div"));
 		}
 
 		$scope.clear_add();

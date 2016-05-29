@@ -33,10 +33,10 @@
 	    		<div class="modal-body">
 	      			<form novalidate>
 						
-						Vrednost stope PDV-a: <input type="text" class="form-control" ng-model="pdvRate"><br>
+						Vrednost stope PDV-a: <input type="text" class="form-control positiveDecimal" ng-model="pdvRate"><br>
 						Važi od: 
 						<p class="input-group">
-    						 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+    						 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
          					 <span class="input-group-btn">
          						   <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           					</span>
@@ -46,7 +46,7 @@
    							 	</select>
 
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_PDVRate()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_PDVRate()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
   					</form>
 	    		</div>
@@ -65,10 +65,10 @@
 	    		<div class="modal-body">
 	      			<form novalidate>
 
-						Vrednost stope PDV-a: <input type="text" class="form-control" ng-model="editPdvRate"><br>						
+						Vrednost stope PDV-a: <input type="text" class="form-control positiveDecimal" ng-model="editPdvRate"><br>						
 						Važi od: 
 						<p class="input-group">
-    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editPdvRateDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+    						<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editPdvRateDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
          					<span class="input-group-btn">
          						<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
           					</span>
@@ -76,7 +76,7 @@
 						PDV:  <select class="form-control" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs"></select>
 
 						<br><br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_PDVRate()">Sačuvaj</button>
+						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_PDVRate()">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>
