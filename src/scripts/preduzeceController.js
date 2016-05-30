@@ -95,6 +95,10 @@ module.exports = [
 			});
 		};
 
+		$(".positiveInteger").blur(function() {
+			$scope.isPositiveInteger(this);
+		});
+
 		fillData();
 		//setSelection();
 		console.log("PREDUZECE CONTROLLER");
