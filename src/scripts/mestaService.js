@@ -26,8 +26,10 @@ module.exports = [
 						Naziv_Mesto: placeName,
 						Postansk__broj_Mesto: placeNumber
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Već postoji mesto sa datim poštanskim brojem.");
 			});
 		}
 
