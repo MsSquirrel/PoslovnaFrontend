@@ -35,7 +35,9 @@ module.exports = [
 		    return $http({
                 method: "delete",
                 url: urlDelete
-           	});
+           	}).error(function(response, data){
+				alert("Neuspešno brisanje. Prvo obrišite potomke.");
+			});
 		}
 
 		function update_warehouse(id, name, address, place, company)

@@ -36,7 +36,9 @@ module.exports = [
 		    return $http({
                 method: "delete",
                 url: urlDelete
-           	});
+           }).error(function(response, data){
+				alert("Neuspešno brisanje. Prvo obrišite potomke.");
+			});
 		}
 
 		function update_goods(id, naziv, kategorija, mernaJedinica, preduzece)

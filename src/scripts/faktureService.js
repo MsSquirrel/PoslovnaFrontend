@@ -40,7 +40,7 @@ module.exports = [
 		    return $http({
                 method: "delete",
                 url: urlDelete
-           	});
+			});
 		}
 
 		function update_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv, invoiceTotalPlacanje)
