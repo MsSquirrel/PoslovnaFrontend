@@ -94,11 +94,11 @@ module.exports = [
 			});
 		};
 		
-		$(".positiveInteger").blur(function() {
+		$(".positiveInteger").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this);
 		});
 		
-		$(".positiveDecimal").blur(function() {
+		$(".positiveDecimal").on("change paste keyup", function() {
 			$scope.isPositiveDecimal(this);
 		});
 

@@ -99,7 +99,7 @@ module.exports = [
     		});
     	};
     
-      $(".positiveDecimal").blur(function() {
+      $(".positiveDecimal").on("change paste keyup", function() {
         $scope.isPositiveDecimal(this);
       });
 

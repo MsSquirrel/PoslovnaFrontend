@@ -49,7 +49,7 @@ module.exports = [
     		});
     	};
     
-      $(".characters3").blur(function() {
+      $(".characters3").on("change paste keyup", function() {
         $scope.isCharacter(this, 3);
       });
 

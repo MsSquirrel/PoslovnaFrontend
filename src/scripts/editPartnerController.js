@@ -29,10 +29,10 @@ module.exports = [
 			});
 		};
 		
-		$(".positiveInteger10").blur(function() {
+		$(".positiveInteger10").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 10);
 		});		
-		$(".positiveInteger8").blur(function() {
+		$(".positiveInteger8").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 8);
 		});
 

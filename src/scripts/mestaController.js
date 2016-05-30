@@ -37,6 +37,8 @@ module.exports = [
    				$scope.selectedPlaceNumber = $scope.selectedRow.Postansk__broj_Mesto;
    				$scope.editName = $scope.selectedPlaceName;
    				$scope.editNumber = $scope.selectedPlaceNumber;
+
+   				console.log("place selection changed");
 		  });
    		};
 
@@ -87,7 +89,7 @@ module.exports = [
 			});
 		}
 		
-		$(".positiveInteger5").blur(function() {
+		$(".positiveInteger5").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 5);
 		});
 

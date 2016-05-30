@@ -23,7 +23,7 @@ module.exports = [
 
 		};
     
-      $(".positiveInteger4").blur(function() {
+      $(".positiveInteger4").on("change paste keyup", function() {
         $scope.isPositiveInteger(this, 4);
       });
 
