@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window',
-	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window){
+	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window', '$state',
+	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window, $state){
 
 
     $scope.allCompanies = {};
@@ -79,9 +79,9 @@ module.exports = [
     	$scope.add_businessYear = function()
     	{
     		poslovneGodineService.create_businessYear($scope.businessYearId, $scope.businessYear, $scope.businessYearFinished, $scope.businessYearCompany).then(function(response){
-        fillData();
-        $scope.clear_add();
-			});
+          $scope.clear_add(); 
+          $state.go('^',{}, {reload:true});
+		  	});
     	};
 
     	$scope.remove_selected_businessYear = function()
@@ -96,9 +96,16 @@ module.exports = [
     	{
     		console.log("Saljemo "+$scope.selectedBusinessYearId+", "+$scope.editBusinessYear+", "+$scope.editBusinessYearFinished+","+$scope.editBusinessYearCompany);
     		poslovneGodineService.update_businessYear($scope.selectedBusinessYearId, $scope.editBusinessYear, $scope.editBusinessYearFinished, $scope.editBusinessYearCompany).then(function(response){
-				fillData();
-			});
-    	}
+			   	
+		  	});
+    	};
+
+
+      $scope.closeState = function()
+      {
+        $scope.clear_add();
+        $state.go('^',{}, {reload:true});
+      };
 
 	}
 ];

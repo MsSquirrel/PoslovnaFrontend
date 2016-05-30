@@ -21,6 +21,7 @@ myApp.controller('loginCtrl', require('./loginController.js'));
 myApp.controller('editPlaceCtrl', require('./editPlaceController.js'));
 myApp.controller('editMeasUnitCtrl', require('./editMeasUnitController.js'));
 myApp.controller('editPdvCtrl', require('./editPdvController.js'));
+myApp.controller('editBusinessYearCtrl', require('./editBusinessYearController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -197,6 +198,26 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/poslovne-godine',
         templateUrl: './templates/poslovne-godine.html',
         controller: 'poslovne-godineCtrl'
+      })
+      .state('poslovne-godine.createBusinessYear', { 
+          params: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createBusinessYear.html', 
+              controller: "poslovne-godineCtrl"
+            }
+          }
+      })
+      .state('poslovne-godine.editBusinessYear', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editBusinessYear.html', 
+              controller: "editBusinessYearCtrl",
+            }
+        }
       })
       .state('poslovni-partneri', {
         url: '/poslovni-partneri',

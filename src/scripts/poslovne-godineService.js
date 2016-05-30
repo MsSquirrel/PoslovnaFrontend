@@ -53,12 +53,22 @@ module.exports = [
 			});
 		}
 
+		function get_businessYear_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/poslovna_godina/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
+
 
 		return {
 			get_all_businessYears: get_all_businessYears, 
 			create_businessYear: create_businessYear, 
 			update_businessYear: update_businessYear, 
 			remove_businessYear: remove_businessYear,
+			get_businessYear_by_id: get_businessYear_by_id,
 		};
 
 
