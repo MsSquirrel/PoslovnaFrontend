@@ -40,6 +40,45 @@ module.exports = [
 		  });
    		};
 
+
+   		$scope.search = {};
+   		$scope.search.naziv= '';
+   		$scope.search.postanski_broj = '';
+
+   		$scope.search.filterData = function(){
+
+   			var naziv= $scope.search.naziv.trim();
+   			var pb = $scope.search.postanski_broj.trim();
+
+   			if(pb==='' && naziv==='')
+   				return;
+
+   			var url_filter = "?$filter="
+
+   			var prvi= true;
+   			
+   			if(naziv!=''){
+   				prvi =	false;
+   				url_filter += "substringof('" + naziv + "', Naziv_Mesto) eq true";
+   			}
+
+   			if(pb!=''){
+   				if(!prvi){
+   					url_filter += " and "
+   				}
+
+   				url_filter += "Postansk__broj_Mesto eq '" + pb + "'";
+   			}
+
+   			console.log(url_filter);
+   			mestaService.get_filtered_places(url_filter).then(function(response){
+   				$scope.gridOptions.data = response;
+   			});
+   		}
+
+
+
+
 		
 		function fillData(){
     		mestaService.get_all_places()
