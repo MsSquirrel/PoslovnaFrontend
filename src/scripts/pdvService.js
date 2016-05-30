@@ -12,6 +12,16 @@ module.exports = [
 		}
 
 
+		function get_filtered_pdvs(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/PDV" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
 		function create_pdv(id, name)
 		{
 			return $http({
@@ -65,6 +75,7 @@ module.exports = [
 
 		return {
 			get_all_pdvs: get_all_pdvs,
+			get_filtered_pdvs: get_filtered_pdvs,
 			remove_pdv: remove_pdv, 
 			create_pdv: create_pdv,
 			update_pdv: update_pdv,

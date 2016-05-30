@@ -48,6 +48,46 @@ module.exports = [
    			  });
    		};
 
+
+
+      $scope.search = {};
+      $scope.search.zaPdv= '';
+
+      $scope.search.filterData = function(){
+
+        var zaPdv= $scope.search.zaPdv.trim();
+        
+        var url_filter = "?$filter="
+        
+        if(zaPdv!=''){
+          
+          url_filter += "substringof('" + zaPdv + "', Naziv_PDV) eq true";
+          console.log(url_filter);
+          
+          pdvService.get_filtered_pdvs(url_filter).then(function(response){
+            var id_zaPDv = response[0].Id_PDV;
+            if(id_zaPDv!=undefined){
+              
+              var url_filter1 = "?$filter="
+              
+              url_filter1 += "Id_PDV eq " + id_zaPDv;
+
+              stopePDVService.get_filtered_PDVRates(url_filter1).then(function(response1){
+                
+                $scope.gridOptions.data = response1;
+              });
+
+            }
+          });
+
+        }else{
+          return;
+        }
+
+      }
+
+
+
     	function fillData()
     	{
     		stopePDVService.get_all_PDVRates().then(function(response){

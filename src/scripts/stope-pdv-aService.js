@@ -11,6 +11,15 @@ module.exports = [
 			});
 		}
 
+		function get_filtered_PDVRates(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/stopa_pdva" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
 		function create_pdvRate(id, rate, date, pdvId)
 		{
 			return $http({
@@ -65,6 +74,7 @@ module.exports = [
 
 		return {
 			get_all_PDVRates: get_all_PDVRates,
+			get_filtered_PDVRates: get_filtered_PDVRates,
 			create_pdvRate: create_pdvRate, 
 			remove_pdvRate: remove_pdvRate,
 			update_pdvRate: update_pdvRate,

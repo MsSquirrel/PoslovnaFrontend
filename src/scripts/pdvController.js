@@ -33,6 +33,33 @@ module.exports = [
 		  	});
    		};
 
+
+
+   		$scope.search = {};
+   		$scope.search.naziv= '';
+
+   		$scope.search.filterData = function(){
+
+   			var naziv= $scope.search.naziv.trim();
+
+   			var url_filter = "?$filter="
+   			
+   			if(naziv!=''){
+   				prvi =	false;
+   				url_filter += "substringof('" + naziv + "', Naziv_PDV) eq true";
+   			}else{
+   				return;
+   			}
+
+
+   			console.log(url_filter);
+   			pdvService.get_filtered_pdvs(url_filter).then(function(response){
+   				$scope.gridOptions.data = response;
+   			});
+   		}
+
+
+
    		function fillData(){
     		pdvService.get_all_pdvs()
 				.then(function(response){
