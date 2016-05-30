@@ -292,6 +292,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
          data: {
               isModal: true
           }
+      })
+      .state('stope-pdv-a.editPDVRate', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editPDVRate.html', 
+              controller: "editPdvRateCtrl",
+            }
+        }
       });
 
 }]);
