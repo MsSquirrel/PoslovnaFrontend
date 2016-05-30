@@ -22,8 +22,10 @@ module.exports = [
 						Godina_Poslovna_godina: godina,
 						Zakljucena_Poslovna_godina: zakljucena
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Poslovna godina u okviru preduzeća već postoji.");
 			});
 		}
 
@@ -48,8 +50,10 @@ module.exports = [
 						Godina_Poslovna_godina: godina,
 						Zakljucena_Poslovna_godina: zakljucena
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Poslovna godina u okviru preduzeća već postoji.");
 			});
 		}
 

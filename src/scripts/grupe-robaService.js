@@ -19,8 +19,10 @@ module.exports = [
 						Id_PDV: grupaPdv,
 						Id_Preduzece: grupaPreduzece
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv grupe mora biti jedinstven u okviru preduzeća.");
 			});
 		}
 
@@ -45,8 +47,10 @@ module.exports = [
 						Id_PDV: grupaPdv,
 						Id_Preduzece: grupaPreduzece
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv grupe mora biti jedinstven u okviru preduzeća.");
 			});
 		}
 
