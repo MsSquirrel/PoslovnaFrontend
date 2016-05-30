@@ -20,6 +20,7 @@ myApp.controller('mainCtrl', require('./mainController.js'));
 myApp.controller('loginCtrl', require('./loginController.js'));
 myApp.controller('editPlaceCtrl', require('./editPlaceController.js'));
 myApp.controller('editMeasUnitCtrl', require('./editMeasUnitController.js'));
+myApp.controller('editPdvCtrl', require('./editPdvController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -170,6 +171,27 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/pdv',
         templateUrl: './templates/pdv.html',
         controller: 'pdvCtrl'
+      })
+      .state('pdv.createPDV', { 
+          params: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createPDV.html', 
+              controller: "pdvCtrl"
+            }
+          }
+      })
+      .state('pdv.editPDV', { 
+        url: "/edit/:id",
+
+        views:{
+            "": {
+              templateUrl: './templates/editPDV.html', 
+              controller: "editPdvCtrl",
+            }
+        }
       })
       .state('poslovne-godine', {
         url: '/poslovne-godine',

@@ -49,7 +49,18 @@ module.exports = [
            	}).then(function(response){
 				return response.data;				
 			});
-		}
+		};
+
+		function get_pdv_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/PDV/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		};
+
+
 
 
 		return {
@@ -57,6 +68,7 @@ module.exports = [
 			remove_pdv: remove_pdv, 
 			create_pdv: create_pdv,
 			update_pdv: update_pdv,
+			get_pdv_by_id: get_pdv_by_id,
 		};
 	}
 

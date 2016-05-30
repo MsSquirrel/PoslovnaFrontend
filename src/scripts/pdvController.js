@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http','pdvService', '$routeParams','$window',
-	function myController($scope, $http, pdvService, $routeParams, $window){
+	'$scope', '$http','pdvService', '$routeParams','$window', '$state',
+	function myController($scope, $http, pdvService, $routeParams, $window, $state){
 
 
 		$scope.selectedRow = {};
@@ -43,15 +43,16 @@ module.exports = [
 
 		$scope.clear_add = function(){
 			$scope.pdvName = "";
-	      }
+	    }
 
-	      $scope.clear_add();
+	    $scope.clear_add();
 
 		$scope.add_pdv = function()
 		{
+			console.log("HERE "+$scope.pdvName);
 			pdvService.create_pdv($scope.pdvId, $scope.pdvName).then(function(response){
-				fillData();
 				$scope.clear_add();
+				$state.go('^',{}, {reload:true});
 			});
 		};
 
@@ -68,5 +69,11 @@ module.exports = [
 				fillData();
 			});
 		};
+
+		$scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 	}
 ];

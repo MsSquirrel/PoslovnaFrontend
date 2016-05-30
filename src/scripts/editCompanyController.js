@@ -31,7 +31,6 @@ module.exports = [
 
 		$scope.edit_selected_company = function(name, mbr, pib, address, place)
 		{
-			console.log("Promenjeno: "+$scope.companyId+", "+$scope.editCompanyName+", "+$scope.editCompanyMBR+", "+$scope.editCompanyPIB+", "+$scope.editCompanyAddress+", "+$scope.editCompanyPlace);
 			preduzecaService.update_company($scope.companyId, $scope.editCompanyName, $scope.editCompanyMBR, $scope.editCompanyPIB, $scope.editCompanyAddress, $scope.editCompanyPlace).then(function(response){
 				$state.go('^',{}, {reload:true});
 			});
