@@ -1,0 +1,84 @@
+<div>
+	<h4>Dodaj novog partnera</h4>
+
+	Naziv:
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="partnerName"></input>
+		</div>
+	</div>
+
+	Tip:
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions">
+   			</select>
+   		</div>
+   	</div>
+	
+
+	Matični broj:
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text"  class="form-control positiveInteger" ng-model="partnerMBR"></input>
+		</div>
+	</div>
+
+	PIB preduzeća: 
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control positiveInteger" ng-model="partnerPIB"><br>
+		</div>
+	</div>
+	
+	Adresa preduzeća: 
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="partnerAddress"></inpit>
+		</div>
+	</div>
+	
+
+	<div class="row">
+		<div class="col-sm-1">
+			<p>Mesto:</p> 
+		</div>
+		<div class="col-sm-1">
+			<button type="button" class="btn btn-success btn-xs" ui-sref="poslovni-partneri.createPartner.createPlace">
+			<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+	</div>		
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="checkPlace" ng-click="chose_place()">
+   			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
+   			</select><br>
+   		</div>
+   	</div>
+
+   <div class="row">
+		<div class="col-sm-1">
+			<p>Preduzeće:</p> 
+		</div>
+		<div class="col-sm-1">
+			<button type="button" class="btn btn-success btn-xs" ui-sref="poslovni-partneri.createPartner.createCompany">
+			<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</div>
+	</div>	
+
+	<div class="row">
+		<div class="col-md-6">
+   			<select class="form-control" ng-model="checkCompany" ng-click="chose_place()">
+   			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+   			</select>
+   		</div>
+   	</div>
+	
+	<button type="button" class="btn btn-info accept" ng-click="add_partner()">Sačuvaj</button>
+	
+	<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>
+
+</div>

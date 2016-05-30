@@ -10,9 +10,9 @@ module.exports = [
 		$scope.selectedPdvRatePdv=0;
 
 
-		$scope.editPdvRate = 0.00;
-		$scope.editPdvRateDate = "";
-		$scope.editPdvRatePdv=0;
+		//$scope.editPdvRate = 0.00;
+		//$scope.editPdvRateDate = "";
+		//$scope.editPdvRatePdv=0;
 
 
 		$scope.gridOptions = {
@@ -34,7 +34,7 @@ module.exports = [
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   			$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
 				$scope.selectedPdvRateId = $scope.selectedRow.Id_Stopa_PDV_a;
 				$scope.selectedPdvRate = $scope.selectedRow.Stopa_Stopa_PDV_a;
 				$scope.selectedPdvRateDate = $scope.selectedRow.Datum_vazenja_Stopa_PDV_a;

@@ -1,0 +1,35 @@
+<div>
+	<h4>Izmeni postojeću stopu PDV-a</h4>
+
+	Vrednost stope PDV-a: 
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control positiveDecimal" ng-model="editPdvRate"></input>			
+		</div>
+	</div>			
+	
+	Važi od: 
+	<div class="row">
+		<div class="col-md-6">
+			<p class="input-group">
+			    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editPdvRateDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ></input>
+			    <span class="input-group-btn">
+			     
+			    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+			    </span>
+	 		</p>
+	 	</div>
+	 </div>
+						
+	PDV:  
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs"></select>
+		</div>
+	</div>
+
+	<button type="button" class="btn btn-info accept" ng-click="edit_PDVRate()">Sačuvaj</button>
+	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+
+</div>
