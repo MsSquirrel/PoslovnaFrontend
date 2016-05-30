@@ -1,10 +1,14 @@
 'use strict'
 
 module.exports = [
-	'$location', '$rootScope', 'loginService',
-	function states($location, $rootScope, loginService){
+	'$http', '$location', '$rootScope', 'loginService', '$localStorage',
+	function states($http, $location, $rootScope, loginService, $localStorage){
 		$rootScope.previousState;
 		$rootScope.currentState;
+
+		if ($localStorage.currentUser) {
+            $http.defaults.headers.common.Authorization = $localStorage.currentUser.token;
+        }
 
 		$rootScope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
     		$rootScope.previousState = from.name;
