@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-1">
 
-			<button type="button" class="btn btn-success btn-xl" data-toggle="modal" data-target="#addModal">
+			<button type="button" class="btn btn-success btn-xl"  ui-sref="poslovni-partneri.createPartner">
 		  		<span class="glyphicon glyphicon-plus"></span>
 			</button>
 
@@ -19,40 +19,10 @@
 		</div>
 	</div>
 
+	<div ui-view></div>
+
 	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	</div>
-
-	<div class="modal fade" id="addModal" role="dialog">
-		<div class="modal-dialog">
-		<!-- Modal content-->
-  			<div class="modal-content">
-	    		<div class="modal-header">
-	      			<button type="button" class="close" data-dismiss="modal" ng-click="clear_add()">&times;</button>
-	      			<h4 class="modal-title">Dodaj novog partnera</h4>
-	    		</div>
-	    		<div class="modal-body">
-	      			<form novalidate>
-					
-						Naziv: <input type="text" class="form-control" ng-model="partnerName"><br>
-						Tip: <select class="form-control" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions">
-   							 	</select><br>
-						Matični broj: <input type="text"  class="form-control positiveInteger" ng-model="partnerMBR"><br>
-						PIB preduzeća: <input type="text" class="form-control positiveInteger" ng-model="partnerPIB"><br>
-						Adresa preduzeća: <input type="text" class="form-control" ng-model="partnerAddress"><br>
-						Mesto:  <select class="form-control" ng-model="checkPlace" ng-click="chose_place()">
-   							 		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-   							 	</select><br>
-   						Partner: <select class="form-control" ng-model="checkCompany" ng-click="chose_place()">
-   							 		<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-   							 	</select>
-						<br><br>
-						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_partner()">Sačuvaj</button>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
-  					</form>
-	    		</div>
-    		</div>
-  		</div>
-  	</div>	
 
   	<div class="modal fade" id="editModal" role="dialog">
 		<div class="modal-dialog">

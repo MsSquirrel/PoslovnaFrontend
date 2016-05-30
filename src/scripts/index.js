@@ -23,6 +23,7 @@ myApp.controller('editMeasUnitCtrl', require('./editMeasUnitController.js'));
 myApp.controller('editPdvCtrl', require('./editPdvController.js'));
 myApp.controller('editBusinessYearCtrl', require('./editBusinessYearController.js'));
 myApp.controller('editPdvRateCtrl', require('./editPDVRateController.js'));
+myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -241,7 +242,42 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('poslovni-partneri', {
         url: '/poslovni-partneri',
         templateUrl: './templates/poslovni-partneri.html',
-        controller: 'poslovni-partneriCtrl'
+        controller: 'poslovni-partneriCtrl',
+        data: {
+              isModal: false
+        }
+      })
+      .state('poslovni-partneri.createPartner', { 
+          data: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createPartner.html', 
+              controller: "poslovni-partneriCtrl"
+            }
+          }
+      })
+      .state('poslovni-partneri.editPartner', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editPartner.html', 
+              controller: "editPartnerCtrl",
+            }
+        }
+      })
+      .state('poslovni-partneri.createPartner.createPlace', {
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('poslovni-partneri.createPartner.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
       })
       .state('prijemni-dokumenti', {
         url: '/prijemni-dokumenti',

@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'partneriService','preduzecaService', 'mestaService','$routeParams','$window',
-	function myController($scope, $http, partneriService, preduzecaService, mestaService, $routeParams, $window){
+	'$scope', '$http', 'partneriService','preduzecaService', 'mestaService','$routeParams','$window', '$state',
+	function myController($scope, $http, partneriService, preduzecaService, mestaService, $routeParams, $window, $state){
 
 		$scope.allCompanies = {};
 		$scope.allPlaces = {};
@@ -116,8 +116,8 @@ module.exports = [
 		$scope.add_partner = function()
 		{
 			partneriService.create_partner($scope.partnerId, $scope.partnerName, $scope.partnerMBR, $scope.partnerPIB, $scope.partnerAddress, $scope.checkPlace, $scope.checkCompany, $scope.checkType).then(function(response){
-				fillData();
 				$scope.clear_add();
+				$state.go('^',{}, {reload:true});
 			});
 		};
 
@@ -136,6 +136,12 @@ module.exports = [
 				fillData();
 			});
 		};
+
+	    $scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 
 	}
 ];

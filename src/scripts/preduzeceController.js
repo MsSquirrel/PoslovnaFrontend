@@ -23,6 +23,9 @@ module.exports = [
    		$scope.newPlaceId = -1;
 
 
+   		$scope.isModal = $state.current.data.isModal;
+   		console.log("Comapany is modal: "+$scope.isModal);
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -43,25 +46,9 @@ module.exports = [
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
 
-   			// setSelection();
-
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				/*$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				$scope.selectedCompanyId = $scope.selectedRow.Id_Preduzece;
-   				$scope.selectedCompanyName = $scope.selectedRow.Naziv_Preduzece;
-   				$scope.selectedCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
-   				$scope.selectedCompanyPIB = $scope.selectedRow.PIB_Preduzece;
-   				$scope.selectedCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
-   				$scope.selectedCompanyPlace = $scope.selectedRow.Mesto.Id;
-
-   				$scope.editCompanyName = $scope.selectedRow.Naziv_Preduzece;
-   				$scope.editCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
-   				$scope.editCompanyPIB = $scope.selectedRow.PIB_Preduzece;
-   				$scope.editCompanyAddress = $scope.selectedRow.Adresa_Preduzece;
-   				$scope.editCompanyPlace = $scope.selectedRow.Mesto.Id;*/
    				setSelection();
-
-		  });
+		  	});
    		};
 
 
@@ -111,6 +98,10 @@ module.exports = [
 			$scope.companyPlace= "";
 			$scope.check = "";
 			$scope.changePlace = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 	    };
 
 
