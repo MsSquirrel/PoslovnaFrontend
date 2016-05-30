@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http','pdvService', '$routeParams','$window', '$state',
-	function myController($scope, $http, pdvService, $routeParams, $window, $state){
+	'$scope', '$http','pdvService', '$routeParams','$window', '$state', '$stateParams',
+	function myController($scope, $http, pdvService, $routeParams, $window, $state, $stateParams){
 
 
 		$scope.selectedRow = {};
@@ -8,7 +8,8 @@ module.exports = [
 		$scope.selectedPdvName = "";
 
 		$scope.editPdvName = "";
-
+		$scope.isModal = $state.current.data.isModal;
+		console.log("PDV CTRL is modal: "+$scope.isModal);
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -52,6 +53,9 @@ module.exports = [
 			console.log("HERE "+$scope.pdvName);
 			pdvService.create_pdv($scope.pdvId, $scope.pdvName).then(function(response){
 				$scope.clear_add();
+				if($scope.isModal){
+					$scope.$close(true);
+				}
 				$state.go('^',{}, {reload:true});
 			});
 		};
@@ -73,6 +77,9 @@ module.exports = [
 		$scope.closeState = function()
 	    {
 	      $scope.clear_add();
+	      if($scope.isModal){
+				$scope.$close(true);
+		  }
 	  	  $state.go('^',{}, {reload:true});
 	    }
 	}

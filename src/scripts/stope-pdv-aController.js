@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window',
-	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window){
+	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window', '$state',
+	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window, $state){
 
 		$scope.allPDVs = {};
 
@@ -82,8 +82,8 @@ module.exports = [
     		console.log("DATUM "+date);
     		console.log("Uneto "+$scope.pdvRateId+", "+$scope.pdvRate+", "+date+", "+$scope.pdvRatePdv);
     		stopePDVService.create_pdvRate($scope.pdvRateId, $scope.pdvRate, date, $scope.pdvRatePdv).then(function(response){
-    			fillData();
-          $scope.clear_add();
+            $scope.clear_add();
+            $state.go('^',{}, {reload:true});
     		});
     	};
 
@@ -106,6 +106,11 @@ module.exports = [
     		});
     	};
 
+      $scope.closeState = function()
+      {
+        $scope.clear_add();
+        $state.go('^',{}, {reload:true});
+      };
 
 
     	// time picker

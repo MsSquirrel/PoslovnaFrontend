@@ -22,6 +22,7 @@ myApp.controller('editPlaceCtrl', require('./editPlaceController.js'));
 myApp.controller('editMeasUnitCtrl', require('./editMeasUnitController.js'));
 myApp.controller('editPdvCtrl', require('./editPdvController.js'));
 myApp.controller('editBusinessYearCtrl', require('./editBusinessYearController.js'));
+myApp.controller('editPdvRateCtrl', require('./editPDVRateController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -174,7 +175,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'pdvCtrl'
       })
       .state('pdv.createPDV', { 
-          params: {
+          data: {
               isModal: false
           },
          views:{
@@ -253,7 +254,25 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/stope-pdv-a',
         templateUrl: './templates/stope-pdv-a.html',
         controller: 'stope-pdv-aCtrl'
+      })
+      .state('stope-pdv-a.createPDVRate', { 
+          data: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createPDVRate.html', 
+              controller: "stope-pdv-aCtrl"
+            }
+          }
+      })
+      .state('stope-pdv-a.createPDVRate.createPDV', {
+        onEnter: generateOnEnterModal("./templates/createPDV.html", "pdvCtrl"),
+         data: {
+              isModal: true
+          }
       });
+
 }]);
 
 

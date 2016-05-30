@@ -54,11 +54,21 @@ module.exports = [
 			});
 		}
 
+		function get_pdvRate_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/stopa_pdva/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
+
 		return {
 			get_all_PDVRates: get_all_PDVRates,
 			create_pdvRate: create_pdvRate, 
 			remove_pdvRate: remove_pdvRate,
 			update_pdvRate: update_pdvRate,
+			get_pdvRate_by_id: get_pdvRate_by_id,
 		};
 
 	}

@@ -4,7 +4,7 @@
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-1">
 
-			<button type="button" class="btn btn-success btn-xl" data-toggle="modal" data-target="#addModal">
+			<button type="button" class="btn btn-success btn-xl" ui-sref="stope-pdv-a.createPDVRate">
 		  		<span class="glyphicon glyphicon-plus"></span>
 			</button>
 
@@ -19,40 +19,12 @@
 		</div>
 	</div>
 
+	<div ui-view></div>
+
 	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	</div>
 
-	<div class="modal fade" id="addModal" role="dialog">
-		<div class="modal-dialog">
-		   <!-- Modal content-->
-  			<div class="modal-content">
-	    		<div class="modal-header">
-	      			<button type="button" class="close" data-dismiss="modal" ng-click="clear_add()">&times;</button>
-	      			<h4 class="modal-title">Dodaj novu stopu PDV-a</h4>
-	    		</div>
-	    		<div class="modal-body">
-	      			<form novalidate>
-						
-						Vrednost stope PDV-a: <input type="text" class="form-control positiveDecimal" ng-model="pdvRate"><br>
-						Važi od: 
-						<p class="input-group">
-    						 <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
-         					 <span class="input-group-btn">
-         						   <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          					</span>
- 						</p>
-						PDV:  <select class="form-control" ng-model="pdvRatePdv" ng-click="chose_place()">
-   							 		<option  ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
-   							 	</select>
 
-						<br><br>
-						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_PDVRate()">Sačuvaj</button>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
-  					</form>
-	    		</div>
-    		</div>
-  		</div>
-  	</div>	
 
     <div class="modal fade" id="editModal" role="dialog">
 		<div class="modal-dialog">
