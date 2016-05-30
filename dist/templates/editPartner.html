@@ -1,0 +1,61 @@
+<div>
+	<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
+
+
+	Naziv: 
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="editPartnerName"></input>
+		</div>
+	</div>
+
+	Tip: 
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="editPartnerType" ng-options="option for option in typeOptions">
+   			 </select><br>
+		</div>
+	</div>			
+
+	Matični broj: 
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text"  class="form-control positiveInteger" ng-model="editPartnerMBR"></input>
+		</div>
+	</div>
+
+	PIB preduzeća: 
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control positiveInteger" ng-model="editPartnerPIB"></input>
+		</div>
+	</div>
+						
+	Adresa preduzeća: 
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="editPartnerAddress"><br>
+		</div>
+	</div>
+
+	Mesto:  
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace"></select>
+		</div>
+	</div>
+   	
+   	Partner: 
+   	<div class="row">
+		<div class="col-md-6">
+   			<select class="form-control" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
+   		</div>
+   	</div>
+
+	
+	<button type="button" class="btn btn-info accept" ng-click="edit_selected_partner()">Sačuvaj</button>
+	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+
+</div>

@@ -62,12 +62,22 @@ module.exports = [
 			});
 		}
 
+		function get_partner_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/poslovni_partner/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
+
 
 		return {
 			get_all_partners: get_all_partners,
 			create_partner: create_partner,
 			remove_partner: remove_partner,
-			update_partner: update_partner, 
+			update_partner: update_partner,
+			get_partner_by_id: get_partner_by_id, 
 		};
 
 	}
