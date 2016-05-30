@@ -1,33 +1,34 @@
 <div>
 	<h4>Dodaj novu poslovnu godinu</h4>
+		<form>
 
-
-		Godina:
-		<div class="row">
-			<div class="col-md-6">
-				<input type="text" class="form-control positiveInteger" ng-model="businessYear"></input>
+			Godina:
+			<div class="row">
+				<div class="col-md-6">
+					<input type="text" class="form-control positiveInteger4" ng-model="businessYear"></input>
+				</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="col-md-6">
-				Zaključena:
+			<div class="row">
+				<div class="col-md-6">
+					Zaključena:
 
-				<input type="checkbox" ng-model="businessYearFinished" ng-true-value=true ng-false-value=false></input>
+					<input type="checkbox" ng-model="businessYearFinished" ng-true-value=true ng-false-value=false></input>
+				</div>
 			</div>
-		</div>
-						
-		Preduzeće:  
+							
+			Preduzeće:  
 
-		<div class="row">
-			<div class="col-md-6">
-				<select class="form-control" ng-model="businessYearCompany" ng-click="chose_place()">
-   				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-   				</select>
+			<div class="row">
+				<div class="col-md-6">
+					<select class="form-control" ng-model="businessYearCompany" ng-click="chose_place()">
+	   				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+	   				</select>
+				</div>
 			</div>
-		</div>
-		
-		<button type="button" class="btn btn-info accept"  ng-click="add_businessYear()">Sačuvaj</button>
-		<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+			
+			<button type="button" class="btn btn-info accept"  ng-click="add_businessYear()">Sačuvaj</button>
+			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+		</form>
 
 </div>

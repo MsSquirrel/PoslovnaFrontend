@@ -16,6 +16,10 @@ module.exports = [
 				$scope.editMeasUnitMark = $scope.measUnit.Oznaka_Jedinica_mere;
 			});
 		}
+    
+      $(".characters3").blur(function() {
+        $scope.isCharacter(this, 3);
+      });
 
 		fillData();
 

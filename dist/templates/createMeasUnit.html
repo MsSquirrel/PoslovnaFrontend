@@ -1,23 +1,25 @@
 <div>
 	<h4>Dodaj novu jedinicu mere</h4>
+	<form>
 
-	Naziv merne jedinice:
-	<div class="row">
-   	 	<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="measUnitName"></input>
+		Naziv merne jedinice:
+		<div class="row">
+	   	 	<div class="col-sm-6">
+				<input type="text" class="form-control" ng-model="measUnitName"></input>
+			</div>
 		</div>
-	</div>
 
-	Oznaka merne jedinice:
-	<div class="row">
-   	 	<div class="col-sm-6">
-			<input type="text" class="form-control" ng-model="measUnitMark"></input>
+		Oznaka merne jedinice:
+		<div class="row">
+	   	 	<div class="col-sm-6">
+				<input type="text" class="form-control characters3" ng-model="measUnitMark"></input>
+			</div>
 		</div>
-	</div>
-						
+							
 
-	<br><br>
-	<button type="button" class="btn btn-info"  ng-click="add_measUnit()">Sačuvaj</button>
-	<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+		<br><br>
+		<button type="button" class="btn btn-info accept"  ng-click="add_measUnit()">Sačuvaj</button>
+		<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+	</form>
 
 </div>

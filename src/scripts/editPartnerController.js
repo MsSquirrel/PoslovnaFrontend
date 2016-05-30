@@ -28,6 +28,13 @@ module.exports = [
    				$scope.editPartnerType = $scope.partner.Tip_Partner;
 			});
 		};
+		
+		$(".positiveInteger10").blur(function() {
+			$scope.isPositiveInteger(this, 10);
+		});		
+		$(".positiveInteger8").blur(function() {
+			$scope.isPositiveInteger(this, 8);
+		});
 
 		fillData();
 

@@ -1,12 +1,13 @@
 <div>
 <h4>Izmeni postojeću poslovnu godinu: </h4>
 
+		<form>
 	  
 Godina: 
 
 <div class="row">
 	<div class="col-md-6">
-		<input type="text" class="form-control positiveInteger" ng-model="editBusinessYear"></input>
+		<input type="text" class="form-control positiveInteger4" ng-model="editBusinessYear"></input>
 	</div>
 </div>
 
@@ -28,4 +29,5 @@ Preduzeće:
 
 <button type="button" class="btn btn-info accept" ng-click="edit_selected_businessYear()">Sačuvaj</button>
 <button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+		</form>
 </div>

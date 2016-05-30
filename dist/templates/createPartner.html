@@ -1,5 +1,6 @@
 <div>
 	<h4>Dodaj novog partnera</h4>
+		<form>
 
 	Naziv:
 
@@ -21,14 +22,14 @@
 	Matični broj:
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text"  class="form-control positiveInteger" ng-model="partnerMBR"></input>
+			<input type="text"  class="form-control positiveInteger8" ng-model="partnerMBR"></input>
 		</div>
 	</div>
 
 	PIB preduzeća: 
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control positiveInteger" ng-model="partnerPIB"><br>
+			<input type="text" class="form-control positiveInteger10" ng-model="partnerPIB"><br>
 		</div>
 	</div>
 	
@@ -80,5 +81,6 @@
 	<button type="button" class="btn btn-info accept" ng-click="add_partner()">Sačuvaj</button>
 	
 	<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>
+		</form>
 
 </div>

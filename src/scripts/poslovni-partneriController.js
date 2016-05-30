@@ -88,8 +88,11 @@ module.exports = [
 			});
 		};
 		
-		$(".positiveInteger").blur(function() {
-			$scope.isPositiveInteger(this);
+		$(".positiveInteger10").blur(function() {
+			$scope.isPositiveInteger(this, 10);
+		});		
+		$(".positiveInteger8").blur(function() {
+			$scope.isPositiveInteger(this, 8);
 		});
 
 		fillData();

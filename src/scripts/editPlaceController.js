@@ -15,6 +15,10 @@ module.exports = [
 				$scope.editNumber = $scope.place.Postansk__broj_Mesto;
 			});
 		};
+		
+		$(".positiveInteger5").blur(function() {
+			$scope.isPositiveInteger(this, 5);
+		});
 
 		fillData();
 

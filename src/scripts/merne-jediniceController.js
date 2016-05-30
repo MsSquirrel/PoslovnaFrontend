@@ -48,6 +48,10 @@ module.exports = [
     			$scope.gridOptions.data = response;
     		});
     	};
+    
+      $(".characters3").blur(function() {
+        $scope.isCharacter(this, 3);
+      });
 
     	fillData();
 

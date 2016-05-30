@@ -2,6 +2,7 @@
 	<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
 
 
+		<form>
 	Naziv: 
 	<div class="row">
 		<div class="col-md-6">
@@ -21,14 +22,14 @@
 	Matični broj: 
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text"  class="form-control positiveInteger" ng-model="editPartnerMBR"></input>
+			<input type="text"  class="form-control positiveInteger8" ng-model="editPartnerMBR"></input>
 		</div>
 	</div>
 
 	PIB preduzeća: 
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control positiveInteger" ng-model="editPartnerPIB"></input>
+			<input type="text" class="form-control positiveInteger10" ng-model="editPartnerPIB"></input>
 		</div>
 	</div>
 						
@@ -58,4 +59,5 @@
 	<button type="button" class="btn btn-info accept" ng-click="edit_selected_partner()">Sačuvaj</button>
 	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 
+		</form>
 </div>

@@ -60,8 +60,8 @@ module.exports = [
 			});
     	};
     
-      $(".positiveInteger").blur(function() {
-        $scope.isPositiveInteger(this);
+      $(".positiveInteger4").blur(function() {
+        $scope.isPositiveInteger(this, 4);
       });
 
     	fillData();

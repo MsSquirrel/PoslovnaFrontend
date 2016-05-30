@@ -27,6 +27,13 @@ module.exports = [
 			});
 		};
 
+		$(".positiveInteger8").blur(function() {
+			$scope.isPositiveInteger(this, 8);
+		});
+		$(".positiveInteger10").blur(function() {
+			$scope.isPositiveInteger(this, 10);
+		});
+
 		fillData();
 
 		$scope.edit_selected_company = function(name, mbr, pib, address, place)

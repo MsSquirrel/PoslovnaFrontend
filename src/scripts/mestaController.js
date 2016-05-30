@@ -87,8 +87,8 @@ module.exports = [
 			});
 		}
 		
-		$(".positiveInteger").blur(function() {
-			$scope.isPositiveInteger(this);
+		$(".positiveInteger5").blur(function() {
+			$scope.isPositiveInteger(this, 5);
 		});
 
 		fillData();
