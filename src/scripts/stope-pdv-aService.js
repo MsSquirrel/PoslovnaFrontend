@@ -22,8 +22,10 @@ module.exports = [
 						Stopa_Stopa_PDV_a: rate,
 						Datum_vazenja_Stopa_PDV_a: date
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Pogrešan datum.");
 			});
 		}
 
@@ -49,8 +51,10 @@ module.exports = [
 						Stopa_Stopa_PDV_a: rate,
 						Datum_vazenja_Stopa_PDV_a: date
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Pogrešan datum.");
 			});
 		}
 

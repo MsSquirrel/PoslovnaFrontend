@@ -21,8 +21,10 @@ module.exports = [
 						Id_PDV: id, 
 						Naziv_PDV: name,
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv PDV-a mora biti jedinstven.");
 			});
 		}
 
@@ -46,8 +48,10 @@ module.exports = [
                     	Id_PDV: id, 
 						Naziv_PDV: name,
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv PDV-a mora biti jedinstven.");
 			});
 		};
 

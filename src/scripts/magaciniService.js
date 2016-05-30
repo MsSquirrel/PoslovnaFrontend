@@ -22,8 +22,10 @@ module.exports = [
 				   		Id: place,
 				   		Id_Preduzece: company
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv magacina u okviru preduzeća mora biti jedinstven.");
 			});
 		}
 
@@ -49,8 +51,10 @@ module.exports = [
 				   		Id: place,
 				   		Id_Preduzece: company
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv magacina u okviru preduzeća mora biti jedinstven.");
 			});
 		}
 

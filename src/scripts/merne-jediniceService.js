@@ -23,8 +23,10 @@ module.exports = [
 						Naziv_Jedinica_mere: name,
 						Oznaka_Jedinica_mere: oznaka
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv i oznaka jedinice mere moraju biti jedinstveni.");
 			});
 		}
 
@@ -49,8 +51,10 @@ module.exports = [
 						Naziv_Jedinica_mere: name, 
 						Oznaka_Jedinica_mere: oznaka,
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Naziv i oznaka jedinice mere moraju biti jedinstveni.");
 			});
 		}
 

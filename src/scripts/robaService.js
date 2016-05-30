@@ -23,8 +23,10 @@ module.exports = [
 						Id_Jedinica_mere: mernaJedinica,
 						Id_Preduzece: preduzece
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Roba u jedinici mere mora biti jedinstvena.");
 			});
 		}
 
@@ -50,8 +52,10 @@ module.exports = [
 						Id_Jedinica_mere: mernaJedinica,
 						Id_Preduzece: preduzece
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Roba u jedinici mere mora biti jedinstvena.");
 			});
 		}
 

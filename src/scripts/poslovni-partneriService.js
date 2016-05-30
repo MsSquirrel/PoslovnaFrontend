@@ -26,8 +26,10 @@ module.exports = [
 						PIB_Partner: pib,
 						Adresa_Partner: address
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. PIB i matični broj moraju biti jedinstveni.");
 			});
 		}
 
@@ -57,8 +59,10 @@ module.exports = [
 						PIB_Partner: pib,
 						Adresa_Partner: address
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. PIB i matični broj moraju biti jedinstveni.");
 			});
 		}
 

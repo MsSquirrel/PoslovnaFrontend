@@ -27,8 +27,10 @@ module.exports = [
 						Ukupan_PDV_Faktura: invoiceTotalPdv,
 						Ukupno_za_placanje_Faktura: invoiceTotalPlacanje
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Broj fakture u okviru poslovne godine mora biti jedinstven.");
 			});
 		}
 
@@ -59,8 +61,10 @@ module.exports = [
 						Ukupan_PDV_Faktura: invoiceTotalPdv,
 						Ukupno_za_placanje_Faktura: invoiceTotalPlacanje
 					}
-           	}).then(function(response){
+           	}).success(function(response){
 				return response.data;				
+			}).error(function(response, data){
+				alert("Neuspešan unos podataka. Broj fakture u okviru poslovne godine mora biti jedinstven.");
 			});
 		}
 
