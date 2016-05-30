@@ -71,7 +71,10 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('mesta', {
         url: '/mesta',
         templateUrl: './templates/mesta.html',
-        controller: 'mestaCtrl'
+        controller: 'mestaCtrl',
+        data: {
+            isModal: false
+        }
       })
       .state('mesta.createPlace',{
          views:{
@@ -80,7 +83,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               controller: "mestaCtrl",
             }
           },
-          params: {
+          data: {
                 isModal: false
           }
       })
@@ -97,11 +100,14 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('preduzeca', {
         url: '/preduzeca',
         templateUrl: './templates/preduzeca.html',
-        controller: 'preduzeceCtrl'
+        controller: 'preduzeceCtrl',
+        data: {
+            isModal: false
+        }
       })
       .state('preduzeca.createCompany.createPlace', {
         onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
-         params: {
+         data: {
             isModal: true
         }
       })
@@ -111,6 +117,9 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               templateUrl: './templates/createCompany.html', 
               controller: "preduzeceCtrl"
             }
+          },
+          data: {
+            isModal: false
           }
       })
       .state('preduzeca.editCompany', { 
@@ -146,10 +155,13 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('merne-jedinice', {
         url: '/merne-jedinice',
         templateUrl: './templates/merne-jedinice.html',
-        controller: 'merne-jediniceCtrl'
+        controller: 'merne-jediniceCtrl',
+        data: {
+            isModal: false
+        }
       })
       .state('merne-jedinice.createMeasUnit', { 
-          params: {
+          data: {
               isModal: false
           },
          views:{
@@ -172,7 +184,10 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('pdv', {
         url: '/pdv',
         templateUrl: './templates/pdv.html',
-        controller: 'pdvCtrl'
+        controller: 'pdvCtrl',
+        data: {
+            isModal: false
+        }
       })
       .state('pdv.createPDV', { 
           data: {
@@ -198,10 +213,13 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('poslovne-godine', {
         url: '/poslovne-godine',
         templateUrl: './templates/poslovne-godine.html',
-        controller: 'poslovne-godineCtrl'
+        controller: 'poslovne-godineCtrl',
+        data: {
+            isModal: false
+        }
       })
       .state('poslovne-godine.createBusinessYear', { 
-          params: {
+          data: {
               isModal: false
           },
          views:{
@@ -253,7 +271,10 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('stope-pdv-a', {
         url: '/stope-pdv-a',
         templateUrl: './templates/stope-pdv-a.html',
-        controller: 'stope-pdv-aCtrl'
+        controller: 'stope-pdv-aCtrl',
+        data: {
+            isModal: false
+        }
       })
       .state('stope-pdv-a.createPDVRate', { 
           data: {

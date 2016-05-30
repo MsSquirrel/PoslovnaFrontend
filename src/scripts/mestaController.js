@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'mestaService', '$stateParams','$window', '$state', '$rootScope',
-	function myController($scope, $http, mestaService,$stateParams, $window, $state, $rootScope){
+	'$scope', '$http', 'mestaService', '$stateParams','$window', '$state', '$rootScope', '$state',
+	function myController($scope, $http, mestaService,$stateParams, $window, $state, $rootScope, $state){
 
 
 		$scope.placeUrl = "";
@@ -11,7 +11,7 @@ module.exports = [
 		$scope.editName="";
 		$scope.editNumber = "";
 
-		$scope.isModal = $stateParams.isModal;
+		$scope.isModal = $state.current.data.isModal;
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -93,6 +93,12 @@ module.exports = [
 				fillData();
 			});
 		};
+
+		$scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 
 		/*
 		$scope.dismiss = function() {
