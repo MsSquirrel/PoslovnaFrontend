@@ -13,6 +13,19 @@ div.container div div.row{
 	margin-top: 5px;
 }
 
+div.form{
+    margin-top: 20px !important;
+}
+
+div.form h4{
+    margin-left: -20px;
+    margin-bottom: 20px;
+}
+
+form.form *{
+    margin: 0 auto;
+}
+
 /***  LOGIN FORM   ***/
 #login-form {
     width: 300px;

@@ -1,20 +1,21 @@
-<div>
+<div class="col-md-6 col-md-offset-3 form">
+
 <h4>Dodaj novu stopu PDV-a</h4>
 
-		<form>
+		<form class="form">
 						
 
 Vrednost stope PDV-a: 
 <div class="row">
-	<div class="col-md-6">
+	<div>
 		<input type="text" class="form-control positiveDecimal" ng-model="pdvRate"></input>
 	</div>
-</div>
+</div></br>
 						
 
 Važi od: 
 <div class="row">
-	<div class="col-md-6">
+	<div>
 		<p class="input-group">
  		<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
 
@@ -23,7 +24,7 @@ Važi od:
 		</span>
 		</p>
 	</div>
-</div>
+</div></br>
 		
 <div class="row">
 	<div class="col-md-1">
@@ -37,13 +38,13 @@ Važi od:
 </div>
 
 <div class="row">
-	<div class="col-md-6">
+	<div>
 		<select class="form-control" ng-model="pdvRatePdv" ng-click="chose_place()">
 		<option  ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
 		</select>
 	</div>
 </div>
-
+</br></br>
 
 <button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_PDVRate()">Sačuvaj</button>
 
