@@ -48,12 +48,52 @@ module.exports = [
    		};
 
 
+
+      $scope.search = {};
+      $scope.search.naziv= '';
+      $scope.search.oznaka = '';
+
+      $scope.search.filterData = function(){
+
+        var naziv= $scope.search.naziv.trim();
+        var oznaka = $scope.search.oznaka.trim();
+
+        if(oznaka==='' && naziv==='')
+          return;
+
+        var url_filter = "?$filter="
+
+        var prvi= true;
+        
+        if(naziv!=''){
+          prvi =  false;
+          url_filter += "substringof('" + naziv + "', Naziv_Jedinica_mere) eq true";
+        }
+
+        if(oznaka!=''){
+          if(!prvi){
+            url_filter += " and "
+          }
+
+          url_filter += "Oznaka_Jedinica_mere eq '" + oznaka + "'";
+        }
+
+        console.log(url_filter);
+        merneJediniceService.get_filtered_measUnits(url_filter).then(function(response){
+          $scope.gridOptions.data = response;
+        });
+      }
+
+
+
     	function fillData(){
     		merneJediniceService.get_all_measUnits().then(function(response){
     			$scope.gridOptions.data = response;
     		});
     	};
     
+      $scope.fillData = fillData;
+      
       $(".characters3").on("change paste keyup", function() {
         $scope.isCharacter(this, 3);
       });

@@ -13,6 +13,18 @@ module.exports = [
 		}
 
 
+
+		function get_filtered_measUnits(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/Jedinica_mere" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
+
 		function add_measUnit(id, name, oznaka)
 		{	
 			return $http({
@@ -72,6 +84,7 @@ module.exports = [
 
 		return {
 			get_all_measUnits: get_all_measUnits,
+			get_filtered_measUnits: get_filtered_measUnits,
 			add_measUnit: add_measUnit,
 			remove_measUnit: remove_measUnit,
 			update_measUnit: update_measUnit,

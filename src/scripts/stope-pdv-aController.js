@@ -103,6 +103,8 @@ module.exports = [
     			$scope.allPDVs = response;
     		});
     	};
+
+      $scope. fillData = fillData;
     
       $(".positiveDecimal").on("change paste keyup", function() {
         $scope.isPositiveDecimal(this);

@@ -73,6 +73,8 @@ module.exports = [
 		};
 		$(".edit-btn, .remove-btn").attr("disabled", true);
 
+		$scope.fillData = fillData;
+
 		fillData();
 
 		$scope.clear_add = function(){

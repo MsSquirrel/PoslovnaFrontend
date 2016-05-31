@@ -11,6 +11,17 @@ module.exports = [
 			});
 		}
 
+
+		function get_filtered_companies(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/preduzece" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
 		function create_company(id, name, mbr, pib, address, place)
 		{
 			return $http({
@@ -75,6 +86,7 @@ module.exports = [
 
 		return {
 			get_all_companies: get_all_companies,
+			get_filtered_companies: get_filtered_companies,
 			create_company: create_company,
 			remove_company: remove_company,
 			update_company: update_company, 
