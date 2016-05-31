@@ -32,6 +32,11 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				if ($scope.selectedRow != null)
+					$(".edit-btn, .remove-btn").attr("disabled", false);
+				else
+					$(".edit-btn, .remove-btn").attr("disabled", true);
+				
 				$scope.selectedGroupId = $scope.selectedRow.Id_Grupa_roba;
 				$scope.selectedGroupName = $scope.selectedRow.Naziv_Grupa_roba;
 				$scope.selectedGroupPdv = $scope.selectedRow.PDV.Id_PDV;
@@ -56,6 +61,7 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		}
+		$(".edit-btn, .remove-btn").attr("disabled", true);
 
 		fillData();
 
@@ -82,6 +88,7 @@ module.exports = [
 			console.log("ID grupe je "+$scope.selectedGroupId);
 			grupeRobaService.remove_group($scope.selectedGroupId).then(function(response){
 				fillData();
+				$(".edit-btn, .remove-btn").attr("disabled", true);
 			});
 		};
 

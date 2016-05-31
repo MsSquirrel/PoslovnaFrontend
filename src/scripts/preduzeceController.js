@@ -55,6 +55,11 @@ module.exports = [
    		function setSelection()
    		{
    			$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+			if ($scope.selectedRow != null)
+				$(".edit-btn, .remove-btn").attr("disabled", false);
+			else
+				$(".edit-btn, .remove-btn").attr("disabled", true);
+
    			$scope.selectedCompanyId = $scope.selectedRow.Id_Preduzece;
    			$scope.selectedCompanyName = $scope.selectedRow.Naziv_Preduzece;
    			$scope.selectedCompanyMBR = $scope.selectedRow.Maticni_broj_Preduzece;
@@ -88,6 +93,7 @@ module.exports = [
 		$(".positiveInteger10").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 10);
 		});
+		$(".edit-btn, .remove-btn").attr("disabled", true);
 
 		fillData();
 		//setSelection();
@@ -129,6 +135,7 @@ module.exports = [
 			console.log("ID preduzeca je "+$scope.selectedRow[0].Id_Preduzece);
 			preduzecaService.remove_company($scope.selectedRow[0].Id_Preduzece).then(function(response){
 				fillData();
+				$(".edit-btn, .remove-btn").attr("disabled", true);
 			});
 		};
 

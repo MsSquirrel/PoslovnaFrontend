@@ -33,6 +33,11 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+          if ($scope.selectedRow != null)
+            $(".edit-btn, .remove-btn").attr("disabled", false);
+          else
+            $(".edit-btn, .remove-btn").attr("disabled", true);
+
    				$scope.selectedMeasUnitId = $scope.selectedRow.Id_Jedinica_mere;
    				$scope.selectedMeasUnitName = $scope.selectedRow.Naziv_Jedinica_mere;
           $scope.selectedMeasUnitMark = $scope.selectedRow.Oznaka_Jedinica_mere;
@@ -52,6 +57,7 @@ module.exports = [
       $(".characters3").on("change paste keyup", function() {
         $scope.isCharacter(this, 3);
       });
+      $(".edit-btn, .remove-btn").attr("disabled", true);
 
     	fillData();
 
@@ -81,6 +87,7 @@ module.exports = [
     		$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
     		merneJediniceService.remove_measUnit($scope.selectedRow[0].Id_Jedinica_mere).then(function(response){
     			fillData();
+          $(".edit-btn, .remove-btn").attr("disabled", true);
     		});
     	};
 

@@ -32,6 +32,10 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				if ($scope.selectedRow != null)
+					$(".edit-btn, .remove-btn").attr("disabled", false);
+				else
+					$(".edit-btn, .remove-btn").attr("disabled", true);
    				$scope.selectedPlaceId = $scope.selectedRow.Id;
    				$scope.selectedPlaceName = $scope.selectedRow.Naziv_Mesto;
    				$scope.selectedPlaceNumber = $scope.selectedRow.Postansk__broj_Mesto;
@@ -92,6 +96,7 @@ module.exports = [
 		$(".positiveInteger5").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 5);
 		});
+		$(".edit-btn, .remove-btn").attr("disabled", true);
 
 		fillData();
 		console.log("MESTO CONTROLLER");
@@ -100,7 +105,7 @@ module.exports = [
 		$scope.clear_add = function(){
 			
 			$scope.placeName = "";
-			$scope.placeNumber = "00000";
+			$scope.placeNumber = "";
 			if($scope.isModal){
 				$scope.$close(true);
 			}
@@ -122,6 +127,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			mestaService.remove_place($scope.selectedRow[0].Id).then(function(response){
 				fillData();
+				$(".edit-btn, .remove-btn").attr("disabled", true);
 			});
 		};
 

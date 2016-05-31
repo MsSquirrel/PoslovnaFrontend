@@ -27,6 +27,11 @@ module.exports = [
    			$scope.gridOptions = gridApi;
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				if ($scope.selectedRow != null)
+					$(".edit-btn, .remove-btn").attr("disabled", false);
+				else
+					$(".edit-btn, .remove-btn").attr("disabled", true);
+				
    				$scope.selectedPdvId = $scope.selectedRow.Id_PDV;
    				$scope.selectedPdvName = $scope.selectedRow.Naziv_PDV;
    				$scope.editPdvName = $scope.selectedRow.Naziv_PDV;
@@ -66,6 +71,7 @@ module.exports = [
 				$scope.gridOptions.data = response;
 			});
 		};
+		$(".edit-btn, .remove-btn").attr("disabled", true);
 
 		fillData();
 
@@ -91,6 +97,7 @@ module.exports = [
 		{
 			pdvService.remove_pdv($scope.selectedPdvId).then(function(response){
 				fillData();
+				$(".edit-btn, .remove-btn").attr("disabled", true);
 			});
 		};
 
