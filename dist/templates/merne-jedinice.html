@@ -21,7 +21,7 @@
 
 	<div ui-view></div>
 
-	<div ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
+	<div ng-show="currentState == 'merne-jedinice'" ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	</div>	
 
   	<div class="modal fade" id="confirmModal" role="dialog">

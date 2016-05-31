@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', '$localStorage', 'loginService',
-	function myController($scope, $http, $localStorage, loginService){
+	'$scope', '$http', '$localStorage', 'loginService', '$rootScope',
+	function myController($scope, $http, $localStorage, loginService, $rootScope){
 		
 		$scope.currentUser  = $localStorage.currentUser;
 
