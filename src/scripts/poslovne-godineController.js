@@ -33,11 +33,7 @@ module.exports = [
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-          if ($scope.selectedRow != null)
-            $(".edit-btn, .remove-btn").attr("disabled", false);
-          else
-            $(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];             
 
    				$scope.selectedBusinessYearId = $scope.selectedRow.Id_Poslovna_godina;
    				$scope.selectedBusinessYear = $scope.selectedRow.Godina_Poslovna_godina;
@@ -67,7 +63,7 @@ module.exports = [
       $(".positiveInteger4").on("change paste keyup", function() {
         $scope.isPositiveInteger(this, 4);
       });
-      $(".edit-btn, .remove-btn").attr("disabled", true);
+       
 
     	fillData();
 
@@ -76,7 +72,7 @@ module.exports = [
         $scope.businessYearFinished = 0;
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
-        $scope.clearInput($("h2").parent("div"));
+         
       }
 
       $scope.clear_add();
@@ -93,7 +89,7 @@ module.exports = [
     	{
     		poslovneGodineService.remove_businessYear($scope.selectedBusinessYearId).then(function(response){
 				fillData();
-        $(".edit-btn, .remove-btn").attr("disabled", true);
+         
 			});
     	};
 

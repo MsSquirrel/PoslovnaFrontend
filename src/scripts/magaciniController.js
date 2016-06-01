@@ -31,11 +31,7 @@ module.exports = [
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 
 		   		$scope.selectedWarehouseId = $scope.selectedRow.Id_Magacin;
 		   		$scope.selectedWarehouseName = $scope.selectedRow.Naziv_Magacin;
@@ -109,7 +105,7 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		};
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		 
 
 		$scope.fillData = fillData;
 
@@ -137,7 +133,7 @@ module.exports = [
 			console.log("ID magacina je "+$scope.selectedWarehouseId);
 			magaciniService.remove_warehouse($scope.selectedWarehouseId).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 

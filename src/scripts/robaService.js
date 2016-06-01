@@ -71,12 +71,22 @@ module.exports = [
 		}
 
 
+		function get_goods_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/roba/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
+
 		return {
 			get_all_goods: get_all_goods,
 			get_filtered_goods: get_filtered_goods, 
 			create_goods: create_goods, 
 			update_goods: update_goods, 
 			remove_goods: remove_goods,
+			get_goods_by_id: get_goods_by_id,
 		};		
 	}
 ];

@@ -1,41 +1,41 @@
-<div>
+<div class="col-md-6 col-md-offset-3 form">
 <h4>Izmeni postojeće preduzeće</h4>
 
 
-		<form>
+		<form class="form">
 Naziv preduzeća: 
 <div class="row">
-   	 <div class="col-sm-6">
+   	 <div>
 		<input type="text" class="form-control" ng-model="editCompanyName"></input>
 	 </div>
-</div>
+</div></br>
 Matični broj: 
 <div class="row">
-   	 <div class="col-sm-6">
+   	 <div>
 		<input type="text"  class="form-control positiveInteger8" ng-model="editCompanyMBR"></input>
 	</div>
-</div>
+</div></br>
 
 PIB preduzeća: 
 <div class="row">
-   	 <div class="col-sm-6">
+   	 <div>
 		<input type="text" class="form-control positiveInteger10" ng-model="editCompanyPIB"></input>
 	</div>
-</div>
+</div></br>
 Adresa preduzeća: 
 <div class="row">
-   	 <div class="col-sm-6">
+   	 <div>
 		<input type="text" class="form-control" ng-model="editCompanyAddress"></input>
 	 </div>
-</div>
+</div></br>
 Mesto:  
 <div class="row">
-   	 <div class="col-sm-6">
+   	 <div>
 		<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace"></select>
 		<br>
 	</div>
 </div>
-
+</br>
 <button type="button" class="btn btn-info accept"  ng-click="edit_selected_company( editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)">Sačuvaj</button>
 <button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 

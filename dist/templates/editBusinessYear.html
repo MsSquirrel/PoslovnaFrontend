@@ -1,32 +1,32 @@
-<div>
+<div class="col-md-6 col-md-offset-3 form">
 <h4>Izmeni postojeću poslovnu godinu: </h4>
 
-		<form>
+		<form class="form">
 	  
 Godina: 
 
 <div class="row">
-	<div class="col-md-6">
+	<div>
 		<input type="text" class="form-control positiveInteger4" ng-model="editBusinessYear"></input>
 	</div>
-</div>
+</div></br>
 
 <div class="row">
-	<div class="col-md-6">
+	<div>
 		Zaključena:
 		<input type="checkbox" ng-model="editBusinessYearFinished" ng-true-value=true ng-false-value=false></input>
     </div>
- </div>
+ </div></br>
 						
 Preduzeće: 
 
 <div class="row">
-	<div class="col-md-6">
+	<div>
 	<select class="form-control" ng-model="editBusinessYearCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
 	</div>
-</div>
+</div></br>
 
-
+</br>
 <button type="button" class="btn btn-info accept" ng-click="edit_selected_businessYear()">Sačuvaj</button>
 <button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 		</form>

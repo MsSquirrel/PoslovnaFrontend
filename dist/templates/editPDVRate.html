@@ -1,18 +1,19 @@
-<div>
+<div class="col-md-6 col-md-offset-3 form">
 	<h4>Izmeni postojeću stopu PDV-a</h4>
 
-		<form>
+		<form class="form" name="myFormEdit">
 	Vrednost stope PDV-a: 
 
 	<div class="row">
-		<div class="col-md-6">
-			<input type="text" class="form-control positiveDecimal" ng-model="editPdvRate"></input>			
+		<div>
+			<input type="text" name="number" class="form-control" ng-model="editPdvRate" ng-pattern="/\d{2}.\d{2}/"></input>		
+			<span class="writeError" ng-show="myFormEdit.number.$invalid">Unesite pozitivan broj sa dve dicimale!</span></br>	
 		</div>
-	</div>			
+	</div>	</br>		
 	
 	Važi od: 
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<p class="input-group">
 			    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editPdvRateDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ></input>
 			    <span class="input-group-btn">
@@ -21,16 +22,16 @@
 			    </span>
 	 		</p>
 	 	</div>
-	 </div>
+	 </div></br>
 						
 	PDV:  
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<select class="form-control" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs"></select>
 		</div>
 	</div>
-
-	<button type="button" class="btn btn-info accept" ng-click="edit_PDVRate()">Sačuvaj</button>
+</br></br>
+	<button type="button" class="btn btn-info" ng-click="edit_PDVRate()" ng-disabled="myFormEdit.$invalid">Sačuvaj</button>
 	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 
 		</form>

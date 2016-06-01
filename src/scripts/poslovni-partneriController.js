@@ -48,11 +48,7 @@ module.exports = [
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 				
    				$scope.selectedPartnerId = $scope.selectedRow.Id_Partner;
    				$scope.selectedPartnerName = $scope.selectedRow.Naziv_Partner;
@@ -152,7 +148,7 @@ module.exports = [
 		$(".positiveInteger8").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 8);
 		});
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		 
 
 		fillData();
 
@@ -170,7 +166,7 @@ module.exports = [
 			$scope.partnerCompany = "";
 			$scope.changeCompany = "";
 			$scope.checkCompany = "";
-			$scope.clearInput($("h2").parent("div"));
+			 
 	    };
 
 	     $scope.clear_add();
@@ -188,7 +184,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			partneriService.remove_partner($scope.selectedRow[0].Id_Partner).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 

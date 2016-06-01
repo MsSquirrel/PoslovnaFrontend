@@ -1,7 +1,7 @@
 <div>
 	<h2>Preduzeća</h2>
 
-	<div class="row">
+	<div ng-show="currentState == 'preduzeca'" class="row">
 		<div class="col-sm-4 col-sm-offset-1">
 
 			<button type="button" class="btn btn-success btn-xl" ui-sref="preduzeca.createCompany">
@@ -9,11 +9,11 @@
 			</button>
 
 
-			<button type="button" class="btn btn-danger btn-xl remove-btn" data-toggle="modal" data-target="#confirmModal">
+			<button type="button" class="btn btn-danger btn-xl" data-toggle="modal" data-target="#confirmModal" ng-disabled="gridOptions.selection.getSelectedRows().length == 0">
 		  		<span class="glyphicon glyphicon-remove" ></span>
 			</button>
 
-			<button type="button" class="btn btn-primary btn-xl edit-btn" ui-sref="preduzeca.editCompany({id: selectedCompanyId})">
+			<button type="button" class="btn btn-primary btn-xl" ui-sref="preduzeca.editCompany({id: selectedCompanyId})" ng-disabled="gridOptions.selection.getSelectedRows().length == 0">
 		  		<span class="glyphicon glyphicon-pencil" ></span>
 			</button>
 

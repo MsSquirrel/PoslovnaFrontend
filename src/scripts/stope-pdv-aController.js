@@ -35,10 +35,6 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    			$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-        if ($scope.selectedRow != null)
-          $(".edit-btn, .remove-btn").attr("disabled", false);
-        else
-          $(".edit-btn, .remove-btn").attr("disabled", true);
 
 				$scope.selectedPdvRateId = $scope.selectedRow.Id_Stopa_PDV_a;
 				$scope.selectedPdvRate = $scope.selectedRow.Stopa_Stopa_PDV_a;
@@ -105,12 +101,7 @@ module.exports = [
     		});
     	};
 
-      $scope. fillData = fillData;
-    
-      $(".positiveDecimal").on("change paste keyup", function() {
-        $scope.isPositiveDecimal(this);
-      });
-      $(".edit-btn, .remove-btn").attr("disabled", true);
+      $scope. fillData = fillData;       
 
     	fillData();
 
@@ -118,7 +109,7 @@ module.exports = [
         $scope.pdvRate = 0.00;
         $scope.pdvRateDate = "";
         $scope.pdvRatePdv=0;
-        $scope.clearInput($("h2").parent("div"));
+         
       };
 
       $scope.clear_add();
@@ -140,7 +131,7 @@ module.exports = [
     	{
     		stopePDVService.remove_pdvRate($scope.selectedPdvRateId).then(function(response){
     			fillData();
-          $(".edit-btn, .remove-btn").attr("disabled", true);
+           
           $scope.clear_add();
     		});
     	};

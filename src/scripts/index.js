@@ -24,6 +24,7 @@ myApp.controller('editPdvCtrl', require('./editPdvController.js'));
 myApp.controller('editBusinessYearCtrl', require('./editBusinessYearController.js'));
 myApp.controller('editPdvRateCtrl', require('./editPDVRateController.js'));
 myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
+myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -288,6 +289,26 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/roba',
         templateUrl: './templates/roba.html',
         controller: 'robaCtrl'
+      })
+      .state('roba.createWares', { 
+          data: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createWares.html', 
+              controller: "robaCtrl"
+            }
+          }
+      })
+      .state('roba.editWares', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editWares.html', 
+              controller: "editWaresCtrl",
+            }
+        }
       })
       .state('robne-kartice', {
         url: '/robne-kartice',

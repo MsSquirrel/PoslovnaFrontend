@@ -13,6 +13,19 @@ div.container div div.row{
 	margin-top: 5px;
 }
 
+div.form{
+    margin-top: 20px !important;
+}
+
+div.form h4{
+    margin-left: -20px;
+    margin-bottom: 20px;
+}
+
+form.form *{
+    margin: 0 auto;
+}
+
 /***  LOGIN FORM   ***/
 #login-form {
     width: 300px;
@@ -92,10 +105,16 @@ div.container div div.row{
     width: 20px;
 }
 
-p#error{
+p#error {
     color: red;
     font-size: 12px;
     margin-left: 40px;
     margin-top: 10px;
     margin-bottom: -10px;
+}
+input.ng-invalid {
+  border:1px solid #f00;
+}
+span.writeError {
+    color: red;
 }
