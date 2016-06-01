@@ -1,43 +1,49 @@
 <div class="col-md-6 col-md-offset-3 form">
-<h4>Izmeni postojeće preduzeće</h4>
+	<h4>Izmeni postojeće preduzeće</h4>
 
+	<form class="form" name="myForm">
 
-		<form class="form">
-Naziv preduzeća: 
-<div class="row">
-   	 <div>
-		<input type="text" class="form-control" ng-model="editCompanyName"></input>
-	 </div>
-</div></br>
-Matični broj: 
-<div class="row">
-   	 <div>
-		<input type="text"  class="form-control positiveInteger8" ng-model="editCompanyMBR"></input>
-	</div>
-</div></br>
+		Naziv preduzeća: 
+		<div class="row">
+		   	 <div>
+				<input type="text" class="form-control" ng-model="editCompanyName"></input>
+			 </div>
+		</div></br>
 
-PIB preduzeća: 
-<div class="row">
-   	 <div>
-		<input type="text" class="form-control positiveInteger10" ng-model="editCompanyPIB"></input>
-	</div>
-</div></br>
-Adresa preduzeća: 
-<div class="row">
-   	 <div>
-		<input type="text" class="form-control" ng-model="editCompanyAddress"></input>
-	 </div>
-</div></br>
-Mesto:  
-<div class="row">
-   	 <div>
-		<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace"></select>
-		<br>
-	</div>
-</div>
-</br>
-<button type="button" class="btn btn-info accept"  ng-click="edit_selected_company( editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)">Sačuvaj</button>
-<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+		Matični broj: 
+		<div class="row">
+		   	 <div>
+				<input type="text" name="mbrNumber" class="form-control" ng-model="editCompanyMBR" ng-pattern="/\d{8}/"></input>
+				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Unesite osam cifri!</span>
+			</div>
+		</div></br>
 
-		</form>
+		PIB preduzeća: 
+		<div class="row">
+		   	 <div>
+				<input type="text" name="pibNumber" class="form-control" ng-model="editCompanyPIB" ng-pattern="/\d{10}/"></input>
+				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Unesite deset cifri!</span>
+			</div>
+		</div></br>
+
+		Adresa preduzeća: 
+		<div class="row">
+		   	 <div>
+				<input type="text" class="form-control" ng-model="editCompanyAddress"></input>
+			 </div>
+		</div></br>
+
+		Mesto:  
+		<div class="row">
+		   	 <div>
+				<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace"></select>
+				<br>
+			</div>
+		</div>
+
+		</br>
+		<button type="button" class="btn btn-info"  ng-click="edit_selected_company( editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+
+	</form>
 </div>

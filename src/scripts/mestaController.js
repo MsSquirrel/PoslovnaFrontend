@@ -93,10 +93,6 @@ module.exports = [
 		}
 		
 		$scope.fillData = fillData;
-
-		//$(".positiveInteger5").on("change paste keyup", function() {
-		//	$scope.isPositiveInteger(this, 5);
-		//});
 		 
 
 		fillData();

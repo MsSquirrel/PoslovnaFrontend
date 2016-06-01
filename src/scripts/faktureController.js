@@ -92,10 +92,6 @@ module.exports = [
 				$scope.allPartners = response;
 			});
 		};
-		
-		$(".positiveInteger").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this);
-		});
 
 		fillData();
 

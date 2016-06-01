@@ -140,15 +140,7 @@ module.exports = [
 			});
 		};
 		
-		$scope.fillData = fillData;
-
-		$(".positiveInteger10").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 10);
-		});		
-		$(".positiveInteger8").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 8);
-		});
-		 
+		$scope.fillData = fillData;		 
 
 		fillData();
 

@@ -1,35 +1,35 @@
 <div>
 	<div class="col-md-6 col-md-offset-3 form">
 	<h4>Dodaj novu poslovnu godinu</h4>
-		<form class="form">
+	<form class="form" name="myForm">
 
-			Godina:
-			<div class="row">
-				<div>
-					<input type="text" class="form-control positiveInteger4" ng-model="businessYear"></input></br>
-				</div>
+		Godina:
+		<div class="row">
+			<div>
+				<input type="text" name="number" class="form-control" ng-model="businessYear" ng-pattern="/\d{5}/"></input></br>
+				<span class="writeError" ng-show="myForm.number.$invalid">Unesite godinu u rasponu 1960-2099!</span>
 			</div>
+		</div></br>
 
-			<div class="row">
-				<div>
-			Zaključena:
-
-					<input type="checkbox" ng-model="businessYearFinished" ng-true-value=true ng-false-value=false></input>
-				</div>
-			</div></br>
-							
-			Preduzeće:  
-
-			<div class="row">
-				<div>
-					<select class="form-control" ng-model="businessYearCompany" ng-click="chose_place()">
-	   				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-	   				</select>
-				</div>
+		Zaključena:
+		<div class="row">
+			<div>
+				<input type="checkbox" ng-model="businessYearFinished" ng-true-value=true ng-false-value=false></input>
 			</div>
-			</br></br>
-			<button type="button" class="btn btn-info accept"  ng-click="add_businessYear()">Sačuvaj</button>
-			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
-		</form>
+		</div></br>
+						
+		Preduzeće:  
+		<div class="row">
+			<div>
+				<select class="form-control" ng-model="businessYearCompany" ng-click="chose_place()">
+   				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+   				</select>
+			</div>
+		</div></br>
+
+		</br>
+		<button type="button" class="btn btn-info"  ng-click="add_businessYear()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+	</form>
 </div>
 </div>

@@ -28,13 +28,6 @@ module.exports = [
    				$scope.editPartnerType = $scope.partner.Tip_Partner;
 			});
 		};
-		
-		$(".positiveInteger10").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 10);
-		});		
-		$(".positiveInteger8").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 8);
-		});
 
 		fillData();
 

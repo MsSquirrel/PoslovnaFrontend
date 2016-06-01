@@ -22,10 +22,6 @@ module.exports = [
 			});
 
 		};
-    
-      $(".positiveInteger4").on("change paste keyup", function() {
-        $scope.isPositiveInteger(this, 4);
-      });
 
 		fillData();
 

@@ -16,10 +16,6 @@ module.exports = [
 			});
 		};
 		
-		$(".positiveInteger5").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 5);
-		});
-
 		fillData();
 
 		$scope.edit_selected_place = function()

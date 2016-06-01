@@ -33,7 +33,8 @@
 	    		<div class="modal-body">
 	      			<form novalidate name="myForm">
 
-						Broj fakture: <input type="text" class="form-control positiveInteger" ng-model="invoiceNumber"><br>
+						Broj fakture: <input type="text" name="number" class="form-control" ng-model="invoiceNumber" ng-pattern="/\d{18}/"><br>
+						<span class="writeError" ng-show="myForm.number.$invalid">Unesite do osamnaest cifri!</span>
 						Poslovna godina: <select class="form-control" ng-model="invoiceYear" ng-click="chose_place()">
 											<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
 										</select><br>
@@ -83,7 +84,8 @@
 	    		<div class="modal-body">
 	      			<form novalidate name="myFormEdit">
 
-						Broj fakture: <input type="text" class="form-control positiveInteger" ng-model="editInvoiceNumber"><br>
+						Broj fakture: <input type="text" name="editNumber" class="form-control" ng-model="editInvoiceNumber" ng-pattern="/\d{18}/"><br>
+						<span class="writeError" ng-show="myForm.editNumber.$invalid">Unesite do osamnaest cifri!</span>
 						Poslovna godina: <select class="form-control" ng-model="editInvoiceYear" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears">
 										</select><br>
 						Poslovni partner: <select class="form-control" ng-model="editInvoicePartner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners">
@@ -112,7 +114,7 @@
 						<span class="writeError" ng-show="myFormEdit.total.$invalid">Unesite pozivtivan broj, sa dve decimale!</span></br>
 
 						<br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_invoice()"  ng-disabled="myFormEdit.$invalid">Sačuvaj</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_invoice()" ng-disabled="myFormEdit.$invalid">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

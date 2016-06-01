@@ -136,15 +136,7 @@ module.exports = [
 			});
 		};
 
-		$scope.fillData = fillData;
-
-		$(".positiveInteger8").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 8);
-		});
-		$(".positiveInteger10").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 10);
-		});
-		 
+		$scope.fillData = fillData;		 
 
 		fillData();
 		//setSelection();
