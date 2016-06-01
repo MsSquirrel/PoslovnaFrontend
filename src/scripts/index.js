@@ -301,6 +301,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
           }
       })
+      .state('roba.editWares', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editWares.html', 
+              controller: "editWaresCtrl",
+            }
+        }
+      })
       .state('robne-kartice', {
         url: '/robne-kartice',
         templateUrl: './templates/robne-kartice.html',
