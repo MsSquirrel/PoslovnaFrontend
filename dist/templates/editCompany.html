@@ -13,7 +13,7 @@
 		Matični broj: 
 		<div class="row">
 		   	 <div>
-				<input type="text" name="mbrNumber" class="form-control" ng-model="editCompanyMBR" ng-pattern="/\d{8}/"></input>
+				<input type="text" name="mbrNumber" class="form-control" ng-model="editCompanyMBR" ng-pattern="/^(\d{8})$/"></input>
 				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Unesite osam cifri!</span>
 			</div>
 		</div></br>
@@ -21,7 +21,7 @@
 		PIB preduzeća: 
 		<div class="row">
 		   	 <div>
-				<input type="text" name="pibNumber" class="form-control" ng-model="editCompanyPIB" ng-pattern="/\d{10}/"></input>
+				<input type="text" name="pibNumber" class="form-control" ng-model="editCompanyPIB" ng-pattern="/^(\d{10})$/"></input>
 				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Unesite deset cifri!</span>
 			</div>
 		</div></br>

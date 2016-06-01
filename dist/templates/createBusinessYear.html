@@ -6,7 +6,7 @@
 		Godina:
 		<div class="row">
 			<div>
-				<input type="text" name="number" class="form-control" ng-model="businessYear" ng-pattern="/\d{5}/"></input></br>
+				<input type="text" name="number" class="form-control" ng-model="businessYear" ng-pattern="/^((19[6-9]\d)|(20\d\d))$/"></input></br>
 				<span class="writeError" ng-show="myForm.number.$invalid">Unesite godinu u rasponu 1960-2099!</span>
 			</div>
 		</div></br>
