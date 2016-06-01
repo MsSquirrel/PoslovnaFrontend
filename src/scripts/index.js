@@ -282,7 +282,21 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('prijemni-dokumenti', {
         url: '/prijemni-dokumenti',
         templateUrl: './templates/prijemni-dokumenti.html',
-        controller: 'prijemni-dokumentiCtrl'
+        controller: 'prijemni-dokumentiCtrl',
+        data: {
+              isModal: false
+        }
+      })
+      .state('prijemni-dokumenti.createWarehouseReceipt', { 
+          data: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createWarehouseReceipt.html', 
+              controller: "prijemni-dokumentiCtrl"
+            }
+          }
       })
       .state('roba', {
         url: '/roba',
@@ -354,8 +368,8 @@ myApp
 .service('magaciniService', require('./magaciniService.js'))
 .service('grupeRobaService', require('./grupe-robaService.js'))
 .service('faktureService', require('./faktureService.js'))
-.service('loginService', require('./loginService.js'));
-
+.service('loginService', require('./loginService.js'))
+.service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'));
 
 myApp
 .run(require('./run.js'));

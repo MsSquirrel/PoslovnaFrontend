@@ -111,7 +111,7 @@ module.exports = [
       $scope.closeState = function()
       {
         $scope.clear_add();
-        $state.go('^',{}, {reload:true});
+        $state.go('^',{}, {reload:false});
       };
 
 	}
