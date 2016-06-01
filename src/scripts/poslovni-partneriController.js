@@ -36,24 +36,19 @@ module.exports = [
  
 
 		 $scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Partner', width:'15%', displayName: 'Partner', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzeću', cellTooltip: true, headerTooltip: true},
+		    { name:'Naziv_Partner', width:'20%', displayName: 'Partner', cellTooltip: true, headerTooltip: true},
 		    { name:'Tip_Partner', width:'13%', displayName: 'Tip partnera', cellTooltip: true, headerTooltip: true},
 		    { name:'Maticni_broj_Partner', width:'13%', displayName: 'Matični broj', cellTooltip: true, headerTooltip: true},
 		    { name:'PIB_Partner', width:'14%', displayName: 'PIB', cellTooltip: true, headerTooltip: true},
-		    { name:'Adresa_Partner', width:'15%', displayName: 'Adresa', cellTooltip: true, headerTooltip: true},
-		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto', cellTooltip: true, headerTooltip: true },
+		    { name:'Adresa_Partner', width:'20%', displayName: 'Adresa', cellTooltip: true, headerTooltip: true},
+		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto', cellTooltip: true, headerTooltip: true },
 		  ];
 
 		  $scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 				
    				$scope.selectedPartnerId = $scope.selectedRow.Id_Partner;
    				$scope.selectedPartnerName = $scope.selectedRow.Naziv_Partner;
@@ -75,6 +70,58 @@ module.exports = [
 		  });
    		};
 
+
+   		$scope.search = {};
+   		$scope.search.naziv= '';
+   		$scope.search.PIB= '';
+   		$scope.search.maticni_broj = '';
+
+   		$scope.search.filterData = function(){
+
+   			var naziv = $scope.search.naziv.trim();
+   			var maticni = $scope.search.maticni_broj.trim();
+   			var pib = $scope.search.PIB.trim();
+
+   			if(pib==='' && naziv==='' && maticni==='')
+   				return;
+
+   			var url_filter = "?$filter="
+
+   			var prvi= true;
+   			
+   			if(naziv!=''){
+   				prvi =	false;
+   				url_filter += "substringof('" + naziv + "', Naziv_Partner) eq true";
+   			}
+
+   			if(pib!=''){
+   				if(!prvi){
+   					url_filter += " and "
+   				}
+
+   				url_filter += "PIB_Partner eq " + pib;
+   			}
+
+
+   			if(maticni!=''){
+   				if(!prvi){
+   					url_filter += " and "
+   				}
+
+   				url_filter += "Maticni_broj_Partner eq " + maticni;
+   			}
+
+   			console.log(url_filter);
+   			partneriService.get_filtered_partners(url_filter).then(function(response){
+   				$scope.gridOptions.data = response;
+
+   				$scope.search.naziv= '';
+		   		$scope.search.PIB= '';
+		   		$scope.search.maticni_broj = '';
+   			});
+   		}
+
+
     	function fillData(){
 
 			partneriService.get_all_partners()
@@ -93,13 +140,15 @@ module.exports = [
 			});
 		};
 		
+		$scope.fillData = fillData;
+
 		$(".positiveInteger10").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 10);
 		});		
 		$(".positiveInteger8").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this, 8);
 		});
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		 
 
 		fillData();
 
@@ -117,7 +166,7 @@ module.exports = [
 			$scope.partnerCompany = "";
 			$scope.changeCompany = "";
 			$scope.checkCompany = "";
-			$scope.clearInput($("h2").parent("div"));
+			 
 	    };
 
 	     $scope.clear_add();
@@ -135,7 +184,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			partneriService.remove_partner($scope.selectedRow[0].Id_Partner).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 

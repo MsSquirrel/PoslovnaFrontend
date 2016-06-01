@@ -1,6 +1,6 @@
 module.exports = [		
-	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
-	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {	
+	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window', '$state',
+	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window, $state) {	
 
 		$scope.allCategories = {};
 		$scope.allMeasUnits = {};
@@ -24,20 +24,15 @@ module.exports = [
 
 		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
-		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa', cellTooltip: true, headerTooltip: true},
-			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzece', cellTooltip: true, headerTooltip: true}
+		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'35%', displayName: 'Grupa', cellTooltip: true, headerTooltip: true},
+			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 				
 				$scope.selectedGoodsId = $scope.selectedRow.Id_Roba;
 				$scope.selectedGoodsName = $scope.selectedRow.Naziv_Roba;
@@ -51,6 +46,50 @@ module.exports = [
 				$scope.editGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
 		 	});
    		};	
+
+
+
+   	$scope.search = {};
+    $scope.search.naziv = '';
+    $scope.search.grupa_roba = '';
+
+    $scope.search.filterData = function(){
+
+        var naziv = $scope.search.naziv.trim();
+        var grupa_roba = $scope.search.grupa_roba.trim();
+        
+
+        if(grupa_roba==='' && naziv==='')
+   				return;
+
+		var url_filter = "?$filter="
+
+        
+        var prvi= true;
+   			
+		if(naziv!=''){
+			prvi =	false;
+			url_filter += "substringof('" + naziv + "', Naziv_Roba) eq true";
+		}
+
+		if(grupa_roba!=''){
+			if(!prvi){
+				url_filter += " and "
+			}
+
+			url_filter += "Id_Grupa_roba eq " + grupa_roba;
+		}
+
+		console.log(url_filter);
+		robaService.get_filtered_goods(url_filter).then(function(response){
+			$scope.gridOptions.data = response;
+			$scope.search.naziv= '';
+			$scope.search.grupa_roba = '';
+		});
+
+      }
+
+
 
 		function fillData(){
     		robaService.get_all_goods().then(function(response){
@@ -70,7 +109,7 @@ module.exports = [
 			});
 		}
 
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		$scope.fillData = fillData;
 
 		fillData();
 
@@ -86,8 +125,9 @@ module.exports = [
 		$scope.add_goods = function()
 		{
 			robaService.create_goods($scope.goodsId, $scope.goodsName, $scope.goodsCategory, $scope.goodsMeasUnit, $scope.goodsCompany).then(function(response){
-				fillData();
 				$scope.clear_add();
+			 	$state.go('^',{}, {reload:true});
+
 			});
 		};
 
@@ -96,7 +136,7 @@ module.exports = [
 			console.log("ID grupe je "+$scope.selectedGoodsId);
 			robaService.remove_goods($scope.selectedGoodsId).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 
@@ -107,5 +147,12 @@ module.exports = [
 				fillData();
 			});
 		};
+
+
+		$scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 	}
 ];

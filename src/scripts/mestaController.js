@@ -32,10 +32,7 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+					 
    				$scope.selectedPlaceId = $scope.selectedRow.Id;
    				$scope.selectedPlaceName = $scope.selectedRow.Naziv_Mesto;
    				$scope.selectedPlaceNumber = $scope.selectedRow.Postansk__broj_Mesto;
@@ -79,6 +76,8 @@ module.exports = [
    			console.log(url_filter);
    			mestaService.get_filtered_places(url_filter).then(function(response){
    				$scope.gridOptions.data = response;
+   				$scope.search.naziv= '';
+   				$scope.search.postanski_broj = '';
    			});
    		}
 
@@ -95,10 +94,10 @@ module.exports = [
 		
 		$scope.fillData = fillData;
 
-		$(".positiveInteger5").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 5);
-		});
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		//$(".positiveInteger5").on("change paste keyup", function() {
+		//	$scope.isPositiveInteger(this, 5);
+		//});
+		 
 
 		fillData();
 		console.log("MESTO CONTROLLER");
@@ -111,7 +110,7 @@ module.exports = [
 			if($scope.isModal){
 				$scope.$close(true);
 			}
-			//$scope.clearInput($("h2").parent("div"));
+			// 
 			console.log("clear_add");
 		};
 
@@ -129,7 +128,7 @@ module.exports = [
 			$scope.selectedRow = $scope.gridOptions.selection.getSelectedRows();
 			mestaService.remove_place($scope.selectedRow[0].Id).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 

@@ -22,21 +22,16 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Magacin', width:'30%', displayName:'Naziv magacina', cellTooltip: true, headerTooltip: true},
-		    { name:'Adresa_Magacin', width:'35%', displayName:'Adresa', cellTooltip: true, headerTooltip: true},
-		    { name:'Mesto.Naziv_Mesto', width:'15%', displayName: 'Mesto', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'20%', displayName:'Preduzeće', cellTooltip: true, headerTooltip: true}
+		    { name:'Naziv_Magacin', width:'40%', displayName:'Naziv magacina', cellTooltip: true, headerTooltip: true},
+		    { name:'Adresa_Magacin', width:'40%', displayName:'Adresa', cellTooltip: true, headerTooltip: true},
+		    { name:'Mesto.Naziv_Mesto', width:'20%', displayName: 'Mesto', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 
 		   		$scope.selectedWarehouseId = $scope.selectedRow.Id_Magacin;
 		   		$scope.selectedWarehouseName = $scope.selectedRow.Naziv_Magacin;
@@ -52,6 +47,51 @@ module.exports = [
    		};
 
 
+
+
+   	$scope.search = {};
+    $scope.search.naziv = '';
+    $scope.search.mesto = '';
+
+    $scope.search.filterData = function(){
+
+        var naziv = $scope.search.naziv.trim();
+        var mesto = $scope.search.mesto.trim();
+        
+
+        if(mesto==='' && naziv==='')
+   				return;
+
+		var url_filter = "?$filter="
+
+        
+        var prvi= true;
+   			
+		if(naziv!=''){
+			prvi =	false;
+			url_filter += "substringof('" + naziv + "', Naziv_Magacin) eq true";
+		}
+
+		if(mesto!=''){
+			if(!prvi){
+				url_filter += " and "
+			}
+
+			url_filter += "Id eq " + mesto;
+		}
+
+		console.log(url_filter);
+		magaciniService.get_filtered_warehouses(url_filter).then(function(response){
+			$scope.gridOptions.data = response;
+			$scope.search.naziv= '';
+			$scope.search.mesto = '';
+		});
+
+      }
+
+
+
+
     	function fillData(){
     		magaciniService.get_all_warehouses().then(function(response){
 				$scope.gridOptions.data = response;
@@ -65,7 +105,9 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		};
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		 
+
+		$scope.fillData = fillData;
 
 		fillData();
 
@@ -91,7 +133,7 @@ module.exports = [
 			console.log("ID magacina je "+$scope.selectedWarehouseId);
 			magaciniService.remove_warehouse($scope.selectedWarehouseId).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 

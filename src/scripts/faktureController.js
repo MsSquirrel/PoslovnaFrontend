@@ -51,11 +51,6 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
-
 				$scope.selectedInvoiceId = $scope.selectedRow.Id_Faktura;
 				$scope.selectedInvoiceNumber = $scope.selectedRow.Broj_fakture_Faktura;
 				$scope.selectedInvoiceYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
@@ -101,11 +96,6 @@ module.exports = [
 		$(".positiveInteger").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this);
 		});
-		
-		$(".positiveDecimal").on("change paste keyup", function() {
-			$scope.isPositiveDecimal(this);
-		});		
-		$(".edit-btn, .remove-btn").attr("disabled", true);
 
 		fillData();
 
@@ -119,7 +109,7 @@ module.exports = [
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
 			$scope.invoiceTotalPlacanje = "";
-			$scope.clearInput($("h2").parent("div"));
+			 
 		}
 
 		$scope.clear_add();
@@ -144,7 +134,6 @@ module.exports = [
 			console.log("ID fakture je "+$scope.selectedInvoiceId);
 			faktureService.remove_invoice($scope.selectedInvoiceId).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
 			});
 		};
 

@@ -26,11 +26,7 @@ module.exports = [
     	$scope.gridOptions.onRegisterApi = function(gridApi) {
    			$scope.gridOptions = gridApi;
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 				
    				$scope.selectedPdvId = $scope.selectedRow.Id_PDV;
    				$scope.selectedPdvName = $scope.selectedRow.Naziv_PDV;
@@ -50,7 +46,7 @@ module.exports = [
    			var url_filter = "?$filter="
    			
    			if(naziv!=''){
-   				prvi =	false;
+   				
    				url_filter += "substringof('" + naziv + "', Naziv_PDV) eq true";
    			}else{
    				return;
@@ -60,6 +56,7 @@ module.exports = [
    			console.log(url_filter);
    			pdvService.get_filtered_pdvs(url_filter).then(function(response){
    				$scope.gridOptions.data = response;
+   				$scope.search.naziv= '';
    			});
    		}
 
@@ -71,7 +68,7 @@ module.exports = [
 				$scope.gridOptions.data = response;
 			});
 		};
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		 
 
 		$scope.fillData = fillData;
 
@@ -99,7 +96,7 @@ module.exports = [
 		{
 			pdvService.remove_pdv($scope.selectedPdvId).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 

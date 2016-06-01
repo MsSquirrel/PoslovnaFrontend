@@ -1,0 +1,51 @@
+<div>
+	<div class="col-md-6 col-md-offset-3 form">
+	<h4 class="modal-title">Dodaj novu robu</h4>
+
+		Naziv robe: 
+		<div class="row">
+			<div class="col-md-6">
+				<input type="text" class="form-control" ng-model="goodsName">
+				</input>	
+			</div>
+		</div>										
+		
+		Grupa robe:  	
+
+		<div class="row">
+			<div class="col-md-6">
+				<select class="form-control" ng-model="goodsCategory" ng-click="chose_place()">
+				<option  ng-repeat="category in allCategories" ng-value="category.Id_Grupa_roba">{{category.Naziv_Grupa_roba}}</option>
+				</select><br>
+			</div>
+		</div>
+
+		Jedinica mere:  
+
+		<div class="row">
+			<div class="col-md-6">
+
+				<select class="form-control" ng-model="goodsMeasUnit" ng-click="chose_place()">
+				<option  ng-repeat="measUnit in allMeasUnits" ng-value="measUnit.Id_Jedinica_mere">{{measUnit.Naziv_Jedinica_mere}}</option>
+				</select><br>
+			</div>
+		</div>
+
+		Preduzece:  	
+		
+		<div class="row">
+			<div class="col-md-6">				
+
+				<select class="form-control" ng-model="goodsCompany" ng-click="chose_place()">
+				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+				</select>
+			</div>
+		</div>	
+
+		<br>
+		
+		<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_goods()">Sačuvaj</button>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
+
+	</div>
+</div>
