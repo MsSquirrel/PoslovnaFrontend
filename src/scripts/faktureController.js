@@ -96,10 +96,6 @@ module.exports = [
 		$(".positiveInteger").on("change paste keyup", function() {
 			$scope.isPositiveInteger(this);
 		});
-		
-		$(".positiveDecimal").on("change paste keyup", function() {
-			$scope.isPositiveDecimal(this);
-		});		
 
 		fillData();
 
@@ -113,7 +109,7 @@ module.exports = [
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
 			$scope.invoiceTotalPlacanje = "";
-			$scope.clearInput($("h2").parent("div"));
+			 
 		}
 
 		$scope.clear_add();

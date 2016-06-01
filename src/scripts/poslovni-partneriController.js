@@ -113,7 +113,7 @@ module.exports = [
 			$scope.partnerCompany = "";
 			$scope.changeCompany = "";
 			$scope.checkCompany = "";
-			$scope.clearInput($("h2").parent("div"));
+			 
 	    };
 
 	     $scope.clear_add();

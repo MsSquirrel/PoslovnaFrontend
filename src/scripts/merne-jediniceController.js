@@ -88,12 +88,7 @@ module.exports = [
     		});
     	};
     
-      $scope.fillData = fillData;
-      
-      $(".characters3").on("change paste keyup", function() {
-        $scope.isCharacter(this, 3);
-      });
-       
+      $scope.fillData = fillData;       
 
     	fillData();
 

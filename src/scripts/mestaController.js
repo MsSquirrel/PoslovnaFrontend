@@ -108,7 +108,7 @@ module.exports = [
 			if($scope.isModal){
 				$scope.$close(true);
 			}
-			//$scope.clearInput($("h2").parent("div"));
+			// 
 			console.log("clear_add");
 		};
 

@@ -100,12 +100,7 @@ module.exports = [
     		});
     	};
 
-      $scope. fillData = fillData;
-    
-      $(".positiveDecimal").on("change paste keyup", function() {
-        $scope.isPositiveDecimal(this);
-      });
-       
+      $scope. fillData = fillData;       
 
     	fillData();
 
@@ -113,7 +108,7 @@ module.exports = [
         $scope.pdvRate = 0.00;
         $scope.pdvRateDate = "";
         $scope.pdvRatePdv=0;
-        $scope.clearInput($("h2").parent("div"));
+         
       };
 
       $scope.clear_add();

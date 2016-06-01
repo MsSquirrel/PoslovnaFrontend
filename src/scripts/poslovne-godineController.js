@@ -73,7 +73,7 @@ module.exports = [
         $scope.businessYearFinished = 0;
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
-        $scope.clearInput($("h2").parent("div"));
+         
       }
 
       $scope.clear_add();
