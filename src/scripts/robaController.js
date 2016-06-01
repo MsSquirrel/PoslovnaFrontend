@@ -33,11 +33,7 @@ module.exports = [
    			$scope.gridOptions = gridApi;
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
-   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-   				if ($scope.selectedRow != null)
-					$(".edit-btn, .remove-btn").attr("disabled", false);
-				else
-					$(".edit-btn, .remove-btn").attr("disabled", true);
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];					 
 				
 				$scope.selectedGoodsId = $scope.selectedRow.Id_Roba;
 				$scope.selectedGoodsName = $scope.selectedRow.Naziv_Roba;
@@ -70,7 +66,7 @@ module.exports = [
 			});
 		}
 
-		$(".edit-btn, .remove-btn").attr("disabled", true);
+		 
 
 		fillData();
 
@@ -97,7 +93,7 @@ module.exports = [
 			console.log("ID grupe je "+$scope.selectedGoodsId);
 			robaService.remove_goods($scope.selectedGoodsId).then(function(response){
 				fillData();
-				$(".edit-btn, .remove-btn").attr("disabled", true);
+				 
 			});
 		};
 
