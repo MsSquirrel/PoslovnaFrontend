@@ -1,6 +1,6 @@
 module.exports = [		
-	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window',
-	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window) {	
+	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window', '$state',
+	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window, $state) {	
 
 		$scope.allCategories = {};
 		$scope.allMeasUnits = {};
@@ -86,8 +86,9 @@ module.exports = [
 		$scope.add_goods = function()
 		{
 			robaService.create_goods($scope.goodsId, $scope.goodsName, $scope.goodsCategory, $scope.goodsMeasUnit, $scope.goodsCompany).then(function(response){
-				fillData();
 				$scope.clear_add();
+			 	$state.go('^',{}, {reload:true});
+
 			});
 		};
 
@@ -107,5 +108,12 @@ module.exports = [
 				fillData();
 			});
 		};
+
+
+		$scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 	}
 ];
