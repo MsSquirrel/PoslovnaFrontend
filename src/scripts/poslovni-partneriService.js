@@ -11,6 +11,15 @@ module.exports = [
 			});
 		}
 
+		function get_filtered_partners(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/poslovni_partner" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
 		function create_partner(id, name, mbr, pib, address, place, company, type)
 		{
 			return $http({
@@ -80,6 +89,7 @@ module.exports = [
 
 		return {
 			get_all_partners: get_all_partners,
+			get_filtered_partners: get_filtered_partners,
 			create_partner: create_partner,
 			remove_partner: remove_partner,
 			update_partner: update_partner,

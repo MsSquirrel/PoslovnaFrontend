@@ -10,6 +10,14 @@ module.exports = [
 			});
 		}
 
+		function get_filtered_warehouses(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/magacin" + filter_params;
+			return $http.get(resUrl).then(function(response) {
+				return response.data;
+			});
+		}
+
 		function create_warehouse(id, name, address, place, company)
 		{
 			return $http({
@@ -62,6 +70,7 @@ module.exports = [
 
 		return {
 			get_all_warehouses: get_all_warehouses,
+			get_filtered_warehouses: get_filtered_warehouses,
 			create_warehouse: create_warehouse,
 			remove_warehouse: remove_warehouse,
 			update_warehouse: update_warehouse, 

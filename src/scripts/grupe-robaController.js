@@ -22,9 +22,8 @@ module.exports = [
 		};
 
 		$scope.gridOptions.columnDefs = [
-		    { name:'Naziv_Grupa_roba', width:'55%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
-		    { name:'PDV.Naziv_PDV', width:'20%', displayName: 'Po PDV', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'25%', displayName: 'Preduzece', cellTooltip: true, headerTooltip: true}
+		    { name:'Naziv_Grupa_roba', width:'75%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
+		    { name:'PDV.Naziv_PDV', width:'25%', displayName: 'Po PDV', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
@@ -48,6 +47,33 @@ module.exports = [
 		 	});
    		};	
 
+
+
+   		$scope.search = {};
+   		$scope.search.naziv= '';
+
+   		$scope.search.filterData = function(){
+
+   			var naziv= $scope.search.naziv.trim();
+
+   			var url_filter = "?$filter="
+   			
+   			if(naziv!=''){
+   				url_filter += "substringof('" + naziv + "', Naziv_Grupa_roba) eq true";
+   			}else{
+   				return;
+   			}
+
+
+   			console.log(url_filter);
+   			grupeRobaService.get_filtered_groups(url_filter).then(function(response){
+   				$scope.gridOptions.data = response;
+   				$scope.search.naziv= '';
+   			});
+   		}
+
+
+
 		function fillData(){
     		grupeRobaService.get_all_groups().then(function(response){
 				$scope.gridOptions.data = response;
@@ -62,6 +88,8 @@ module.exports = [
 			});
 		}
 		$(".edit-btn, .remove-btn").attr("disabled", true);
+
+		$scope.fillData = fillData;
 
 		fillData();
 

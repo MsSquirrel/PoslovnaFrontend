@@ -79,6 +79,8 @@ module.exports = [
    			console.log(url_filter);
    			mestaService.get_filtered_places(url_filter).then(function(response){
    				$scope.gridOptions.data = response;
+   				$scope.search.naziv= '';
+   				$scope.search.postanski_broj = '';
    			});
    		}
 

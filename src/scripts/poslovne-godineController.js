@@ -24,9 +24,8 @@ module.exports = [
 		  };
  
 		 $scope.gridOptions.columnDefs = [
-		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
-		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena', cellFilter: 'true_false', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'50%', displayName: 'Preduzeće', cellTooltip: true, headerTooltip: true},
+		    { name:'Godina_Poslovna_godina', width:'50%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
+		    { name:'Zakljucena_Poslovna_godina', width:'50%', displayName: 'Zaključena', cellFilter: 'true_false', cellTooltip: true, headerTooltip: true}
 		  ];
 
 

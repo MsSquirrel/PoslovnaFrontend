@@ -119,6 +119,10 @@ module.exports = [
    			console.log(url_filter);
    			preduzecaService.get_filtered_companies(url_filter).then(function(response){
    				$scope.gridOptions.data = response;
+
+   				$scope.search.naziv= '';
+		   		$scope.search.PIB= '';
+		   		$scope.search.maticni_broj = '';
    			});
    		}
 

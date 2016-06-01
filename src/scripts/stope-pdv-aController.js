@@ -80,6 +80,7 @@ module.exports = [
               stopePDVService.get_filtered_PDVRates(url_filter1).then(function(response1){
                 
                 $scope.gridOptions.data = response1;
+                $scope.search.zaPdv= '';
               });
 
             }

@@ -9,6 +9,15 @@ module.exports = [
 			});
 		}
 
+
+		function get_filtered_groups(filter_params) {
+			var resUrl = "http://localhost:61769/api/grupa_roba" + filter_params;
+			return $http.get(resUrl).then(function(response) {
+				return response.data;
+			});
+		}
+
+
 		function create_group(grupaId, grupaNaziv, grupaPdv, grupaPreduzece) {	
 			return $http({
                     method: "post",
@@ -57,7 +66,8 @@ module.exports = [
 		}
 
 		return {
-			get_all_groups: get_all_groups, 
+			get_all_groups: get_all_groups,
+			get_filtered_groups: get_filtered_groups, 
 			create_group: create_group, 
 			update_group: update_group, 
 			remove_group: remove_group,
