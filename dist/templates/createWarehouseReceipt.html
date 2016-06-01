@@ -1,0 +1,68 @@
+
+<div class="col-md-6 col-md-offset-3 form">
+	<h4>Dodaj novu primku</h4>
+		<form class="form">
+
+			Poslovna godina:  
+
+			<div class="row">
+				<div>
+					<select class="form-control" ng-model="warehouseReceiptBusinessYear">
+	   				<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+	   				</select>
+				</div>
+			</div></br>
+
+			U magacin:  
+
+			<div class="row">
+				<div>
+					<select class="form-control" ng-model="warehouseReceiptWarehouse1">
+	   				<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
+	   				</select>
+				</div>
+			</div></br>
+
+
+			Iz magacina:  
+
+			<div class="row">
+				<div>
+					<select class="form-control" ng-model="warehouseReceiptWarehouse2">
+	   				<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
+	   				</select>
+				</div>
+			</div></br>
+			
+
+			Partner:  
+
+			<div class="row">
+				<div>
+					<select class="form-control" ng-model="warehouseReceiptPartner">
+	   				<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
+	   				</select>
+				</div>
+			</div></br>
+			
+
+			Zavisni troškovi:
+			<div class="row">
+				<div>
+					<input type="text" class="form-control" ng-model="warehouseReceiptExpenses"></input></br>
+				</div>
+			</div>
+
+			Transportni troškovi:
+			<div class="row">
+				<div>
+					<input type="text" class="form-control" ng-model="warehouseReceiptTransportExpenses"></input></br>
+				</div>
+			</div>
+
+			
+			</br></br>
+			<button type="button" class="btn btn-info accept"  ng-click="add_warehouseReceipt()">Sačuvaj</button>
+			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+		</form>
+</div>
