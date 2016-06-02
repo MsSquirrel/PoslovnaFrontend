@@ -6,31 +6,33 @@
 			Naziv:
 			<div class="row">
 				<div>
-					<input type="text" class="form-control" ng-model="partnerName"></input>
+					<input type="text" name="namem" class="form-control" ng-model="partnerName" required></input>
+					<span class="writeError" ng-show="myForm.namem.$invalid">Obavezno polje.</span>
 				</div>
 			</div></br>
 
 			Tip:
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions">
+					<select class="form-control" name="namet" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions" required>
 		   			</select>
+					<span class="writeError" ng-show="myForm.namet.$invalid">Obavezno polje.</span>
 		   		</div>
 		   	</div></br>			
 
 			Matični broj:
 			<div class="row">
 				<div>
-					<input type="text" name="mbrNumber" class="form-control" ng-model="partnerMBR" ng-pattern="/^(\d{8})$/"></input>
-					<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Unesite osam cifri!</span>
+					<input type="text" name="mbrNumber" class="form-control" ng-model="partnerMBR" ng-pattern="/^(\d{8})$/" required></input>
+					<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Obavezno polje. Unesite osam cifri!</span>
 				</div>
 			</div></br>
 
 			PIB preduzeća: 
 			<div class="row">
 				<div>
-					<input type="text" name="pibNumber" class="form-control" ng-model="partnerPIB" ng-pattern="/^(\d{10})$/"><br>
-					<span class="writeError" ng-show="myForm.pibNumber.$invalid">Unesite deset cifri!</span>
+					<input type="text" name="pibNumber" class="form-control" ng-model="partnerPIB" ng-pattern="/^(\d{10})$/" required><br>
+					<span class="writeError" ng-show="myForm.pibNumber.$invalid">Obavezno polje. Unesite deset cifri!</span>
 				</div>
 			</div>
 			
@@ -72,9 +74,10 @@
 
 			<div class="row">
 				<div>
-		   			<select class="form-control" ng-model="checkCompany" ng-click="chose_place()">
+		   			<select class="form-control" name="namec" ng-model="checkCompany" ng-click="chose_place()" required>
 		   			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 		   			</select>
+					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 		   		</div>
 		   	</div>
 			</br></br>

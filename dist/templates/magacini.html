@@ -40,12 +40,16 @@
 	    		</div>
 	    		<div class="modal-body">
 	      			<form novalidate>
-						Naziv magacina: <input type="text" class="form-control" ng-model="editWarehouseName"><br>
-						Adresa magacina: <input type="text" class="form-control" ng-model="editWarehouseAddress"><br>
-						Mesto:  	<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace">
-									</select><br>
-						Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany">
-									</select><br>
+						Naziv magacina: <input type="text"  name="nameme" class="form-control" ng-model="editWarehouseName" required>
+						<span class="writeError" ng-show="myForm.nameme.$invalid">Obavezno polje.</span><br>
+						Adresa magacina: <input type="text" name="nameae" class="form-control" ng-model="editWarehouseAddress" required>
+						<span class="writeError" ng-show="myForm.nameae.$invalid">Obavezno polje.</span><br>
+						Mesto:  	<select class="form-control" name="namepe" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required>
+									</select>
+						<span class="writeError" ng-show="myForm.namepe.$invalid">Obavezno polje.</span><br>
+						Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required>
+									</select>
+						<span class="writeError" name="namece" ng-show="myForm.namece.$invalid">Obavezno polje.</span><br>
 
 						<br>
 						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_warehouse()">Sačuvaj</button>

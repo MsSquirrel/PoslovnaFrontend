@@ -6,15 +6,16 @@
 		Naziv mesta:
 		<div class="row">
 	   	 	<div>
-		 		<input type="text" class="form-control" ng-model="editName"></input></br>
+		 		<input type="text" name="namep" class="form-control" ng-model="editName" required></input></br>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 		 	</div>
 		</div>
 		
 		Poštanski broj: 
 		<div class="row">
 	   		<div>
-				<input type="text" name="number" class="form-control" ng-model="editNumber" ng-pattern="/^(\d{5})$/"></input>
-				<span class="writeError" ng-show="myForm.number.$invalid">Unesite pet cifri!</span>
+				<input type="text" name="number" class="form-control" ng-model="editNumber" ng-pattern="/^(\d{5})$/" required></input>
+				<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite pet cifri!</span>
 			</div>
 		</div>
 		

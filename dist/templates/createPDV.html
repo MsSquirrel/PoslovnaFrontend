@@ -6,7 +6,8 @@
 	Naziv PDV: 
 	<div class="row">
 		<div>
-			<input type="text" class="form-control" ng-model="pdvName"><br>
+			<input type="text" name="namep" class="form-control" ng-model="pdvName" required><br>
+			<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 		</div>
 	</div>
 						
