@@ -1,6 +1,6 @@
 module.exports = [		
-	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window', '$state',
-	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window, $state) {	
+	'$scope', '$http', 'robaService', 'grupeRobaService', 'merneJediniceService', 'preduzecaService','$routeParams','$window', '$state', '$stateParams',
+	function myController($scope, $http, robaService, grupeRobaService, merneJediniceService, preduzecaService, $routeParams, $window, $state, $stateParams) {	
 
 		$scope.allCategories = {};
 		$scope.allMeasUnits = {};
@@ -89,12 +89,41 @@ module.exports = [
 
       }
 
+      $scope.nextMeh = function()
+      {
+         var url_filter = "?$filter=";
+
+         var jedinicaMereId = $stateParams.jedinicaMereId;
+         console.log("PARAM: "+ jedinicaMereId);
+
+         if(jedinicaMereId=='')
+         {
+            return;
+         }
+
+         if(jedinicaMereId!='')
+         {
+            url_filter += "Id_Jedinica_mere eq " + jedinicaMereId;
+         }
+
+         console.log(url_filter);
+         robaService.get_filtered_goods(url_filter).then(function(response){
+               $scope.gridOptions.data = response;
+         });
+
+      };
 
 
 		function fillData(){
-    		robaService.get_all_goods().then(function(response){
-				$scope.gridOptions.data = response;
-			});
+			if($stateParams.jedinicaMereId=='' || $stateParams.jedinicaMereId==undefined){
+	    		robaService.get_all_goods().then(function(response){
+					$scope.gridOptions.data = response;
+				});
+    		}
+    		else
+    		{
+    			$scope.nextMeh();
+    		}
 
 			grupeRobaService.get_all_groups().then(function(response){
 				$scope.allCategories = response;
@@ -108,8 +137,6 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		}
-
-		$scope.fillData = fillData;
 
 		fillData();
 
