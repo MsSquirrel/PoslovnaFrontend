@@ -11,6 +11,14 @@ module.exports = [
 			});
 		}
 
+		function get_active_businessYears(){
+			var resUrl = "http://localhost:61769/api/poslovna_godina?$filter=Zakljucena_Poslovna_godina ne true"
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
 		function create_businessYear(id, godina, zakljucena, preduzece)
 		{	
 			return $http({
@@ -70,7 +78,8 @@ module.exports = [
 
 
 		return {
-			get_all_businessYears: get_all_businessYears, 
+			get_all_businessYears: get_all_businessYears,
+			get_active_businessYears: get_active_businessYears, 
 			create_businessYear: create_businessYear, 
 			update_businessYear: update_businessYear, 
 			remove_businessYear: remove_businessYear,

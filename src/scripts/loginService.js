@@ -23,6 +23,12 @@ module.exports = [
                         if(tokenPayload.role){
                             currentUser.role = tokenPayload.role;
                         }
+                        if(tokenPayload.firstName){
+                            currentUser.firstName = tokenPayload.firstName;
+                        }
+                        if(tokenPayload.lastName){
+                            currentUser.lastName = tokenPayload.lastName;
+                        }
                         // prijavljenog korisnika cuva u lokalnom skladistu
                         $localStorage.currentUser = currentUser;
                         // jwt token dodajemo u to auth header za sve $http zahteve

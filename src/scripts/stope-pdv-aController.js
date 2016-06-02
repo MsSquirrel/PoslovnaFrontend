@@ -119,8 +119,7 @@ module.exports = [
     		var god = $scope.dt.getYear()+1900;
     		var m = $scope.dt.getMonth()+1;
     		var date = god+"-"+m+"-"+$scope.dt.getDate();
-    		console.log("DATUM "+date);
-    		console.log("Uneto "+$scope.pdvRateId+", "+$scope.pdvRate+", "+date+", "+$scope.pdvRatePdv);
+    	
     		stopePDVService.create_pdvRate($scope.pdvRateId, $scope.pdvRate, date, $scope.pdvRatePdv).then(function(response){
             $scope.clear_add();
             $state.go('^',{}, {reload:true});
