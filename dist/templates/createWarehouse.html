@@ -1,18 +1,20 @@
 <div>
 	<h4 class="modal-title">Dodaj novi magacin</h4>
 	<form  name="myForm">
-	Naziv magacina: 
 
+	Naziv magacina: 
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control" ng-model="warehouseName" /><br>
+			<input type="text" class="form-control" name="namew" ng-model="warehouseName" required/>
+			<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span><br>
 		</div>
 	</div>
 
 	Adresa magacina: 
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control" ng-model="warehouseAddress" /><br>
+			<input type="text" class="form-control" name="namea" ng-model="warehouseAddress" required/>
+			<span class="writeError" ng-show="myForm.namea.$invalid">Obavezno polje.</span><br>
 		</div>
 	</div>
 
@@ -26,13 +28,13 @@
 				<span class="glyphicon glyphicon-plus"></span>
 				</button>
 			</div>
-	</div>	 	
-
+	</div>	
 	<div class="row">
 		<div class="col-md-6">
-			<select class="form-control" ng-model="warehousePlace">
+			<select class="form-control" name="namep" ng-model="warehousePlace" required>
 			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-			</select><br>
+			</select>
+					<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
 		</div>
 	</div>
 	
@@ -48,12 +50,12 @@
 				</button>
 			</div>
 	</div>	   
-
 	<div class="row">
 		<div class="col-md-6">
-			<select class="form-control" ng-model="warehouseCompany">
+			<select class="form-control" name="namec" ng-model="warehouseCompany" required>
 			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-			</select><br>	
+			</select>
+					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span><br>	
 		</div>
 	</div>
 
