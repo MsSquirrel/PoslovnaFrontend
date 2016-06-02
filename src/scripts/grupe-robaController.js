@@ -76,18 +76,24 @@ module.exports = [
       	{
 	         var url_filter = "?$filter=";
 
+	         var preduzeceId = $stateParams.preduzeceId;
 	         var pdvId = $stateParams.pdvId;
 	         console.log("PARAM: "+ pdvId);
 
-	         if(pdvId=='')
+	         if(pdvId=='' && preduzeceId=='')
 	         {
 	            return;
 	         }
 
-	         if(pdvId!='')
+	         if(pdvId!='' && pdvId!=undefined)
 	         {
 	            url_filter += "Id_PDV eq " + pdvId;
 	         }
+
+	        if(preduzeceId!='' && preduzeceId!=undefined)
+        	{
+         	 	url_filter += "Id_Preduzece eq " + preduzeceId;	
+         	}
 
 	         console.log(url_filter);
 	         grupeRobaService.get_filtered_groups(url_filter).then(function(response){
@@ -97,7 +103,7 @@ module.exports = [
       	};
 
 		function fillData(){
-			if($stateParams.pdvId=='' || $stateParams.pdvId==undefined){
+			if(($stateParams.pdvId=='' || $stateParams.pdvId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined)){
 	    		grupeRobaService.get_all_groups().then(function(response){
 					$scope.gridOptions.data = response;
 				});

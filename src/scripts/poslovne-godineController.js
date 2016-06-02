@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window', '$state',
-	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window, $state){
+	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window', '$state', '$stateParams',
+	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window, $state, $stateParams){
 
 
     $scope.allCompanies = {};
@@ -47,6 +47,38 @@ module.exports = [
 		 	});
    		};
 
+
+
+      $scope.nextMeh = function()
+      {
+         var url_filter = "?$filter=";
+
+         var preduzeceId = $stateParams.preduzeceId;
+         console.log("PARAM: "+ preduzeceId);
+
+         if(preduzeceId=='')
+         {
+            return;
+         }
+
+         if(preduzeceId!='' && preduzeceId!=undefined)
+         {
+             url_filter += "Id_Preduzece eq " + preduzeceId;   
+         }
+
+
+         /*poslovneGodineService.get_filtered_(url_filter).then(function(response){
+               $scope.gridOptions.data = response;
+
+               $scope.search.naziv= '';
+               $scope.search.PIB= '';
+               $scope.search.maticni_broj = '';
+         });
+         */
+
+        };
+
+
     	function fillData()
     	{
     		poslovneGodineService.get_all_businessYears()
@@ -60,6 +92,8 @@ module.exports = [
 			});
     	};
        
+
+
 
     	fillData();
 

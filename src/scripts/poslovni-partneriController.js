@@ -127,17 +127,24 @@ module.exports = [
          var url_filter = "?$filter=";
 
          var mestoId = $stateParams.mestoId;
+         var preduzeceId = $stateParams.preduzeceId;
          console.log("PARAM: "+ mestoId);
 
-         if(mestoId=='')
+         if(mestoId=='' && preduzeceId=='')
          {
             return;
          }
 
-         if($scope.mestoId!='')
+         if($scope.mestoId!='' && $scope.mestoId!=undefined)
          {
             url_filter += "Id eq " + mestoId;
          }
+
+         if(preduzeceId!='' && preduzeceId!=undefined)
+         {
+             url_filter += "Id_Preduzece eq " + preduzeceId;   
+         }
+
 
          partneriService.get_filtered_partners(url_filter).then(function(response){
                $scope.gridOptions.data = response;
@@ -152,7 +159,7 @@ module.exports = [
 
     	function fillData(){
 
-    		if($stateParams.mestoId=='' || $stateParams.mestoId==undefined)
+    		if(($stateParams.mestoId=='' || $stateParams.mestoId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined))
     		{
 				partneriService.get_all_partners()
 					.then(function(response){

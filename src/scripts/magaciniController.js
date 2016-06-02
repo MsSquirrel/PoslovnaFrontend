@@ -96,17 +96,23 @@ module.exports = [
       {
          var url_filter = "?$filter=";
 
+         var preduzeceId = $stateParams.preduzeceId;
          var mestoId = $stateParams.mestoId;
          console.log("PARAM: "+ mestoId);
 
-         if(mestoId=='')
+         if(mestoId=='' && preduzeceId=='')
          {
             return;
          }
 
-         if($scope.mestoId!='')
+         if(mestoId!=''  && mestoId!=undefined)
          {
             url_filter += "Id eq " + mestoId;
+         }
+
+         if(preduzeceId!='' && preduzeceId!=undefined)
+         {
+         	 url_filter += "Id_Preduzece eq " + preduzeceId;	
          }
 
          console.log(url_filter);
@@ -118,7 +124,7 @@ module.exports = [
 
 
     	function fillData(){
-    		if($stateParams.mestaId=='' || $stateParams.mestoId==undefined){
+    		if(($stateParams.mestaId=='' || $stateParams.mestoId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined)){
 	    		magaciniService.get_all_warehouses().then(function(response){
 					$scope.gridOptions.data = response;
 				});
