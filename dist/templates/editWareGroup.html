@@ -1,0 +1,35 @@
+<div>
+		
+		<h4>Izmeni postojeću robu</h4>
+
+
+		Naziv grupe:
+		<div class="row">
+			<div class="col-md-6">
+				<input type="text" class="form-control" ng-model="editGroupName"><br>
+			</div>
+		</div>					
+						
+		PDV:  	
+
+		<div class="row">
+			<div class="col-md-6">	
+				<select class="form-control" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv" ></select><br>
+			</div>
+		</div>
+						
+
+		Preduzece: 
+		<div class="row">
+			<div class="col-md-6">
+				 <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany"></select><br>				
+			</div>
+		</div>
+				
+		<br><br>
+		
+		<button type="button" class="btn btn-info accept" ng-click="edit_selected_group()">Sačuvaj</button>
+		
+		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+
+</div>

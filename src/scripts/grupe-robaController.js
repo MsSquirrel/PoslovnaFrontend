@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'grupeRobaService', 'pdvService', 'preduzecaService', '$routeParams', '$window',
-	function myController($scope, $http, grupeRobaService, pdvService, preduzecaService, $routeParams, $window) {
+	'$scope', '$http', 'grupeRobaService', 'pdvService', 'preduzecaService', '$routeParams', '$window', '$rootScope', '$state',
+	function myController($scope, $http, grupeRobaService, pdvService, preduzecaService, $routeParams, $window, $rootScope, $state) {
 		
 
 		$scope.allPdv = {};
@@ -12,6 +12,10 @@ module.exports = [
 		$scope.editGroupName = "";
 		$scope.editGroupPdv = "";
 		$scope.editGroupCompany = "";
+
+
+		$scope.isModal = $state.current.data.isModal;
+   		console.log("Grupa robe is modal: "+$scope.isModal);
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -65,6 +69,10 @@ module.exports = [
 			$scope.groupName = "";
 			$scope.groupPdv = "";
 			$scope.groupCompany = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 			
 		};
 
@@ -73,8 +81,8 @@ module.exports = [
 		$scope.add_group = function()
 		{
 			grupeRobaService.create_group($scope.groupId, $scope.groupName, $scope.groupPdv, $scope.groupCompany).then(function(response){
-				fillData();
 				$scope.clear_add();
+				 $state.go('^',{}, {reload:true});
 			});
 		};
 
@@ -93,5 +101,11 @@ module.exports = [
 				fillData();
 			});
 		};
+
+		 $scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
 	}
 ];

@@ -1,0 +1,63 @@
+<div>
+
+	<h4>Dodaj novu grupu robe</h4>
+
+
+	Naziv grupe:
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="groupName" /><br>
+		</div>
+	</div>			
+	
+	<div class="row">
+			<div class="col-sm-2">
+				<p>PDV:</p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="grupe-roba.createWareGroup.createPDV">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+	</div>	 		
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="groupPdv" ng-click="chose_place()">
+			<option  ng-repeat="pdv in allPdv" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
+			</select>
+		</div>
+	</div>
+	
+	<br>
+
+	<div class="row">
+			<div class="col-sm-2">
+				<p>Preduzeće:</p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="grupe-roba.createWareGroup.createCompany">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+	</div>	
+
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="groupCompany" ng-click="chose_place()">
+			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+			</select>	
+		</div>
+	</div>
+	
+
+	<br><br>
+	<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_group()">Sačuvaj</button>
+	
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
+
+</div>
