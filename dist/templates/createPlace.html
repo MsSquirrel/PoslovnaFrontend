@@ -2,35 +2,38 @@
     		<div class="modal-dialog">
       			<div class="modal-content"-->
 		    		<!--<div class="modal-header"-->
-		  <div class="col-md-6 col-md-offset-3 form">
-		      			<h4>Dodaj novo mesto</h4>
+<div class="col-md-6 col-md-offset-3 form">
+	<h4>Dodaj novo mesto</h4>
 		    		<!--</div-->
 
 		    		<!--<div class="modal-body">-->
 		      			<!--<form novalidate-->
-		<form class="form">
-							Naziv mesta:
-							<div class="row">
-								<div>
-									<input type="text" class="form-control" ng-model="placeName"></input><br>
-								</div>
-							</div>
-							Poštanski broj: 
-							<div class="row">
-								<div>
-									<input type="text" class="form-control positiveInteger5" ng-model="placeNumber"></input>
-								</div>
-							</div>
-							<br><br>
+	<form class="form" name="myForm">
 
-							<!--
-							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_place()">Sačuvaj</button>
-							<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
-							-->
+		Naziv mesta:
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" ng-model="placeName"></input><br>
+			</div>
+		</div>
 
-							<button type="button" class="btn btn-info accept" ng-click="add_place()">Sačuvaj</button>
-							<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>		
-		</form>					
+		Poštanski broj: 
+		<div class="row">
+			<div>
+				<input type="text" name="number" class="form-control" ng-model="placeNumber" ng-pattern="/^(\d{5})$/"></input>
+				<span class="writeError" ng-show="myForm.number.$invalid">Unesite pet cifri!</span>
+			</div>
+		</div>
+		<br><br>
+
+		<!--
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_place()">Sačuvaj</button>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
+		-->
+
+		<button type="button" class="btn btn-info" ng-click="add_place()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>		
+	</form>					
 	  					<!--</form-->
 		    		<!--</div-->
 

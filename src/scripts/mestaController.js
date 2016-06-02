@@ -76,6 +76,8 @@ module.exports = [
    			console.log(url_filter);
    			mestaService.get_filtered_places(url_filter).then(function(response){
    				$scope.gridOptions.data = response;
+   				$scope.search.naziv= '';
+   				$scope.search.postanski_broj = '';
    			});
    		}
 
@@ -91,10 +93,6 @@ module.exports = [
 		}
 		
 		$scope.fillData = fillData;
-
-		//$(".positiveInteger5").on("change paste keyup", function() {
-		//	$scope.isPositiveInteger(this, 5);
-		//});
 		 
 
 		fillData();
@@ -108,7 +106,7 @@ module.exports = [
 			if($scope.isModal){
 				$scope.$close(true);
 			}
-			//$scope.clearInput($("h2").parent("div"));
+			// 
 			console.log("clear_add");
 		};
 

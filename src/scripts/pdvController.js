@@ -46,7 +46,7 @@ module.exports = [
    			var url_filter = "?$filter="
    			
    			if(naziv!=''){
-   				prvi =	false;
+   				
    				url_filter += "substringof('" + naziv + "', Naziv_PDV) eq true";
    			}else{
    				return;
@@ -56,6 +56,7 @@ module.exports = [
    			console.log(url_filter);
    			pdvService.get_filtered_pdvs(url_filter).then(function(response){
    				$scope.gridOptions.data = response;
+   				$scope.search.naziv= '';
    			});
    		}
 

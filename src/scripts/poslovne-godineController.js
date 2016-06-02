@@ -24,9 +24,8 @@ module.exports = [
 		  };
  
 		 $scope.gridOptions.columnDefs = [
-		    { name:'Godina_Poslovna_godina', width:'25%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
-		    { name:'Zakljucena_Poslovna_godina', width:'25%', displayName: 'Zaključena', cellFilter: 'true_false', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'50%', displayName: 'Preduzeće', cellTooltip: true, headerTooltip: true},
+		    { name:'Godina_Poslovna_godina', width:'50%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
+		    { name:'Zakljucena_Poslovna_godina', width:'50%', displayName: 'Zaključena', cellFilter: 'true_false', cellTooltip: true, headerTooltip: true}
 		  ];
 
 
@@ -60,10 +59,6 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
     	};
-    
-      $(".positiveInteger4").on("change paste keyup", function() {
-        $scope.isPositiveInteger(this, 4);
-      });
        
 
     	fillData();
@@ -73,7 +68,7 @@ module.exports = [
         $scope.businessYearFinished = 0;
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
-        $scope.clearInput($("h2").parent("div"));
+         
       }
 
       $scope.clear_add();
@@ -107,7 +102,7 @@ module.exports = [
       $scope.closeState = function()
       {
         $scope.clear_add();
-        $state.go('^',{}, {reload:true});
+        $state.go('^',{}, {reload:false});
       };
 
 	}

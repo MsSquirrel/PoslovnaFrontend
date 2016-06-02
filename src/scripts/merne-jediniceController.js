@@ -80,6 +80,8 @@ module.exports = [
         console.log(url_filter);
         merneJediniceService.get_filtered_measUnits(url_filter).then(function(response){
           $scope.gridOptions.data = response;
+          $scope.search.naziv= '';
+          $scope.search.oznaka = '';
         });
       }
 
@@ -91,12 +93,7 @@ module.exports = [
     		});
     	};
     
-      $scope.fillData = fillData;
-      
-      $(".characters3").on("change paste keyup", function() {
-        $scope.isCharacter(this, 3);
-      });
-       
+      $scope.fillData = fillData;       
 
     	fillData();
 

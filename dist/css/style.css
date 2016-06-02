@@ -105,10 +105,16 @@ form.form *{
     width: 20px;
 }
 
-p#error{
+p#error {
     color: red;
     font-size: 12px;
     margin-left: 40px;
     margin-top: 10px;
     margin-bottom: -10px;
+}
+input.ng-invalid {
+  border:1px solid #f00;
+}
+span.writeError {
+    color: red;
 }

@@ -1,33 +1,31 @@
 <div class="col-md-6 col-md-offset-3 form">
-<h4>Izmeni postojeću poslovnu godinu: </h4>
+	<h4>Izmeni postojeću poslovnu godinu: </h4>
 
-		<form class="form">
-	  
-Godina: 
+	<form class="form" name="myForm">			  
+		Godina: 
+		<div class="row">
+			<div>
+				<input type="text" name="number" class="form-control" ng-model="editBusinessYear" ng-pattern="/^((19[6-9]\d)|(20\d\d))$/"></input>
+				<span class="writeError" ng-show="myForm.number.$invalid">Unesite godinu u rasponu 1960-2099!</span>
+			</div>
+		</div></br>
 
-<div class="row">
-	<div>
-		<input type="text" class="form-control positiveInteger4" ng-model="editBusinessYear"></input>
-	</div>
-</div></br>
+		<div class="row">
+			<div>
+				Zaključena:
+				<input type="checkbox" ng-model="editBusinessYearFinished" ng-true-value=true ng-false-value=false></input>
+		    </div>
+		 </div></br>
+								
+		Preduzeće: 
+		<div class="row">
+			<div>
+				<select class="form-control" ng-model="editBusinessYearCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
+			</div>
+		</div></br>
 
-<div class="row">
-	<div>
-		Zaključena:
-		<input type="checkbox" ng-model="editBusinessYearFinished" ng-true-value=true ng-false-value=false></input>
-    </div>
- </div></br>
-						
-Preduzeće: 
-
-<div class="row">
-	<div>
-	<select class="form-control" ng-model="editBusinessYearCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
-	</div>
-</div></br>
-
-</br>
-<button type="button" class="btn btn-info accept" ng-click="edit_selected_businessYear()">Sačuvaj</button>
-<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
-		</form>
+		</br>
+		<button type="button" class="btn btn-info" ng-click="edit_selected_businessYear()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+	</form>
 </div>

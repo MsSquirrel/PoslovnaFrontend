@@ -24,9 +24,8 @@ module.exports = [
 
 		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Roba', width:'50%', displayName:'Naziv', cellTooltip: true, headerTooltip: true},
-		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'20%', displayName: 'Grupa', cellTooltip: true, headerTooltip: true},
-			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere', cellTooltip: true, headerTooltip: true},
-		    { name:'Preduzece.Naziv_Preduzece', width:'15%', displayName: 'Preduzece', cellTooltip: true, headerTooltip: true}
+		    { name:'Grupa_roba.Naziv_Grupa_roba', width:'35%', displayName: 'Grupa', cellTooltip: true, headerTooltip: true},
+			{ name:'Jedinica_mere.Naziv_Jedinica_mere', width:'15%', displayName:'Jedinica mere', cellTooltip: true, headerTooltip: true}
 		];
 
 		$scope.gridOptions.onRegisterApi = function(gridApi) {
@@ -48,6 +47,50 @@ module.exports = [
 		 	});
    		};	
 
+
+
+   	$scope.search = {};
+    $scope.search.naziv = '';
+    $scope.search.grupa_roba = '';
+
+    $scope.search.filterData = function(){
+
+        var naziv = $scope.search.naziv.trim();
+        var grupa_roba = $scope.search.grupa_roba.trim();
+        
+
+        if(grupa_roba==='' && naziv==='')
+   				return;
+
+		var url_filter = "?$filter="
+
+        
+        var prvi= true;
+   			
+		if(naziv!=''){
+			prvi =	false;
+			url_filter += "substringof('" + naziv + "', Naziv_Roba) eq true";
+		}
+
+		if(grupa_roba!=''){
+			if(!prvi){
+				url_filter += " and "
+			}
+
+			url_filter += "Id_Grupa_roba eq " + grupa_roba;
+		}
+
+		console.log(url_filter);
+		robaService.get_filtered_goods(url_filter).then(function(response){
+			$scope.gridOptions.data = response;
+			$scope.search.naziv= '';
+			$scope.search.grupa_roba = '';
+		});
+
+      }
+
+
+
 		function fillData(){
     		robaService.get_all_goods().then(function(response){
 				$scope.gridOptions.data = response;
@@ -66,7 +109,7 @@ module.exports = [
 			});
 		}
 
-		 
+		$scope.fillData = fillData;
 
 		fillData();
 

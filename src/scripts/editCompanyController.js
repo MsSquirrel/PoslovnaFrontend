@@ -27,13 +27,6 @@ module.exports = [
 			});
 		};
 
-		$(".positiveInteger8").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 8);
-		});
-		$(".positiveInteger10").on("change paste keyup", function() {
-			$scope.isPositiveInteger(this, 10);
-		});
-
 		fillData();
 
 		$scope.edit_selected_company = function(name, mbr, pib, address, place)
