@@ -103,7 +103,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('preduzeca', {
-        url: '/preduzeca',
+        url: '/preduzeca?mestoId',
         templateUrl: './templates/preduzeca.html',
         controller: 'preduzeceCtrl',
         data: {
@@ -189,7 +189,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
        .state('magacini', {
-        url: '/magacini',
+        url: '/magacini?mestoId',
         templateUrl: './templates/magacini.html',
         controller: 'magaciniCtrl',
         data: {
@@ -316,7 +316,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('poslovni-partneri', {
-        url: '/poslovni-partneri',
+        url: '/poslovni-partneri?mestoId',
         templateUrl: './templates/poslovni-partneri.html',
         controller: 'poslovni-partneriCtrl',
         data: {

@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'partneriService','preduzecaService', 'mestaService','$routeParams','$window', '$state',
-	function myController($scope, $http, partneriService, preduzecaService, mestaService, $routeParams, $window, $state){
+	'$scope', '$http', 'partneriService','preduzecaService', 'mestaService','$routeParams','$window', '$state', '$stateParams', 
+	function myController($scope, $http, partneriService, preduzecaService, mestaService, $routeParams, $window, $state, $stateParams){
 
 		$scope.allCompanies = {};
 		$scope.allPlaces = {};
@@ -122,12 +122,47 @@ module.exports = [
    		}
 
 
+   		$scope.nextMeh = function()
+     	{
+         var url_filter = "?$filter=";
+
+         var mestoId = $stateParams.mestoId;
+         console.log("PARAM: "+ mestoId);
+
+         if(mestoId=='')
+         {
+            return;
+         }
+
+         if($scope.mestoId!='')
+         {
+            url_filter += "Id eq " + mestoId;
+         }
+
+         partneriService.get_filtered_partners(url_filter).then(function(response){
+               $scope.gridOptions.data = response;
+
+               $scope.search.naziv= '';
+               $scope.search.PIB= '';
+               $scope.search.maticni_broj = '';
+         });
+
+      	};
+
+
     	function fillData(){
 
-			partneriService.get_all_partners()
-				.then(function(response){
-				$scope.gridOptions.data = response;
-			});
+    		if($stateParams.mestoId=='')
+    		{
+				partneriService.get_all_partners()
+					.then(function(response){
+					$scope.gridOptions.data = response;
+				});
+			}
+			else
+			{
+				$scope.nextMeh();
+			}
 
 			preduzecaService.get_all_companies()
 				.then(function(response){
@@ -138,8 +173,10 @@ module.exports = [
 				.then(function(response){
 				$scope.allPlaces = response;
 			});
+
 		};
 		
+
 		$scope.fillData = fillData;		 
 
 		fillData();
