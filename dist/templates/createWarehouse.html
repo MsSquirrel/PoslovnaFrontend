@@ -1,0 +1,64 @@
+<div>
+	<h4 class="modal-title">Dodaj novi magacin</h4>
+
+	Naziv magacina: 
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="warehouseName" /><br>
+		</div>
+	</div>
+
+	Adresa magacina: 
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" class="form-control" ng-model="warehouseAddress" /><br>
+		</div>
+	</div>
+
+	<div class="row">
+			<div class="col-sm-2">
+				<p>Mesto:</p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="magacini.createWarehouse.createPlace">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+	</div>	 	
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="warehousePlace">
+			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
+			</select><br>
+		</div>
+	</div>
+	
+
+	<div class="row">
+			<div class="col-sm-2">
+				<p>Preduzeće:</p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="magacini.createWarehouse.createCompany">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+	</div>	   
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" ng-model="warehouseCompany">
+			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+			</select><br>	
+		</div>
+	</div>
+
+	<br><br>
+	<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_warehouse()">Sačuvaj</button>
+	
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
+</div>

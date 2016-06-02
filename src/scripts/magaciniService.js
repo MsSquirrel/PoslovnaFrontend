@@ -68,12 +68,22 @@ module.exports = [
 			});
 		}
 
+		function get_warehouse_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/magacin/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
+
 		return {
 			get_all_warehouses: get_all_warehouses,
 			get_filtered_warehouses: get_filtered_warehouses,
 			create_warehouse: create_warehouse,
 			remove_warehouse: remove_warehouse,
 			update_warehouse: update_warehouse, 
+			get_warehouse_by_id: get_warehouse_by_id, 
 		};
 
 	}

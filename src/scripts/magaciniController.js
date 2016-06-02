@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'magaciniService', 'mestaService', 'preduzecaService', '$routeParams','$window',
-	function myController($scope, $http, magaciniService, mestaService, preduzecaService, $routeParams, $window){
+	'$scope', '$http', 'magaciniService', 'mestaService', 'preduzecaService', '$routeParams','$window', '$state',
+	function myController($scope, $http, magaciniService, mestaService, preduzecaService, $routeParams, $window, $state){
 
 		$scope.allPlaces = {};
 		$scope.allCompanies = {};
@@ -12,6 +12,9 @@ module.exports = [
 		$scope.editWarehouseAddress = "";
 		$scope.editWarehousePlace = "";
 		$scope.editWarehouseCompany = "";
+
+		$scope.isModal = $state.current.data.isModal;
+   		console.log("Warehouse is modal: "+$scope.isModal);
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -116,6 +119,10 @@ module.exports = [
 			$scope.warehouseAddress = "";
 			$scope.warehousePlace = "";
 			$scope.warehouseCompany = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 		};
 
 		$scope.clear_add();
@@ -123,8 +130,8 @@ module.exports = [
 		$scope.add_warehouse = function()
 		{
 			magaciniService.create_warehouse($scope.warehouseId, $scope.warehouseName, $scope.warehouseAddress, $scope.warehousePlace, $scope.warehouseCompany).then(function(response){
-				fillData();
 				$scope.clear_add();
+				$state.go('^',{}, {reload:true});
 			});
 		};
 	
@@ -144,5 +151,12 @@ module.exports = [
 				fillData();
 			});
 		};
+
+		$scope.closeState = function()
+	    {
+	      $scope.clear_add();
+	  	  $state.go('^',{}, {reload:true});
+	    }
+
 	}
 ];

@@ -26,6 +26,7 @@ myApp.controller('editPdvRateCtrl', require('./editPDVRateController.js'));
 myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
 myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
+myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
 
 myApp.filter('true_false', function() {
     return function(text, length, end) {
@@ -190,7 +191,43 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
        .state('magacini', {
         url: '/magacini',
         templateUrl: './templates/magacini.html',
-        controller: 'magaciniCtrl'
+        controller: 'magaciniCtrl',
+        data: {
+            isModal: false
+        }
+      })
+      .state('magacini.createWarehouse', { 
+         views:{
+            "": {
+              templateUrl: './templates/createWarehouse.html', 
+              controller: "magaciniCtrl",
+            }
+          },
+          data: {
+            isModal: false
+          }
+      })
+       .state('magacini.createWarehouse.createPlace', {
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('magacini.createWarehouse.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('grupe-roba.editWarehouse', { 
+        url: "/edit/:id",
+
+        views:{
+            "": {
+              templateUrl: './templates/editWarehouse.html', 
+              controller: "editWarehouseCtrl",
+            }
+          }
       })
       .state('merne-jedinice', {
         url: '/merne-jedinice',
