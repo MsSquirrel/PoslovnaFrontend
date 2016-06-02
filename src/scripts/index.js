@@ -219,7 +219,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             isModal: true
         }
       })
-      .state('grupe-roba.editWarehouse', { 
+      .state('magacini.editWarehouse', { 
         url: "/edit/:id",
 
         views:{
