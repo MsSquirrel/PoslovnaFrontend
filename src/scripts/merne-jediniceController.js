@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http','merneJediniceService', '$routeParams','$window', '$state',
-	function myController($scope, $http, merneJediniceService, $routeParams, $window, $state){
+	'$scope', '$http','merneJediniceService', '$routeParams','$window', '$state', '$rootScope',
+	function myController($scope, $http, merneJediniceService, $routeParams, $window, $state, $rootScope){
 
 
 		  $scope.selectedRow =  {};
@@ -14,6 +14,9 @@ module.exports = [
 
    		$scope.editMeasUnitName = "";
       $scope.editMeasUnitMark = "";
+
+      $scope.isModal = $state.current.data.isModal;
+      console.log("Comapany is modal: "+$scope.isModal);
 		
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -96,6 +99,10 @@ module.exports = [
 
       $scope.clear_add = function(){
         $scope.measUnitName ="";
+        if($scope.isModal)
+        {
+          $scope.$close(true);
+        }
       }
 
 
@@ -130,6 +137,12 @@ module.exports = [
     			fillData();
     		});
     	};
+
+      $scope.closeState = function()
+      {
+        $scope.clear_add();
+        $state.go('^',{}, {reload:true});
+      }
 
 	}
 ];

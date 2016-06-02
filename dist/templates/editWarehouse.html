@@ -1,0 +1,20 @@
+<div>
+	<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
+
+		Naziv magacina: <input type="text" class="form-control" ng-model="editWarehouseName"><br>
+		
+
+		Adresa magacina: <input type="text" class="form-control" ng-model="editWarehouseAddress"><br>
+		
+		Mesto:  	<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace">
+									</select><br>
+		Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany">
+									</select><br>
+
+		<br>
+		
+		<button type="button" class="btn btn-info accept" ng-click="edit_selected_warehouse()">Sačuvaj</button>
+		
+		<button type="button" class="btn btn-info" ng-click="close_edit()" >Otkaži</button>
+
+</div>

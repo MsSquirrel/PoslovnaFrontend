@@ -6,23 +6,24 @@
 		Naziv preduzeća: 
 		<div class="row">
 		   	 <div>
-				<input type="text" class="form-control" ng-model="editCompanyName"></input>
+				<input type="text" name="namep" class="form-control" ng-model="editCompanyName" required></input>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			 </div>
 		</div></br>
 
 		Matični broj: 
 		<div class="row">
 		   	 <div>
-				<input type="text" name="mbrNumber" class="form-control" ng-model="editCompanyMBR" ng-pattern="/^(\d{8})$/"></input>
-				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Unesite osam cifri!</span>
+				<input type="text" name="mbrNumber" class="form-control" ng-model="editCompanyMBR" ng-pattern="/^(\d{8})$/" required></input>
+				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Obavezno polje. Unesite osam cifri!</span>
 			</div>
 		</div></br>
 
 		PIB preduzeća: 
 		<div class="row">
 		   	 <div>
-				<input type="text" name="pibNumber" class="form-control" ng-model="editCompanyPIB" ng-pattern="/^(\d{10})$/"></input>
-				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Unesite deset cifri!</span>
+				<input type="text" name="pibNumber" class="form-control" ng-model="editCompanyPIB" ng-pattern="/^(\d{10})$/" required></input>
+				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Obavezno polje. Unesite deset cifri!</span>
 			</div>
 		</div></br>
 

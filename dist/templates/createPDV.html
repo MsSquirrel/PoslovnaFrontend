@@ -1,17 +1,18 @@
 <div>
 	<div class="col-md-6 col-md-offset-3 form">
 	<h4>Dodaj novi PDV</h4>
-		<form class="form">
+		<form class="form" name="myForm">
 
 	Naziv PDV: 
 	<div class="row">
 		<div>
-			<input type="text" class="form-control" ng-model="pdvName"><br>
+			<input type="text" name="namep" class="form-control" ng-model="pdvName" required><br>
+			<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 		</div>
 	</div>
 						
 	<br><br>
-	<button type="button" class="btn btn-info accept" ng-click="add_pdv()">Sačuvaj</button>
+	<button type="button" class="btn btn-info accept" ng-click="add_pdv()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 	<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>
 		</form>
 

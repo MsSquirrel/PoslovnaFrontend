@@ -65,12 +65,23 @@ module.exports = [
 			});
 		}
 
+
+		function get_wareGroup_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/grupa_roba/"+id+"/";
+			return $http.get(resUrl)
+				.then(function(response) {
+					return response.data;
+			});	
+		}
+
 		return {
 			get_all_groups: get_all_groups,
 			get_filtered_groups: get_filtered_groups, 
 			create_group: create_group, 
 			update_group: update_group, 
 			remove_group: remove_group,
+			get_wareGroup_by_id: get_wareGroup_by_id,
 		};
 
 	}

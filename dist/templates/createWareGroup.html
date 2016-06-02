@@ -1,0 +1,66 @@
+<div>
+
+	<h4>Dodaj novu grupu robe</h4>
+	<form name="myForm">
+
+	Naziv grupe:
+
+	<div class="row">
+		<div class="col-md-6">
+			<input type="text" name="nameg" class="form-control" ng-model="groupName" required/><br>
+			<span class="writeError" ng-show="myForm.nameg.$invalid">Obavezno polje.</span>
+		</div>
+	</div>			
+	
+	<div class="row">
+			<div class="col-sm-2">
+				<p>PDV:</p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="grupe-roba.createWareGroup.createPDV">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+	</div>	 		
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" name="namep" ng-model="groupPdv" ng-click="chose_place()" required>
+			<option  ng-repeat="pdv in allPdv" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
+			</select>
+			<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
+		</div>
+	</div>
+	
+	<br>
+
+	<div class="row">
+			<div class="col-sm-2">
+				<p>Preduzeće:</p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="grupe-roba.createWareGroup.createCompany">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+	</div>	
+
+
+	<div class="row">
+		<div class="col-md-6">
+			<select class="form-control" name="namec" ng-model="groupCompany" ng-click="chose_place()" required>
+			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
+			</select>	
+			<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
+		</div>
+	</div>
+	
+
+	<br><br>
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_group()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+	
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
+	</form>
+</div>

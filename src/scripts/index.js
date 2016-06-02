@@ -25,6 +25,9 @@ myApp.controller('editBusinessYearCtrl', require('./editBusinessYearController.j
 myApp.controller('editPdvRateCtrl', require('./editPDVRateController.js'));
 myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
 myApp.controller('editWaresCtrl', require('./editWaresController.js'));
+myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
+myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
+
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -147,12 +150,84 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('grupe-roba', {
         url: '/grupe-roba',
         templateUrl: './templates/grupe-roba.html',
-        controller: 'grupe-robaCtrl'
+        controller: 'grupe-robaCtrl',
+        data: {
+          isModal: false
+        }
       })
-      .state('magacini', {
+      .state('grupe-roba.createWareGroup', { 
+         views:{
+            "": {
+              templateUrl: './templates/createWareGroup.html', 
+              controller: "grupe-robaCtrl",
+            }
+          },
+          data: {
+            isModal: false
+          }
+      })
+      .state('grupe-roba.createWareGroup.createPDV', {
+        onEnter: generateOnEnterModal("./templates/createPDV.html", "pdvCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('grupe-roba.createWareGroup.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+       .state('grupe-roba.editWareGroup', { 
+        url: "/edit/:id",
+
+         views:{
+            "": {
+              templateUrl: './templates/editWareGroup.html', 
+              controller: "editWareGroupCtrl",
+            }
+          }
+      })
+       .state('magacini', {
         url: '/magacini',
         templateUrl: './templates/magacini.html',
-        controller: 'magaciniCtrl'
+        controller: 'magaciniCtrl',
+        data: {
+            isModal: false
+        }
+      })
+      .state('magacini.createWarehouse', { 
+         views:{
+            "": {
+              templateUrl: './templates/createWarehouse.html', 
+              controller: "magaciniCtrl",
+            }
+          },
+          data: {
+            isModal: false
+          }
+      })
+       .state('magacini.createWarehouse.createPlace', {
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('magacini.createWarehouse.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('magacini.editWarehouse', { 
+        url: "/edit/:id",
+
+        views:{
+            "": {
+              templateUrl: './templates/editWarehouse.html', 
+              controller: "editWarehouseCtrl",
+            }
+          }
       })
       .state('merne-jedinice', {
         url: '/merne-jedinice',
@@ -302,7 +377,10 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('roba', {
         url: '/roba',
         templateUrl: './templates/roba.html',
-        controller: 'robaCtrl'
+        controller: 'robaCtrl',
+        data: {
+              isModal: false
+        }
       })
       .state('roba.createWares', { 
           data: {
@@ -314,6 +392,24 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               controller: "robaCtrl"
             }
           }
+      })
+     .state('roba.createWares.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('roba.createWares.createMeasUnit', {
+        onEnter: generateOnEnterModal("./templates/createMeasUnit.html", "merne-jediniceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('roba.createWares.createWareGroup', {
+        onEnter: generateOnEnterModal("./templates/createWareGroup.html", "grupe-robaCtrl"),
+         data: {
+            isModal: true
+        }
       })
       .state('roba.editWares', { 
         url: "/edit/:id",
