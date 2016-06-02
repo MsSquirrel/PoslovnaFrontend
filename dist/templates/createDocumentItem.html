@@ -1,0 +1,60 @@
+
+<div class="col-md-6 col-md-offset-3 form">
+	<h4>Dodaj novu stavku</h4>
+		<form class="form" name="myForm">
+
+			Primka:  
+
+			<div class="row">
+				<div>
+					<select class="form-control" ng-model="primka">
+	   				<option  ng-repeat="wr in allWrs" ng-value="wr.Id_Prijemni_dokument">{{wr.Redni_broj_Prijemni_dokument}}</option>
+	   				</select>
+				</div>
+			</div></br>
+
+			Roba:  
+
+			<div class="row">
+				<div>
+					<select class="form-control" ng-model="roba">
+	   				<option  ng-repeat="item in allItems" ng-value="item.Id_Roba">{{item.Naziv_Roba}}</option>
+	   				</select>
+				</div>
+			</div></br>
+
+			Količina:  
+
+			<div class="row">
+				<div>
+					<input type="text" class="form-control" ng-model="kolicina"></input>
+				</div>
+			</div></br>
+
+			Nabavna cena (po jedinici):  
+
+			<div class="row">
+				<div>
+					<input type="text" class="form-control" ng-model="nabCena"></input>
+				</div>
+			</div></br>
+
+			Nabavna vrednost: <!-- racuna se -->
+			<div class="row">
+				<div>
+					<input type="text" class="form-control" value="{{nabCena*kolicina | number}}" disabled></input>
+				</div>
+			</div></br>
+			
+			Procenat marže:
+			<div class="row">
+				<div>
+					<input type="text" class="form-control" ng-model="marza"></input></br>
+				</div>
+			</div>
+
+			</br></br>
+			<button type="button" class="btn btn-info"  ng-click="add_documentItem()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+		</form>
+</div>

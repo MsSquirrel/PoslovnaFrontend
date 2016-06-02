@@ -76,6 +76,17 @@ module.exports = [
 			});	
 		}
 
+		function calculate(id){
+
+		}
+
+		function record(id){
+			
+		}
+
+		function cancel(id){
+			
+		}
 
 		return {
 			get_all_warehouseReceipts: get_all_warehouseReceipts, 
@@ -83,6 +94,9 @@ module.exports = [
 			update_warehouseReceipt: update_warehouseReceipt, 
 			remove_warehouseReceipt: remove_warehouseReceipt,
 			get_warehouseReceipt_by_id: get_warehouseReceipt_by_id,
+			calculate: calculate,
+			record: record,
+			cancel: cancel
 		};
 
 

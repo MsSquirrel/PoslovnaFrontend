@@ -136,7 +136,7 @@ module.exports = [
     	};
 
 
-    	$scope.edit_selected_warehouseReceipt = function()
+    	/*$scope.edit_selected_warehouseReceipt = function()
     	{
     		var god = $scope.dt.getYear()+1900;
     		var m = $scope.dt.getMonth()+1;
@@ -146,7 +146,25 @@ module.exports = [
     			$scope.warehouseReceiptPartner, $scope.warehouseReceiptExpenses, $scope.warehouseReceiptTransportExpenses, date).then(function(response){
 			   	
 		  	});
-    	};
+    	};*/
+
+    	$scope.calculate = function(){
+    		prijemniDokumentiService.calculate($scope.selectedWarehouseReceiptId).then(function(response){
+    			fillData();
+    		});
+    	}
+
+    	$scope.record = function(){
+    		prijemniDokumentiService.record($scope.selectedWarehouseReceiptId).then(function(response){
+    			fillData();
+    		});
+    	}
+
+    	$scope.cancel = function(){
+    		prijemniDokumentiService.cancel($scope.selectedWarehouseReceiptId).then(function(response){
+    			fillData();
+    		});
+    	}
 
 
 		// time picker

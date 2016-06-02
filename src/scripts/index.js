@@ -28,6 +28,7 @@ myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
 myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
 
+
 myApp.filter('true_false', function() {
     return function(text, length, end) {
         if (text) {
@@ -433,7 +434,21 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('stavke-dokumenata', {
         url: '/stavke-dokumenata',
         templateUrl: './templates/stavke-dokumenata.html',
-        controller: 'stavke-dokumenataCtrl'
+        controller: 'stavke-dokumenataCtrl',
+        data: {
+              isModal: false
+        }
+      })
+      .state('stavke-dokumenata.createDocumentItem', { 
+          data: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/createDocumentItem.html', 
+              controller: "stavke-dokumenataCtrl"
+            }
+          }
       })
       .state('stope-pdv-a', {
         url: '/stope-pdv-a?pdvId',
@@ -486,7 +501,8 @@ myApp
 .service('grupeRobaService', require('./grupe-robaService.js'))
 .service('faktureService', require('./faktureService.js'))
 .service('loginService', require('./loginService.js'))
-.service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'));
+.service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'))
+.service('stavkeDokumenataService', require('./stavke-dokumenataService.js'));
 
 myApp
 .run(require('./run.js'));
