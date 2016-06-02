@@ -151,7 +151,7 @@ module.exports = [
 
     	function fillData(){
 
-         if($stateParams.mestoId==''){
+         if($stateParams.mestoId=='' || $stateParams.mestoId==undefined){
        		preduzecaService.get_all_companies()
    				.then(function(response){
    				$scope.gridOptions.data = response;
@@ -161,7 +161,7 @@ module.exports = [
          {
           $scope.nextMeh();
          }
-         
+
 			mestaService.get_all_places()
 				.then(function(response){
 				$scope.allPlaces = response;

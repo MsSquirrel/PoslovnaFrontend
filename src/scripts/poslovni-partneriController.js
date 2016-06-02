@@ -152,7 +152,7 @@ module.exports = [
 
     	function fillData(){
 
-    		if($stateParams.mestoId=='')
+    		if($stateParams.mestoId=='' || $stateParams.mestoId==undefined)
     		{
 				partneriService.get_all_partners()
 					.then(function(response){
