@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window', '$state',
-	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window, $state){
+	'$scope', '$http', 'stopePDVService', 'pdvService','$routeParams','$window', '$state', '$stateParams',
+	function myController($scope, $http, stopePDVService, pdvService, $routeParams, $window, $state, $stateParams){
 
 		$scope.allPDVs = {};
 
@@ -88,17 +88,46 @@ module.exports = [
 
       }
 
+      $scope.nextMeh = function()
+        {
+           var url_filter = "?$filter=";
 
+           var pdvId = $stateParams.pdvId;
+           console.log("PARAM: "+ pdvId);
+
+           if(pdvId=='')
+           {
+              return;
+           }
+
+           if(pdvId!='')
+           {
+              url_filter += "Id_PDV eq " + pdvId;
+           }
+
+           console.log(url_filter);
+           stopePDVService.get_filtered_PDVRates(url_filter).then(function(response){
+                 $scope.gridOptions.data = response;
+           });
+
+        };
 
     	function fillData()
     	{
-    		stopePDVService.get_all_PDVRates().then(function(response){
-    			$scope.gridOptions.data = response;
-    		});
+        if($stateParams.pdvId=='' || $stateParams.pdvId==undefined){
+      	 	stopePDVService.get_all_PDVRates().then(function(response){
+      			$scope.gridOptions.data = response;
+      		});
+        }
+        else
+        { 
+          $scope.nextMeh();
+        }
 
     		pdvService.get_all_pdvs().then(function(response){
     			$scope.allPDVs = response;
     		});
+
     	};
 
       $scope. fillData = fillData;       

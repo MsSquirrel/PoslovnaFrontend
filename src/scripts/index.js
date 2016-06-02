@@ -148,7 +148,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'faktureCtrl'
       })
       .state('grupe-roba', {
-        url: '/grupe-roba',
+        url: '/grupe-roba?pdvId',
         templateUrl: './templates/grupe-roba.html',
         controller: 'grupe-robaCtrl',
         data: {
@@ -436,7 +436,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'stavke-dokumenataCtrl'
       })
       .state('stope-pdv-a', {
-        url: '/stope-pdv-a',
+        url: '/stope-pdv-a?pdvId',
         templateUrl: './templates/stope-pdv-a.html',
         controller: 'stope-pdv-aCtrl',
         data: {
