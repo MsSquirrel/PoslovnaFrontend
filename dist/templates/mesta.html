@@ -39,13 +39,13 @@
 	      			<h4 class="modal-title">Izmeni postojeće mesto</h4>
 	    		</div>
 	    		<div class="modal-body">
-	      			<form novalidate>
+	      			<form novalidate name="myForm">
 						Naziv mesta: <input type="text" name="namep" class="form-control" ng-model="editName" required>
 				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
 						Poštanski broj: <input type="text" name="number" class="form-control" ng-model="editNumber" ng-pattern="/^(\d{5})$/" required>
 						<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite pet cifri!</span>
 						<br><br>
-						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_place(editName, editNumber)">Sačuvaj</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_place(editName, editNumber)" ng-disabled="myForm.$invalid">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

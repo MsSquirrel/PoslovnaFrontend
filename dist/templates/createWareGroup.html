@@ -1,7 +1,7 @@
 <div>
 
 	<h4>Dodaj novu grupu robe</h4>
-
+	<form name="myForm">
 
 	Naziv grupe:
 
@@ -59,8 +59,8 @@
 	
 
 	<br><br>
-	<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_group()">Sačuvaj</button>
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_group()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 	
 	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
-
+	</form>
 </div>

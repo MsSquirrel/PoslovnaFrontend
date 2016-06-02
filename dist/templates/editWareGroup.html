@@ -1,7 +1,7 @@
 <div>
 		
 		<h4>Izmeni postojeću robu</h4>
-
+	<form name="myForm">
 
 		Naziv grupe:
 		<div class="row">
@@ -31,8 +31,8 @@
 				
 		<br><br>
 		
-		<button type="button" class="btn btn-info accept" ng-click="edit_selected_group()">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="edit_selected_group()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
-
+	</form>
 </div>
