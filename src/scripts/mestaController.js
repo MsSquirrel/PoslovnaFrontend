@@ -82,7 +82,11 @@ module.exports = [
    		}
 
 
+   		$scope.nextCompany = function()
+   		{
 
+   
+   		};
 
 		
 		function fillData(){

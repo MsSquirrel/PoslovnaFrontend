@@ -104,7 +104,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('preduzeca', {
-        url: '/preduzeca',
+        url: '/preduzeca?mestoId',
         templateUrl: './templates/preduzeca.html',
         controller: 'preduzeceCtrl',
         data: {
@@ -149,7 +149,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'faktureCtrl'
       })
       .state('grupe-roba', {
-        url: '/grupe-roba',
+        url: '/grupe-roba?pdvId',
         templateUrl: './templates/grupe-roba.html',
         controller: 'grupe-robaCtrl',
         data: {
@@ -190,7 +190,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
        .state('magacini', {
-        url: '/magacini',
+        url: '/magacini?mestoId',
         templateUrl: './templates/magacini.html',
         controller: 'magaciniCtrl',
         data: {
@@ -317,7 +317,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('poslovni-partneri', {
-        url: '/poslovni-partneri',
+        url: '/poslovni-partneri?mestoId',
         templateUrl: './templates/poslovni-partneri.html',
         controller: 'poslovni-partneriCtrl',
         data: {
@@ -376,7 +376,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('roba', {
-        url: '/roba',
+        url: '/roba?jedinicaMereId',
         templateUrl: './templates/roba.html',
         controller: 'robaCtrl',
         data: {
@@ -451,7 +451,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('stope-pdv-a', {
-        url: '/stope-pdv-a',
+        url: '/stope-pdv-a?pdvId',
         templateUrl: './templates/stope-pdv-a.html',
         controller: 'stope-pdv-aCtrl',
         data: {

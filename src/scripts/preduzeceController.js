@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window', '$state','$rootScope',
-	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window, $state, $rootScope){
+	'$scope', '$http', 'preduzecaService','mestaService', '$routeParams','$window', '$state','$rootScope','$location', '$stateParams',
+	function myController($scope, $http, preduzecaService, mestaService, $routeParams, $window, $state, $rootScope, $location, $stateParams){
 
 		$scope.allPlaces = {};
 
@@ -26,13 +26,14 @@ module.exports = [
    		$scope.isModal = $state.current.data.isModal;
    		console.log("Comapany is modal: "+$scope.isModal);
 
-		$scope.gridOptions = {
-		    enableRowSelection: true,
-		    enableSelectAll: false,
-    		selectionRowHeaderWidth: 0,
-    		multiSelect: false,
-    		enableFullRowSelection: true
-		  };
+
+   		$scope.gridOptions = {
+   		   enableRowSelection: true,
+   		    enableSelectAll: false,
+       		selectionRowHeaderWidth: 0,
+       		multiSelect: false,
+       		enableFullRowSelection: true
+   		};
  			
  		$scope.gridOptions.columnDefs = [
 		    { name:'Naziv_Preduzece', width:'25%', displayName: 'Naziv', cellTooltip: true, headerTooltip: true},
@@ -86,7 +87,7 @@ module.exports = [
    			if(pib==='' && naziv==='' && maticni==='')
    				return;
 
-   			var url_filter = "?$filter="
+   			var url_filter = "?$filter=";
 
    			var prvi= true;
    			
@@ -123,24 +124,51 @@ module.exports = [
    		}
 
 
+      $scope.nextMeh = function()
+      {
+         var url_filter = "?$filter=";
+
+         var mestoId = $stateParams.mestoId;
+         console.log("PARAM: "+ mestoId);
+
+         if(mestoId=='')
+         {
+            return;
+         }
+
+         if($scope.mestoId!='')
+         {
+            url_filter += "Id eq " + mestoId;
+         }
+
+         console.log(url_filter);
+         preduzecaService.get_filtered_companies(url_filter).then(function(response){
+               $scope.gridOptions.data = response;
+         });
+
+      };
+
 
     	function fillData(){
-    		preduzecaService.get_all_companies()
-				.then(function(response){
-				$scope.gridOptions.data = response;
-			});
+
+         if($stateParams.mestoId=='' || $stateParams.mestoId==undefined){
+       		preduzecaService.get_all_companies()
+   				.then(function(response){
+   				$scope.gridOptions.data = response;
+   			});
+         }
+         else
+         {
+          $scope.nextMeh();
+         }
 
 			mestaService.get_all_places()
 				.then(function(response){
 				$scope.allPlaces = response;
 			});
-		};
-
-		$scope.fillData = fillData;		 
+		};		 
 
 		fillData();
-		//setSelection();
-		console.log("PREDUZECE CONTROLLER");
 
 		$scope.clear_add = function(){
 			$scope.companyName ="";

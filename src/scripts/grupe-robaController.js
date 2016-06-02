@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'grupeRobaService', 'pdvService', 'preduzecaService', '$routeParams', '$window', '$rootScope', '$state',
-	function myController($scope, $http, grupeRobaService, pdvService, preduzecaService, $routeParams, $window, $rootScope, $state) {
+	'$scope', '$http', 'grupeRobaService', 'pdvService', 'preduzecaService', '$routeParams', '$window', '$rootScope', '$state', '$stateParams',
+	function myController($scope, $http, grupeRobaService, pdvService, preduzecaService, $routeParams, $window, $rootScope, $state, $stateParams) {
 		
 
 		$scope.allPdv = {};
@@ -72,12 +72,40 @@ module.exports = [
    			});
    		}
 
+   		$scope.nextMeh = function()
+      	{
+	         var url_filter = "?$filter=";
 
+	         var pdvId = $stateParams.pdvId;
+	         console.log("PARAM: "+ pdvId);
+
+	         if(pdvId=='')
+	         {
+	            return;
+	         }
+
+	         if(pdvId!='')
+	         {
+	            url_filter += "Id_PDV eq " + pdvId;
+	         }
+
+	         console.log(url_filter);
+	         grupeRobaService.get_filtered_groups(url_filter).then(function(response){
+	               $scope.gridOptions.data = response;
+	         });
+
+      	};
 
 		function fillData(){
-    		grupeRobaService.get_all_groups().then(function(response){
-				$scope.gridOptions.data = response;
-			});
+			if($stateParams.pdvId=='' || $stateParams.pdvId==undefined){
+	    		grupeRobaService.get_all_groups().then(function(response){
+					$scope.gridOptions.data = response;
+				});
+    		}
+    		else
+    		{
+    			$scope.nextMeh();
+    		}	
 
 			pdvService.get_all_pdvs().then(function(response){
 				$scope.allPdv = response;
@@ -87,8 +115,6 @@ module.exports = [
 				$scope.allCompanies = response;
 			});
 		}
-
-		$scope.fillData = fillData;
 
 		fillData();
 

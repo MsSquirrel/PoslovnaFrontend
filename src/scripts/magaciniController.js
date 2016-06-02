@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'magaciniService', 'mestaService', 'preduzecaService', '$routeParams','$window', '$state',
-	function myController($scope, $http, magaciniService, mestaService, preduzecaService, $routeParams, $window, $state){
+	'$scope', '$http', 'magaciniService', 'mestaService', 'preduzecaService', '$routeParams','$window', '$state', '$stateParams',
+	function myController($scope, $http, magaciniService, mestaService, preduzecaService, $routeParams, $window, $state, $stateParams){
 
 		$scope.allPlaces = {};
 		$scope.allCompanies = {};
@@ -92,14 +92,42 @@ module.exports = [
 
       }
 
+      $scope.nextMeh = function()
+      {
+         var url_filter = "?$filter=";
+
+         var mestoId = $stateParams.mestoId;
+         console.log("PARAM: "+ mestoId);
+
+         if(mestoId=='')
+         {
+            return;
+         }
+
+         if($scope.mestoId!='')
+         {
+            url_filter += "Id eq " + mestoId;
+         }
+
+         console.log(url_filter);
+         magaciniService.get_filtered_warehouses(url_filter).then(function(response){
+               $scope.gridOptions.data = response;
+         });
+      };
 
 
 
     	function fillData(){
-    		magaciniService.get_all_warehouses().then(function(response){
-				$scope.gridOptions.data = response;
-			});
-
+    		if($stateParams.mestaId=='' || $stateParams.mestoId==undefined){
+	    		magaciniService.get_all_warehouses().then(function(response){
+					$scope.gridOptions.data = response;
+				});
+    		}
+    		else
+    		{
+    			$scope.nextMeh();
+    		}
+			
 			mestaService.get_all_places().then(function(response){
 				$scope.allPlaces = response;
 			});
