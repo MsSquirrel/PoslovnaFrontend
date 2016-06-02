@@ -376,7 +376,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('roba', {
-        url: '/roba?jedinicaMereId?preduzeceId',
+        url: '/roba?jedinicaMereId?preduzeceId?grupaRobaId',
         templateUrl: './templates/roba.html',
         controller: 'robaCtrl',
         data: {

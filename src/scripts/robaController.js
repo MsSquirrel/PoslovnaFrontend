@@ -95,9 +95,10 @@ module.exports = [
 
          var jedinicaMereId = $stateParams.jedinicaMereId;
          var preduzeceId = $stateParams.preduzeceId;
+         var grupaRobaId = $stateParams.grupaRobaId;
          console.log("PARAM: "+ jedinicaMereId);
 
-         if(jedinicaMereId==''&& preduzeceId=='')
+         if(jedinicaMereId==''&& preduzeceId=='' && grupaRobaId=='')
          {
             return;
          }
@@ -112,6 +113,10 @@ module.exports = [
          	 url_filter += "Id_Preduzece eq " + preduzeceId;	
          }
 
+         if(grupaRobaId!='' && grupaRobaId!=undefined)
+         {
+         	url_filter += "Id_Grupa_roba eq "+grupaRobaId;
+         }
 
          console.log(url_filter);
          robaService.get_filtered_goods(url_filter).then(function(response){
@@ -122,7 +127,7 @@ module.exports = [
 
 
 		function fillData(){
-			if(($stateParams.jedinicaMereId=='' || $stateParams.jedinicaMereId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined)){
+			if(($stateParams.jedinicaMereId=='' || $stateParams.jedinicaMereId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined) && ($stateParams.grupaRobaId=='' || $stateParams.grupaRobaId==undefined)){
 	    		robaService.get_all_goods().then(function(response){
 					$scope.gridOptions.data = response;
 				});
