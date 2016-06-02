@@ -5,8 +5,9 @@
 		Naziv robe: 
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" class="form-control" ng-model="goodsName">
+				<input type="text" name="namew" class="form-control" ng-model="goodsName" required>
 				</input>	
+				<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span>
 			</div>
 		</div>										
 		
@@ -24,9 +25,10 @@
 
 		<div class="row">
 			<div class="col-md-6">
-				<select class="form-control" ng-model="goodsCategory" ng-click="chose_place()">
+				<select class="form-control" name="nameg" ng-model="goodsCategory" ng-click="chose_place()" required>
 				<option  ng-repeat="category in allCategories" ng-value="category.Id_Grupa_roba">{{category.Naziv_Grupa_roba}}</option>
-				</select><br>
+				</select>
+				<span class="writeError" ng-show="myForm.nameg.$invalid">Obavezno polje.</span><br>
 			</div>
 		</div>
 
@@ -44,9 +46,10 @@
 		<div class="row">
 			<div class="col-md-6">
 
-				<select class="form-control" ng-model="goodsMeasUnit" ng-click="chose_place()">
+				<select class="form-control" name="namem" ng-model="goodsMeasUnit" ng-click="chose_place()" required>
 				<option  ng-repeat="measUnit in allMeasUnits" ng-value="measUnit.Id_Jedinica_mere">{{measUnit.Naziv_Jedinica_mere}}</option>
 				</select><br>
+				<span class="writeError" ng-show="myForm.namem.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
 
@@ -65,9 +68,10 @@
 		<div class="row">
 			<div class="col-md-6">				
 
-				<select class="form-control" ng-model="goodsCompany" ng-click="chose_place()">
+				<select class="form-control" name="namec" ng-model="goodsCompany" ng-click="chose_place()" required>
 				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 				</select>
+				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 			</div>
 		</div>	
 

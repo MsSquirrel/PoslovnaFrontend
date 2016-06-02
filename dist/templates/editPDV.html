@@ -6,7 +6,8 @@
 
 	<div class="row">
 	 	<div>
-			<input type="text" class="form-control" ng-model="editPdvName"></input>
+			<input type="text" name="namep" class="form-control" ng-model="editPdvName" required></input>
+			<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 		</div>
 	</div>
 

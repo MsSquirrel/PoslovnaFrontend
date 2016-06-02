@@ -6,7 +6,8 @@
 		Naziv grupe:
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" class="form-control" ng-model="editGroupName"><br>
+				<input type="text" name="nameg" class="form-control" ng-model="editGroupName" required>
+				<span class="writeError" ng-show="myForm.nameg.$invalid">Obavezno polje.</span><br/>
 			</div>
 		</div>					
 						
@@ -14,7 +15,8 @@
 
 		<div class="row">
 			<div class="col-md-6">	
-				<select class="form-control" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv" ></select><br>
+				<select class="form-control" name="namep" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv"  required></select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br/>
 			</div>
 		</div>
 						
@@ -22,7 +24,8 @@
 		Preduzece: 
 		<div class="row">
 			<div class="col-md-6">
-				 <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany"></select><br>				
+				 <select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany" required></select>
+				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span><br>				
 			</div>
 		</div>
 				

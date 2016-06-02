@@ -5,7 +5,8 @@
 		Naziv robe: 	
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" class="form-control" ng-model="editGoodsName"></input>
+				<input type="text" name="namew" class="form-control" ng-model="editGoodsName" required></input>
+				<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
 											
@@ -13,22 +14,25 @@
 		Grupa robe:  
 		<div class="row">
 			<div class="col-md-6">			
-					<select class="form-control" ng-model="editGoodsCategory" ng-options="category.Id_Grupa_roba as category.Naziv_Grupa_roba for category in allCategories">
-					</select><br>
+					<select class="form-control" name="nameg" ng-model="editGoodsCategory" ng-options="category.Id_Grupa_roba as category.Naziv_Grupa_roba for category in allCategories" required>
+					</select>
+					<span class="writeError" ng-show="myForm.nameg.$invalid">Obavezno polje.</span><br/>
 			</div>
 		</div>
 
 		Jedinica mere:  
 		<div class="row">
 			<div class="col-md-6">
-					<select class="form-control" ng-model="editGoodsMeasUnit" ng-options="measUnit.Id_Jedinica_mere as measUnit.Naziv_Jedinica_mere for measUnit in allMeasUnits"/><br>
+					<select class="form-control" name="namem" ng-model="editGoodsMeasUnit" ng-options="measUnit.Id_Jedinica_mere as measUnit.Naziv_Jedinica_mere for measUnit in allMeasUnits" required/>
+					<span class="writeError" ng-show="myForm.namem.$invalid">Obavezno polje.</span><br>
 			</div>
 		</div>
 						
 		Preduzece:  	
 		<div class="row">
 			<div class="col-md-6">
-				<select class="form-control" ng-model="editGoodsCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
+				<select class="form-control" name="namec" ng-model="editGoodsCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
+				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
 		

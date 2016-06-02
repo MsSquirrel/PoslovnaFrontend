@@ -7,8 +7,8 @@
 		Vrednost stope PDV-a: 
 		<div class="row">
 			<div>
-				<input type="text" name="number" class="form-control" ng-model="pdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/"></input>
-				<span class="writeError" ng-show="myForm.number.$invalid">Unesite pozitivan broj sa dve dicimale!</span></br>	
+				<input type="text" name="number" class="form-control" ng-model="pdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/" required></input>
+				<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite pozitivan broj sa dve dicimale!</span></br>	
 			</div>
 		</div></br>
 								
@@ -17,12 +17,13 @@
 		<div class="row">
 			<div>
 				<p class="input-group">
-		 		<input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" readonly />
+		 		<input type="text" name="datef" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" readonly  required/>
 
 				<span class="input-group-btn">
 				<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
 				</p>
+				<span class="writeError" ng-show="myForm.datef.$invalid">Obavezno polje.</span>
 			</div>
 		</div></br>
 				
@@ -39,9 +40,10 @@
 
 		<div class="row">
 			<div>
-				<select class="form-control" ng-model="pdvRatePdv" ng-click="chose_place()">
+				<select class="form-control" name="namep" ng-model="pdvRatePdv" ng-click="chose_place()" required>
 				<option  ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
 				</select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
 		</br></br>

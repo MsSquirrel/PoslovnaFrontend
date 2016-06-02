@@ -6,8 +6,8 @@
 		Godina:
 		<div class="row">
 			<div>
-				<input type="text" name="number" class="form-control" ng-model="businessYear" ng-pattern="/^((19[6-9]\d)|(20\d\d))$/"></input></br>
-				<span class="writeError" ng-show="myForm.number.$invalid">Unesite godinu u rasponu 1960-2099!</span>
+				<input type="text" name="number" class="form-control" ng-model="businessYear" ng-pattern="/^((19[6-9]\d)|(20\d\d))$/" required></input>
+				<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite godinu u rasponu 1960-2099!</span>
 			</div>
 		</div></br>
 
@@ -21,9 +21,10 @@
 		Preduzeće:  
 		<div class="row">
 			<div>
-				<select class="form-control" ng-model="businessYearCompany" ng-click="chose_place()">
+				<select class="form-control" name="namep" ng-model="businessYearCompany" ng-click="chose_place()" required>
    				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
    				</select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div></br>
 

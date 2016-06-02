@@ -1,38 +1,40 @@
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Izmeni postojeću stopu PDV-a</h4>
 
-		<form class="form" name="myFormEdit">
-	Vrednost stope PDV-a: 
+	<form class="form" name="myFormEdit">
+		Vrednost stope PDV-a: 
 
-	<div class="row">
-		<div>
-			<input type="text" name="number" class="form-control" ng-model="editPdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/"></input>		
-			<span class="writeError" ng-show="myFormEdit.number.$invalid">Unesite pozitivan broj sa dve dicimale!</span></br>	
+		<div class="row">
+			<div>
+				<input type="text" name="number" class="form-control" ng-model="editPdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/" required></input>		
+				<span class="writeError" ng-show="myFormEdit.number.$invalid">Obavezno polje. Unesite pozitivan broj sa dve dicimale!</span></br>	
+			</div>
+		</div>	</br>		
+		
+		Važi od: 
+		<div class="row">
+			<div>
+				<p class="input-group">
+				    <input type="text" name="datef" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editPdvRateDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats"  required></input>
+				    <span class="input-group-btn">
+				     
+				    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				    </span>
+					<span class="writeError" ng-show="myForm.datef.$invalid">Obavezno polje.</span>
+		 		</p>
+		 	</div>
+		 </div></br>
+							
+		PDV:  
+		<div class="row">
+			<div>
+				<select class="form-control" name="namep" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs" required></select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
+			</div>
 		</div>
-	</div>	</br>		
-	
-	Važi od: 
-	<div class="row">
-		<div>
-			<p class="input-group">
-			    <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="editPdvRateDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ></input>
-			    <span class="input-group-btn">
-			     
-			    <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-			    </span>
-	 		</p>
-	 	</div>
-	 </div></br>
-						
-	PDV:  
-	<div class="row">
-		<div>
-			<select class="form-control" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs"></select>
-		</div>
-	</div>
-</br></br>
-	<button type="button" class="btn btn-info" ng-click="edit_PDVRate()" ng-disabled="myFormEdit.$invalid">Sačuvaj</button>
-	<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
+	</br></br>
+		<button type="button" class="btn btn-info" ng-click="edit_PDVRate()" ng-disabled="myFormEdit.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 
-		</form>
+	</form>
 </div>

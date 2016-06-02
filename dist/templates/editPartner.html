@@ -6,31 +6,33 @@
 		Naziv: 
 		<div class="row">
 			<div>
-				<input type="text" class="form-control" ng-model="editPartnerName"></input>
+				<input type="text" name="namen" class="form-control" ng-model="editPartnerName" required></input>
+				<span class="writeError" ng-show="myForm.namen.$invalid">Obavezno polje.</span>
 			</div></br>
 		</div>
 
 		Tip: 
 		<div class="row">
 			<div>
-				<select class="form-control" ng-model="editPartnerType" ng-options="option for option in typeOptions">
-	   			 </select><br>
+				<select class="form-control" name="namet" ng-model="editPartnerType" ng-options="option for option in typeOptions" required>
+	   			 </select>
+				<span class="writeError" ng-show="myForm.namet.$invalid">Obavezno polje.</span><br>
 			</div>
 		</div>			
 
 		Matični broj: 
 		<div class="row">
 			<div>
-				<input type="text" name="mbrNumber" class="form-control" ng-model="editPartnerMBR" ng-pattern="/^(\d{8})$/"></input>
-				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Unesite osam cifri!</span>
+				<input type="text" name="mbrNumber" class="form-control" ng-model="editPartnerMBR" ng-pattern="/^(\d{8})$/" required></input>
+				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Obavezno polje. Unesite osam cifri!</span>
 			</div>
 		</div></br>
 
 		PIB preduzeća: 
 		<div class="row">
 			<div>
-				<input type="text" name="pibNumber" class="form-control" ng-model="editPartnerPIB" ng-pattern="/^(\d{10})$/"></input>
-				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Unesite deset cifri!</span>
+				<input type="text" name="pibNumber" class="form-control" ng-model="editPartnerPIB" ng-pattern="/^(\d{10})$/" required></input>
+				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Obavezno polje. Unesite deset cifri!</span>
 			</div>
 		</div></br>
 							
@@ -51,7 +53,8 @@
 	   	Partner: 
 	   	<div class="row">
 			<div>
-	   			<select class="form-control" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies"></select>
+	   			<select class="form-control" name="namep" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 	   		</div>
 	   	</div></br>
 
