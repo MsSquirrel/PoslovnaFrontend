@@ -89,7 +89,13 @@ module.exports = [
 				.then(function(response){
 				$scope.allPartners = response;
 			});
-    	};
+    	};      
+
+    	$scope.checkDate = function() {
+	        var dateNow = new Date(); 
+	        var dateEntered = new Date($scope.dt); 
+	        $scope.myForm.date.$setValidity("minLength", dateNow.getTime() > dateEntered.getTime());
+     	};
 
     	fillData();
 

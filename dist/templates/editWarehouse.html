@@ -1,20 +1,26 @@
 <div>
 	<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
+	<form  name="myForm">
 
-		Naziv magacina: <input type="text" class="form-control" ng-model="editWarehouseName"><br>
+		Naziv magacina: <input type="text" name="namew" class="form-control" ng-model="editWarehouseName" required>
+					<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span><br>
 		
 
-		Adresa magacina: <input type="text" class="form-control" ng-model="editWarehouseAddress"><br>
+		Adresa magacina: <input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" required>
+					<span class="writeError" ng-show="myForm.namea.$invalid">Obavezno polje.</span><br>
 		
-		Mesto:  	<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace">
-									</select><br>
-		Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany">
-									</select><br>
+		
+		Mesto:  	<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required>
+		</select>
+					<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
+		
+		Preduzece:  <select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required>
+		</select>
+					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span><br>
 
-		<br>
-		
-		<button type="button" class="btn btn-info accept" ng-click="edit_selected_warehouse()">Sačuvaj</button>
+		<br>		
+		<button type="button" class="btn btn-info" ng-click="edit_selected_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		
 		<button type="button" class="btn btn-info" ng-click="close_edit()" >Otkaži</button>
-
+	</form>
 </div>
