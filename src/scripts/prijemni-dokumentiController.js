@@ -148,19 +148,19 @@ module.exports = [
 		  	});
     	};*/
 
-    	$scope.calculate() = function(){
+    	$scope.calculate = function(){
     		prijemniDokumentiService.calculate($scope.selectedWarehouseReceiptId).then(function(response){
     			fillData();
     		});
     	}
 
-    	$scope.record() = function(){
+    	$scope.record = function(){
     		prijemniDokumentiService.record($scope.selectedWarehouseReceiptId).then(function(response){
     			fillData();
     		});
     	}
 
-    	$scope.cancel() = function(){
+    	$scope.cancel = function(){
     		prijemniDokumentiService.cancel($scope.selectedWarehouseReceiptId).then(function(response){
     			fillData();
     		});
