@@ -4,6 +4,7 @@ module.exports = [
 
 		function get_all_warehouseReceipts()
 		{
+
 			var resUrl = "http://localhost:61769/api/prijemni_dokument";
 			return $http.get(resUrl)
 			.then(function(response) {
@@ -11,7 +12,7 @@ module.exports = [
 			});
 		}
 
-		function create_warehouseReceipt(godina, mag1, mag2, partner, zTroskovi, tTroskovi)
+		function create_warehouseReceipt(godina, mag1, mag2, partner, zTroskovi, tTroskovi, datum)
 		{	
 
 			return $http({
@@ -23,7 +24,8 @@ module.exports = [
 						Mag_Id_Magacin: mag2,
 						Id_Partner: partner,
 						Zavisni_troskovi_Prijemni_dokument: zTroskovi,
-						Transportni_troskovi_Prijemni_dokument: tTroskovi
+						Transportni_troskovi_Prijemni_dokument: tTroskovi,
+						Datum_formiranja_Prijemni_dokument: datum
 					}
            	}).success(function(response){
 				return response.data;				
@@ -43,22 +45,25 @@ module.exports = [
 			});
 		}
 
-		function update_warehouseReceipt(id, godina, zakljucena, preduzece)
+		function update_warehouseReceipt(godina, mag1, mag2, partner, zTroskovi, tTroskovi, datum)
 		{	
 			var url = "http://localhost:61769/api/prijemni_dokument/"+id+"/";
 			return $http({
                     method: "put",
                     url: url,
                     data: {
-                    	Id_Poslovna_godina: id, 
-						Id_Preduzece: preduzece,
-						Godina_Poslovna_godina: godina,
-						Zakljucena_Poslovna_godina: zakljucena
+                    	Id_Poslovna_godina: godina, 
+						Id_Magacin: mag1,
+						Mag_Id_Magacin: mag2,
+						Id_Partner: partner,
+						Zavisni_troskovi_Prijemni_dokument: zTroskovi,
+						Transportni_troskovi_Prijemni_dokument: tTroskovi,
+						Datum_formiranja_Prijemni_dokument: datum
 					}
            	}).success(function(response){
 				return response.data;				
 			}).error(function(response, data){
-				alert("Neuspešan unos podataka. Poslovna godina u okviru preduzeća već postoji.");
+				alert("Neuspešan unos podataka.");
 			});
 		}
 

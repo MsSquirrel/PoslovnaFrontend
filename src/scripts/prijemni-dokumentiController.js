@@ -13,6 +13,7 @@ module.exports = [
 		$scope.selectedWarehouseReceiptWarehouse2 = "";
 		$scope.selectedWarehouseReceiptExpenses = 0;
 		$scope.selectedWarehouseReceiptTransportExpenses = 0;
+		$scope.selectedWarehouseReceiptDate = "";
 
 		$scope.editWarehouseReceiptYear = "";
 		$scope.editWarehouseReceiptPartner = "";
@@ -20,6 +21,7 @@ module.exports = [
 		$scope.editWarehouseReceiptWarehouse2 = "";
 		$scope.editWarehouseReceiptExpenses = 0;
 		$scope.editWarehouseReceiptTransportExpenses = 0;
+		$scope.editWarehouseReceiptDate = "";
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -32,8 +34,8 @@ module.exports = [
  		 $scope.gridOptions.columnDefs = [
  		 	{ name:'Redni_broj_Prijemni_dokument', width:'7%', displayName: 'Redni broj', cellTooltip: true, headerTooltip: true},
  		 	{ name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
- 		 	{ name:'Magacin1.Naziv_Magacin', width:'20%', displayName: 'U koji magacin', cellTooltip: true, headerTooltip: true},
- 		 	{ name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Iz kog magacina', cellTooltip: true, headerTooltip: true},
+ 		 	{ name:'Magacin1.Naziv_Magacin', width:'20%', displayName: 'Magacin', cellTooltip: true, headerTooltip: true},
+ 		 	//{ name:'Magacin.Naziv_Magacin', width:'20%', displayName: 'Iz kog magacina', cellTooltip: true, headerTooltip: true},
 		    { name:'Poslovni_partner.Naziv_Partner', width:'20%', displayName: 'Partner', cellTooltip: true, headerTooltip: true},
 		    { name:'Status_Prijemni_dokument', width:'7%', displayName: 'Status', cellTooltip: true, headerTooltip: true},
 		    { name:'Datum_formiranja_Prijemni_dokument', width:'13%', displayName: 'Datum formiranja', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
@@ -49,11 +51,7 @@ module.exports = [
 
    			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
    				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
-		          if ($scope.selectedRow != null)
-		            $(".edit-btn, .remove-btn").attr("disabled", false);
-		          else
-		            $(".edit-btn, .remove-btn").attr("disabled", true);
-
+		          
    				$scope.selectedWarehouseReceiptId = $scope.selectedRow.Id_Prijemni_dokument;
    				$scope.selectedWarehouseReceiptYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
    				$scope.selectedWarehouseReceiptExpenses = $scope.selectedRow.Zavisni_troskovi_Prijemni_dokument;
@@ -61,6 +59,7 @@ module.exports = [
    				$scope.selectedWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
    				$scope.selectedWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.selectedWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
+   				$scope.selectedWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
 
    				$scope.editWarehouseReceiptYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
    				$scope.editWarehouseReceiptExpenses = $scope.selectedRow.Zavisni_troskovi_Prijemni_dokument;
@@ -68,7 +67,7 @@ module.exports = [
    				$scope.editWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
    				$scope.editWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.editWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
-
+   				$scope.selectedWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
 		 	});
    		};
 
@@ -78,7 +77,7 @@ module.exports = [
 				.then(function(response){
 				$scope.gridOptions.data = response;
 			});
-			poslovneGodineService.get_all_businessYears()
+			poslovneGodineService.get_active_businessYears()
 				.then(function(response){
 				$scope.allYears = response;
 			});
@@ -101,6 +100,7 @@ module.exports = [
 	        $scope.warehouseReceiptWarehouse2 = "";
 	        $scope.warehouseReceiptTransportExpenses = 0;
 	        $scope.warehouseReceiptExpenses = 0;
+	        $scope.warehouseReceiptDate = "";
 
 	        //$scope.changeCompany = "";
 	        
@@ -116,8 +116,12 @@ module.exports = [
 
       $scope.add_warehouseReceipt = function()
     	{
+    		var god = $scope.dt.getYear()+1900;
+    		var m = $scope.dt.getMonth()+1;
+    		var date = god+"-"+m+"-"+$scope.dt.getDate();
+
     		prijemniDokumentiService.create_warehouseReceipt($scope.warehouseReceiptBusinessYear, $scope.warehouseReceiptWarehouse1, $scope.warehouseReceiptWarehouse2, 
-    			$scope.warehouseReceiptPartner, $scope.warehouseReceiptExpenses, $scope.warehouseReceiptTransportExpenses).then(function(response){
+    			$scope.warehouseReceiptPartner, $scope.warehouseReceiptExpenses, $scope.warehouseReceiptTransportExpenses, date).then(function(response){
 	          	$scope.clear_add(); 
 	          	$state.go('^',{}, {reload:true});
 		  	});
@@ -132,18 +136,66 @@ module.exports = [
     	};
 
 
-    	/*$scope.edit_selected_warehouseReceipt = function()
+    	$scope.edit_selected_warehouseReceipt = function()
     	{
+    		var god = $scope.dt.getYear()+1900;
+    		var m = $scope.dt.getMonth()+1;
+    		var date = god+"-"+m+"-"+$scope.dt.getDate();
     		
-    		poslovneGodineService.update_businessYear($scope.selectedBusinessYearId, $scope.editBusinessYear, $scope.editBusinessYearFinished, $scope.editBusinessYearCompany).then(function(response){
+    		poslovneGodineService.update_businessYear($scope.warehouseReceiptBusinessYear, $scope.warehouseReceiptWarehouse1, $scope.warehouseReceiptWarehouse2, 
+    			$scope.warehouseReceiptPartner, $scope.warehouseReceiptExpenses, $scope.warehouseReceiptTransportExpenses, date).then(function(response){
 			   	
 		  	});
-    	};*/
+    	};
 
 
-		$http.get("http://localhost:61769/api/prijemni_dokument").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+		// time picker
+  		 $scope.mytime = new Date();
+  		 $scope.options = {
+    		hour_step: [1, 2, 3],
+    		minute_step: [1, 5, 10, 15, 25, 30]
+  		};
+
+ 		 $scope.hour_step = 1;
+ 		 $scope.minute_step = 15;
+ 		 $scope.ismeridian = true;
+
+		// date picker
+ 		$scope.open1 = function() {
+    	$scope.popup1.opened = true;
+  		};
+  		
+  		$scope.today = function(){
+  			$scope.dt = new Date();
+  		}
+
+ 		$scope.minDate =  new Date();
+
+ 		$scope.today();
+ 		$scope.maxDate = $scope.today();
+  		$scope.formats = ['yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+ 		$scope.format = $scope.formats[0];
+ 		
+
+ 		 $scope.popup1 = {
+    		opened: false
+ 		 };
+
+  		$scope.dateOptions = {
+    		formatYear: 'yy',
+    		startingDay: 1
+  		};
+
+ 		$scope.altInputFormats = ['yyyy/MM/dd'];
+
+ 		 $scope.setDate = function(year, month, day) {
+    		$scope.dt = new Date(year, month, day);
+  		};
+
+  		$scope.dateChanged = function() {
+			console.log("Date chenged function "+$scope.dt.getMonth() +" "+$scope.dt.getDate());
+			console.log("ODABRANO VREME "+$scope.dt);
+		}
 
 	}
 ];

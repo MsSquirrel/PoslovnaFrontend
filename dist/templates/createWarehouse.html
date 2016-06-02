@@ -1,6 +1,6 @@
 <div>
 	<h4 class="modal-title">Dodaj novi magacin</h4>
-
+	<form  name="myForm">
 	Naziv magacina: 
 
 	<div class="row">
@@ -58,7 +58,8 @@
 	</div>
 
 	<br><br>
-	<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="add_warehouse()">Sačuvaj</button>
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 	
 	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
+</form>
 </div>

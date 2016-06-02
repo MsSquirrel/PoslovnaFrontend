@@ -39,7 +39,7 @@
 	      			<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
 	    		</div>
 	    		<div class="modal-body">
-	      			<form novalidate>
+	      			<form novalidate name="myForm">
 						Naziv magacina: <input type="text"  name="nameme" class="form-control" ng-model="editWarehouseName" required>
 						<span class="writeError" ng-show="myForm.nameme.$invalid">Obavezno polje.</span><br>
 						Adresa magacina: <input type="text" name="nameae" class="form-control" ng-model="editWarehouseAddress" required>
@@ -52,7 +52,7 @@
 						<span class="writeError" name="namece" ng-show="myForm.namece.$invalid">Obavezno polje.</span><br>
 
 						<br>
-						<button type="button" class="btn btn-info accept" data-dismiss="modal" ng-click="edit_selected_warehouse()">Sačuvaj</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>
