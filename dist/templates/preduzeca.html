@@ -17,11 +17,6 @@
 		  		<span class="glyphicon glyphicon-pencil" ></span>
 			</button>
 
-			<button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
-
-			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
-
-
 			<div class="btn-group" uib-dropdown is-open="status.isopen">
     			   <button id="single-button" title="Next" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="gridOptions.selection.getSelectedRows().length == 0"><span class="glyphicon glyphicon-play">	 
       				</button>
@@ -64,37 +59,5 @@
         		</div>
       		</div>
       	</div>	
-
-
-	<div id="searchModal" class="modal fade" role="dialog">
-		<div class="modal-dialog">
-
-		    
-		    <div class="modal-content">
-			    <div class="modal-header">
-			      	<button type="button" class="close" data-dismiss="modal">&times;</button>
-			        <h4 class="modal-title">Pretraga preduzeća</h4>
-			    </div>
-			    
-			    <div class="modal-body">
-			    	<div id="search_div">
-						Naziv: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite ceo ili deo naziva preduzeca." class="form-control" ng-model="search.naziv"/>
-						<br/>
-						Matični broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite matični broj preduzeća." class="form-control" ng-model="search.maticni_broj"/>
-						<br/>
-						PIB: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite PIB preduzeća." class="form-control" ng-model="search.PIB"/>
-					</div>
-			    
-			    </div>
-			    <div class="modal-footer">
-			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.filterData()">
-			    		Search
-			    	</button>
-			    </div>
-			</div>
-
-		</div>
-	</div>	
-
 
 </div>

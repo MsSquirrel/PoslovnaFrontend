@@ -71,59 +71,7 @@ module.exports = [
    			$scope.editCompanyPlace = $scope.selectedRow.Mesto.Id;
    		};
 		
-
-
-   		$scope.search = {};
-   		$scope.search.naziv= '';
-   		$scope.search.PIB= '';
-   		$scope.search.maticni_broj = '';
-
-   		$scope.search.filterData = function(){
-
-   			var naziv = $scope.search.naziv.trim();
-   			var maticni = $scope.search.maticni_broj.trim();
-   			var pib = $scope.search.PIB.trim();
-
-   			if(pib==='' && naziv==='' && maticni==='')
-   				return;
-
-   			var url_filter = "?$filter=";
-
-   			var prvi= true;
-   			
-   			if(naziv!=''){
-   				prvi =	false;
-   				url_filter += "substringof('" + naziv + "', Naziv_Preduzece) eq true";
-   			}
-
-   			if(pib!=''){
-   				if(!prvi){
-   					url_filter += " and "
-   				}
-
-   				url_filter += "PIB_Preduzece eq " + pib;
-   			}
-
-
-   			if(maticni!=''){
-   				if(!prvi){
-   					url_filter += " and "
-   				}
-
-   				url_filter += "Maticni_broj_Preduzece eq " + maticni;
-   			}
-
-   			console.log(url_filter);
-   			preduzecaService.get_filtered_companies(url_filter).then(function(response){
-   				$scope.gridOptions.data = response;
-
-   				$scope.search.naziv= '';
-		   		$scope.search.PIB= '';
-		   		$scope.search.maticni_broj = '';
-   			});
-   		}
-
-
+      
       $scope.nextMeh = function()
       {
          var url_filter = "?$filter=";

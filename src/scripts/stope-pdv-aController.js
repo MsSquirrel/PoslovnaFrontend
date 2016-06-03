@@ -54,42 +54,50 @@ module.exports = [
       $scope.search = {};
       $scope.search.zaPdv= '';
 
-      $scope.search.filterData = function(){
 
-        var zaPdv= $scope.search.zaPdv.trim();
+      $scope.search.iPAS = function(){
+
+        if($scope.search.zaPdv != '')
+          $state.go('stope-pdv-a', { pdvId: $scope.search.zaPdv});
+      }
+
+      var filterData = function(zaPdv){
         
+                   
         var url_filter = "?$filter="
         
-        if(zaPdv!=''){
+        url_filter += "Id_PDV eq " + zaPdv;
+
+        stopePDVService.get_filtered_PDVRates(url_filter).then(function(response){
           
-          url_filter += "substringof('" + zaPdv + "', Naziv_PDV) eq true";
-          console.log(url_filter);
-          
-          pdvService.get_filtered_pdvs(url_filter).then(function(response){
-            var id_zaPDv = response[0].Id_PDV;
-            if(id_zaPDv!=undefined){
-              
-              var url_filter1 = "?$filter="
-              
-              url_filter1 += "Id_PDV eq " + id_zaPDv;
+          $scope.gridOptions.data = response;
+          $scope.search.zaPdv= '';
+        });
+      }
 
-              stopePDVService.get_filtered_PDVRates(url_filter1).then(function(response1){
-                
-                $scope.gridOptions.data = response1;
-                $scope.search.zaPdv= '';
-              });
 
-            }
-          });
 
-        }else{
-          return;
-        }
+      $scope.refresh = function(){
+        $state.go('stope-pdv-a', {pdvId: undefined});
+      };
+
+
+       
+      if($stateParams.pdvId == '' || $stateParams.pdvId == undefined){
+          fillData();
+
+      }else{
+        
+        var par_Id_PDV = $stateParams.pdvId;
+
+
+        filterData(par_Id_PDV);
 
       }
 
+
       $scope.nextMeh = function()
-        {
+      {
            var url_filter = "?$filter=";
 
            var pdvId = $stateParams.pdvId;
@@ -110,7 +118,7 @@ module.exports = [
                  $scope.gridOptions.data = response;
            });
 
-        };
+      };
 
     	function fillData()
     	{
