@@ -77,15 +77,34 @@ module.exports = [
 		}
 
 		function calculate(id){
-
+			var resUrl = "http://localhost:61769/api/calculate/"+id+"/";
+			return $http.post(resUrl)
+				.success(function(response) {
+					return response.data;
+				}).error(function(response){
+					alert("Došlo je do greške.");
+				});
+				
 		}
 
 		function record(id){
-			
+			var resUrl = "http://localhost:61769/api/record/"+id+"/";
+			return $http.post(resUrl)
+				.success(function(response) {
+					return response.data;
+				}).error(function(response){
+					alert("Došlo je do greške.");
+				});
 		}
 
 		function cancel(id){
-			
+			var resUrl = "http://localhost:61769/api/cancel/"+id+"/";
+			return $http.post(resUrl)
+				.success(function(response) {
+					return response.data;
+				}).error(function(response){
+					alert("Došlo je do greške.");
+				});
 		}
 
 		return {

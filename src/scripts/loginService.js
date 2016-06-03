@@ -13,7 +13,7 @@ module.exports = [
 
         function login(username, password, callback) {
 
-            $http.post('http://localhost:61769/api/korisnik/', {Korisnicko_ime_Korisnik: username, Lozinka_Korisnik: password})
+            $http.post('http://localhost:61769/api/login/' + username + '/' + password)
                 .success(function (response) {
                     // ukoliko postoji token, prijava je uspecna
                      if (response) {

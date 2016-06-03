@@ -21,11 +21,11 @@
 
 			<button type="button" title="Refresh" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
 
-			<button type="button" class="btn btn-info btn-xl" ng-click="calculate()">Iskalkuliši</button>
+			<button type="button" class="btn btn-info btn-xl" title="Iskalkuliši" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ng-click="calculate()">Iskalkuliši</button>
 
-			<button type="button" class="btn btn-info btn-xl" ng-click="record()">Proknjiži</button>
+			<button type="button" class="btn btn-info btn-xl" title="Proknjiži" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ng-click="record()">Proknjiži</button>
 
-			<button type="button" class="btn btn-info btn-xl" ng-click="cancel()">Storniraj</button>
+			<button type="button" class="btn btn-info btn-xl" title="Storniraj" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ng-click="cancel()">Storniraj</button>
 
 		</div>
 	</div>
