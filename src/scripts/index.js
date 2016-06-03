@@ -359,7 +359,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('prijemni-dokumenti', {
-        url: '/prijemni-dokumenti?poslovnaGodinaId?partnerId',
+        url: '/prijemni-dokumenti?poslovnaGodinaId?partnerId?magacinId',
         templateUrl: './templates/prijemni-dokumenti.html',
         controller: 'prijemni-dokumentiCtrl',
         data: {
@@ -424,7 +424,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('robne-kartice', {
-        url: '/robne-kartice?poslovnaGodinaId',
+        url: '/robne-kartice?poslovnaGodinaId?magacinId',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })

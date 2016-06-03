@@ -31,9 +31,10 @@ module.exports = [
 	         var url_filter = "?$filter=";
 
 	         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
+	         var magacinId = $stateParams.magacinId;
 	         console.log("PARAM: "+ poslovnaGodinaId);
 
-	         if(poslovnaGodinaId=='')
+	         if(poslovnaGodinaId=='' && magacinId=='')
 	         {
 	            return;
 	         }
@@ -43,6 +44,11 @@ module.exports = [
 	             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
 	         }
 	      
+	      	 if(magacinId!='' && magacinId!=undefined)
+	         {
+	             url_filter += "Id_Magacin eq " + magacinId;   
+	         }
+
 	       	robneKarticeService.get_filtered_robnaKartica(url_filter).then(function(response){
 	               $scope.gridOptions.data = response;
 	         });
@@ -51,7 +57,7 @@ module.exports = [
 
 		  function fillData()
 		  {
-		  	if($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined){
+		  	if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.magacinIdId=='' || $stateParams.magacinId==undefined)){
 			  	$http.get("http://localhost:61769/api/robna_kartica").then(function(response) {
 	        		$scope.gridOptions.data = response.data;
 	    		});
