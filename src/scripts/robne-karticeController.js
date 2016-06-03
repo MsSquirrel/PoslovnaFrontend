@@ -15,7 +15,7 @@ module.exports = [
 		    { name:'Roba.Naziv_Roba', width:'20%', displayName:'Roba', cellTooltip: true, headerTooltip: true},
 		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupna_kolicina_Robna_kartica', width:'20%', displayName: 'Ukupna količina', cellTooltip: true, headerTooltip: true},
-		    { name:'Roba.Jedinica_mere.Naziv_Jedinica_mere', width:'10%', displayName: 'Merna jedinica', cellTooltip: true, headerTooltip: true},
+		    { name:'Roba.Jedinica_mere.Oznaka_Jedinica_mere', width:'10%', displayName: 'Merna jedinica', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupna_vrednost_Robna_kartica', width:'20%', displayName: 'Ukupna vrednost', cellTooltip: true, headerTooltip: true }
 		  ];
 
