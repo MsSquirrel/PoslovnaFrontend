@@ -115,6 +115,7 @@ module.exports = [
 					$scope.gridOptions.data = response;
 				});
     		}
+    		
     		else
     		{
     			$scope.nextMeh();
