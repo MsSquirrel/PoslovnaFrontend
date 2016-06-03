@@ -16,6 +16,7 @@ module.exports = [
 				$scope.editGoodsCategory = $scope.goods.Id_Grupa_roba;
 				$scope.editGoodsMeasUnit = $scope.goods.Id_Jedinica_mere;
 				$scope.editGoodsCompany = $scope.goods.Id_Preduzece;
+				
 			});
 
 			grupeRobaService.get_all_groups().then(function(response){
