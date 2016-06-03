@@ -16,7 +16,7 @@ module.exports = [
                 window.location = "#/main";
             }
             else{
-                alert('failure!');
+                alert('Neuspešno logovanje. Probajte ponovo.');
             }
         }
     }
