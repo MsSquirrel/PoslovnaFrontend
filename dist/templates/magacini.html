@@ -39,13 +39,15 @@
 	      			<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
 	    		</div>
 	    		<div class="modal-body">
-	      			<form novalidate name="myForm">
+	      			<form novalidate name="editCompanyForm">
 
 						Naziv magacina:<span class="necesary">*</span>
-						<input type="text"  name="nameme" class="form-control" ng-model="editWarehouseName" required><br>
+						<input type="text"  name="nameme" class="form-control" ng-model="editWarehouseName" ng-maxlength="100" required>
+						<span class="writeError" ng-show="editCompanyForm.nameme.$error.maxlength">Unesite do 100 karaktera!</span><br>
 						
 						Adresa magacina:<span class="necesary">*</span>
-						<input type="text" name="nameae" class="form-control" ng-model="editWarehouseAddress" required><br>
+						<input type="text" name="nameae" class="form-control" ng-model="editWarehouseAddress" ng-maxlength="100" required>
+						<span class="writeError" ng-show="editCompanyForm.nameae.$error.maxlength">Unesite do 100 karaktera!</span><br>
 						
 						Mesto:<span class="necesary">*</span>
 						<select class="form-control" name="namepe" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required></select><br>
@@ -55,7 +57,7 @@
 
 						
 						<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_warehouse()" ng-disabled="editCompanyForm.$invalid">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>
 	    		</div>

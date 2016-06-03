@@ -1,12 +1,12 @@
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Izmeni postojeću poslovnu godinu: </h4>
 
-	<form class="form" name="myForm">			  
+	<form class="form" name="editYearForm">			  
 		Godina:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="editBusinessYear" ng-pattern="/^((19[6-9]\d)|(20\d\d))$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite godinu u rasponu 1960-2099!</span>
+				<span class="writeError" ng-show="editYearForm.number.$error.pattern">Unesite godinu u rasponu 1960-2099!</span>
 			</div>
 		</div></br>
 
@@ -26,7 +26,7 @@
 
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-		<button type="button" class="btn btn-info" ng-click="edit_selected_businessYear()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="edit_selected_businessYear()" ng-disabled="editYearForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 	</form>
 </div>

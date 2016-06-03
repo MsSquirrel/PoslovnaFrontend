@@ -1,13 +1,13 @@
 <div>
 	<div class="col-md-6 col-md-offset-3 form">
 	<h4 class="modal-title">Dodaj novu robu</h4>
-	<form name="myForm">
+	<form name="createWaresForm">
 
 		Naziv robe:<span class="necesary">*</span>
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" name="namew" class="form-control" ng-model="goodsName" required>
-				</input>	
+				<input type="text" name="namew" class="form-control" ng-model="goodsName" ng-maxlength="50" required></input>	
+				<span class="writeError" ng-show="createWaresForm.namew.$error.maxlength">Unesite do 50 karaktera!</span>
 			</div>
 		</div>										
 		
@@ -70,7 +70,7 @@
 
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>		
-		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_goods()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_goods()" ng-disabled="createWaresForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 	</form>
 	</div>
