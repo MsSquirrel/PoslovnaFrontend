@@ -75,7 +75,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'documentsCtrl'
       })
       .state('mesta', {
-        url: '/mesta',
+        url: '/mesta?naziv&pb',
         templateUrl: './templates/mesta.html',
         controller: 'mestaCtrl',
         data: {
