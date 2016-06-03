@@ -1,12 +1,13 @@
 <div>
 		
 		<h4>Izmeni postojeću robu</h4>
-	<form name="myForm">
+	<form name="editWareGrForm">
 
 		Naziv grupe:<span class="necesary">*</span>
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" name="nameg" class="form-control" ng-model="editGroupName" required>><br/>
+				<input type="text" name="nameg" class="form-control" ng-model="editGroupName" ng-maxlength="40" required>
+				<span class="writeError" ng-show="editWareGrForm.nameg.$error.maxlength">Unesite do 40 karaktera!</span><br/>
 			</div>
 		</div>					
 						
@@ -27,7 +28,7 @@
 		<br>
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		
-		<button type="button" class="btn btn-info" ng-click="edit_selected_group()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="edit_selected_group()" ng-disabled="editWareGrForm.$invalid">Sačuvaj</button>
 		
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 	</form>

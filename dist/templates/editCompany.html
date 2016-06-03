@@ -1,12 +1,13 @@
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Izmeni postojeće preduzeće</h4>
 
-	<form class="form" name="myForm">
+	<form class="form" name="editCompForm">
 
 		Naziv preduzeća:<span class="necesary">*</span>
 		<div class="row">
 		   	 <div>
-				<input type="text" name="namec" class="form-control" ng-model="editCompanyName" required></input>
+				<input type="text" name="namec" class="form-control" ng-model="editCompanyName" ng-maxlength="100" required></input>
+				<span class="writeError" ng-show="editCompForm.namec.$error.maxlength">Unesite do 100 karaktera!</span>
 			 </div>
 		</div></br>
 
@@ -14,7 +15,7 @@
 		<div class="row">
 		   	 <div>
 				<input type="text" name="mbrNumber" class="form-control" ng-model="editCompanyMBR" ng-pattern="/^(\d{8})$/" required></input>
-				<span class="writeError" ng-show="myForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
+				<span class="writeError" ng-show="editCompForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
 			</div>
 		</div></br>
 
@@ -22,14 +23,15 @@
 		<div class="row">
 		   	 <div>
 				<input type="text" name="pibNumber" class="form-control" ng-model="editCompanyPIB" ng-pattern="/^(\d{10})$/" required></input>
-				<span class="writeError" ng-show="myForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
+				<span class="writeError" ng-show="editCompForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
 			</div>
 		</div></br>
 
 		Adresa preduzeća: 
 		<div class="row">
 		   	 <div>
-				<input type="text" class="form-control" ng-model="editCompanyAddress"></input>
+				<input type="text" name="namea" class="form-control" ng-model="editCompanyAddress" ng-maxlength="200"></input>
+				<span class="writeError" ng-show="editCompForm.namea.$error.maxlength">Unesite do 200 karaktera!</span>
 			 </div>
 		</div></br>
 
@@ -43,7 +45,7 @@
 
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-		<button type="button" class="btn btn-info"  ng-click="edit_selected_company( editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info"  ng-click="edit_selected_company( editCompanyName, editCompanyMBR, editCompanyPIB, editCompanyAddress, editCompanyPlace)" ng-disabled="editCompForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 
 	</form>

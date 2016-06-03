@@ -1,14 +1,14 @@
 
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Dodaj novu stavku</h4>
-		<form class="form" name="myForm">
+		<form class="form" name="createDocumForm">
 
 			Primka:  
 
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="primka">
-	   				<option  ng-repeat="wr in allWrs" ng-value="wr.Id_Prijemni_dokument">{{wr.Redni_broj_Prijemni_dokument}}</option>
+	   				<option  ng-repeat="wr in allWrs" ng-value="wr.Id_Prijemni_dokument">{{wr.Poslovna_godina.Godina_Poslovna_godina}}/{{wr.Redni_broj_Prijemni_dokument}}</option>
 	   				</select>
 				</div>
 			</div></br>
@@ -54,7 +54,7 @@
 			</div>
 
 			</br></br>
-			<button type="button" class="btn btn-info"  ng-click="add_documentItem()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+			<button type="button" class="btn btn-info"  ng-click="add_documentItem()" ng-disabled="createDocumForm.$invalid">Sačuvaj</button>
 			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
 		</form>
 </div>

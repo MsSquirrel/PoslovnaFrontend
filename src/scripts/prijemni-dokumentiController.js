@@ -56,15 +56,16 @@ module.exports = [
    				$scope.selectedWarehouseReceiptYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
    				$scope.selectedWarehouseReceiptExpenses = $scope.selectedRow.Zavisni_troskovi_Prijemni_dokument;
    				$scope.selectedWarehouseReceiptWarehouse2 = $scope.selectedRow.Magacin1.Id_Magacin;
-   				$scope.selectedWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
+   				//$scope.selectedWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
    				$scope.selectedWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.selectedWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
    				$scope.selectedWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
+          $scope.selectedWarehouseReceiptStatus = $scope.selectedRow.Status_Prijemni_dokument;
 
    				$scope.editWarehouseReceiptYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
    				$scope.editWarehouseReceiptExpenses = $scope.selectedRow.Zavisni_troskovi_Prijemni_dokument;
    				$scope.editWarehouseReceiptWarehouse2 = $scope.selectedRow.Magacin1.Id_Magacin;
-   				$scope.editWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
+   				//$scope.editWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
    				$scope.editWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.editWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
    				$scope.selectedWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
@@ -92,9 +93,14 @@ module.exports = [
     	};      
 
     	$scope.checkDate = function() {
+        if (typeof $scope.dt !== "undefined") {
+          console.log($scope.dt);
 	        var dateNow = new Date(); 
 	        var dateEntered = new Date($scope.dt); 
-	        $scope.myForm.date.$setValidity("minLength", dateNow.getTime() > dateEntered.getTime());
+	        $scope.createRecForm.date.$setValidity("minLength", dateNow.getTime() > dateEntered.getTime());
+        } else {
+          $scope.createRecForm.date.$setValidity("minLength", true);
+        }
      	};
 
     	fillData();

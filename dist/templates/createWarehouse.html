@@ -1,18 +1,20 @@
 <div>
 	<h4 class="modal-title">Dodaj novi magacin</h4>
-	<form  name="myForm">
+	<form  name="createWarehForm">
 
 	Naziv magacina:<span class="necesary">*</span>
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control" name="namew" ng-model="warehouseName" required/><br>
+			<input type="text" class="form-control" name="namew" ng-model="warehouseName" ng-maxlength="100" required/>
+			<span class="writeError" ng-show="createWarehForm.namew.$error.maxlength">Unesite do 100 karaktera!</span><br>
 		</div>
 	</div>
 
 	Adresa magacina:<span class="necesary">*</span>
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control" name="namea" ng-model="warehouseAddress" required/><br>
+			<input type="text" class="form-control" name="namea" ng-model="warehouseAddress" ng-maxlength="100" required/>
+			<span class="writeError" ng-show="createWarehForm.namea.$error.maxlength">Unesite do 100 karaktera!</span><br>
 		</div>
 	</div>
 
@@ -57,7 +59,7 @@
 
 	<br>
 	<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_warehouse()" ng-disabled="createWarehForm.$invalid">Sačuvaj</button>
 	
 	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 </form>

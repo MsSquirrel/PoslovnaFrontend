@@ -8,12 +8,13 @@
 
 		    		<!--<div class="modal-body">-->
 		      			<!--<form novalidate-->
-	<form class="form" name="myForm">
+	<form class="form" name="createPlaceForm">
 
 		Naziv mesta:<span class="necesary">*</span>
 		<div class="row">
 			<div>
-				<input type="text" name="namep" class="form-control" ng-model="placeName" required></input><br>
+				<input type="text" name="namep" class="form-control" ng-model="placeName" ng-maxlength="100" required></input>
+				<span class="writeError" ng-show="createPlaceForm.namep.$error.maxlength">Unesite do 100 karaktera!</span><br>
 			</div>
 		</div>
 
@@ -21,7 +22,7 @@
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="placeNumber" ng-pattern="/^(\d{5})$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite pet cifri!</span>
+				<span class="writeError" ng-show="createPlaceForm.number.$error.pattern">Unesite pet cifri!</span>
 			</div>
 		</div>
 		<br>
@@ -32,7 +33,7 @@
 		-->
 
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-		<button type="button" class="btn btn-info" ng-click="add_place()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="add_place()" ng-disabled="createPlaceForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>		
 	</form>					
 	  					<!--</form-->

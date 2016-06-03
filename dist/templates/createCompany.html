@@ -2,12 +2,13 @@
 	<div class="col-md-6 col-md-offset-3 form">
 		<h4 class="modal-title">Dodaj novo preduzeće</h4>
 
-		<form class="form" name="myForm">
+		<form class="form" name="createCompForm">
 
 			Naziv preduzeća:<span class="necesary">*</span>
 			<div class="row">
 			   	<div>
-					<input type="text" name="namec" class="form-control" ng-model="companyName" required></input>
+					<input type="text" name="namec" class="form-control" ng-model="companyName" ng-maxlength="100" required></input>
+					<span class="writeError" ng-show="createCompForm.namec.$error.maxlength">Unesite do 100 karaktera!</span>
 				</div>
 			</div></br>
 
@@ -15,7 +16,7 @@
 			<div class="row">
 			   	<div>
 					<input type="text" name="mbrNumber" class="form-control" ng-model="companyMBR" ng-pattern="/^(\d{8})$/" required></input>
-					<span class="writeError" ng-show="myForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
+					<span class="writeError" ng-show="createCompForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
 				</div>
 			</div></br>
 
@@ -23,14 +24,15 @@
 			<div class="row">
 			   	<div>
 					<input type="text" name="pibNumber" class="form-control" ng-model="companyPIB" ng-pattern="/^(\d{10})$/" required></input>
-					<span class="writeError" ng-show="myForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
+					<span class="writeError" ng-show="createCompForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
 				</div>
 			</div></br>
 
 			Adresa preduzeća: 
 			<div class="row">
 			   	<div>
-					<input type="text" class="form-control" ng-model="companyAddress"></input>
+					<input type="text" name="namea" class="form-control" ng-maxlength="200" ng-model="companyAddress"></input>
+					<span class="writeError" ng-show="createCompForm.namea.$error.maxlength">Unesite do 200 karaktera!</span>
 				</div>
 			</div></br>
 
@@ -55,7 +57,7 @@
 																			
 			<br>
 			<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-			<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_company()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+			<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_company()" ng-disabled="createCompForm.$invalid">Sačuvaj</button>
 			<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 		</form>
 	</div>

@@ -12,6 +12,16 @@ module.exports = [
 			});
 		}
 
+		function get_unrecorded_warehouseReceipts()
+		{
+
+			var resUrl = "http://localhost:61769/api/prijemni_dokument?$filter=Status_Prijemni_dokument eq 'F'";
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
 		function create_warehouseReceipt(godina, mag1, mag2, partner, zTroskovi, tTroskovi, datum)
 		{	
 
@@ -77,19 +87,39 @@ module.exports = [
 		}
 
 		function calculate(id){
-
+			var resUrl = "http://localhost:61769/api/calculate/"+id+"/";
+			return $http.post(resUrl)
+				.success(function(response) {
+					return response.data;
+				}).error(function(response){
+					alert("Došlo je do greške.");
+				});
+				
 		}
 
 		function record(id){
-			
+			var resUrl = "http://localhost:61769/api/record/"+id+"/";
+			return $http.post(resUrl)
+				.success(function(response) {
+					return response.data;
+				}).error(function(response){
+					alert("Došlo je do greške.");
+				});
 		}
 
 		function cancel(id){
-			
+			var resUrl = "http://localhost:61769/api/cancel/"+id+"/";
+			return $http.post(resUrl)
+				.success(function(response) {
+					return response.data;
+				}).error(function(response){
+					alert("Došlo je do greške.");
+				});
 		}
 
 		return {
-			get_all_warehouseReceipts: get_all_warehouseReceipts, 
+			get_all_warehouseReceipts: get_all_warehouseReceipts,
+			get_unrecorded_warehouseReceipts: get_unrecorded_warehouseReceipts, 
 			create_warehouseReceipt: create_warehouseReceipt, 
 			update_warehouseReceipt: update_warehouseReceipt, 
 			remove_warehouseReceipt: remove_warehouseReceipt,
