@@ -1,12 +1,13 @@
 <div>
 	<div class="col-md-6 col-md-offset-3 form">
 		<h4>Dodaj novog partnera</h4>
-		<form class="form" name="myForm">
+		<form class="form" name="createPartnerForm">
 
 			Naziv:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<input type="text" name="namem" class="form-control" ng-model="partnerName" required></input>
+					<input type="text" name="namem" class="form-control" ng-model="partnerName" ng-maxlength="100" required></input>
+					<span class="writeError" ng-show="createPartnerForm.namem.$error.maxlength">Unesite do 100 karaktera!</span>
 				</div>
 			</div></br>
 
@@ -22,7 +23,7 @@
 			<div class="row">
 				<div>
 					<input type="text" name="mbrNumber" class="form-control" ng-model="partnerMBR" ng-pattern="/^(\d{8})$/" required></input>
-					<span class="writeError" ng-show="myForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
+					<span class="writeError" ng-show="createPartnerForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
 				</div>
 			</div></br>
 
@@ -30,14 +31,15 @@
 			<div class="row">
 				<div>
 					<input type="text" name="pibNumber" class="form-control" ng-model="partnerPIB" ng-pattern="/^(\d{10})$/" required><br>
-					<span class="writeError" ng-show="myForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
+					<span class="writeError" ng-show="createPartnerForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
 				</div>
 			</div>
 			
 			Adresa preduzeća: 
 			<div class="row">
 				<div>
-					<input type="text" class="form-control" ng-model="partnerAddress"></input>
+					<input type="text" name="namea" class="form-control" ng-model="partnerAddress" ng-maxlength="100"></input>
+					<span class="writeError" ng-show="createPartnerForm.namea.$error.maxlength">Unesite do 100 karaktera!</span>
 				</div>
 			</div></br>			
 
@@ -80,7 +82,7 @@
 			</br>
 			
 			<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-			<button type="button" class="btn btn-info" ng-click="add_partner()" ng-disabled="myForm.$invalid">Sačuvaj</button>			
+			<button type="button" class="btn btn-info" ng-click="add_partner()" ng-disabled="createPartnerForm.$invalid">Sačuvaj</button>			
 			<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>
 		</form>
 	</div>

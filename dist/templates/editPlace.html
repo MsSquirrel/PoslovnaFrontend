@@ -1,12 +1,13 @@
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Izmeni postojeće mesto</h4>
 
-	<form class="form" name="myForm">
+	<form class="form" name="editPlaceForm">
 
 		Naziv mesta:<span class="necesary">*</span>
 		<div class="row">
 	   	 	<div>
-		 		<input type="text" name="namep" class="form-control" ng-model="editName" required></input></br>
+		 		<input type="text" name="namep" class="form-control" ng-model="editName" ng-maxlength="100" required></input>
+				<span class="writeError" ng-show="editPlaceForm.namep.$error.maxlength">Unesite do 100 karaktera!</span></br>
 		 	</div>
 		</div>
 		
@@ -14,13 +15,13 @@
 		<div class="row">
 	   		<div>
 				<input type="text" name="number" class="form-control" ng-model="editNumber" ng-pattern="/^(\d{5})$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite pet cifri!</span>
+				<span class="writeError" ng-show="editPlaceForm.number.$error.pattern">Unesite pet cifri!</span>
 			</div>
 		</div>
 		
 		<br>
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-		<button type="button" class="btn btn-info" ng-click="edit_selected_place()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="edit_selected_place()" ng-disabled="editPlaceForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 
 	</form>

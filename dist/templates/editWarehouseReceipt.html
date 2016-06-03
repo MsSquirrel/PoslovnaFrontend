@@ -1,7 +1,7 @@
 
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Dodaj novu primku</h4>
-		<form class="form" name="myForm">
+		<form class="form" name="editRecForm">
 
 			Poslovna godina:<span class="necesary">*</span>
 			<div class="row">
@@ -51,7 +51,7 @@
 					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 					</span>
 				</p>
-				<span class="writeError" ng-show="myForm.date.$invalid">Unešeni datum mora biti pre današnjeg!</span>
+				<span class="writeError" ng-show="editRecForm.date.$invalid">Unešeni datum mora biti pre današnjeg!</span>
 			</div>
 			</div></br>
 			
@@ -59,7 +59,7 @@
 			<div class="row">
 				<div>
 					<input type="text" name="zavisni" class="form-control" ng-model="warehouseReceiptExpenses" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/"></input>
-					<span class="writeError" ng-show="myForm.zavisni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
+					<span class="writeError" ng-show="editRecForm.zavisni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
 				</div>
 			</div>
 
@@ -67,14 +67,14 @@
 			<div class="row">
 				<div>
 					<input type="text" name="transportni" class="form-control" ng-model="warehouseReceiptTransportExpenses" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/"></input>
-					<span class="writeError" ng-show="myForm.transportni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
+					<span class="writeError" ng-show="editRecForm.transportni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
 				</div>
 			</div>
 
 			
 			</br>
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-			<button type="button" class="btn btn-info" ng-click="add_warehouseReceipt()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+			<button type="button" class="btn btn-info" ng-click="add_warehouseReceipt()" ng-disabled="editRecForm.$invalid">Sačuvaj</button>
 			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
 		</form>
 </div>

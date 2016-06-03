@@ -2,13 +2,13 @@
 
 <h4>Dodaj novu stopu PDV-a</h4>
 
-	<form class="form" name="myForm">		
+	<form class="form" name="createPdvRateForm">		
 
 		Vrednost stope PDV-a:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="pdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite pozitivan broj sa dve dicimale!</span></br>	
+				<span class="writeError" ng-show="createPdvRateForm.number.$error.pattern">Unesite pozitivan broj sa dve dicimale!</span></br>	
 			</div>
 		</div></br>
 								
@@ -47,7 +47,7 @@
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 
-		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_PDVRate()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_PDVRate()" ng-disabled="createPdvRateForm.$invalid">Sačuvaj</button>
 
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 

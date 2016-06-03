@@ -1,13 +1,15 @@
 <div>
 	<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
-	<form  name="myForm">
+	<form  name="editWarehForm">
 
 		Naziv magacina:<span class="necesary">*</span>
-		<input type="text" name="namew" class="form-control" ng-model="editWarehouseName" required><br>
+		<input type="text" name="namew" class="form-control" ng-model="editWarehouseName" ng-maxlength="100" required>
+		<span class="writeError" ng-show="editWarehForm.namew.$error.maxlength">Unesite do 100 karaktera!</span><br>
 		
 
 		Adresa magacina:<span class="necesary">*</span>
-		<input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" required><br>
+		<input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" ng-maxlength="100" required>
+		<span class="writeError" ng-show="editWarehForm.namea.$error.maxlength">Unesite do 100 karaktera!</span><br>
 		
 		
 		Mesto:<span class="necesary">*</span>
@@ -20,7 +22,7 @@
 
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>	
-		<button type="button" class="btn btn-info" ng-click="edit_selected_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="edit_selected_warehouse()" ng-disabled="editWarehForm.$invalid">Sačuvaj</button>
 		
 		<button type="button" class="btn btn-info" ng-click="close_edit()" >Otkaži</button>
 	</form>

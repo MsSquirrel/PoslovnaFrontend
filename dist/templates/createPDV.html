@@ -1,18 +1,19 @@
 <div>
 	<div class="col-md-6 col-md-offset-3 form">
 	<h4>Dodaj novi PDV</h4>
-	<form class="form" name="myForm">
+	<form class="form" name="createPdvForm">
 
 		Naziv PDV:<span class="necesary">*</span>
 		<div class="row">
 			<div>
-				<input type="text" name="namep" class="form-control" ng-model="pdvName" required><br>
+				<input type="text" name="namep" class="form-control" ng-model="pdvName" ng-maxlength="50" required>
+				<span class="writeError" ng-show="createPdvForm.namep.$error.maxlength">Unesite do 50 karaktera!</span><br>
 			</div>
 		</div>
 							
 		<br>
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-		<button type="button" class="btn btn-info accept" ng-click="add_pdv()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info accept" ng-click="add_pdv()" ng-disabled="createPdvForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>
 	</form>
 

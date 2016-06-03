@@ -1,13 +1,13 @@
 <div class="col-md-6 col-md-offset-3 form">
 	<h4>Izmeni postojeću stopu PDV-a</h4>
 
-	<form class="form" name="myFormEdit">
+	<form class="form" name="editPdvRateFormEdit">
 
 		Vrednost stope PDV-a:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="editPdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/" required></input>		
-				<span class="writeError" ng-show="myFormEdit.number.$error.pattern">Unesite pozitivan broj sa dve dicimale!</span></br>	
+				<span class="writeError" ng-show="editPdvRateFormEdit.number.$error.pattern">Unesite pozitivan broj sa dve dicimale!</span></br>	
 			</div>
 		</div>	</br>		
 		
@@ -32,7 +32,7 @@
 		</div>
 		</br>
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-		<button type="button" class="btn btn-info" ng-click="edit_PDVRate()" ng-disabled="myFormEdit.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" ng-click="edit_PDVRate()" ng-disabled="editPdvRateFormEdit.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 
 	</form>
