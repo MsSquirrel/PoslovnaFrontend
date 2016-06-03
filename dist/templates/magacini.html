@@ -40,18 +40,21 @@
 	    		</div>
 	    		<div class="modal-body">
 	      			<form novalidate name="myForm">
-						Naziv magacina: <input type="text"  name="nameme" class="form-control" ng-model="editWarehouseName" required>
-						<span class="writeError" ng-show="myForm.nameme.$invalid">Obavezno polje.</span><br>
-						Adresa magacina: <input type="text" name="nameae" class="form-control" ng-model="editWarehouseAddress" required>
-						<span class="writeError" ng-show="myForm.nameae.$invalid">Obavezno polje.</span><br>
-						Mesto:  	<select class="form-control" name="namepe" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required>
-									</select>
-						<span class="writeError" ng-show="myForm.namepe.$invalid">Obavezno polje.</span><br>
-						Preduzece:  <select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required>
-									</select>
-						<span class="writeError" name="namece" ng-show="myForm.namece.$invalid">Obavezno polje.</span><br>
 
-						<br>
+						Naziv magacina:<span class="necesary">*</span>
+						<input type="text"  name="nameme" class="form-control" ng-model="editWarehouseName" required><br>
+						
+						Adresa magacina:<span class="necesary">*</span>
+						<input type="text" name="nameae" class="form-control" ng-model="editWarehouseAddress" required><br>
+						
+						Mesto:<span class="necesary">*</span>
+						<select class="form-control" name="namepe" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required></select><br>
+						
+						Preduzece:<span class="necesary">*</span>
+						<select class="form-control" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required></select><br>
+
+						
+						<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="edit_selected_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal">Otkaži</button>
   					</form>

@@ -3,36 +3,34 @@
 		<h4>Dodaj novog partnera</h4>
 		<form class="form" name="myForm">
 
-			Naziv:
+			Naziv:<span class="necesary">*</span>
 			<div class="row">
 				<div>
 					<input type="text" name="namem" class="form-control" ng-model="partnerName" required></input>
-					<span class="writeError" ng-show="myForm.namem.$invalid">Obavezno polje.</span>
 				</div>
 			</div></br>
 
-			Tip:
+			Tip:<span class="necesary">*</span>
 			<div class="row">
 				<div>
 					<select class="form-control" name="namet" ng-model="checkType" ng-click="chose_place()" ng-options="option for option in typeOptions" required>
 		   			</select>
-					<span class="writeError" ng-show="myForm.namet.$invalid">Obavezno polje.</span>
 		   		</div>
 		   	</div></br>			
 
-			Matični broj:
+			Matični broj:<span class="necesary">*</span>
 			<div class="row">
 				<div>
 					<input type="text" name="mbrNumber" class="form-control" ng-model="partnerMBR" ng-pattern="/^(\d{8})$/" required></input>
-					<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Obavezno polje. Unesite osam cifri!</span>
+					<span class="writeError" ng-show="myForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
 				</div>
 			</div></br>
 
-			PIB preduzeća: 
+			PIB preduzeća:<span class="necesary">*</span> 
 			<div class="row">
 				<div>
 					<input type="text" name="pibNumber" class="form-control" ng-model="partnerPIB" ng-pattern="/^(\d{10})$/" required><br>
-					<span class="writeError" ng-show="myForm.pibNumber.$invalid">Obavezno polje. Unesite deset cifri!</span>
+					<span class="writeError" ng-show="myForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
 				</div>
 			</div>
 			
@@ -45,7 +43,7 @@
 
 			<div class="row">
 				<div class="col-sm-2">
-					<p>Mesto:</p> 
+					<p>Mesto:<span class="necesary">*</span></p> 
 				</div>
 				<div class="col-sm-1">
 					<button type="button" class="btn btn-success btn-xs" ui-sref="poslovni-partneri.createPartner.createPlace">
@@ -57,14 +55,13 @@
 				<div>
 					<select class="form-control" name="namep" ng-model="checkPlace" ng-click="chose_place()" required>
 		   			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-		   			</select>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
+		   			</select><br>
 		   		</div>
 		   	</div>
 
 		   <div class="row">
 				<div class="col-sm-2">
-					<p>Preduzeće:</p> 
+					<p>Preduzeće:<span class="necesary">*</span></p> 
 				</div>
 				<div class="col-sm-1">
 					<button type="button" class="btn btn-success btn-xs" ui-sref="poslovni-partneri.createPartner.createCompany">
@@ -78,12 +75,12 @@
 		   			<select class="form-control" name="namec" ng-model="checkCompany" ng-click="chose_place()" required>
 		   			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 		   			</select>
-					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 		   		</div>
 		   	</div>
-			</br></br>
-			<button type="button" class="btn btn-info" ng-click="add_partner()" ng-disabled="myForm.$invalid">Sačuvaj</button>
+			</br>
 			
+			<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
+			<button type="button" class="btn btn-info" ng-click="add_partner()" ng-disabled="myForm.$invalid">Sačuvaj</button>			
 			<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>
 		</form>
 	</div>

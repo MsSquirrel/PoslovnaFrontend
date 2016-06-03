@@ -112,9 +112,16 @@ p#error {
     margin-top: 10px;
     margin-bottom: -10px;
 }
-input.ng-invalid {
+input.ng-invalid-pattern {
   border:1px solid #f00;
 }
 span.writeError {
+    color: red;
+}
+span.necesary {
+    color: red;
+    font-weight: bold;
+}
+span.necesaryText {
     color: red;
 }

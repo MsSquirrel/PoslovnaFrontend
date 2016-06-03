@@ -2,18 +2,18 @@
 	<div class="col-md-6 col-md-offset-3 form">
 	<h4 class="modal-title">Dodaj novu robu</h4>
 	<form name="myForm">
-		Naziv robe: 
+
+		Naziv robe:<span class="necesary">*</span>
 		<div class="row">
 			<div class="col-md-6">
 				<input type="text" name="namew" class="form-control" ng-model="goodsName" required>
 				</input>	
-				<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span>
 			</div>
 		</div>										
 		
 		<div class="row">
 			<div class="col-sm-2">
-				<p>Grupa robe:</p> 
+				<p>Grupa robe:<span class="necesary">*</span></p> 
 			</div>
 
 			<div class="col-sm-2">
@@ -21,20 +21,18 @@
 				<span class="glyphicon glyphicon-plus"></span>
 				</button>
 			</div>
-		</div>	  	
-
+		</div>	  
 		<div class="row">
 			<div class="col-md-6">
 				<select class="form-control" name="nameg" ng-model="goodsCategory" ng-click="chose_place()" required>
 				<option  ng-repeat="category in allCategories" ng-value="category.Id_Grupa_roba">{{category.Naziv_Grupa_roba}}</option>
-				</select>
-				<span class="writeError" ng-show="myForm.nameg.$invalid">Obavezno polje.</span><br>
+				</select><br>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-sm-2">
-				<p>Jedinica mere:</p> 
+				<p>Jedinica mere:<span class="necesary">*</span></p> 
 			</div>
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-success btn-xs" ui-sref="roba.createWares.createMeasUnit">
@@ -42,41 +40,36 @@
 				</button>
 			</div>
 		</div>	
-
 		<div class="row">
 			<div class="col-md-6">
 
 				<select class="form-control" name="namem" ng-model="goodsMeasUnit" ng-click="chose_place()" required>
 				<option  ng-repeat="measUnit in allMeasUnits" ng-value="measUnit.Id_Jedinica_mere">{{measUnit.Naziv_Jedinica_mere}}</option>
 				</select><br>
-				<span class="writeError" ng-show="myForm.namem.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
 
 
 		<div class="row">
 			<div class="col-sm-2">
-				<p>Preduzeće:</p> 
+				<p>Preduzeće:<span class="necesary">*</span></p> 
 			</div>
 			<div class="col-sm-2">
 				<button type="button" class="btn btn-success btn-xs" ui-sref="roba.createWares.createCompany">
 				<span class="glyphicon glyphicon-plus"></span>
 				</button>
 			</div>
-		</div>	  	
-		
+		</div>	  			
 		<div class="row">
-			<div class="col-md-6">				
-
+			<div class="col-md-6">		
 				<select class="form-control" name="namec" ng-model="goodsCompany" ng-click="chose_place()" required>
 				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 				</select>
-				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 			</div>
 		</div>	
 
-		<br>
 		
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>		
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_goods()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 	</form>

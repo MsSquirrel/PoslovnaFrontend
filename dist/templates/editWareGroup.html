@@ -3,33 +3,29 @@
 		<h4>Izmeni postojeću robu</h4>
 	<form name="myForm">
 
-		Naziv grupe:
+		Naziv grupe:<span class="necesary">*</span>
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" name="nameg" class="form-control" ng-model="editGroupName" required>
-				<span class="writeError" ng-show="myForm.nameg.$invalid">Obavezno polje.</span><br/>
+				<input type="text" name="nameg" class="form-control" ng-model="editGroupName" required>><br/>
 			</div>
 		</div>					
 						
-		PDV:  	
-
+		PDV:<span class="necesary">*</span>
 		<div class="row">
 			<div class="col-md-6">	
-				<select class="form-control" name="namep" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv"  required></select>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br/>
+				<select class="form-control" name="namep" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv"  required></select><br/>
 			</div>
 		</div>
 						
-
-		Preduzece: 
+		Preduzece:<span class="necesary">*</span>
 		<div class="row">
 			<div class="col-md-6">
-				 <select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany" required></select>
-				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span><br>				
+				 <select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany" required></select><br>				
 			</div>
 		</div>
 				
-		<br><br>
+		<br>
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		
 		<button type="button" class="btn btn-info" ng-click="edit_selected_group()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		

@@ -3,11 +3,11 @@
 	<h4>Dodaj novu poslovnu godinu</h4>
 	<form class="form" name="myForm">
 
-		Godina:
+		Godina:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="businessYear" ng-pattern="/^((19[6-9]\d)|(20\d\d))$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite godinu u rasponu 1960-2099!</span>
+				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite godinu u rasponu 1960-2099!</span>
 			</div>
 		</div></br>
 
@@ -18,17 +18,17 @@
 			</div>
 		</div></br>
 						
-		Preduzeće:  
+		Preduzeće:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<select class="form-control" name="namep" ng-model="businessYearCompany" ng-click="chose_place()" required>
    				<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
    				</select>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div></br>
 
-		</br>
+		
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		<button type="button" class="btn btn-info"  ng-click="add_businessYear()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
 	</form>

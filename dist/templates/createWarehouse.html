@@ -2,25 +2,23 @@
 	<h4 class="modal-title">Dodaj novi magacin</h4>
 	<form  name="myForm">
 
-	Naziv magacina: 
+	Naziv magacina:<span class="necesary">*</span>
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control" name="namew" ng-model="warehouseName" required/>
-			<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span><br>
+			<input type="text" class="form-control" name="namew" ng-model="warehouseName" required/><br>
 		</div>
 	</div>
 
-	Adresa magacina: 
+	Adresa magacina:<span class="necesary">*</span>
 	<div class="row">
 		<div class="col-md-6">
-			<input type="text" class="form-control" name="namea" ng-model="warehouseAddress" required/>
-			<span class="writeError" ng-show="myForm.namea.$invalid">Obavezno polje.</span><br>
+			<input type="text" class="form-control" name="namea" ng-model="warehouseAddress" required/><br>
 		</div>
 	</div>
 
 	<div class="row">
 			<div class="col-sm-2">
-				<p>Mesto:</p> 
+				<p>Mesto:<span class="necesary">*</span></p> 
 			</div>
 
 			<div class="col-sm-2">
@@ -33,15 +31,14 @@
 		<div class="col-md-6">
 			<select class="form-control" name="namep" ng-model="warehousePlace" required>
 			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-			</select>
-					<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
+			</select><br>
 		</div>
 	</div>
 	
 
 	<div class="row">
 			<div class="col-sm-2">
-				<p>Preduzeće:</p> 
+				<p>Preduzeće:<span class="necesary">*</span></p> 
 			</div>
 
 			<div class="col-sm-2">
@@ -54,12 +51,12 @@
 		<div class="col-md-6">
 			<select class="form-control" name="namec" ng-model="warehouseCompany" required>
 			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
-			</select>
-					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span><br>	
+			</select><br>	
 		</div>
 	</div>
 
-	<br><br>
+	<br>
+	<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 	
 	<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>

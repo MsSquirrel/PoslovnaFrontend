@@ -4,16 +4,16 @@
 
 	<form class="form" name="myForm">		
 
-		Vrednost stope PDV-a: 
+		Vrednost stope PDV-a:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="pdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite pozitivan broj sa dve dicimale!</span></br>	
+				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite pozitivan broj sa dve dicimale!</span></br>	
 			</div>
 		</div></br>
 								
 
-		Važi od: 
+		Važi od:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<p class="input-group">
@@ -23,13 +23,12 @@
 				<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
 				</p>
-				<span class="writeError" ng-show="myForm.datef.$invalid">Obavezno polje.</span>
 			</div>
 		</div></br>
 				
 		<div class="row">
 			<div class="col-md-1">
-			PDV:  
+			PDV:<span class="necesary">*</span>
 			</div>
 			<div class="col-sm-1">
 				<button type="button" class="btn btn-success btn-xs" ui-sref="stope-pdv-a.createPDVRate.createPDV">
@@ -37,16 +36,16 @@
 				</button>
 			</div>
 		</div>
-
 		<div class="row">
 			<div>
 				<select class="form-control" name="namep" ng-model="pdvRatePdv" ng-click="chose_place()" required>
 				<option  ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
 				</select>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
-		</br></br>
+		</br>
+		
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_PDVRate()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 

@@ -10,28 +10,28 @@
 		      			<!--<form novalidate-->
 	<form class="form" name="myForm">
 
-		Naziv mesta:
+		Naziv mesta:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="namep" class="form-control" ng-model="placeName" required></input><br>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div>
 
-		Poštanski broj: 
+		Poštanski broj:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="number" class="form-control" ng-model="placeNumber" ng-pattern="/^(\d{5})$/" required></input>
-				<span class="writeError" ng-show="myForm.number.$invalid">Obavezno polje. Unesite pet cifri!</span>
+				<span class="writeError" ng-show="myForm.number.$error.pattern">Unesite pet cifri!</span>
 			</div>
 		</div>
-		<br><br>
+		<br>
 
 		<!--
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_place()">Sačuvaj</button>
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
 		-->
 
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		<button type="button" class="btn btn-info" ng-click="add_place()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="closeState()">Otkaži</button>		
 	</form>					

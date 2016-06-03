@@ -2,25 +2,24 @@
 	<h4 class="modal-title">Izmeni postojeću mernu jedinicu</h4>
 
 	<form class="form" name="myForm">
-		Naziv merne jedinice:
 
+		Naziv merne jedinice:<span class="necesary">*</span>
 		<div class="row">
 			<div>
-				<input type="text" class="form-control" name="namem" ng-model="editMeasUnitName" required></input>
-				<span class="writeError" ng-show="myForm.namem.$invalid">Obavezno polje.</span></br>
+				<input type="text" class="form-control" name="namem" ng-model="editMeasUnitName" required></input></br>
 			</div>
 		</div></br>
 
-		Oznaka merne jedinice:
-
+		Oznaka merne jedinice:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="mark" class="form-control characters3" ng-model="editMeasUnitMark" ng-pattern="/^(\S{1,3})$/" required></input>
-				<span class="writeError" ng-show="myForm.mark.$invalid">Obavezno polje. Unesite jedan do tri karaktera!</span></br>
+				<span class="writeError" ng-show="myForm.mark.$invalid">nesite jedan do tri karaktera!</span></br>
 			</div>
 		</div>
 
-		<br><br>
+		<br>
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		<button type="button" class="btn btn-info" ng-click="edit_selected_measUnit()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 

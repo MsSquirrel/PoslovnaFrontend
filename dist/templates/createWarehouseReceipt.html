@@ -3,13 +3,12 @@
 	<h4>Dodaj novu primku</h4>
 		<form class="form" name="myForm">
 
-			Poslovna godina:  
+			Poslovna godina:<span class="necesary">*</span> 
 			<div class="row">
 				<div>
 					<select class="form-control" name="year" ng-model="warehouseReceiptBusinessYear" required>
 	   				<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
 	   				</select>
-					<span class="writeError" ng-show="myForm.year.$invalid">Obavezno polje.</span>
 				</div>
 			</div></br>
 
@@ -43,7 +42,7 @@
 				</div>
 			</div></br>
 
-			Datum formiranja: 
+			Datum formiranja:<span class="necesary">*</span>
 			<div class="row">
 			<div>
 				<p class="input-group">
@@ -52,7 +51,7 @@
 					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 					</span>
 				</p>
-				<span class="writeError" ng-show="myForm.date.$invalid">Obavezno polje. Unešeni datum mora biti pre današnjeg!</span>
+				<span class="writeError" ng-show="myForm.date.$invalid">Unešeni datum mora biti današnji ili raniji!</span>
 			</div>
 			</div></br>
 			
@@ -60,7 +59,7 @@
 			<div class="row">
 				<div>
 					<input type="text" name="zavisni" class="form-control" ng-model="warehouseReceiptExpenses" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/"></input>
-					<span class="writeError" ng-show="myForm.zavisni.$invalid">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+					<span class="writeError" ng-show="myForm.zavisni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 				</div>
 			</div>
 
@@ -68,12 +67,13 @@
 			<div class="row">
 				<div>
 					<input type="text" name="transportni" class="form-control" ng-model="warehouseReceiptTransportExpenses" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/"></input>
-					<span class="writeError" ng-show="myForm.transportni.$invalid">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+					<span class="writeError" ng-show="myForm.transportni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 				</div>
 			</div>
 
 			
-			</br></br>
+			</br>
+			<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 			<button type="button" class="btn btn-info"  ng-click="add_warehouseReceipt()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
 		</form>

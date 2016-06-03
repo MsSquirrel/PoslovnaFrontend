@@ -3,36 +3,35 @@
 
 
 	<form class="form" name="myForm">
-		Naziv: 
+
+		Naziv:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="namen" class="form-control" ng-model="editPartnerName" required></input>
-				<span class="writeError" ng-show="myForm.namen.$invalid">Obavezno polje.</span>
 			</div></br>
 		</div>
 
-		Tip: 
+		Tip:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<select class="form-control" name="namet" ng-model="editPartnerType" ng-options="option for option in typeOptions" required>
-	   			 </select>
-				<span class="writeError" ng-show="myForm.namet.$invalid">Obavezno polje.</span><br>
+	   			 </select><br>
 			</div>
 		</div>			
 
-		Matični broj: 
+		Matični broj:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="mbrNumber" class="form-control" ng-model="editPartnerMBR" ng-pattern="/^(\d{8})$/" required></input>
-				<span class="writeError" ng-show="myForm.mbrNumber.$invalid">Obavezno polje. Unesite osam cifri!</span>
+				<span class="writeError" ng-show="myForm.mbrNumber.$error.pattern">Unesite osam cifri!</span>
 			</div>
 		</div></br>
 
-		PIB preduzeća: 
+		PIB preduzeća:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<input type="text" name="pibNumber" class="form-control" ng-model="editPartnerPIB" ng-pattern="/^(\d{10})$/" required></input>
-				<span class="writeError" ng-show="myForm.pibNumber.$invalid">Obavezno polje. Unesite deset cifri!</span>
+				<span class="writeError" ng-show="myForm.pibNumber.$error.pattern">Unesite deset cifri!</span>
 			</div>
 		</div></br>
 							
@@ -43,23 +42,22 @@
 			</div>
 		</div>
 
-		Mesto:  
+		Mesto:<span class="necesary">*</span>
 		<div class="row">
 			<div>
 				<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace" required></select>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div></br>
 	   	
-	   	Preduzeće: 
+	   	Preduzeće:<span class="necesary">*</span>
 	   	<div class="row">
 			<div>
 	   			<select class="form-control" name="namec" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
-				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 	   		</div>
 	   	</div></br>
 
-		</br>
+		
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		<button type="button" class="btn btn-info" ng-click="edit_selected_partner()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 

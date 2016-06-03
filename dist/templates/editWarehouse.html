@@ -2,23 +2,24 @@
 	<h4 class="modal-title">Izmeni postojeće preduzeće</h4>
 	<form  name="myForm">
 
-		Naziv magacina: <input type="text" name="namew" class="form-control" ng-model="editWarehouseName" required>
-					<span class="writeError" ng-show="myForm.namew.$invalid">Obavezno polje.</span><br>
+		Naziv magacina:<span class="necesary">*</span>
+		<input type="text" name="namew" class="form-control" ng-model="editWarehouseName" required><br>
 		
 
-		Adresa magacina: <input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" required>
-					<span class="writeError" ng-show="myForm.namea.$invalid">Obavezno polje.</span><br>
+		Adresa magacina:<span class="necesary">*</span>
+		<input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" required><br>
 		
 		
-		Mesto:  	<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required>
-		</select>
-					<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
+		Mesto:<span class="necesary">*</span>
+		<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required>
+		</select><br>
 		
-		Preduzece:  <select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required>
-		</select>
-					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span><br>
+		Preduzece:<span class="necesary">*</span>
+		<select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required>
+		</select><br>
 
-		<br>		
+		
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>	
 		<button type="button" class="btn btn-info" ng-click="edit_selected_warehouse()" ng-disabled="myForm.$invalid">Sačuvaj</button>
 		
 		<button type="button" class="btn btn-info" ng-click="close_edit()" >Otkaži</button>
