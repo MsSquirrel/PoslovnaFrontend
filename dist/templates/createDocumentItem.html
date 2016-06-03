@@ -3,39 +3,37 @@
 	<h4>Dodaj novu stavku</h4>
 		<form class="form" name="createDocumForm">
 
-			Primka:  
-
+			Primka:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="primka">
+					<select class="form-control" ng-model="primka" required>
 	   				<option  ng-repeat="wr in allWrs" ng-value="wr.Id_Prijemni_dokument">{{wr.Redni_broj_Prijemni_dokument}}</option>
 	   				</select>
 				</div>
 			</div></br>
 
-			Roba:  
-
+			Roba:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="roba">
+					<select class="form-control" ng-model="roba" required>
 	   				<option  ng-repeat="item in allItems" ng-value="item.Id_Roba">{{item.Naziv_Roba}}</option>
 	   				</select>
 				</div>
 			</div></br>
 
-			Količina:  
-
+			Količina:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<input type="text" class="form-control" ng-model="kolicina"></input>
+					<input type="text" class="form-control" name="valueq" ng-model="kolicina" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required></input>
+					<span class="writeError" ng-show="createDocumForm.valueq.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span>
 				</div>
 			</div></br>
 
-			Nabavna cena (po jedinici):  
-
+			Nabavna cena (po jedinici):<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<input type="text" class="form-control" ng-model="nabCena"></input>
+					<input type="text" class="form-control" name="valuep" ng-model="nabCena" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required></input>
+					<span class="writeError" ng-show="createDocumForm.valuep.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span>
 				</div>
 			</div></br>
 
@@ -46,14 +44,15 @@
 				</div>
 			</div></br>
 			
-			Procenat marže:
+			Procenat marže:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<input type="text" class="form-control" ng-model="marza"></input></br>
+					<input type="text" class="form-control" name="valuem" ng-model="marza" ng-pattern="/^(\d{1,3}(\.\d{0,2})?)$/" required></input>
+					<span class="writeError" ng-show="createDocumForm.valuem.$error.pattern">Unesite pozivtivan broj (do tri cifre), sa dve decimale!</span>
 				</div>
-			</div>
+			</div><br>
 
-			</br></br>
+			</br><span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 			<button type="button" class="btn btn-info"  ng-click="add_documentItem()" ng-disabled="createDocumForm.$invalid">Sačuvaj</button>
 			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
 		</form>

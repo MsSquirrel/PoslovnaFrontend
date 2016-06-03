@@ -7,7 +7,7 @@
 		Vrednost stope PDV-a:<span class="necesary">*</span>
 		<div class="row">
 			<div>
-				<input type="text" name="number" class="form-control" ng-model="pdvRate" ng-pattern="/^(\d{1,6}(\.\d{0,2})?)$/" required></input>
+				<input type="text" name="number" class="form-control" ng-model="pdvRate" ng-pattern="/^(\d{1,4}(\.\d{0,2})?)$/" required></input>
 				<span class="writeError" ng-show="createPdvRateForm.number.$error.pattern">Unesite pozitivan broj sa dve dicimale!</span></br>	
 			</div>
 		</div></br>
