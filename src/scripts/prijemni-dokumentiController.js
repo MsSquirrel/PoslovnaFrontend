@@ -157,8 +157,8 @@ module.exports = [
 	        $scope.wareHouseReceiptPartner = "";
 	        $scope.warehouseReceiptWarehouse1 = "";
 	        $scope.warehouseReceiptWarehouse2 = "";
-	        $scope.warehouseReceiptTransportExpenses = "";
-	        $scope.warehouseReceiptExpenses = "";
+	        $scope.warehouseReceiptTransportExpenses = 0;
+	        $scope.warehouseReceiptExpenses = 0;
 	        $scope.warehouseReceiptDate = "";
 
 	        //$scope.changeCompany = "";
