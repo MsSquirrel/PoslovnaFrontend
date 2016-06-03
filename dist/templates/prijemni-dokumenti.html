@@ -3,7 +3,7 @@
 	<h2>Prijemni dokumenti</h2>
 
 	<div ng-show="currentState == 'prijemni-dokumenti'" class="row">
-		<div class="col-sm-10 col-sm-offset-1">
+		<div class="col-sm-8 col-sm-offset-1">
 
 			<button type="button" class="btn btn-success btn-xl"  ui-sref="prijemni-dokumenti.createWarehouseReceipt" title="Add">
 		  		<span class="glyphicon glyphicon-plus"></span>
@@ -20,16 +20,19 @@
 			<button type="button" title="Search" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
 
 			<button type="button" title="Refresh" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
+		</div>
+		<div>
+			<span style="margin-left: 50px"></span>
+			<button type="button" class="btn btn-default btn-xl" title="Iskalkuliši" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'F'" data-toggle="modal" data-target="#confirmModal1"><span class="glyphicon glyphicon-edit"></span></button>
 
-			<button type="button" class="btn btn-info btn-xl" title="Iskalkuliši" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ng-click="calculate()">Iskalkuliši</button>
+			<button type="button" class="btn btn-default btn-xl" title="Proknjiži" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'F'" data-toggle="modal" data-target="#confirmModal2"><span class="glyphicon glyphicon-check"></span></button>
 
-			<button type="button" class="btn btn-info btn-xl" title="Proknjiži" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ng-click="record()">Proknjiži</button>
+			<button type="button" class="btn btn-default btn-xl" title="Storniraj" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'P'" data-toggle="modal" data-target="#confirmModal3"><span class="glyphicon glyphicon-remove-circle"></span></button>
 
-			<button type="button" class="btn btn-info btn-xl" title="Storniraj" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ng-click="cancel()">Storniraj</button>
 
 		</div>
-	</div>
-
+	
+</div>
 	<div ui-view></div>
 
 	<div ng-show="currentState == 'prijemni-dokumenti'" ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
@@ -55,5 +58,69 @@
     		</div>
   		</div>
   	</div>
+
+  	<div class="modal fade" id="confirmModal1" role="dialog">
+		<div class="modal-dialog">
+		   <!-- Modal content-->
+  			<div class="modal-content">
+	    		<div class="modal-header">
+	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<h4 class="modal-title">Potvrda kalkulisanja</h4>
+	    		</div>
+	    		<div class="modal-body">
+	      			<form novalidate>
+						Da li ste sigurni da želite da iskalkulišete? 
+
+						<br><br>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="calculate()">Da</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Ne</button>
+  					</form>
+	    		</div>
+    		</div>
+  		</div>
+  	</div>
+
+  	<div class="modal fade" id="confirmModal2" role="dialog">
+		<div class="modal-dialog">
+		   <!-- Modal content-->
+  			<div class="modal-content">
+	    		<div class="modal-header">
+	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<h4 class="modal-title">Potvrda knjiženja</h4>
+	    		</div>
+	    		<div class="modal-body">
+	      			<form novalidate>
+						Da li ste sigurni da želite da proknjižite? 
+
+						<br><br>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="record()">Da</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Ne</button>
+  					</form>
+	    		</div>
+    		</div>
+  		</div>
+  	</div>
+
+  	<div class="modal fade" id="confirmModal3" role="dialog">
+		<div class="modal-dialog">
+		   <!-- Modal content-->
+  			<div class="modal-content">
+	    		<div class="modal-header">
+	      			<button type="button" class="close" data-dismiss="modal">&times;</button>
+	      			<h4 class="modal-title">Potvrda storniranja</h4>
+	    		</div>
+	    		<div class="modal-body">
+	      			<form novalidate>
+						Da li ste sigurni da želite da stornirate? 
+
+						<br><br>
+						<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="cancel()">Da</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Ne</button>
+  					</form>
+	    		</div>
+    		</div>
+  		</div>
+  	</div>
+
 
 </div>
