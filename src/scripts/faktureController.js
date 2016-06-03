@@ -85,9 +85,10 @@ module.exports = [
 	         var url_filter = "?$filter=";
 
 	         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
+	         var partnerId = $stateParams.partnerId;
 	         console.log("PARAM: "+ poslovnaGodinaId);
 
-	         if(poslovnaGodinaId=='')
+	         if(poslovnaGodinaId=='' && partnerId=='')
 	         {
 	            return;
 	         }
@@ -97,6 +98,10 @@ module.exports = [
 	             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
 	         }
 
+	         if(partnerId!='' && partnerId!=undefined)
+         	 {
+            	 url_filter += "Id_Partner eq " + partnerId;   
+         	 }
 
 	         faktureService.get_filtered_invoices(url_filter).then(function(response){
 	               $scope.gridOptions.data = response;
@@ -105,11 +110,12 @@ module.exports = [
 
 
     	function fillData(){
-    		if($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined){
+    		if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined)){
 	    		faktureService.get_all_invoices().then(function(response){
 					$scope.gridOptions.data = response;
 				});
     		}
+    		
     		else
     		{
     			$scope.nextMeh();

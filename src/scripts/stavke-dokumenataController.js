@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'stavkeDokumenataService', 'prijemniDokumentiService', 'robaService', '$state',
-	function myController($scope, $http, stavkeDokumenataService, prijemniDokumentiService, robaService, $state){
+	'$scope', '$http', 'stavkeDokumenataService', 'prijemniDokumentiService', 'robaService', '$state', '$stateParams',
+	function myController($scope, $http, stavkeDokumenataService, prijemniDokumentiService, robaService, $state, $stateParams){
 
 		$scope.allWrs = {};
 		$scope.allItems = {};
@@ -47,12 +47,45 @@ module.exports = [
 		 	});
    		};
 
+
+   		$scope.nextMeh = function()
+      	{
+	         var url_filter = "?$filter=";
+
+	         var robaId = $stateParams.robaId;
+	       
+	         console.log("PARAM: "+ robaId);
+
+	         if(robaId=='')
+	         {
+	            return;
+	         }
+
+	         if(robaId!=''  && robaId!=undefined)
+	         {
+	            url_filter += "Id_Roba eq " + robaId;
+	         }
+
+	         console.log(url_filter);
+	         stavkeDokumenataService.get_filtered_documentItems(url_filter).then(function(response){
+	               $scope.gridOptions.data = response;
+	         });
+      	};
+
+
    		function fillData()
     	{
-    		stavkeDokumenataService.get_all_documentItems()
-				.then(function(response){
-				$scope.gridOptions.data = response;
-			});
+    		if($stateParams.robaId=='' || $stateParams.robaId==undefined){
+	    		stavkeDokumenataService.get_all_documentItems()
+					.then(function(response){
+					$scope.gridOptions.data = response;
+				});
+			}
+			else
+			{
+				$scope.nextMeh();
+			}
+
 			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
 				.then(function(response){
 				$scope.allWrs = response;

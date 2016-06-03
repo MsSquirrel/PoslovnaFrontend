@@ -77,7 +77,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'documentsCtrl'
       })
       .state('mesta', {
-        url: '/mesta?naziv&pb',
+        url: '/mesta?naziv&pb',//TODOR
         templateUrl: './templates/mesta.html',
         controller: 'mestaCtrl',
         data: {
@@ -146,7 +146,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'analitikaCtrl'
       })
       .state('fakture', {
-        url: '/fakture?poslovnaGodinaId',
+        url: '/fakture?poslovnaGodinaId?partnerId',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl'
       })
@@ -233,7 +233,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('merne-jedinice', {
-        url: '/merne-jedinice',
+        url: '/merne-jedinice?naziv&oznaka',///// TODOR
         templateUrl: './templates/merne-jedinice.html',
         controller: 'merne-jediniceCtrl',
         data: {
@@ -359,7 +359,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('prijemni-dokumenti', {
-        url: '/prijemni-dokumenti?poslovnaGodinaId',
+        url: '/prijemni-dokumenti?poslovnaGodinaId?partnerId?magacinId',
         templateUrl: './templates/prijemni-dokumenti.html',
         controller: 'prijemni-dokumentiCtrl',
         data: {
@@ -424,7 +424,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('robne-kartice', {
-        url: '/robne-kartice?poslovnaGodinaId',
+        url: '/robne-kartice?poslovnaGodinaId?magacinId?robaId',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })
@@ -439,7 +439,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'registerCtrl'
       })
       .state('stavke-dokumenata', {
-        url: '/stavke-dokumenata',
+        url: '/stavke-dokumenata?robaId',
         templateUrl: './templates/stavke-dokumenata.html',
         controller: 'stavke-dokumenataCtrl',
         data: {
@@ -509,7 +509,8 @@ myApp
 .service('faktureService', require('./faktureService.js'))
 .service('loginService', require('./loginService.js'))
 .service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'))
-.service('stavkeDokumenataService', require('./stavke-dokumenataService.js'));
+.service('stavkeDokumenataService', require('./stavke-dokumenataService.js'))
+.service('robneKarticeService', require('./robne-karticeService.js'));
 
 myApp
 .run(require('./run.js'));

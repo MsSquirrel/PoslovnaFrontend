@@ -76,12 +76,22 @@ module.exports = [
 		}
 
 
+		function get_filtered_documentItems(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/stavka_dokumenta" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
 		return {
 			get_all_documentItems: get_all_documentItems, 
 			create_documentItem: create_documentItem, 
 			update_documentItem: update_documentItem, 
 			remove_documentItem: remove_documentItem,
 			get_documentItem_by_id: get_documentItem_by_id,
+			get_filtered_documentItems: get_filtered_documentItems,
 		};
 
 

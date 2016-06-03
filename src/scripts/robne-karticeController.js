@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', '$state', '$stateParams', 'robneKarticeService', 
+	function myController($scope, $http, $state, $stateParams, robneKarticeService){
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -26,9 +26,56 @@ module.exports = [
 		    { name:'Ukupna_vrednost_Robna_kartica', width:'15%', displayName: 'Ukupna vrednost', cellTooltip: true, headerTooltip: true }
 		  ];
 
-		$http.get("http://localhost:61769/api/robna_kartica").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+		 $scope.nextMeh = function()
+     	 {
+	         var url_filter = "?$filter=";
+
+	         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
+	         var magacinId = $stateParams.magacinId;
+	         var robaId = $stateParams.robaId;
+
+	         console.log("PARAM: "+ poslovnaGodinaId);
+
+	         if(poslovnaGodinaId=='' && magacinId=='' && robaId=='')
+	         {
+	            return;
+	         }
+
+	         if(poslovnaGodinaId!='' && poslovnaGodinaId!=undefined)
+	         {
+	             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
+	         }
+	      
+	      	 if(magacinId!='' && magacinId!=undefined)
+	         {
+	             url_filter += "Id_Magacin eq " + magacinId;   
+	         }
+
+	          if(robaId!='' && robaId!=undefined)
+	         {
+	             url_filter += "Id_Roba eq " + robaId;   
+	         }
+
+	       	robneKarticeService.get_filtered_robnaKartica(url_filter).then(function(response){
+	               $scope.gridOptions.data = response;
+	         });
+
+      	};
+
+		  function fillData()
+		  {
+		  	if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.magacinIdId=='' || $stateParams.magacinId==undefined) && ($stateParams.robaId=='' || $stateParams.robaId==undefined)){
+			  	$http.get("http://localhost:61769/api/robna_kartica").then(function(response) {
+	        		$scope.gridOptions.data = response.data;
+	    		});
+		  	}
+		  	else
+		  	{
+		  		$scope.nextMeh();
+		  	}
+		  }
+
+		  fillData();
 
 	}
 ];

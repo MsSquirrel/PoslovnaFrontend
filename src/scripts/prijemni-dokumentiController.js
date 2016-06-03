@@ -77,9 +77,12 @@ module.exports = [
          var url_filter = "?$filter=";
 
          var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
+         var partnerId = $stateParams.partnerId;
+         var magacinId = $stateParams.magacinId; 
+
          console.log("PARAM: "+ poslovnaGodinaId);
 
-         if(poslovnaGodinaId=='')
+         if(poslovnaGodinaId=='' && partnerId=='' && magacinId=='')
          {
             return;
          }
@@ -88,7 +91,17 @@ module.exports = [
          {
              url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
          }
-         console.log("URL FILTER: "+url_filter);
+
+         if(partnerId!='' && partnerId!=undefined)
+         {
+             url_filter += "Id_Partner eq " + partnerId;   
+         }
+
+         if(magacinId!='' && magacinId!=undefined)
+         {
+             url_filter += "Id_Magacin eq " + magacinId;   
+         }
+        
 
          prijemniDokumentiService.get_filtered_warehouseReceipts(url_filter).then(function(response){
                $scope.gridOptions.data = response;
@@ -100,7 +113,7 @@ module.exports = [
 
    		function fillData()
     	{
-        if($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined){
+        if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined) && ($stateParams.magacinIdId=='' || $stateParams.magacinId==undefined)){
       		prijemniDokumentiService.get_all_warehouseReceipts()
     				.then(function(response){
     				$scope.gridOptions.data = response;

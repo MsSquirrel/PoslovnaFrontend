@@ -52,10 +52,13 @@ module.exports = [
       $scope.search.naziv= '';
       $scope.search.oznaka = '';
 
-      $scope.search.filterData = function(){
+      $scope.search.iPAS = function(){
 
-        var naziv= $scope.search.naziv.trim();
-        var oznaka = $scope.search.oznaka.trim();
+        if($scope.search.naziv != '' || $scope.search.oznaka != '' )
+          $state.go('merne-jedinice', {naziv: $scope.search.naziv, oznaka: $scope.search.oznaka});
+      }
+
+      var filterData = function(naziv, oznaka){
 
         if(oznaka==='' && naziv==='')
           return;
@@ -87,16 +90,39 @@ module.exports = [
 
 
 
+      $scope.refresh = function(){
+        $state.go('merne-jedinice', { naziv: undefined, oznaka: undefined});
+      };
+
+
+     
+    if(($state.params.naziv == undefined && $state.params.oznaka == undefined) || ($state.params.naziv == '' && $state.params.oznaka == ''))
+      fillData();
+    
+    else{
+      
+      var par_naziv = '';
+      var par_oznaka = '';
+      
+      if($state.params.naziv != undefined)
+        par_naziv = $state.params.naziv;
+
+      if($state.params.oznaka != undefined)
+        par_oznaka = $state.params.oznaka;
+
+
+      filterData(par_naziv, par_oznaka);
+
+    }
+
+
+
     	function fillData(){
     		merneJediniceService.get_all_measUnits().then(function(response){
     			$scope.gridOptions.data = response;
     		});
     	};
     
-      $scope.fillData = fillData;       
-
-    	fillData();
-
       $scope.clear_add = function(){
         $scope.measUnitName ="";
         if($scope.isModal)

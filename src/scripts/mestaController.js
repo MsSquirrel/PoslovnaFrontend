@@ -54,7 +54,7 @@ module.exports = [
    				$state.go('mesta', {naziv: $scope.search.naziv, pb: $scope.search.postanski_broj});
    		}
 
-   		filterData = function(naziv,pb){
+   		var filterData = function(naziv,pb){
 
    			if(pb==='' && naziv==='')
    				return;
@@ -109,7 +109,7 @@ module.exports = [
 			fillData();
 		else{
 			
-			var par_naziv = ''
+			var par_naziv = '';
 			var par_pb = '';
 			
 			if($stateParams.naziv != undefined)
