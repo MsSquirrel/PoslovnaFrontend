@@ -144,7 +144,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'analitikaCtrl'
       })
       .state('fakture', {
-        url: '/fakture',
+        url: '/fakture?poslovnaGodinaId',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl'
       })
@@ -357,7 +357,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('prijemni-dokumenti', {
-        url: '/prijemni-dokumenti',
+        url: '/prijemni-dokumenti?poslovnaGodinaId',
         templateUrl: './templates/prijemni-dokumenti.html',
         controller: 'prijemni-dokumentiCtrl',
         data: {
@@ -422,7 +422,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('robne-kartice', {
-        url: '/robne-kartice',
+        url: '/robne-kartice?poslovnaGodinaId',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })

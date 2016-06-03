@@ -68,11 +68,22 @@ module.exports = [
 			});
 		}
 
+		function get_filtered_invoices(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/faktura" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
 		return {
 			get_all_invoices: get_all_invoices,
 			create_invoice: create_invoice,
 			remove_invoice: remove_invoice,
 			update_invoice: update_invoice, 
+			get_filtered_invoices: get_filtered_invoices,
 		};
 
 	}
