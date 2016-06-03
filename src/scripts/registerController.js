@@ -22,6 +22,14 @@ module.exports = [
             loginService.register($scope.username,$scope.password, $scope.firstName, $scope.lastName, regCallback);
         };
         
+        $scope.checkMatching = function() {
+            if ((typeof $scope.password !== "undefined") && (typeof $scope.passwordRepeat !== "undefined") &&
+                $scope.password !== "" && $scope.passwordRepeat !== "") {
+                $scope.createRegisterForm.pass2.$setValidity("minLength", $scope.password == $scope.passwordRepeat);
+            } else {
+                $scope.createRegisterForm.pass2.$setValidity("minLength", true);
+            }
+        };
 
 
     }

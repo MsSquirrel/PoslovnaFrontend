@@ -141,7 +141,6 @@ module.exports = [
 
     	$scope.checkDate = function() {
         if (typeof $scope.dt !== "undefined") {
-          console.log($scope.dt);
 	        var dateNow = new Date(); 
 	        var dateEntered = new Date($scope.dt); 
 	        $scope.createRecForm.date.$setValidity("minLength", dateNow.getTime() > dateEntered.getTime());
