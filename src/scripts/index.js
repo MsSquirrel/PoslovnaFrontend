@@ -424,7 +424,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('robne-kartice', {
-        url: '/robne-kartice?poslovnaGodinaId?magacinId',
+        url: '/robne-kartice?poslovnaGodinaId?magacinId?robaId',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })
@@ -439,7 +439,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'registerCtrl'
       })
       .state('stavke-dokumenata', {
-        url: '/stavke-dokumenata',
+        url: '/stavke-dokumenata?robaId',
         templateUrl: './templates/stavke-dokumenata.html',
         controller: 'stavke-dokumenataCtrl',
         data: {
