@@ -509,7 +509,8 @@ myApp
 .service('faktureService', require('./faktureService.js'))
 .service('loginService', require('./loginService.js'))
 .service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'))
-.service('stavkeDokumenataService', require('./stavke-dokumenataService.js'));
+.service('stavkeDokumenataService', require('./stavke-dokumenataService.js'))
+.service('robneKarticeService', require('./robne-karticeService.js'));
 
 myApp
 .run(require('./run.js'));
