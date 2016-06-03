@@ -98,8 +98,8 @@ module.exports = [
     	fillData();
 
       $scope.clear_add = function(){
-        $scope.businessYear = 0;
-        $scope.businessYearFinished = 0;
+        $scope.businessYear = "";
+        $scope.businessYearFinished = "";
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
          

@@ -55,9 +55,10 @@
 			</div>		
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="checkPlace" ng-click="chose_place()">
+					<select class="form-control" name="namep" ng-model="checkPlace" ng-click="chose_place()" required>
 		   			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-		   			</select><br>
+		   			</select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span><br>
 		   		</div>
 		   	</div>
 

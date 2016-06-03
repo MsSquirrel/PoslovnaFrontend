@@ -100,12 +100,12 @@ module.exports = [
     	fillData();
 
     	$scope.clear_add = function(){
-	        $scope.warehouseReceiptBusinessYear = 0;
+	        $scope.warehouseReceiptBusinessYear = "";
 	        $scope.wareHouseReceiptPartner = "";
 	        $scope.warehouseReceiptWarehouse1 = "";
 	        $scope.warehouseReceiptWarehouse2 = "";
-	        $scope.warehouseReceiptTransportExpenses = 0;
-	        $scope.warehouseReceiptExpenses = 0;
+	        $scope.warehouseReceiptTransportExpenses = "";
+	        $scope.warehouseReceiptExpenses = "";
 	        $scope.warehouseReceiptDate = "";
 
 	        //$scope.changeCompany = "";

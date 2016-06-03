@@ -7,8 +7,8 @@
 			Naziv preduzeća:
 			<div class="row">
 			   	<div>
-					<input type="text" name="namep" class="form-control" ng-model="companyName" required></input>
-					<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
+					<input type="text" name="namec" class="form-control" ng-model="companyName" required></input>
+					<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 				</div>
 			</div></br>
 
@@ -48,9 +48,10 @@
 
 		 	<div class="row">
 		   	 	<div>
-					<select class="form-control" ng-model="check" ng-click="chose_place()">
+					<select class="form-control" name="namep" ng-model="check" ng-click="chose_place()" required>
 		    		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
 		   			</select>
+					<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 		     	</div>
 		    </div>
 																			

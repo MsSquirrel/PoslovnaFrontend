@@ -98,7 +98,7 @@
 	      			<form novalidate name="myFormEdit">
 
 						Broj fakture: <input type="text" name="editNumber" class="form-control" ng-model="editInvoiceNumber" ng-pattern="/^(\d{1,18})$/" required>
-						<span class="writeError" ng-show="myForm.editNumber.$invalid">Obavezno polje. Unesite do osamnaest cifri!</span><br>
+						<span class="writeError" ng-show="myFormEdit.editNumber.$invalid">Obavezno polje. Unesite do osamnaest cifri!</span><br>
 						
 						Poslovna godina: <select class="form-control" name="nameye" ng-model="editInvoiceYear" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" required>
 										</select>

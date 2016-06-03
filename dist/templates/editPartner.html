@@ -46,15 +46,16 @@
 		Mesto:  
 		<div class="row">
 			<div>
-				<select class="form-control" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace"></select>
+				<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace" required></select>
+				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
 			</div>
 		</div></br>
 	   	
-	   	Partner: 
+	   	Preduzeće: 
 	   	<div class="row">
 			<div>
-	   			<select class="form-control" name="namep" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
-				<span class="writeError" ng-show="myForm.namep.$invalid">Obavezno polje.</span>
+	   			<select class="form-control" name="namec" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
+				<span class="writeError" ng-show="myForm.namec.$invalid">Obavezno polje.</span>
 	   		</div>
 	   	</div></br>
 

@@ -68,10 +68,10 @@ module.exports = [
     	$scope.clear_add = function(){
 	        $scope.primka = "";
 	        $scope.roba = "";
-	        $scope.kolicina = 0;
-	        $scope.nabCena = 0;
-	        $scope.nabVrednost = 0;
-	        $scope.marza = 0;
+	        $scope.kolicina = "";
+	        $scope.nabCena = "";
+	        $scope.nabVrednost = "";
+	        $scope.marza = "";
 	        
 
 	        //$scope.changeCompany = "";

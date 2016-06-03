@@ -135,9 +135,9 @@ module.exports = [
     	fillData();
 
       $scope.clear_add = function(){
-        $scope.pdvRate = 0.00;
+        $scope.pdvRate = "";
         $scope.pdvRateDate = "";
-        $scope.pdvRatePdv=0;
+        $scope.pdvRatePdv="";
          
       };
 
