@@ -4,15 +4,6 @@ module.exports = [
 
 		$scope.partnerId = $stateParams.id;
 
-		$scope.editPartnerName = "";
-   		$scope.editPartnerMBR = "";
-   		$scope.editPartnerPIB = "";
-   		$scope.editPartnerAddress ="";
-   		$scope.editPartnerPlace ="";
-   		$scope.editPartnerType = "";
-   		$scope.editPartnerCompany = "";
-   		$scope.editPartnerType = "";
-
 
 		function fillData()
 		{
@@ -23,8 +14,8 @@ module.exports = [
    				$scope.editPartnerMBR = $scope.partner.Maticni_broj_Partner;
    				$scope.editPartnerPIB = $scope.partner.PIB_Partner;
    				$scope.editPartnerAddress = $scope.partner.Adresa_Partner;
-   				$scope.editPartnerPlace = $scope.partner.Mesto.Id;
-   				$scope.editPartnerCompany = $scope.partner.Preduzece.Id_Preduzece;
+   				$scope.editPartnerPlace = $scope.partner.Id;
+   				$scope.editPartnerCompany = $scope.partner.Id_Preduzece;
    				$scope.editPartnerType = $scope.partner.Tip_Partner;
 			});
 		};

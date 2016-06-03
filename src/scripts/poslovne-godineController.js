@@ -67,29 +67,29 @@ module.exports = [
          }
 
 
-         /*poslovneGodineService.get_filtered_(url_filter).then(function(response){
+         poslovneGodineService.get_filtered_businessYears(url_filter).then(function(response){
                $scope.gridOptions.data = response;
-
-               $scope.search.naziv= '';
-               $scope.search.PIB= '';
-               $scope.search.maticni_broj = '';
          });
-         */
-
         };
 
 
     	function fillData()
     	{
-    		poslovneGodineService.get_all_businessYears()
-				.then(function(response){
-				$scope.gridOptions.data = response;
-			});
+        if($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined){
+      		poslovneGodineService.get_all_businessYears()
+  				.then(function(response){
+  				  $scope.gridOptions.data = response;
+  			   });
+       }
+       else
+       {
+          $scope.nextMeh();
+       }
 
-			preduzecaService.get_all_companies()
-				.then(function(response){
-				$scope.allCompanies = response;
-			});
+  			preduzecaService.get_all_companies()
+  				.then(function(response){
+  				$scope.allCompanies = response;
+  			});
     	};
        
 

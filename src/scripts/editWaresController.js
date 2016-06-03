@@ -6,11 +6,6 @@ module.exports = [
 		$scope.goodsId = $stateParams.id;
 		console.log("ID ROBE JE: "+$scope.goodsId);
 
-		$scope.editGoodsName = "";
-		$scope.editGoodsCategory = "";
-		$scope.editGoodsMeasUnit = "";
-		$scope.editGoodsCompany = "";
-
 		function fillData()
 		{	
 
@@ -18,9 +13,9 @@ module.exports = [
 				$scope.goods = response;
 
 				$scope.editGoodsName = $scope.goods.Naziv_Roba;
-				$scope.editGoodsCategory = $scope.goods.Grupa_roba.Id_Grupa_roba;
-				$scope.editGoodsMeasUnit = $scope.goods.Jedinica_mere.Id_Jedinica_mere;
-				$scope.editGoodsCompany = $scope.goods.Preduzece.Id_Preduzece;
+				$scope.editGoodsCategory = $scope.goods.Id_Grupa_roba;
+				$scope.editGoodsMeasUnit = $scope.goods.Id_Jedinica_mere;
+				$scope.editGoodsCompany = $scope.goods.Id_Preduzece;
 			});
 
 			grupeRobaService.get_all_groups().then(function(response){
