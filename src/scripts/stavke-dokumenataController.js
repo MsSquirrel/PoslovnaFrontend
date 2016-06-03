@@ -86,7 +86,7 @@ module.exports = [
 
       $scope.add_documentItem = function()
     	{
-    		alert($scope.primka)
+    		
     		stavkeDokumenataService.create_documentItem($scope.primka, $scope.roba, $scope.kolicina, $scope.nabCena, $scope.marza).then(function(response){
 	          	$scope.clear_add(); 
 	          	$state.go('^',{}, {reload:true});
