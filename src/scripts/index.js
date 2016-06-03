@@ -18,6 +18,7 @@ myApp.controller('stope-pdv-aCtrl', require('./stope-pdv-aController.js'));
 myApp.controller('editCompanyCtrl', require('./editCompanyController.js'));
 myApp.controller('mainCtrl', require('./mainController.js'));
 myApp.controller('loginCtrl', require('./loginController.js'));
+myApp.controller('registerCtrl', require('./registerController.js'));
 myApp.controller('editPlaceCtrl', require('./editPlaceController.js'));
 myApp.controller('editMeasUnitCtrl', require('./editMeasUnitController.js'));
 myApp.controller('editPdvCtrl', require('./editPdvController.js'));
@@ -27,6 +28,7 @@ myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
 myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
 myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
+
 
 
 myApp.filter('true_false', function() {
@@ -430,6 +432,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/login',
         templateUrl: './templates/login.html',
         controller: 'loginCtrl'
+      })
+      .state('register', {
+        url: '/register',
+        templateUrl: './templates/register.html',
+        controller: 'registerCtrl'
       })
       .state('stavke-dokumenata', {
         url: '/stavke-dokumenata',

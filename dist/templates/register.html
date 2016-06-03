@@ -1,0 +1,47 @@
+<div>
+	<h2>Registracija</h2>
+
+<div class="col-md-6 col-md-offset-3 form">
+	
+	<form class="form" name="createYearForm">
+
+		Korisničko ime:<span class="necesary">*</span>
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" ng-model="username"></input>
+			</div>
+		</div></br>
+
+		Lozinka:<span class="necesary">*</span>
+		<div class="row">
+			<div>
+				<input type="password" class="form-control" ng-model="password"></input>
+			</div>
+		</div></br>
+
+		Ponovi lozinku:<span class="necesary">*</span>
+		<div class="row">
+			<div>
+				<input type="password" class="form-control" ng-model="passwordRepeat"></input>
+			</div>
+		</div></br>
+
+		Ime:
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" ng-model="firstName"></input>
+			</div>
+		</div></br>
+
+		Prezime:
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" ng-model="lastName"></input>
+			</div>
+		</div></br>
+
+		
+		<button type="button" class="btn btn-info"  ng-click="register()">Registruj se</button>
+	</form>
+</div>
+</div>

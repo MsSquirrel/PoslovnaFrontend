@@ -17,11 +17,11 @@ module.exports = [
     	    //console.log('Current state:'+$rootScope.currentState)
     		
 
-			if (!loginService.getCurrentUser() && window.location != "#/login"){
+			if (!loginService.getCurrentUser() && $rootScope.currentState != "login" && $rootScope.currentState != "register"){
 				window.location = "#/login";
 			}
 
-			if (loginService.getCurrentUser() && window.location.href.indexOf("#/login") != -1){
+			if (loginService.getCurrentUser() && (window.location.href.indexOf("#/login") != -1 || window.location.href.indexOf("#/register") != -1)){
 	            window.location.href = "#/main";
 	        }
 
