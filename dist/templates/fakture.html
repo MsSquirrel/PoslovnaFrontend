@@ -4,15 +4,15 @@
 	<div  ng-show="currentState == 'fakture'" class="row">
 		<div class="col-sm-4 col-sm-offset-1">
 
-			<button type="button" class="btn btn-success btn-xl" data-toggle="modal" data-target="#addModal" title="Add">
+			<button type="button" class="btn btn-success btn-xl" data-toggle="modal" data-target="#addModal" title="Dodaj">
 		  		<span class="glyphicon glyphicon-plus"></span>
 			</button>
 
-			<button type="button" class="btn btn-danger btn-xl"  data-toggle="modal" data-target="#confirmModal" title="Remove" ng-disabled="gridOptions.selection.getSelectedRows().length == 0">
+			<button type="button" class="btn btn-danger btn-xl"  data-toggle="modal" data-target="#confirmModal" title="Obriši" ng-disabled="gridOptions.selection.getSelectedRows().length == 0">
 		  		<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 			</button>
 
-			<button type="button" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#editModal" title="Edit" ng-disabled="gridOptions.selection.getSelectedRows().length == 0">
+			<button type="button" class="btn btn-primary btn-xl" data-toggle="modal" data-target="#editModal" title="Izmeni" ng-disabled="gridOptions.selection.getSelectedRows().length == 0">
 		  		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 			</button>
 
@@ -65,19 +65,19 @@
  						</p>
 						
 						Ukupan rabat:
-						<input type="text" name="rabat" class="form-control" ng-model="invoiceRabat" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/">
+						<input type="text" name="rabat" class="form-control" ng-model="invoiceRabat" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
 						<span class="writeError" ng-show="createFaktureForm.rabat.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 						
 						Ukupan iznos bez PDV-a:<span class="necesary">*</span>
-						<input type="text" name="nopdv" class="form-control" ng-model="invoiceIznosBezPdv" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/" required>
+						<input type="text" name="nopdv" class="form-control" ng-model="invoiceIznosBezPdv" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required>
 						<span class="writeError" ng-show="createFaktureForm.nopdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 						
 						Ukupan PDV:<span class="necesary">*</span>
-						<input type="text" name="pdv" class="form-control" ng-model="invoiceTotalPdv" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/" required>
+						<input type="text" name="pdv" class="form-control" ng-model="invoiceTotalPdv" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required>
 						<span class="writeError" ng-show="createFaktureForm.pdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 						
 						Ukupno za placanje:
-						<input type="text" name="total" class="form-control" ng-model="invoiceTotalPlacanje" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/">
+						<input type="text" name="total" class="form-control" ng-model="invoiceTotalPlacanje" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
 						<span class="writeError" ng-show="createFaktureForm.total.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 						
 						
@@ -129,19 +129,19 @@
  						</p>
 						
 						Ukupan rabat:
-						<input type="text" name="rabat" class="form-control" ng-model="editInvoiceRabat" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/">
+						<input type="text" name="rabat" class="form-control" ng-model="editInvoiceRabat" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
 						<span class="writeError" ng-show="editFaktureForm.rabat.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span></br>
 						
 						Ukupan iznos bez PDV-a:<span class="necesary">*</span>
-						<input type="text" name="nopdv" class="form-control" ng-model="editInvoiceIznosBezPdv" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/" required>
+						<input type="text" name="nopdv" class="form-control" ng-model="editInvoiceIznosBezPdv" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required>
 						<span class="writeError" ng-show="editFaktureForm.nopdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span></br>
 						
 						Ukupan PDV:<span class="necesary">*</span>
-						<input type="text" name="pdv" class="form-control" ng-model="editInvoiceTotalPdv" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/" required>
+						<input type="text" name="pdv" class="form-control" ng-model="editInvoiceTotalPdv" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required>
 						<span class="writeError" ng-show="editFaktureForm.pdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span></br>
 						
 						Ukupno za placanje:
-						<input type="text" name="total" class="form-control" ng-model="editInvoiceTotalPlacanje" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/">
+						<input type="text" name="total" class="form-control" ng-model="editInvoiceTotalPlacanje" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
 						<span class="writeError" ng-show="editFaktureForm.total.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span></br>
 
 

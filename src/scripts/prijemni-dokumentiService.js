@@ -117,6 +117,16 @@ module.exports = [
 				});
 		}
 
+		function get_filtered_warehouseReceipts(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/prijemni_dokument" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
+
 		return {
 			get_all_warehouseReceipts: get_all_warehouseReceipts,
 			get_unrecorded_warehouseReceipts: get_unrecorded_warehouseReceipts, 
@@ -126,7 +136,8 @@ module.exports = [
 			get_warehouseReceipt_by_id: get_warehouseReceipt_by_id,
 			calculate: calculate,
 			record: record,
-			cancel: cancel
+			cancel: cancel,
+			get_filtered_warehouseReceipts: get_filtered_warehouseReceipts,
 		};
 
 

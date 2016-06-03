@@ -4,7 +4,7 @@ module.exports = [
 		
 		$scope.currentUser  = $localStorage.currentUser;
 
-		if (!$scope.currentUser && window.location != "#/login"){
+		if (!$scope.currentUser && window.location != "#/login" && window.location != "#/register"){
 			window.location = "#/login";
 		}
 

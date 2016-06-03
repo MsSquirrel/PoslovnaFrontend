@@ -8,6 +8,7 @@ module.exports = [
         service.login = login;
         service.logout = logout;
         service.getCurrentUser = getCurrentUser;
+        service.register = register;
 
         return service;
 
@@ -52,6 +53,21 @@ module.exports = [
 
         function getCurrentUser() {
             return $localStorage.currentUser;
+        }
+
+        function register(username, password, firstName, lastName, callback) {
+
+            $http.post('http://localhost:61769/api/korisnik/', {Korisnicko_ime_Korisnik: username,
+                                                                Lozinka_Korisnik: password,       
+                                                                Ime_Korisnik: firstName,
+                                                                Prezime_Korisnik: lastName})
+                .success(function (response) {                 
+                    callback(true);
+                    window.location = "#/login";
+                }).error(function (response){
+                    callback(false);
+                });
+
         }
 
     }

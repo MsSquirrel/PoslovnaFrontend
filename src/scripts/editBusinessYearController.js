@@ -18,9 +18,9 @@ module.exports = [
 
 				$scope.editBusinessYear = $scope.business.Godina_Poslovna_godina;
    				$scope.editBusinessYearFinished = $scope.business.Zakljucena_Poslovna_godina;
-   				$scope.editBusinessYearCompany = $scope.business.Preduzece.Id_Preduzece;
-			});
+   				$scope.editBusinessYearCompany = $scope.business.Id_Preduzece;
 
+			});
 		};
 
 		fillData();

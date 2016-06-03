@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http','prijemniDokumentiService' , 'poslovneGodineService', 'magaciniService','partneriService' , '$routeParams','$window', '$state',
-	function myController($scope, $http, prijemniDokumentiService,poslovneGodineService, magaciniService,partneriService , $routeParams, $window, $state){
+	'$scope', '$http','prijemniDokumentiService' , 'poslovneGodineService', 'magaciniService','partneriService' , '$routeParams','$window', '$state', '$stateParams', 
+	function myController($scope, $http, prijemniDokumentiService,poslovneGodineService, magaciniService,partneriService , $routeParams, $window, $state, $stateParams){
 		
 		$scope.allYears = {};
 		$scope.allWarehouses = {};
@@ -72,12 +72,46 @@ module.exports = [
 		 	});
    		};
 
+      $scope.nextMeh = function()
+      {
+         var url_filter = "?$filter=";
+
+         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
+         console.log("PARAM: "+ poslovnaGodinaId);
+
+         if(poslovnaGodinaId=='')
+         {
+            return;
+         }
+
+         if(poslovnaGodinaId!='' && poslovnaGodinaId!=undefined)
+         {
+             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
+         }
+         console.log("URL FILTER: "+url_filter);
+
+         prijemniDokumentiService.get_filtered_warehouseReceipts(url_filter).then(function(response){
+               $scope.gridOptions.data = response;
+         });
+
+      };
+
+
+
    		function fillData()
     	{
-    		prijemniDokumentiService.get_all_warehouseReceipts()
-				.then(function(response){
-				$scope.gridOptions.data = response;
-			});
+        if($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined){
+      		prijemniDokumentiService.get_all_warehouseReceipts()
+    				.then(function(response){
+    				$scope.gridOptions.data = response;
+  			   });
+        }
+        else
+        {
+          console.log("HEREEEE ");
+          $scope.nextMeh();
+        }
+
 			poslovneGodineService.get_active_businessYears()
 				.then(function(response){
 				$scope.allYears = response;

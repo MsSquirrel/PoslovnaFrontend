@@ -58,7 +58,7 @@
 			Zavisni troškovi:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<input type="text" name="zavisni" class="form-control" ng-model="warehouseReceiptExpenses" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/"></input>
+					<input type="text" name="zavisni" class="form-control" ng-model="warehouseReceiptExpenses" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/"></input>
 					<span class="writeError" ng-show="editRecForm.zavisni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
 				</div>
 			</div>
@@ -66,7 +66,7 @@
 			Transportni troškovi:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<input type="text" name="transportni" class="form-control" ng-model="warehouseReceiptTransportExpenses" ng-pattern="/^(\d{1,12}(\.\d{0,2})?)$/"></input>
+					<input type="text" name="transportni" class="form-control" ng-model="warehouseReceiptTransportExpenses" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/"></input>
 					<span class="writeError" ng-show="editRecForm.transportni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
 				</div>
 			</div>

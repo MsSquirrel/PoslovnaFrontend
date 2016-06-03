@@ -77,6 +77,15 @@ module.exports = [
 		}
 
 
+		function get_filtered_businessYears(filter_params)
+		{
+			var resUrl = "http://localhost:61769/api/poslovna_godina" + filter_params;
+			return $http.get(resUrl)
+			.then(function(response) {
+				return response.data;
+			});
+		}
+
 		return {
 			get_all_businessYears: get_all_businessYears,
 			get_active_businessYears: get_active_businessYears, 
@@ -84,6 +93,7 @@ module.exports = [
 			update_businessYear: update_businessYear, 
 			remove_businessYear: remove_businessYear,
 			get_businessYear_by_id: get_businessYear_by_id,
+			get_filtered_businessYears: get_filtered_businessYears,
 		};
 
 
