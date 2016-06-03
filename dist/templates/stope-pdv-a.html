@@ -18,7 +18,7 @@
 
 			<button type="button" title="Search" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
 
-			<button type="button" title="Refresh" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
+			<button type="button" title="Refresh" class="btn btn-info btn-xl" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
 
 			<div class="btn-group" uib-dropdown is-open="status.isopen">
     			   <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="true"><span class="glyphicon glyphicon-play">	 
@@ -59,7 +59,7 @@
   		</div>
   	</div>	
 
-	<div id="searchModal" class="modal fade" role="dialog">
+	<div id="searchModal" class="modal" role="dialog" data-backdrop="false">
 		<div class="modal-dialog">
 
 		    
@@ -71,13 +71,14 @@
 			    
 			    <div class="modal-body">
 			    	<div id="search_div">
-						Za PDV: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite celo ili deo naziv PDV-a za koji vazi stopa." class="form-control" ng-model="search.zaPdv"/>
-						<br/>
+						Za PDV: <select class="form-control" ng-model="search.zaPdv">
+									<option ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
+								</select>
 					</div>
 			    
 			    </div>
 			    <div class="modal-footer">
-			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.filterData()">
+			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.iPAS()">
 			    		Search
 			    	</button>
 			    </div>
