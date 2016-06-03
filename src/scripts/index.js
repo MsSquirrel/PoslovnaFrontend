@@ -146,7 +146,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'analitikaCtrl'
       })
       .state('fakture', {
-        url: '/fakture?poslovnaGodinaId',
+        url: '/fakture?poslovnaGodinaId?partnerId',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl'
       })
@@ -359,7 +359,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('prijemni-dokumenti', {
-        url: '/prijemni-dokumenti?poslovnaGodinaId',
+        url: '/prijemni-dokumenti?poslovnaGodinaId?partnerId',
         templateUrl: './templates/prijemni-dokumenti.html',
         controller: 'prijemni-dokumentiCtrl',
         data: {
