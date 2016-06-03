@@ -53,7 +53,7 @@ module.exports = [
 				.then(function(response){
 				$scope.gridOptions.data = response;
 			});
-			prijemniDokumentiService.get_all_warehouseReceipts()
+			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
 				.then(function(response){
 				$scope.allWrs = response;
 			});

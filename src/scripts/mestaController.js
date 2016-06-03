@@ -48,10 +48,13 @@ module.exports = [
    		$scope.search.naziv= '';
    		$scope.search.postanski_broj = '';
 
-   		$scope.search.filterData = function(){
+   		$scope.search.iPAS = function(){
 
-   			var naziv= $scope.search.naziv.trim();
-   			var pb = $scope.search.postanski_broj.trim();
+   			if($scope.search.naziv != '' || $scope.search.postanski_broj != '' )
+   				$state.go('mesta', {naziv: $scope.search.naziv, pb: $scope.search.postanski_broj});
+   		}
+
+   		filterData = function(naziv,pb){
 
    			if(pb==='' && naziv==='')
    				return;
@@ -96,10 +99,33 @@ module.exports = [
 			});
 		}
 		
-		$scope.fillData = fillData;
-		 
+		$scope.refresh = function(){
+			$state.go('mesta', { naziv: undefined, pb: undefined});
+		};
 
-		fillData();
+
+		 
+		if(($stateParams.naziv == undefined && $stateParams.pb == undefined) || ($stateParams.naziv == '' && $stateParams.pb == ''))
+			fillData();
+		else{
+			
+			var par_naziv = ''
+			var par_pb = '';
+			
+			if($stateParams.naziv != undefined)
+				par_naziv = $stateParams.naziv;
+
+			if($stateParams.pb != undefined)
+				par_pb = $stateParams.pb;
+
+
+			filterData(par_naziv, par_pb);
+
+		}
+
+
+
+
 		console.log("MESTO CONTROLLER");
 		console.log("IS MODAL: "+$scope.isModal);
 
