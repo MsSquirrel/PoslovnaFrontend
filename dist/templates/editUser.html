@@ -1,0 +1,52 @@
+<div>
+	<h2>{{username}}</h2>
+
+<div class="col-md-6 col-md-offset-3 form">
+	
+	<form class="form" name="createRegisterForm">
+
+		Korisničko ime:
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" name="nameu" ng-model="username" ng-maxlength="50" disabled></input>
+			</div>
+		</div></br>
+
+		Ime:
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" name="namen" ng-model="firstName" ng-maxlength="50"></input>
+				<span class="writeError" ng-show="createRegisterForm.namen.$error.maxlength">Unesite do 50 karaktera!</span>
+			</div>
+		</div></br>
+
+		Prezime:
+		<div class="row">
+			<div>
+				<input type="text" class="form-control" name="names" ng-model="lastName" ng-maxlength="50"></input>
+				<span class="writeError" ng-show="createRegisterForm.names.$error.maxlength">Unesite do 50 karaktera!</span>
+			</div>
+		</div></br>
+
+		Lozinka: &nbsp;<span class="glyphicon glyphicon-info-sign" style="color: #87ceeb; cursor: pointer" title="Ukoliko ne želite da menjate lozinku, unesite aktuelnu lozinku."></span>
+		<div class="row">
+			<div>
+				<input type="password" class="form-control" name="pass1" ng-model="password" ng-blur="checkMatching()" ng-maxlength="50" required></input>
+				<span class="writeError" ng-show="createRegisterForm.pass1.$error.maxlength">Unesite do 50 karaktera!</span>
+			</div>
+		</div></br>
+
+		Ponovi lozinku:
+		<div class="row">
+			<div>
+				<input type="password" class="form-control" name="pass2" ng-model="passwordRepeat" ng-change="checkMatching()" ng-maxlength="50" required></input>
+				<span class="writeError" ng-show="createRegisterForm.pass2.$error.maxlength">Unesite do 50 karaktera!</span>
+				<span class="writeError" ng-show="createRegisterForm.pass2.$error.minLength">Unešene lozinke se ne poklapaju!</span>
+			</div>
+		</div></br>
+		
+		<!--<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>-->
+		<button type="button" class="btn btn-info"  ng-click="editUser()" ng-disabled="createRegisterForm.$invalid">Izmeni</button>
+	</form>
+</div>
+</div>

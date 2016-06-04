@@ -28,7 +28,7 @@ myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
 myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
 myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
-
+myApp.controller('editUserCtrl', require('./editUserController.js'));
 
 
 myApp.filter('true_false', function() {
@@ -70,6 +70,11 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         url: '/main',
         templateUrl: './templates/main.html',
         controller: 'preduzeceCtrl'
+      })
+      .state('user', {
+        url: '/user',
+        templateUrl: './templates/editUser.html',
+        controller: 'editUserCtrl'
       })
       .state('documents', {
         url:'/documents',
