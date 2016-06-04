@@ -53,10 +53,11 @@ module.exports = [
 	         var url_filter = "?$filter=";
 
 	         var robaId = $stateParams.robaId;
+	         var prijemniDokumentId = $stateParams.prijemniDokumentId;
 	       
 	         console.log("PARAM: "+ robaId);
 
-	         if(robaId=='')
+	         if(robaId=='' && prijemniDokumentId=='')
 	         {
 	            return;
 	         }
@@ -64,6 +65,11 @@ module.exports = [
 	         if(robaId!=''  && robaId!=undefined)
 	         {
 	            url_filter += "Id_Roba eq " + robaId;
+	         }
+
+	         if(prijemniDokumentId!=''  && prijemniDokumentId!=undefined)
+	         {
+	            url_filter += "Id_Prijemni_dokument eq " + prijemniDokumentId;
 	         }
 
 	         console.log(url_filter);
@@ -75,7 +81,7 @@ module.exports = [
 
    		function fillData()
     	{
-    		if($stateParams.robaId=='' || $stateParams.robaId==undefined){
+    		if(($stateParams.robaId=='' || $stateParams.robaId==undefined) && ($stateParams.prijemniDokumentId=='' || $stateParams.prijemniDokumentId==undefined)){
 	    		stavkeDokumenataService.get_all_documentItems()
 					.then(function(response){
 					$scope.gridOptions.data = response;
