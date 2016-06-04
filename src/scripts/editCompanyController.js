@@ -18,7 +18,7 @@ module.exports = [
    				$scope.editCompanyMBR = $scope.company.Maticni_broj_Preduzece;
    				$scope.editCompanyPIB = $scope.company.PIB_Preduzece;
    				$scope.editCompanyAddress = $scope.company.Adresa_Preduzece;
-   				$scope.editCompanyPlace = $scope.company.Mesto.Id;
+   				$scope.editCompanyPlace = $scope.company.Id;
 			});
 
 			mestaService.get_all_places()
