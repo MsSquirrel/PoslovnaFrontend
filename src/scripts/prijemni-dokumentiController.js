@@ -61,6 +61,7 @@ module.exports = [
    				$scope.selectedWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
    				$scope.selectedWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
           $scope.selectedWarehouseReceiptStatus = $scope.selectedRow.Status_Prijemni_dokument;
+          $scope.items = $scope.selectedRow.Stavka_dokumenta;
 
    				$scope.editWarehouseReceiptYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
    				$scope.editWarehouseReceiptExpenses = $scope.selectedRow.Zavisni_troskovi_Prijemni_dokument;
@@ -68,17 +69,15 @@ module.exports = [
    				//$scope.editWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
    				$scope.editWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.editWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
-   				$scope.selectedWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
+   				$scope.editWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
+
 		 	});
    		};
 
       $scope.nextMeh = function()
       {
-         var url_filter = "?$filter=";
-
-         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
-         var partnerId = $stateParams.partnerId;
-         var magacinId = $stateParams.magacinId; 
+         var url_filter = "?$filter=";Stavka_dokumenta
+;         var magacinId = $stateParams.magacinId; 
 
          console.log("PARAM: "+ poslovnaGodinaId);
 

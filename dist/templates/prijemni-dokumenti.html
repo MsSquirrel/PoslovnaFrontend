@@ -32,9 +32,9 @@
 		</div>
 		<div>
 			<span style="margin-left: 50px"></span>
-			<button type="button" class="btn btn-default btn-xl" title="Iskalkuliši" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'F'" data-toggle="modal" data-target="#confirmModal1"><span class="glyphicon glyphicon-edit"></span></button>
+			<button type="button" class="btn btn-default btn-xl" title="Iskalkuliši" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'F' || items.length == 0" data-toggle="modal" data-target="#confirmModal1"><span class="glyphicon glyphicon-edit"></span></button>
 
-			<button type="button" class="btn btn-default btn-xl" title="Proknjiži" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'F'" data-toggle="modal" data-target="#confirmModal2"><span class="glyphicon glyphicon-check"></span></button>
+			<button type="button" class="btn btn-default btn-xl" title="Proknjiži" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'F' || items.length == 0" data-toggle="modal" data-target="#confirmModal2"><span class="glyphicon glyphicon-check"></span></button>
 
 			<button type="button" class="btn btn-default btn-xl" title="Storniraj" ng-disabled="gridOptions.selection.getSelectedRows().length == 0 || selectedWarehouseReceiptStatus != 'P'" data-toggle="modal" data-target="#confirmModal3"><span class="glyphicon glyphicon-remove-circle"></span></button>
 
