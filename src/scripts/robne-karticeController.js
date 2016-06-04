@@ -2,6 +2,8 @@ module.exports = [
 	'$scope', '$http', '$state', '$stateParams', 'robneKarticeService', 
 	function myController($scope, $http, $state, $stateParams, robneKarticeService){
 
+		$scope.selectedWareCardId = -1;
+
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -25,6 +27,16 @@ module.exports = [
 		    //{ name:'Roba.Jedinica_mere.Oznaka_Jedinica_mere', width:'10%', displayName: 'Merna jedinica', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupna_vrednost_Robna_kartica', width:'15%', displayName: 'Ukupna vrednost', cellTooltip: true, headerTooltip: true }
 		  ];
+
+
+		 $scope.gridOptions.onRegisterApi = function(gridApi) {
+   			$scope.gridOptions = gridApi;
+
+   			$scope.gridOptions.selection.on.rowSelectionChanged($scope,function(row){
+   				$scope.selectedRow =  $scope.gridOptions.selection.getSelectedRows()[0];
+   				$scope.selectedWareCardId = $scope.selectedRow.Id_Robna_kartica;
+   			});
+   		};
 
 		 $scope.nextMeh = function()
      	 {

@@ -5,7 +5,7 @@
 
 	Naziv grupe:<span class="necesary">*</span>
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<input type="text" name="nameg" class="form-control" ng-model="groupName" ng-maxlength="40" required/>
 			<span class="writeError" ng-show="createWareGrForm.nameg.$error.maxlength">Unesite do 40 karaktera!</span><br>
 		</div>
@@ -23,7 +23,7 @@
 			</div>
 	</div>	
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<select class="form-control" name="namep" ng-model="groupPdv" ng-click="chose_place()" required>
 			<option  ng-repeat="pdv in allPdv" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
 			</select>
@@ -44,7 +44,7 @@
 			</div>
 	</div>	
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<select class="form-control" name="namec" ng-model="groupCompany" ng-click="chose_place()" required>
 			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 			</select>	

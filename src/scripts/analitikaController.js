@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http',
-	function myController($scope, $http){
+	'$scope', '$http', '$state', '$stateParams', 'analitikaService', 
+	function myController($scope, $http, $state, $stateParams, analitikaService){
 
 		$scope.gridOptions = {
 		    enableRowSelection: true,
@@ -20,9 +20,47 @@ module.exports = [
 		   	{ name:'Ukupno_stanje_Analitika_magacinske_kartice', width:'20%', displayName: 'Stanje', cellTooltip: true, headerTooltip: true}
 		  ];
 
-		$http.get("http://localhost:61769/api/analitika_magacinske_kartice").then(function(response) {
-        	$scope.gridOptions.data = response.data;
-    	});
+
+
+		  $scope.nextMeh = function()
+     	 {
+	         var url_filter = "?$filter=";
+
+	         var robnaKarticaId = $stateParams.robnaKarticaId;
+	         
+	         console.log("PARAM: "+ robnaKarticaId);
+
+	         if(robnaKarticaId=='')
+	         {
+	            return;
+	         }
+
+	         if(robnaKarticaId!='' && robnaKarticaId!=undefined)
+	         {
+	             url_filter += "Id_Robna_kartica eq " + robnaKarticaId;   
+	         }
+
+	       	 analitikaService.get_filtered_analitika(url_filter).then(function(response){
+	               $scope.gridOptions.data = response;
+	         });
+
+      	};
+
+      	function fillData(){
+      		if($stateParams.robnaKarticaId=='' || $stateParams.robnaKarticaId==undefined){
+      			console.log("TRUE");
+				$http.get("http://localhost:61769/api/analitika_magacinske_kartice").then(function(response) {
+		        	$scope.gridOptions.data = response.data;
+		    	});
+			}
+			else
+			{
+				console.log("FALSE");
+				$scope.nextMeh();
+			}
+		};	
+
+		fillData();
 
 	}
 ];

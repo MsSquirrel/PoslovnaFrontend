@@ -21,10 +21,19 @@
 
 			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
 
+			<div class="btn-group" uib-dropdown is-open="status.isopen">
+    			   <button id="single-button" title="Next" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="true"><span class="glyphicon glyphicon-play">	 
+      				</button>
+      				</span>
+      				</button>
+      		</div>
+
 		</div>
 	</div>
 
-	<div ui-view></div>
+	<div class="col-md-6 col-md-offset-3 form">
+		<div ui-view></div>
+	</div>
 
 	<div ng-show="currentState == 'stavke-dokumenata'" ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	 </div>
