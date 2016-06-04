@@ -53,10 +53,18 @@ module.exports = [
     $scope.search.naziv = '';
     $scope.search.grupa_roba = '';
 
-    $scope.search.filterData = function(){
 
-        var naziv = $scope.search.naziv.trim();
-        var grupa_roba = $scope.search.grupa_roba.trim();
+    $scope.search.iPAS = function(){
+
+   			if($scope.search.naziv != '' || $scope.search.grupa_roba != '' )
+   				$state.go('roba', {naziv: $scope.search.naziv, grupaRobaId: $scope.search.grupa_roba});
+   		}
+
+
+    var filterData = function(naziv, grupa_roba){
+
+        var naziv = naziv.trim();
+        var grupa_roba = grupa_roba.trim();
         
 
         if(grupa_roba==='' && naziv==='')
@@ -88,6 +96,12 @@ module.exports = [
 		});
 
       }
+
+
+      $scope.refresh = function(){
+			$state.go('roba', {naziv: undefined, grupaRobaId: undefined});
+		};
+
 
       $scope.nextMeh = function()
       {
@@ -150,7 +164,36 @@ module.exports = [
 			});
 		}
 
-		fillData();
+		if($stateParams.naziv == undefined && $stateParams.grupaRobaId == undefined)
+			fillData();
+		else{
+			
+			var par_naziv = '';
+			var par_grupa_roba = '';
+			
+			if($stateParams.naziv != undefined)
+				par_naziv = $stateParams.naziv;
+
+			if($stateParams.grupaRobaId != undefined)
+				par_grupa_roba = $stateParams.grupaRobaId;
+
+
+			filterData(par_naziv, par_grupa_roba);
+
+
+			grupeRobaService.get_all_groups().then(function(response){
+				$scope.allCategories = response;
+			});
+
+			merneJediniceService.get_all_measUnits().then(function(response){
+				$scope.allMeasUnits = response;
+			});
+
+			preduzecaService.get_all_companies().then(function(response){
+				$scope.allCompanies = response;
+			});
+
+		}
 
 		$scope.clear_add = function(){
 			$scope.goodsName = "";

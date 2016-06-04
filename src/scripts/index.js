@@ -171,7 +171,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'faktureCtrl'
       })
       .state('grupe-roba', {
-        url: '/grupe-roba?pdvId?preduzeceId',
+        url: '/grupe-roba?pdvId?preduzeceId?naziv',
         templateUrl: './templates/grupe-roba.html',
         controller: 'grupe-robaCtrl',
         data: {
@@ -212,7 +212,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
        .state('magacini', {
-        url: '/magacini?mestoId?preduzeceId',
+        url: '/magacini?preduzeceId?mestoId&naziv',
         templateUrl: './templates/magacini.html',
         controller: 'magaciniCtrl',
         data: {
@@ -339,7 +339,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('poslovni-partneri', {
-        url: '/poslovni-partneri?mestoId?preduzeceId',
+        url: '/poslovni-partneri?mestoId?preduzeceId?naziv&mb&pib',
         templateUrl: './templates/poslovni-partneri.html',
         controller: 'poslovni-partneriCtrl',
         data: {
@@ -398,7 +398,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('roba', {
-        url: '/roba?jedinicaMereId?preduzeceId?grupaRobaId',
+        url: '/roba?jedinicaMereId?preduzeceId?grupaRobaId&naziv',
         templateUrl: './templates/roba.html',
         controller: 'robaCtrl',
         data: {

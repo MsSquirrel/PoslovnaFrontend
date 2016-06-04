@@ -52,9 +52,16 @@ module.exports = [
    		$scope.search = {};
    		$scope.search.naziv= '';
 
-   		$scope.search.filterData = function(){
+   		$scope.search.iPAS = function(){
 
-   			var naziv= $scope.search.naziv.trim();
+   			if($scope.search.naziv != '')
+   				$state.go('grupe-roba', {naziv: $scope.search.naziv});
+   		}
+
+
+   		var filterData = function(naziv){
+
+   			var naziv= naziv.trim();
 
    			var url_filter = "?$filter="
    			
@@ -71,6 +78,10 @@ module.exports = [
    				$scope.search.naziv= '';
    			});
    		}
+
+   		$scope.refresh = function(){
+			$state.go('grupe-roba', { naziv: undefined});
+		};
 
    		$scope.nextMeh = function()
       	{
@@ -122,7 +133,22 @@ module.exports = [
 			});
 		}
 
-		fillData();
+		if($stateParams.naziv == undefined || $stateParams.naziv == ''){
+			fillData();
+		}else{
+			var par_naziv = $stateParams.naziv;
+			
+			filterData(par_naziv);
+
+			pdvService.get_all_pdvs().then(function(response){
+				$scope.allPdv = response;
+			});
+
+			preduzecaService.get_all_companies().then(function(response){
+				$scope.allCompanies = response;
+			});
+		}
+
 
 		$scope.clear_add = function(){
 

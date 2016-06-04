@@ -76,11 +76,17 @@ module.exports = [
    		$scope.search.PIB= '';
    		$scope.search.maticni_broj = '';
 
-   		$scope.search.filterData = function(){
 
-   			var naziv = $scope.search.naziv.trim();
-   			var maticni = $scope.search.maticni_broj.trim();
-   			var pib = $scope.search.PIB.trim();
+
+         $scope.search.iPAS = function(){
+
+            if($scope.search.naziv != '' || $scope.search.maticni_broj != '' || $scope.search.PIB != '' )
+               $state.go('poslovni-partneri', {naziv: $scope.search.naziv, mb: $scope.search.maticni_broj, pib: $scope.search.PIB});
+         }
+
+
+   		var filterData = function(naziv, maticni, pib){
+
 
    			if(pib==='' && naziv==='' && maticni==='')
    				return;
@@ -121,6 +127,9 @@ module.exports = [
    			});
    		}
 
+         $scope.refresh = function(){
+            $state.go('poslovni-partneri', {naziv: undefined, mb: undefined, pib: undefined });
+         };
 
    		$scope.nextMeh = function()
      	{
@@ -184,9 +193,35 @@ module.exports = [
 		};
 		
 
-		$scope.fillData = fillData;		 
+		if($stateParams.naziv == undefined && $stateParams.pib == undefined && $stateParams.mb == undefined)
+         fillData();
+      else{
+         
+         var par_naziv = '';
+         var par_pib = '';
+         var par_mb = '';
 
-		fillData();
+         if($stateParams.naziv != undefined)
+            par_naziv = $stateParams.naziv;
+
+         if($stateParams.pib != undefined)
+            par_pib = $stateParams.pib;
+
+         if($stateParams.mb != undefined)
+            par_mb = $stateParams.mb;
+
+         filterData(par_naziv, par_mb, par_pib);
+
+         preduzecaService.get_all_companies()
+            .then(function(response){
+            $scope.allCompanies = response;
+         });
+
+         mestaService.get_all_places()
+            .then(function(response){
+            $scope.allPlaces = response;
+         });
+      }
 
 		$scope.clear_add = function(){
 			$scope.partnerName ="";
