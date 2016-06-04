@@ -19,7 +19,7 @@
 
 			<button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
 
-			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
+			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
 
 			<div class="btn-group" uib-dropdown is-open="status.isopen">
     			  <button id="single-button" title="Next" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="gridOptions.selection.getSelectedRows().length == 0"><span class="glyphicon glyphicon-play">	 
@@ -39,7 +39,7 @@
 	<div ng-show="currentState == 'grupe-roba'" ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	</div>
 
-	<div class="modal fade" id="confirmModal" role="dialog">
+	<div class="modal" id="confirmModal" role="dialog" data-backdrop="false">
 		<div class="modal-dialog">
 		   <!-- Modal content-->
   			<div class="modal-content">
@@ -61,7 +61,7 @@
     </div>	
 
 
-	<div id="searchModal" class="modal fade" role="dialog">
+	<div id="searchModal" class="modal fade" role="dialog" data-backdrop="false">
 		<div class="modal-dialog">
 
 		    
@@ -78,7 +78,7 @@
 			    
 			    </div>
 			    <div class="modal-footer">
-			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.filterData()">
+			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.iPAS()">
 			    		Search
 			    	</button>
 			    </div>

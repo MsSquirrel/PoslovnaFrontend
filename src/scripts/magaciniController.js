@@ -56,10 +56,18 @@ module.exports = [
     $scope.search.naziv = '';
     $scope.search.mesto = '';
 
-    $scope.search.filterData = function(){
 
-        var naziv = $scope.search.naziv.trim();
-        var mesto = $scope.search.mesto.trim();
+    $scope.search.iPAS = function(){
+
+   			if($scope.search.naziv != '' || $scope.search.mesto != '' )
+   				$state.go('magacini', {naziv: $scope.search.naziv, mestoId: $scope.search.mesto});
+   		}
+
+
+    var filterData = function(naziv, mesto){
+
+        var naziv = naziv.trim();
+        var mesto = mesto.trim();
         
 
         if(mesto==='' && naziv==='')
@@ -144,9 +152,37 @@ module.exports = [
 		};
 		 
 
-		$scope.fillData = fillData;
+		$scope.refresh = function(){
+			$state.go('magacini', {naziv: undefined, mestoId: undefined});
+		};
 
-		fillData();
+
+		 
+		if($stateParams.naziv == undefined && $stateParams.mestoId == undefined)
+			fillData();
+		else{
+			
+			var par_naziv = '';
+			var par_mesto = '';
+			
+			if($stateParams.naziv != undefined)
+				par_naziv = $stateParams.naziv;
+
+			if($stateParams.mestoId != undefined)
+				par_mesto = $stateParams.mestoId;
+
+
+			filterData(par_naziv, par_mesto);
+
+			mestaService.get_all_places().then(function(response){
+				$scope.allPlaces = response;
+			});
+
+			preduzecaService.get_all_companies().then(function(response){
+				$scope.allCompanies = response;
+			});
+
+		}
 
 		$scope.clear_add = function(){
 			$scope.warehouseName = "";

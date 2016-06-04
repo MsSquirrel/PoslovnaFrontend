@@ -93,6 +93,10 @@ module.exports = [
 
         filterData(par_Id_PDV);
 
+
+        pdvService.get_all_pdvs().then(function(response){
+          $scope.allPDVs = response;
+        });
       }
 
 
@@ -140,7 +144,7 @@ module.exports = [
 
       $scope. fillData = fillData;       
 
-    	fillData();
+    	//fillData();
 
       $scope.clear_add = function(){
         $scope.pdvRate = "";
