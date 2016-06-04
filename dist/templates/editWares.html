@@ -1,11 +1,11 @@
 <div>
-	<div class="col-md-6 col-md-offset-3 form">
+	<div>
 		<h4>Izmeni postojeću robu</h4>
 	<form name="editWaresForm">
 
 		Naziv robe:<span class="necesary">*</span>
 		<div class="row">
-			<div class="col-md-6">
+			<div>
 				<input type="text" name="namew" class="form-control" ng-model="editGoodsName" ng-maxlength="50" required></input>
 					<span class="writeError" ng-show="editWaresForm.namew.$error.maxlength">Unesite do 50 karaktera!</span>
 			</div>
@@ -14,7 +14,7 @@
 		
 		Grupa robe:<span class="necesary">*</span>
 		<div class="row">
-			<div class="col-md-6">			
+			<div>			
 					<select class="form-control" name="nameg" ng-model="editGoodsCategory" ng-options="category.Id_Grupa_roba as category.Naziv_Grupa_roba for category in allCategories" required>
 					</select><br/>
 			</div>
@@ -22,14 +22,14 @@
 
 		Jedinica mere:<span class="necesary">*</span>
 		<div class="row">
-			<div class="col-md-6">
+			<div>
 					<select class="form-control" name="namem" ng-model="editGoodsMeasUnit" ng-options="measUnit.Id_Jedinica_mere as measUnit.Naziv_Jedinica_mere for measUnit in allMeasUnits" required/><br>
 			</div>
 		</div>
 						
 		Preduzece:<span class="necesary">*</span>
 		<div class="row">
-			<div class="col-md-6">
+			<div>
 				<select class="form-control" name="namec" ng-model="editGoodsCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
 			</div>
 		</div>

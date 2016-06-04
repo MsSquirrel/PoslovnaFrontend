@@ -4,7 +4,7 @@
 
 	Naziv magacina:<span class="necesary">*</span>
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<input type="text" class="form-control" name="namew" ng-model="warehouseName" ng-maxlength="100" required/>
 			<span class="writeError" ng-show="createWarehForm.namew.$error.maxlength">Unesite do 100 karaktera!</span><br>
 		</div>
@@ -12,7 +12,7 @@
 
 	Adresa magacina:<span class="necesary">*</span>
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<input type="text" class="form-control" name="namea" ng-model="warehouseAddress" ng-maxlength="100" required/>
 			<span class="writeError" ng-show="createWarehForm.namea.$error.maxlength">Unesite do 100 karaktera!</span><br>
 		</div>
@@ -30,7 +30,7 @@
 			</div>
 	</div>	
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<select class="form-control" name="namep" ng-model="warehousePlace" required>
 			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
 			</select><br>
@@ -50,7 +50,7 @@
 			</div>
 	</div>	   
 	<div class="row">
-		<div class="col-md-6">
+		<div>
 			<select class="form-control" name="namec" ng-model="warehouseCompany" required>
 			<option  ng-repeat="company in allCompanies" ng-value="company.Id_Preduzece">{{company.Naziv_Preduzece}}</option>
 			</select><br>	
