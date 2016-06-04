@@ -5,6 +5,25 @@
 	margin-top: 8px;
 }
 
+div.analitika{
+    margin-left: 0px;
+
+}
+
+div.analitika div{
+    margin-left: 100px;
+    margin-bottom: 12px;
+    float: left;
+}
+
+div.analitika div span{
+    font-weight: bold;
+}
+
+div.analitika div.analitika-right{
+    margin-left: 125px;
+}
+
 div.container div h2{
 	margin-top: -5px;
 }

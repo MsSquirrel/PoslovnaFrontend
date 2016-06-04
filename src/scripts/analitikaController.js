@@ -28,7 +28,7 @@ module.exports = [
 
 	         var robnaKarticaId = $stateParams.robnaKarticaId;
 	         
-	         console.log("PARAM: "+ robnaKarticaId);
+	       
 
 	         if(robnaKarticaId=='')
 	         {
@@ -42,20 +42,25 @@ module.exports = [
 
 	       	 analitikaService.get_filtered_analitika(url_filter).then(function(response){
 	               $scope.gridOptions.data = response;
+	               $scope.roba = response[0].Robna_kartica.Roba.Naziv_Roba;
+	               $scope.mj = response[0].Robna_kartica.Roba.Jedinica_mere.Oznaka_Jedinica_mere;
+	               $scope.godina = response[0].Robna_kartica.Poslovna_godina.Godina_Poslovna_godina;
+	               $scope.magacin = response[0].Robna_kartica.Magacin.Naziv_Magacin;
 	         });
 
       	};
 
       	function fillData(){
       		if($stateParams.robnaKarticaId=='' || $stateParams.robnaKarticaId==undefined){
-      			console.log("TRUE");
+      			
 				$http.get("http://localhost:61769/api/analitika_magacinske_kartice").then(function(response) {
 		        	$scope.gridOptions.data = response.data;
+		        	
 		    	});
 			}
 			else
 			{
-				console.log("FALSE");
+				
 				$scope.nextMeh();
 			}
 		};	

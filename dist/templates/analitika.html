@@ -2,7 +2,18 @@
 
 	<h2>Analitika</h2>
 
-
+	<div class="analitika">
+		<div class="analitika-left">
+			Magacin: &nbsp;<span>{{magacin}}</span></br>
+			Roba: &nbsp;<span>{{roba}}</span>
+		</div>
+		<div class="analitika-right">
+			Godina: &nbsp;<span>{{godina}}</span></br>
+			Jedinica mere: &nbsp;<span>{{mj}}</span>
+		</div>
+	</div>
+	<div style="clear: both">
+	
 	<div  ng-show="currentState == 'analitika'" ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	 </div>
 
