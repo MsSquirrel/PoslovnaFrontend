@@ -1,5 +1,6 @@
 var myApp = angular.module('preduzeceApp',['ngRoute', 'ui.bootstrap', 'ui.grid', 'ui.grid.selection', 'ui.grid.resizeColumns', 'ui.router', 'ngStorage', 'angular-jwt']);
 myApp.controller('preduzeceCtrl', require('./preduzeceController.js'));
+myApp.controller('preduzecaCtrl', require('./preduzecaController.js'));
 myApp.controller('documentsCtrl', require('./documentsListController.js'));
 myApp.controller('mestaCtrl', require('./mestaController.js'));
 myApp.controller('analitikaCtrl', require('./analitikaController.js'));
@@ -76,6 +77,20 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         templateUrl: './templates/editUser.html',
         controller: 'editUserCtrl'
       })
+      .state('preduzece', {
+        url: '/preduzece',
+        templateUrl: './templates/preduzece.html',
+        controller: 'preduzeceCtrl'
+      })
+      .state('preduzece.edit', { 
+        url: "/edit/:id",
+         views:{
+            "": {
+              templateUrl: './templates/editCompany.html', 
+              controller: "editCompanyCtrl",
+            }
+          }
+      })
       .state('documents', {
         url:'/documents',
         templateUrl: './templates/documentsList.html',
@@ -113,7 +128,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('preduzeca', {
         url: '/preduzeca?mestoId',
         templateUrl: './templates/preduzeca.html',
-        controller: 'preduzeceCtrl',
+        controller: 'preduzecaCtrl',
         data: {
             isModal: false
         }
@@ -128,14 +143,14 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
          views:{
             "": {
               templateUrl: './templates/createCompany.html', 
-              controller: "preduzeceCtrl"
+              controller: "preduzecaCtrl"
             }
           },
           data: {
             isModal: false
           }
       })
-      .state('preduzeca.editCompany', { 
+      /*.state('preduzeca.editCompany', { 
         url: "/edit/:id",
 
          views:{
@@ -144,9 +159,9 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               controller: "editCompanyCtrl",
             }
           }
-      })
+      })*/
       .state('analitika', {
-        url: '/analitika',
+        url: '/analitika?robnaKarticaId',
         templateUrl: './templates/analitika.html',
         controller: 'analitikaCtrl'
       })
@@ -444,7 +459,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'registerCtrl'
       })
       .state('stavke-dokumenata', {
-        url: '/stavke-dokumenata?robaId',
+        url: '/stavke-dokumenata?robaId?prijemniDokumentId',
         templateUrl: './templates/stavke-dokumenata.html',
         controller: 'stavke-dokumenataCtrl',
         data: {
@@ -515,7 +530,8 @@ myApp
 .service('loginService', require('./loginService.js'))
 .service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'))
 .service('stavkeDokumenataService', require('./stavke-dokumenataService.js'))
-.service('robneKarticeService', require('./robne-karticeService.js'));
+.service('robneKarticeService', require('./robne-karticeService.js'))
+.service('analitikaService', require('./analitikaService.js'));
 
 myApp
 .run(require('./run.js'));

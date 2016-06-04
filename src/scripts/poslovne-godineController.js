@@ -99,7 +99,7 @@ module.exports = [
 
       $scope.clear_add = function(){
         $scope.businessYear = "";
-        $scope.businessYearFinished = "";
+        $scope.businessYearFinished = 0;
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
          

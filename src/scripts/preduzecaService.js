@@ -69,6 +69,7 @@ module.exports = [
 						Adresa_Preduzece: address
 					}
            	}).success(function(response){
+           		alert("Izmene uspešno izvršene.");
 				return response.data;				
 			}).error(function(response, data){
 				alert("Neuspešan unos podataka. PIB i matični broj moraju biti jedinstveni.");

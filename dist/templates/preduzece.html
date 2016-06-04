@@ -1,0 +1,21 @@
+<div>
+<div ng-show="currentState == 'preduzece'">	
+<h2>{{preduzece.Naziv_Preduzece}}</h2>
+
+{{preduzece.PIB_Preduzece}}
+{{preduzece.Maticni_broj_Preduzece}}
+{{preduzece.Adresa_Preduzece}}
+{{preduzece.Mesto.Naziv_Mesto}}
+
+<a href="#/magacini">Magacini</a>
+<a href="#/poslovne-godine">Poslovne godine</a>
+<a href="#/poslovni-partneri">Partneri</a>
+<a href="#/grupe-roba">Grupe roba</a>
+<a href="#/roba">Roba</a>
+
+<button type="button" class="btn btn-info" data-dismiss="modal" ui-sref="preduzece.edit({id: preduzece.Id_Preduzece})">Izmeni</button>
+</div>
+
+<div ui-view></div>
+
+</div>
