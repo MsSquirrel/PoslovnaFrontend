@@ -146,7 +146,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('analitika', {
-        url: '/analitika',
+        url: '/analitika?robnaKarticaId',
         templateUrl: './templates/analitika.html',
         controller: 'analitikaCtrl'
       })
@@ -515,7 +515,8 @@ myApp
 .service('loginService', require('./loginService.js'))
 .service('prijemniDokumentiService', require('./prijemni-dokumentiService.js'))
 .service('stavkeDokumenataService', require('./stavke-dokumenataService.js'))
-.service('robneKarticeService', require('./robne-karticeService.js'));
+.service('robneKarticeService', require('./robne-karticeService.js'))
+.service('analitikaService', require('./analitikaService.js'));
 
 myApp
 .run(require('./run.js'));
