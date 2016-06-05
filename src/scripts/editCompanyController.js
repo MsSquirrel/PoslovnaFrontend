@@ -3,8 +3,7 @@ module.exports = [
 	function myController($scope, $http, mestaService,preduzecaService,$stateParams, $window, $state, $rootScope){
 
 		$scope.companyId = $stateParams.id;
-		console.log('ID: '+$scope.companyId);
-		console.log('EDIT company controller');
+		
 
 		$scope.allPlaces = {};
 
