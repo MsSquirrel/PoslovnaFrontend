@@ -283,6 +283,16 @@ module.exports = [
 			});
     	};
 
+      $scope.izvestaj = function(){
+
+        $http.get('http://localhost:61769/api/pdf/primka/' + $scope.selectedWarehouseReceiptId, {responseType: 'arraybuffer'})
+         .success(function (data) {
+             var file = new Blob([data], {type: 'application/pdf'});
+             var fileURL = URL.createObjectURL(file);
+             window.open(fileURL);
+        });
+
+     }
 
     	/*$scope.edit_selected_warehouseReceipt = function()
     	{
