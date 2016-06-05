@@ -55,13 +55,14 @@ module.exports = [
 			});
 		}
 
-		function update_warehouseReceipt(godina, mag1, mag2, partner, zTroskovi, tTroskovi, datum)
+		function update_warehouseReceipt(id, godina, mag1, mag2, partner, zTroskovi, tTroskovi, datum)
 		{	
 			var url = "http://localhost:61769/api/prijemni_dokument/"+id+"/";
 			return $http({
                     method: "put",
                     url: url,
                     data: {
+                    	Id_Prijemni_dokument: id,
                     	Id_Poslovna_godina: godina, 
 						Id_Magacin: mag1,
 						Mag_Id_Magacin: mag2,

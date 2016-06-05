@@ -29,7 +29,10 @@ myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
 myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
 myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
+myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
 myApp.controller('editUserCtrl', require('./editUserController.js'));
+myApp.controller('editWarehouseReceiptCtrl', require('./editWarehouseReceiptController.js'));
+myApp.controller('editDocumentItemCtrl', require('./editDocumentItemController.js'));
 
 
 myApp.filter('true_false', function() {
@@ -397,6 +400,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
           }
       })
+      .state('prijemni-dokumenti.editWarehouseReceipt', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editWarehouseReceipt.html', 
+              controller: "editWarehouseReceiptCtrl",
+            }
+        }
+      })
       .state('roba', {
         url: '/roba?jedinicaMereId?preduzeceId?grupaRobaId&naziv',
         templateUrl: './templates/roba.html',
@@ -476,6 +488,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               controller: "stavke-dokumenataCtrl"
             }
           }
+      })
+      .state('stavke-dokumenata.editDocumentItem', { 
+        url: "/edit/:id",
+        views:{
+            "": {
+              templateUrl: './templates/editDocumentItem.html', 
+              controller: "editDocumentItemCtrl",
+            }
+        }
       })
       .state('stope-pdv-a', {
         url: '/stope-pdv-a?pdvId',
