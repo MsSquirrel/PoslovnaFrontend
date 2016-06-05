@@ -162,6 +162,10 @@ module.exports = [
 	        $scope.nabCena = "";
 	        $scope.nabVrednost = "";
 	        $scope.marza = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 	        
 
 	        //$scope.changeCompany = "";

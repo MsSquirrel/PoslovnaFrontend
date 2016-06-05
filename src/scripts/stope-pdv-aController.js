@@ -120,7 +120,10 @@ module.exports = [
         $scope.pdvRate = "";
         $scope.pdvRateDate = "";
         $scope.pdvRatePdv="";
-         
+        if($scope.isModal)
+        {
+          $scope.$close(true);
+        }
       };
 
       $scope.clear_add();

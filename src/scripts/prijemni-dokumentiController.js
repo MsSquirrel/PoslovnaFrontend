@@ -207,6 +207,10 @@ module.exports = [
 	        $scope.warehouseReceiptTransportExpenses = 0;
 	        $scope.warehouseReceiptExpenses = 0;
 	        $scope.warehouseReceiptDate = "";
+          if($scope.isModal)
+          {
+            $scope.$close(true);
+          }
 
 	        //$scope.changeCompany = "";
 	        

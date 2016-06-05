@@ -46,6 +46,10 @@ module.exports = [
 
 		$scope.clear_add = function(){
 			$scope.pdvName = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 	    }
 
 	    $scope.clear_add();

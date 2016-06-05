@@ -142,6 +142,10 @@ module.exports = [
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
 			$scope.invoiceTotalPlacanje = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 			 
 		}
 
