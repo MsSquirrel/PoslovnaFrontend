@@ -5,9 +5,23 @@
 	margin-top: 8px;
 }
 
+div.home{
+    width: 100%;
+    margin-top: 50px;
+    font-size: 20pt;
+}
+
+div.home *{
+    margin-bottom: 10px;
+}
+
+div.home span.bold{
+    font-weight: bold;
+
+}
+
 div.analitika{
     margin-left: 0px;
-
 }
 
 div.analitika div{
