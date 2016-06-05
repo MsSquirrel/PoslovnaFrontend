@@ -14,6 +14,12 @@ module.exports = [
       });
 
 
+      /*$http.get('http://localhost:61769/api/pdf', {responseType: 'arraybuffer'})
+       .success(function (data) {
+           var file = new Blob([data], {type: 'application/pdf'});
+           var fileURL = URL.createObjectURL(file);
+           window.open(fileURL);
+    });*/
 
 	}
 ];
