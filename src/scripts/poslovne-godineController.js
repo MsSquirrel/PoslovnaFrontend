@@ -54,7 +54,7 @@ module.exports = [
          var url_filter = "?$filter=";
 
          var preduzeceId = $stateParams.preduzeceId;
-         console.log("PARAM: "+ preduzeceId);
+        ;
 
          if(preduzeceId=='')
          {

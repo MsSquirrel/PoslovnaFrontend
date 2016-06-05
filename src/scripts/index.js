@@ -70,20 +70,15 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
     $urlRouterProvider.otherwise("/main");
 
     $stateProvider
-      .state('main', {
+      .state('preduzece', {
         url: '/main',
-        templateUrl: './templates/main.html',
+        templateUrl: './templates/preduzece.html',
         controller: 'preduzeceCtrl'
       })
       .state('user', {
         url: '/user',
         templateUrl: './templates/editUser.html',
         controller: 'editUserCtrl'
-      })
-      .state('preduzece', {
-        url: '/preduzece',
-        templateUrl: './templates/preduzece.html',
-        controller: 'preduzeceCtrl'
       })
       .state('preduzece.edit', { 
         url: "/edit/:id",

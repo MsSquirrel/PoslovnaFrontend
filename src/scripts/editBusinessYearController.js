@@ -8,7 +8,7 @@ module.exports = [
 		$scope.editBusinessYearFinished = 0;
    		$scope.editBusinessYearCompany = 0;
 
-		console.log("ID POS GOD "+$scope.businessYearId);
+		
 
 		function fillData()
 		{
@@ -27,7 +27,6 @@ module.exports = [
 
 		$scope.edit_selected_businessYear = function()
     	{
-    		console.log("Saljemo "+$scope.selectedBusinessYearId+", "+$scope.editBusinessYear+", "+$scope.editBusinessYearFinished+","+$scope.editBusinessYearCompany);
     		poslovneGodineService.update_businessYear($scope.selectedBusinessYearId, $scope.editBusinessYear, $scope.editBusinessYearFinished, $scope.editBusinessYearCompany).then(function(response){
 			   	$state.go('^',{}, {reload:true});
 		  	});
