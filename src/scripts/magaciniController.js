@@ -105,17 +105,10 @@ module.exports = [
          var url_filter = "?$filter=";
 
          var preduzeceId = $stateParams.preduzeceId;
-         var mestoId = $stateParams.mestoId;
-         console.log("PARAM: "+ mestoId);
 
-         if(mestoId=='' && preduzeceId=='')
+         if(preduzeceId=='')
          {
             return;
-         }
-
-         if(mestoId!=''  && mestoId!=undefined)
-         {
-            url_filter += "Id eq " + mestoId;
          }
 
          if(preduzeceId!='' && preduzeceId!=undefined)
@@ -153,7 +146,7 @@ module.exports = [
 		 
 
 		$scope.refresh = function(){
-			$state.go('magacini', {naziv: undefined, mestoId: undefined});
+			$state.go('magacini', {naziv: undefined, mestoId: undefined, preduzeceId: undefined});
 		};
 
 

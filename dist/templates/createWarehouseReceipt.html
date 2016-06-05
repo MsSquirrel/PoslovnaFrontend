@@ -3,7 +3,16 @@
 	<h4>Dodaj novu primku</h4>
 		<form class="form" name="createRecForm">
 
-			Poslovna godina:<span class="necesary">*</span> 
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Poslovna godina:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="prijemni-dokumenti.createWarehouseReceipt.createBusinessYear">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" name="year" ng-model="warehouseReceiptBusinessYear" required>
@@ -12,7 +21,16 @@
 				</div>
 			</div></br>
 
-			Magacin:<span class="necesary">*</span> 
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Magacin:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="prijemni-dokumenti.createWarehouseReceipt.createWarehouse">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="warehouseReceiptWarehouse1" required>
@@ -33,7 +51,16 @@
 			</div></br>-->
 			
 
-			Partner:  
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Partner:</p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="prijemni-dokumenti.createWarehouseReceipt.createPartner">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="warehouseReceiptPartner">

@@ -3,14 +3,32 @@
 	<h4>Izmeni postojecu primku</h4>
 		<form class="form" name="editRecForm">
 
-			Poslovna godina:<span class="necesary">*</span>
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Poslovna godina:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="prijemni-dokumenti.editWarehouseReceipt.createBusinessYear">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" name="year" ng-model="editWarehouseReceiptBusinessYear" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" required></select>
 				</div>
 			</div></br>
 
-			Magacin:<span class="necesary">*</span> 
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Magacin:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="prijemni-dokumenti.editWarehouseReceipt.createWarehouse">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="editWarehouseReceiptWarehouse1" ng-options="wh.Id_Magacin as wh.Naziv_Magacin for wh in allWhs" required></select>
@@ -29,7 +47,16 @@
 			</div></br>-->
 			
 
-			Partner:  
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Partner:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="prijemni-dokumenti.editWarehouseReceipt.createPartner">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="editWarehouseReceiptPartner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners"></select>

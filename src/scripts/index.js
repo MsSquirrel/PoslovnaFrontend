@@ -95,7 +95,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'documentsCtrl'
       })
       .state('mesta', {
-        url: '/mesta?naziv&pb',//TODOR
+        url: '/mesta?naziv&pb',
         templateUrl: './templates/mesta.html',
         controller: 'mestaCtrl',
         data: {
@@ -251,7 +251,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('merne-jedinice', {
-        url: '/merne-jedinice?naziv&oznaka',///// TODOR
+        url: '/merne-jedinice?naziv&oznaka',
         templateUrl: './templates/merne-jedinice.html',
         controller: 'merne-jediniceCtrl',
         data: {
@@ -404,6 +404,42 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
       })
+     .state('prijemni-dokumenti.createWarehouseReceipt.createBusinessYear', {
+        onEnter: generateOnEnterModal("./templates/createBusinessYear.html", "poslovne-godineCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.createWarehouseReceipt.createWarehouse', {
+        onEnter: generateOnEnterModal("./templates/createWarehouse.html", "magaciniCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.createWarehouseReceipt.createPartner', {
+        onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.editWarehouseReceipt.createBusinessYear', {
+        onEnter: generateOnEnterModal("./templates/createBusinessYear.html", "poslovne-godineCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.editWarehouseReceipt.createWarehouse', {
+        onEnter: generateOnEnterModal("./templates/createWarehouse.html", "magaciniCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.editWarehouseReceipt.createPartner', {
+        onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+            isModal: true
+        }
+      })
       .state('roba', {
         url: '/roba?jedinicaMereId?preduzeceId?grupaRobaId&naziv',
         templateUrl: './templates/roba.html',
@@ -451,7 +487,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('robne-kartice', {
-        url: '/robne-kartice?poslovnaGodinaId?magacinId?robaId',
+        url: '/robne-kartice?poslovnaGodinaId&magacinId&robaId',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })
@@ -491,6 +527,30 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               templateUrl: './templates/editDocumentItem.html', 
               controller: "editDocumentItemCtrl",
             }
+        }
+      })
+      .state('stavke-dokumenata.createDocumentItem.createWares', {
+        onEnter: generateOnEnterModal("./templates/createWares.html", "robaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('stavke-dokumenata.createDocumentItem.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('stavke-dokumenata.editDocumentItem.createWares', {
+        onEnter: generateOnEnterModal("./templates/createWares.html", "robaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('stavke-dokumenata.editDocumentItem.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+            isModal: true
         }
       })
       .state('stope-pdv-a', {

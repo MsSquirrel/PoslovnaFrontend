@@ -80,7 +80,7 @@ module.exports = [
    		}
 
    		$scope.refresh = function(){
-			$state.go('grupe-roba', { naziv: undefined});
+			$state.go('grupe-roba', { naziv: undefined, pdvId: undefined, preduzeceId: undefined});
 		};
 
    		$scope.nextMeh = function()
