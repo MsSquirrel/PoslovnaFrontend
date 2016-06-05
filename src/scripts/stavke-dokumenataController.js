@@ -51,38 +51,6 @@ module.exports = [
 		 	});
    		};
 
-
-   		$scope.nextMeh = function()
-      	{
-	         var url_filter = "?$filter=";
-
-	         var robaId = $stateParams.robaId;
-	         var prijemniDokumentId = $stateParams.prijemniDokumentId;
-	       
-	         console.log("PARAM: "+ robaId);
-
-	         if(robaId=='' && prijemniDokumentId=='')
-	         {
-	            return;
-	         }
-
-	         if(robaId!=''  && robaId!=undefined)
-	         {
-	            url_filter += "Id_Roba eq " + robaId;
-	         }
-
-	         if(prijemniDokumentId!=''  && prijemniDokumentId!=undefined)
-	         {
-	            url_filter += "Id_Prijemni_dokument eq " + prijemniDokumentId;
-	         }
-
-	         console.log(url_filter);
-	         stavkeDokumenataService.get_filtered_documentItems(url_filter).then(function(response){
-	               $scope.gridOptions.data = response;
-	         });
-      	};
-
-
       	$scope.search = {};
       	$scope.search.prijemni_dokument = '';
       	$scope.search.roba = '';
@@ -167,16 +135,9 @@ module.exports = [
 
    		function fillData()
     	{
-    		if(($stateParams.robaId=='' || $stateParams.robaId==undefined) && ($stateParams.prijemniDokumentId=='' || $stateParams.prijemniDokumentId==undefined)){
-	    		stavkeDokumenataService.get_all_documentItems()
-					.then(function(response){
+    		stavkeDokumenataService.get_all_documentItems().then(function(response){
 					$scope.gridOptions.data = response;
-				});
-			}
-			else
-			{
-				$scope.nextMeh();
-			}
+			});
 
 			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
 				.then(function(response){

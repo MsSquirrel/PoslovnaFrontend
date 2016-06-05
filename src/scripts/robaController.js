@@ -109,10 +109,9 @@ module.exports = [
 
          var jedinicaMereId = $stateParams.jedinicaMereId;
          var preduzeceId = $stateParams.preduzeceId;
-         var grupaRobaId = $stateParams.grupaRobaId;
          console.log("PARAM: "+ jedinicaMereId);
 
-         if(jedinicaMereId==''&& preduzeceId=='' && grupaRobaId=='')
+         if(jedinicaMereId==''&& preduzeceId=='')
          {
             return;
          }
@@ -125,11 +124,6 @@ module.exports = [
          if(preduzeceId!='' && preduzeceId!=undefined)
          {
          	 url_filter += "Id_Preduzece eq " + preduzeceId;	
-         }
-
-         if(grupaRobaId!='' && grupaRobaId!=undefined)
-         {
-         	url_filter += "Id_Grupa_roba eq "+grupaRobaId;
          }
 
          console.log(url_filter);

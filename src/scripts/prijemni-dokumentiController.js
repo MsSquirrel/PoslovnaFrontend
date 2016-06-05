@@ -74,43 +74,6 @@ module.exports = [
 		 	});
    		};
 
-      $scope.nextMeh = function()
-      {
-         var url_filter = "?$filter=";Stavka_dokumenta
-;         var magacinId = $stateParams.magacinId; 
-
-         console.log("PARAM: "+ poslovnaGodinaId);
-
-         if(poslovnaGodinaId=='' && partnerId=='' && magacinId=='')
-         {
-            return;
-         }
-
-         if(poslovnaGodinaId!='' && poslovnaGodinaId!=undefined)
-         {
-             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
-         }
-
-         if(partnerId!='' && partnerId!=undefined)
-         {
-             url_filter += "Id_Partner eq " + partnerId;   
-         }
-
-         if(magacinId!='' && magacinId!=undefined)
-         {
-             url_filter += "Id_Magacin eq " + magacinId;   
-         }
-        
-
-         prijemniDokumentiService.get_filtered_warehouseReceipts(url_filter).then(function(response){
-               $scope.gridOptions.data = response;
-         });
-
-      };
-
-
-
-
 
       $scope.search = {};
       $scope.search.redni_broj = '';
@@ -181,17 +144,12 @@ module.exports = [
 
    		function fillData()
     	{
-        if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined) && ($stateParams.magacinIdId=='' || $stateParams.magacinId==undefined)){
-      		prijemniDokumentiService.get_all_warehouseReceipts()
+        
+        prijemniDokumentiService.get_all_warehouseReceipts()
     				.then(function(response){
     				$scope.gridOptions.data = response;
-  			   });
-        }
-        else
-        {
-          console.log("HEREEEE ");
-          $scope.nextMeh();
-        }
+  			});
+        
 
   			poslovneGodineService.get_active_businessYears()
   				.then(function(response){
