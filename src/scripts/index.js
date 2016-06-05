@@ -382,7 +382,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('prijemni-dokumenti', {
-        url: '/prijemni-dokumenti?poslovnaGodinaId?partnerId?magacinId',
+        url: '/prijemni-dokumenti?poslovnaGodinaId&partnerId&magacinId&rbr',
         templateUrl: './templates/prijemni-dokumenti.html',
         controller: 'prijemni-dokumentiCtrl',
         data: {

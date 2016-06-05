@@ -19,7 +19,7 @@
 
 			<button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
 
-			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
+			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
 
 			 <div class="btn-group" uib-dropdown is-open="status.isopen">
     			   <button id="single-button" title="Next" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="gridOptions.selection.getSelectedRows().length == 0"><span class="glyphicon glyphicon-play">	 
@@ -134,6 +134,45 @@
     		</div>
   		</div>
   	</div>
+
+
+  	<div id="searchModal" class="modal" role="dialog" data-backdrop="false">
+		<div class="modal-dialog">
+
+		    
+		    <div class="modal-content">
+			    <div class="modal-header">
+			      	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Pretraga prijemnih dokumenata</h4>
+			    </div>
+			    
+			    <div class="modal-body">
+			    	<div id="search_div">
+						Redni broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite redni broj prijemnog dokumenta." class="form-control" ng-model="search.redni_broj"/>
+						<br/>
+						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" required>
+	   										<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+	   									</select>
+						<br/>
+						Magacin: 	<select class="form-control" ng-model="search.magacin" required>
+	   									<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
+	   								</select>
+						<br/>
+						Poslovni partner: 	<select class="form-control" ng-model="search.poslovni_partner">
+	   											<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
+	   										</select>
+					</div>
+			    
+			    </div>
+			    <div class="modal-footer">
+			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.iPAS()">
+			    		Search
+			    	</button>
+			    </div>
+			</div>
+
+		</div>
+	</div>	
 
 
 </div>

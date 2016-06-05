@@ -128,7 +128,7 @@ module.exports = [
    		}
 
          $scope.refresh = function(){
-            $state.go('poslovni-partneri', {naziv: undefined, mb: undefined, pib: undefined });
+            $state.go('poslovni-partneri', {naziv: undefined, mb: undefined, pib: undefined, mestoId: undefined, preduzeceId:undefined });
          };
 
    		$scope.nextMeh = function()
@@ -144,7 +144,7 @@ module.exports = [
             return;
          }
 
-         if($scope.mestoId!='' && $scope.mestoId!=undefined)
+         if(mestoId!='' && mestoId!=undefined)
          {
             url_filter += "Id eq " + mestoId;
          }
