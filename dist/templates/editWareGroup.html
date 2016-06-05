@@ -11,14 +11,33 @@
 			</div>
 		</div>					
 						
-		PDV:<span class="necesary">*</span>
+		<div class="row">
+			<div class="col-sm-2">
+				<p>PDV:<span class="necesary">*</span></p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="grupe-roba.editWareGroup.createPDV">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	
 		<div class="row">
 			<div>	
 				<select class="form-control" name="namep" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" ng-model="editGroupPdv"  required></select><br/>
 			</div>
 		</div>
-						
-		Preduzece:<span class="necesary">*</span>
+	
+		<div class="row">
+			<div class="col-sm-2">
+				<p>Preduzeće:<span class="necesary">*</span></p> 
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="grupe-roba.editWareGroup.createCompany">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	
 		<div class="row">
 			<div>
 				 <select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editGroupCompany" required></select><br>				

@@ -44,14 +44,32 @@
 			</div>
 		</div>
 
-		Mesto:<span class="necesary">*</span>
+		<div class="row">
+			<div class="col-sm-2">
+				<p>Mesto:<span class="necesary">*</span></p> 
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="poslovni-partneri.editPartner.createPlace">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	
 		<div class="row">
 			<div>
 				<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editPartnerPlace" required></select>
 			</div>
 		</div></br>
 	   	
-	   	Preduzeće:<span class="necesary">*</span>
+	   <div class="row">
+			<div class="col-sm-2">
+				<p>Preduzeće:<span class="necesary">*</span></p> 
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="poslovni-partneri.editPartner.createCompany">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	
 	   	<div class="row">
 			<div>
 	   			<select class="form-control" name="namec" ng-model="editPartnerCompany" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" required></select>
