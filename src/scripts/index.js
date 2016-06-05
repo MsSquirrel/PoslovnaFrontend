@@ -404,6 +404,42 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
       })
+     .state('prijemni-dokumenti.createWarehouseReceipt.createBusinessYear', {
+        onEnter: generateOnEnterModal("./templates/createBusinessYear.html", "poslovne-godineCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.createWarehouseReceipt.createWarehouse', {
+        onEnter: generateOnEnterModal("./templates/createWarehouse.html", "magaciniCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.createWarehouseReceipt.createPartner', {
+        onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.editWarehouseReceipt.createBusinessYear', {
+        onEnter: generateOnEnterModal("./templates/createBusinessYear.html", "poslovne-godineCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.editWarehouseReceipt.createWarehouse', {
+        onEnter: generateOnEnterModal("./templates/createWarehouse.html", "magaciniCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+     .state('prijemni-dokumenti.editWarehouseReceipt.createPartner', {
+        onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+            isModal: true
+        }
+      })
       .state('roba', {
         url: '/roba?jedinicaMereId?preduzeceId?grupaRobaId&naziv',
         templateUrl: './templates/roba.html',
@@ -491,6 +527,30 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               templateUrl: './templates/editDocumentItem.html', 
               controller: "editDocumentItemCtrl",
             }
+        }
+      })
+      .state('stavke-dokumenata.createDocumentItem.createWares', {
+        onEnter: generateOnEnterModal("./templates/createWares.html", "robaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('stavke-dokumenata.createDocumentItem.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('stavke-dokumenata.editDocumentItem.createWares', {
+        onEnter: generateOnEnterModal("./templates/createWares.html", "robaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('stavke-dokumenata.editDocumentItem.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+            isModal: true
         }
       })
       .state('stope-pdv-a', {

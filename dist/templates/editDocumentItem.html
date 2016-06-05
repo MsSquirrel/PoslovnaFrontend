@@ -3,14 +3,32 @@
 	<h4>Izmeni postojecu stavku dokumenta</h4>
 		<form class="form" name="editDocumForm">
 
-			Primka:<span class="necesary">*</span>
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Primka:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="stavke-dokumenata.editDocumentItem.createWarehouseReceipt">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="editPrimka" ng-options="wr.Id_Prijemni_dokument as wr.Poslovna_godina.Godina_Poslovna_godina+'/'+wr.Redni_broj_Prijemni_dokument for wr in allWrs" required></select>
 				</div>
 			</div></br>
 
-			Roba:<span class="necesary">*</span>
+			<div class="row">
+				<div class="col-sm-2">
+					<p>Roba:<span class="necesary">*</span></p> 
+				</div>
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-success btn-xs" ui-sref="stavke-dokumenata.editDocumentItem.createWares">
+					<span class="glyphicon glyphicon-plus"></span>
+					</button>
+				</div>
+			</div>	
 			<div class="row">
 				<div>
 					<select class="form-control" ng-model="editRoba" ng-options="item.Id_Roba as item.Naziv_Roba for item in allItems"></select>

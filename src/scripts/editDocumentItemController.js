@@ -17,7 +17,7 @@ module.exports = [
 				$scope.editMarza = $scope.documentItem.Procenat_marze_Stavka_dokumenta;
 			});
 
-			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
+			prijemniDokumentiService.get_all_warehouseReceipts()
 				.then(function(response){
 				$scope.allWrs = response;
 			});
