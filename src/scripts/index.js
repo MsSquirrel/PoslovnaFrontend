@@ -451,7 +451,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('robne-kartice', {
-        url: '/robne-kartice?poslovnaGodinaId?magacinId?robaId',
+        url: '/robne-kartice?poslovnaGodinaId&magacinId&robaId',
         templateUrl: './templates/robne-kartice.html',
         controller: 'robne-karticeCtrl'
       })

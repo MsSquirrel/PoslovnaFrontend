@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', '$state', '$stateParams', 'robneKarticeService', 
-	function myController($scope, $http, $state, $stateParams, robneKarticeService){
+	'$scope', '$http', '$state', '$stateParams', 'robneKarticeService', 'robaService', 'poslovneGodineService', 'magaciniService',
+	function myController($scope, $http, $state, $stateParams, robneKarticeService, robaService, poslovneGodineService, magaciniService){
 
 		$scope.selectedWareCardId = -1;
 
@@ -53,18 +53,33 @@ module.exports = [
 	            return;
 	         }
 
+	         var first = true;
+
 	         if(poslovnaGodinaId!='' && poslovnaGodinaId!=undefined)
 	         {
-	             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId;   
+	             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId; 
+	             first = false;  
 	         }
 	      
 	      	 if(magacinId!='' && magacinId!=undefined)
-	         {
+	         {	
+	         	if(!first){
+	         		url_filter += " and ";
+	         	}else
+	         		first = false;
+
 	             url_filter += "Id_Magacin eq " + magacinId;   
+	         	
 	         }
 
 	          if(robaId!='' && robaId!=undefined)
-	         {
+	         {	
+
+	         	if(!first){
+	         		url_filter += " and ";
+	         	}else
+	         		first = false;
+
 	             url_filter += "Id_Roba eq " + robaId;   
 	         }
 
@@ -74,8 +89,24 @@ module.exports = [
 
       	};
 
-		  function fillData()
-		  {
+
+      	$scope.search = {};
+      	$scope.search.poslovna_godina = '';
+      	$scope.search.magacin = '';
+      	$scope.search.roba = '';
+
+      	$scope.search.iPAS = function(){
+
+   			if($scope.search.poslovna_godina != '' || $scope.search.magacin != '' || $scope.search.roba != '' )
+   				$state.go('robne-kartice', {poslovnaGodinaId: $scope.search.poslovna_godina, magacinId: $scope.search.magacin, robaId: $scope.search.roba});
+   		}
+
+   		$scope.refresh = function(){
+   			$state.go('robne-kartice', {poslovnaGodinaId: undefined, magacinId: undefined, robaId: undefined});
+   		}
+
+		function fillData()
+		{
 		  	if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.magacinIdId=='' || $stateParams.magacinId==undefined) && ($stateParams.robaId=='' || $stateParams.robaId==undefined)){
 			  	$http.get("http://localhost:61769/api/robna_kartica").then(function(response) {
 	        		$scope.gridOptions.data = response.data;
@@ -85,9 +116,24 @@ module.exports = [
 		  	{
 		  		$scope.nextMeh();
 		  	}
-		  }
 
-		  fillData();
+
+		  	poslovneGodineService.get_active_businessYears()
+  				.then(function(response){
+  				$scope.allYears = response;
+  			});
+  			magaciniService.get_all_warehouses()
+  				.then(function(response){
+  				$scope.allWhs = response;
+  			});
+
+  			robaService.get_all_goods()
+				.then(function(response){
+				$scope.allItems = response;
+			});
+		}
+
+		fillData();
 
 	}
 ];
