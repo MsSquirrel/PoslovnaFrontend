@@ -99,7 +99,7 @@ module.exports = [
 
 
       $scope.refresh = function(){
-			$state.go('roba', {naziv: undefined, grupaRobaId: undefined});
+			$state.go('roba', {naziv: undefined, grupaRobaId: undefined, preduzeceId: undefined, jedinicaMereId: undefined});
 		};
 
 

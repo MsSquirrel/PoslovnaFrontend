@@ -176,7 +176,7 @@ module.exports = [
       }
 
       $scope.refresh = function(){
-        $state.go('prijemni-dokumenti', {rbr: undefined, poslovnaGodinaId: undefined, magacinId: undefined, partnerId: undefined, dt: undefined});
+        $state.go('prijemni-dokumenti', {rbr: undefined, poslovnaGodinaId: undefined, magacinId: undefined, partnerId: undefined});
       };
 
    		function fillData()

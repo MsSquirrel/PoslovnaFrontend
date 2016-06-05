@@ -95,7 +95,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'documentsCtrl'
       })
       .state('mesta', {
-        url: '/mesta?naziv&pb',//TODOR
+        url: '/mesta?naziv&pb',
         templateUrl: './templates/mesta.html',
         controller: 'mestaCtrl',
         data: {
@@ -251,7 +251,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('merne-jedinice', {
-        url: '/merne-jedinice?naziv&oznaka',///// TODOR
+        url: '/merne-jedinice?naziv&oznaka',
         templateUrl: './templates/merne-jedinice.html',
         controller: 'merne-jediniceCtrl',
         data: {
