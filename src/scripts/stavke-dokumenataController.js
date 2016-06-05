@@ -83,6 +83,88 @@ module.exports = [
       	};
 
 
+      	$scope.search = {};
+      	$scope.search.prijemni_dokument = '';
+      	$scope.search.roba = '';
+
+      	$scope.search.iPAS = function(){
+
+   			if($scope.search.naziv != '' || $scope.search.postanski_broj != '' )
+   				$state.go('stavke-dokumenata', {robaId: $scope.search.roba, prijemniDokumentId: $scope.search.prijemni_dokument});
+   		}
+
+
+   		var filterData = function(roba, pd){
+
+   			if(roba==='' && pd==='')
+   				return;
+
+   			var url_filter = "?$filter="
+
+   			var prvi= true;
+   			
+   			if(roba!=''){
+   				prvi =	false;
+   				url_filter += "Id_Roba eq " + roba;
+   			}
+
+   			if(pd!=''){
+   				if(!prvi){
+   					url_filter += " and "
+   				}
+
+   				url_filter += "Id_Prijemni_dokument eq " + pd;
+   			}
+
+   			stavkeDokumenataService.get_filtered_documentItems(url_filter).then(function(response){
+               	$scope.gridOptions.data = response;
+         		
+         		$scope.search.prijemni_dokument = '';
+  				$scope.search.roba = '';
+	         });
+
+   		}
+
+
+   		$scope.refresh = function(){
+			$state.go('stavke-dokumenata', {robaId: undefined, prijemniDokumentId: undefined});
+		};
+
+
+		if(($stateParams.robaId == undefined && $stateParams.prijemniDokumentId == undefined) || ($stateParams.robaId == '' && $stateParams.prijemniDokumentId == ''))
+			fillData();
+		else{
+			
+			var par_roba = '';
+			var par_pd = '';
+			
+			if($stateParams.robaId != undefined)
+				par_roba = $stateParams.robaId;
+
+			if($stateParams.prijemniDokumentId != undefined)
+				par_pd = $stateParams.prijemniDokumentId;
+
+
+			filterData(par_roba, par_pd);
+
+			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
+				.then(function(response){
+				$scope.allWrs = response;
+			});
+
+
+			prijemniDokumentiService.get_all_warehouseReceipts()
+				.then(function(response){
+				$scope.allAllWrs = response;
+			});
+				
+			robaService.get_all_goods()
+				.then(function(response){
+				$scope.allItems = response;
+			});
+
+		}
+
    		function fillData()
     	{
     		if(($stateParams.robaId=='' || $stateParams.robaId==undefined) && ($stateParams.prijemniDokumentId=='' || $stateParams.prijemniDokumentId==undefined)){
@@ -100,13 +182,17 @@ module.exports = [
 				.then(function(response){
 				$scope.allWrs = response;
 			});
+
+			prijemniDokumentiService.get_all_warehouseReceipts()
+				.then(function(response){
+				$scope.allAllWrs = response;
+			});
+
 			robaService.get_all_goods()
 				.then(function(response){
 				$scope.allItems = response;
 			});
     	};
-
-    	fillData();
 
     	$scope.clear_add = function(){
 	        $scope.primka = "";

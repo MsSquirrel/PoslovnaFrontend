@@ -466,7 +466,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'registerCtrl'
       })
       .state('stavke-dokumenata', {
-        url: '/stavke-dokumenata?robaId?prijemniDokumentId',
+        url: '/stavke-dokumenata?robaId&prijemniDokumentId',
         templateUrl: './templates/stavke-dokumenata.html',
         controller: 'stavke-dokumenataCtrl',
         data: {

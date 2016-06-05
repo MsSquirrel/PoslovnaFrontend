@@ -19,7 +19,7 @@
 
 			<button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
 
-			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="fillData()"><span class="glyphicon glyphicon-refresh"></span></button>
+			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
 
 			<div class="btn-group" uib-dropdown is-open="status.isopen">
     			   <button id="single-button" title="Next" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="true"><span class="glyphicon glyphicon-play">	 
@@ -58,5 +58,39 @@
     		</div>
   		</div>
   	</div>
+
+
+  	<div id="searchModal" class="modal" role="dialog" data-backdrop="false">
+		<div class="modal-dialog">
+
+		    
+		    <div class="modal-content">
+			    <div class="modal-header">
+			      	<button type="button" class="close" data-dismiss="modal">&times;</button>
+			        <h4 class="modal-title">Pretraga mesta</h4>
+			    </div>
+			    
+			    <div class="modal-body">
+			    	<div id="search_div">
+						Prijemni dokument: 	<select class="form-control" ng-model="search.prijemni_dokument" required>
+	   											<option  ng-repeat="wr in allAllWrs" value="{{wr.Id_Prijemni_dokument}}">{{wr.Poslovna_godina.Godina_Poslovna_godina}}/{{wr.Redni_broj_Prijemni_dokument}}</option>
+	   										</select>
+						<br/>
+						Roba: 	<select class="form-control" ng-model="search.roba" required>
+	   								<option  ng-repeat="item in allItems" ng-value="item.Id_Roba">{{item.Naziv_Roba}}</option>
+	   							</select>
+					</div>
+			    
+			    </div>
+			    <div class="modal-footer">
+			    	<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="search.iPAS()">
+			    		Search
+			    	</button>
+			    </div>
+			</div>
+
+		</div>
+	</div>
+
 
 </div>
