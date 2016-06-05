@@ -63,11 +63,11 @@ module.exports = [
           $scope.selectedWarehouseReceiptStatus = $scope.selectedRow.Status_Prijemni_dokument;
           $scope.items = $scope.selectedRow.Stavka_dokumenta;
 
-   				$scope.editWarehouseReceiptYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
+   				$scope.editWarehouseReceiptBusinessYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
+          $scope.editWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin1.Id_Magacin;
+          $scope.editWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.editWarehouseReceiptExpenses = $scope.selectedRow.Zavisni_troskovi_Prijemni_dokument;
-   				$scope.editWarehouseReceiptWarehouse2 = $scope.selectedRow.Magacin1.Id_Magacin;
    				//$scope.editWarehouseReceiptWarehouse1 = $scope.selectedRow.Magacin.Id_Magacin;
-   				$scope.editWarehouseReceiptPartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
    				$scope.editWarehouseReceiptTransportExpenses = $scope.selectedRow.Transportni_troskovi_Prijemni_dokument;
    				$scope.editWarehouseReceiptDate = $scope.selectedRow.Datum_formiranja_Prijemni_dokument;
 

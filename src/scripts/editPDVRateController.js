@@ -58,7 +58,7 @@ module.exports = [
 
 		// date picker
  		$scope.open1 = function() {
-    	$scope.popup1.opened = true;
+    		$scope.popup1.opened = true;
   		};
   		
   		$scope.today = function(){

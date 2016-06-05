@@ -38,6 +38,9 @@
 		Mesto:<span class="necesary">*</span> 
 		<div class="row">
 		   	 <div>
+		   	 		<select class="form-control" name="namep" ng-model="check" ng-click="chose_place()" required>
+		    		<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
+
 				<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace" required></select>
 				<br>
 			</div>

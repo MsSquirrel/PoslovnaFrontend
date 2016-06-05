@@ -43,7 +43,11 @@ module.exports = [
 				$scope.selectedDocumentItemWr = $scope.selectedRow.Prijemni_dokument.Id_Prijemni_dokument;
 				$scope.selectedDocumentItemItem = $scope.selectedRow.Roba.Id_Roba;
 
-				//JOS 
+				$scope.editPrimka = $scope.selectedRow.Prijemni_dokument.Id_Prijemni_dokument;
+				$scope.editRoba = $scope.selectedRow.Roba.Id_Roba;
+				$scope.editKolicina = $scope.selectedRow.Kolicina_Stavka_dokumenta;
+				$scope.editNabCena = $scope.selectedRow.Nabavna_vrednost_Stavka_dokumenta;
+				$scope.editMarza = $scope.selectedRow.Procenat_marze_Stavka_dokumenta;
 		 	});
    		};
 
@@ -142,14 +146,10 @@ module.exports = [
 
 
     	/*$scope.edit_documentItem = function()
-    	{
-    		
-    		
-    		poslovneGodineService.update_businessYear($scope.warehouseReceiptBusinessYear, $scope.warehouseReceiptWarehouse1, $scope.warehouseReceiptWarehouse2, 
-    			$scope.warehouseReceiptPartner, $scope.warehouseReceiptExpenses, $scope.warehouseReceiptTransportExpenses, date).then(function(response){
-			   	
+    	{	
+    		poslovneGodineService.update_businessYear($scope.editPrimka, $scope.editRoba, $scope.editKolicina, $scope.editNabCena, $scope.editMarza).then(function(response){
+			   	$state.go('^',{}, {reload:true});
 		  	});
     	};*/
-
 	}
 ];

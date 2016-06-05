@@ -1,23 +1,19 @@
 
 <div>
-	<h4>Dodaj novu primku</h4>
+	<h4>Izmeni postojecu primku</h4>
 		<form class="form" name="editRecForm">
 
 			Poslovna godina:<span class="necesary">*</span>
 			<div class="row">
 				<div>
-					<select class="form-control" name="year" ng-model="warehouseReceiptBusinessYear" required>
-	   				<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
-	   				</select>
+					<select class="form-control" name="year" ng-model="editWarehouseReceiptBusinessYear" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" required></select>
 				</div>
 			</div></br>
 
-			Magacin:  
+			Magacin:<span class="necesary">*</span> 
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="warehouseReceiptWarehouse1">
-	   				<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
-	   				</select>
+					<select class="form-control" ng-model="editWarehouseReceiptWarehouse1" ng-options="wh.Id_Magacin as wh.Naziv_Magacin for wh in allWhs" required></select>
 				</div>
 			</div></br>
 
@@ -26,7 +22,7 @@
 
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="warehouseReceiptWarehouse2">
+					<select class="form-control" ng-model="editWarehouseReceiptWarehouse2">
 	   				<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
 	   				</select>
 				</div>
@@ -36,9 +32,7 @@
 			Partner:  
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="warehouseReceiptPartner">
-	   				<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
-	   				</select>
+					<select class="form-control" ng-model="editWarehouseReceiptPartner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners"></select>
 				</div>
 			</div></br>
 
@@ -46,27 +40,27 @@
 			<div class="row">
 			<div>
 				<p class="input-group">
-			 		<input type="text" class="form-control" name="date" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-change="checkDate()" readonly required/>
+			 		<input type="text" class="form-control" name="date" uib-datepicker-popup="{{format}}" ng-model="editDate" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-change="checkDate()" readonly required/>
 					<span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 					</span>
 				</p>
-				<span class="writeError" ng-show="editRecForm.date.$invalid">Unešeni datum mora biti pre današnjeg!</span>
+				<span class="writeError" ng-show="editRecForm.date.$invalid">Unešeni datum mora biti današnji ili raniji!</span>
 			</div>
 			</div></br>
 			
-			Zavisni troškovi:<span class="necesary">*</span>
+			Zavisni troškovi:
 			<div class="row">
 				<div>
-					<input type="text" name="zavisni" class="form-control" ng-model="warehouseReceiptExpenses" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/"></input>
+					<input type="text" name="zavisni" class="form-control" ng-model="editWarehouseReceiptExpenses" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/"></input>
 					<span class="writeError" ng-show="editRecForm.zavisni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
 				</div>
 			</div>
 
-			Transportni troškovi:<span class="necesary">*</span>
+			Transportni troškovi:
 			<div class="row">
 				<div>
-					<input type="text" name="transportni" class="form-control" ng-model="warehouseReceiptTransportExpenses" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/"></input>
+					<input type="text" name="transportni" class="form-control" ng-model="editWarehouseReceiptTransportExpenses" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/"></input>
 					<span class="writeError" ng-show="editRecForm.transportni.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/></br>
 				</div>
 			</div>
@@ -74,7 +68,7 @@
 			
 			</br>
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
-			<button type="button" class="btn btn-info" ng-click="add_warehouseReceipt()" ng-disabled="editRecForm.$invalid">Sačuvaj</button>
-			<button type="button" class="btn btn-info"  ng-click="closeState()">Otkaži</button>
+			<button type="button" class="btn btn-info" ng-click="edit_warehouseReceipt()" ng-disabled="editRecForm.$invalid">Sačuvaj</button>
+			<button type="button" class="btn btn-info" ng-click="close_edit()">Otkaži</button>
 		</form>
 </div>
