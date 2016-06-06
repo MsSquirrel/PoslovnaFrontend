@@ -1,36 +1,30 @@
 <div>
-	<div ng-show="currentState == 'preduzece'">	
-		<h1>{{preduzece.Naziv_Preduzece}}</h1>
+<div ng-show="currentState == 'preduzece'">	
+<h1>{{preduzece.Naziv_Preduzece}}</h1>
+
+<div class="home">
+<div class="col-sm-offset-1 col-sm-9">
 
 
-
-		<div class="home">
-		<div class="col-sm-offset-1 col-sm-9">
-
-
-			PIB: <span class="bold">{{preduzece.PIB_Preduzece}}</span></br>
-			Matični broj: <span class="bold">{{preduzece.Maticni_broj_Preduzece}}</span></br>
-			Adresa: <span class="bold">{{preduzece.Adresa_Preduzece}}</span></br>
-			Mesto: <span class="bold">{{preduzece.Mesto.Naziv_Mesto}}</span></br>
-			<button type="button" class="btn btn-default" data-dismiss="modal" ui-sref="preduzece.edit({id: preduzece.Id_Preduzece})">Izmeni</button>
-		</div>
-		<!--
-		<div class="col-sm-2">
-			<a class="btn btn-xl btn-default" href="#/poslovni-partneri">Partneri</a>
-			<a class="btn btn-xl btn-default" href="#/magacini">Magacini</a>
-			<a class="btn btn-xl btn-default" href="#/grupe-roba">Grupe roba</a>
-			<a class="btn btn-xl btn-default" href="#/roba">Roba</a>
-			<a class="btn btn-xl btn-default" href="#/poslovne-godine">Poslovne godine</a>
-			
-				
-		</div>
-		-->
-		</div>
-
-
-	</div>
+	PIB: <span class="bold">{{preduzece.PIB_Preduzece}}</span></br>
+	Matični broj: <span class="bold">{{preduzece.Maticni_broj_Preduzece}}</span></br>
+	Adresa: <span class="bold">{{preduzece.Adresa_Preduzece}}</span></br>
+	Mesto: <span class="bold">{{preduzece.Mesto.Naziv_Mesto}}</span></br>
+	<button type="button" class="btn btn-default" data-dismiss="modal" ui-sref="preduzece.edit({id: preduzece.Id_Preduzece})">Izmeni</button>
+</div>
+<!--
+<div class="col-sm-2">
+	<a class="btn btn-xl btn-default" href="#/poslovni-partneri">Partneri</a>
+	<a class="btn btn-xl btn-default" href="#/magacini">Magacini</a>
+	<a class="btn btn-xl btn-default" href="#/grupe-roba">Grupe roba</a>
+	<a class="btn btn-xl btn-default" href="#/roba">Roba</a>
+	<a class="btn btn-xl btn-default" href="#/poslovne-godine">Poslovne godine</a>
 	
-	<div class="col-md-6 col-md-offset-3 form">
-		<div ui-view></div>
-	</div>
+		
+</div>
+-->
+</div>
+
+<div ui-view></div>
+</div>
 </div>

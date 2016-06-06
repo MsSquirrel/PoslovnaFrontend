@@ -35,10 +35,18 @@
 			 </div>
 		</div></br>
 
-		Mesto:<span class="necesary">*</span> 
+		<div class="row">
+			<div class="col-sm-1">
+				<p>Mesto:<span class="necesary">*</span></p> 
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="preduzeca.editCompany.createPlace">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	
 		<div class="row">
 		   	 <div>
-
 				<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editCompanyPlace" required></select>
 				<br>
 			</div>
