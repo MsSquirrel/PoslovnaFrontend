@@ -3,22 +3,55 @@
 	<form  name="editWarehForm">
 
 		Naziv magacina:<span class="necesary">*</span>
-		<input type="text" name="namew" class="form-control" ng-model="editWarehouseName" ng-maxlength="100" required>
-		<span class="writeError" ng-show="editWarehForm.namew.$error.maxlength">Unesite do 100 karaktera!</span><br>
+		<div class="row">
+			<div>
+				<input type="text" name="namew" class="form-control" ng-model="editWarehouseName" ng-maxlength="100" required>
+				<span class="writeError" ng-show="editWarehForm.namew.$error.maxlength">Unesite do 100 karaktera!</span><br>
+			</div>
+		</div>
 		
 
 		Adresa magacina:<span class="necesary">*</span>
-		<input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" ng-maxlength="100" required>
-		<span class="writeError" ng-show="editWarehForm.namea.$error.maxlength">Unesite do 100 karaktera!</span><br>
+		<div class="row">
+			<div>
+				<input type="text" name="namea" class="form-control" ng-model="editWarehouseAddress" ng-maxlength="100" required>
+				<span class="writeError" ng-show="editWarehForm.namea.$error.maxlength">Unesite do 100 karaktera!</span><br>
+			</div>
+		</div>
 		
 		
-		Mesto:<span class="necesary">*</span>
-		<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required>
-		</select><br>
+		<div class="row">
+			<div class="col-sm-2">
+				<p>Mesto:<span class="necesary">*</span></p> 
+			</div>
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="magacini.editWarehouse.createPlace">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	
+		<div class="row">
+			<div>
+				<select class="form-control" name="namep" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" ng-model="editWarehousePlace" required></select><br>
+			</div>
+		</div>
 		
-		Preduzece:<span class="necesary">*</span>
-		<select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required>
-		</select><br>
+		<div class="row">
+			<div class="col-sm-2">
+				<p>Preduzeće:<span class="necesary">*</span></p> 
+			</div>
+
+			<div class="col-sm-2">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="magacini.editWarehouse.createCompany">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>	   
+		<div class="row">
+			<div>
+				<select class="form-control" name="namec" ng-options="company.Id_Preduzece as company.Naziv_Preduzece for company in allCompanies" ng-model="editWarehouseCompany" required></select><br>
+			</div>
+		</div>
 
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>	

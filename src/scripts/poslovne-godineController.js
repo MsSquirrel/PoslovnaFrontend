@@ -102,6 +102,10 @@ module.exports = [
         $scope.businessYearFinished = 0;
         $scope.businessYearCompany="";
         $scope.changeCompany = "";
+        if($scope.isModal)
+        {
+          $scope.$close(true);
+        }
          
       }
 

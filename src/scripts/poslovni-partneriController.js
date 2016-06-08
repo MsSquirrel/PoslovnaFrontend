@@ -237,6 +237,10 @@ module.exports = [
 			$scope.partnerCompany = "";
 			$scope.changeCompany = "";
 			$scope.checkCompany = "";
+         if($scope.isModal)
+         {
+            $scope.$close(true);
+         }
 			 
 	    };
 

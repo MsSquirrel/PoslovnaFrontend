@@ -24,7 +24,16 @@
 		 	</div>
 		 </div></br>
 							
-		PDV:<span class="necesary">*</span>
+		<div class="row">
+			<div class="col-md-1">
+			PDV:<span class="necesary">*</span>
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="stope-pdv-a.editPDVRate.createPDV">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>
 		<div class="row">
 			<div>
 				<select class="form-control" name="namep" ng-model="editPdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs" required></select>

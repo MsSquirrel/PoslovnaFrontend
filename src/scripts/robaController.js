@@ -194,6 +194,10 @@ module.exports = [
 			$scope.goodsCategory = "";
 			$scope.goodsMeasUnit = "";
 			$scope.goodsCompany = "";
+			if($scope.isModal)
+			{
+				$scope.$close(true);
+			}
 	    };
 
 	    $scope.clear_add();

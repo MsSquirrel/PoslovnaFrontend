@@ -137,6 +137,12 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             isModal: true
         }
       })
+      .state('preduzeca.editCompany.createPlace', {
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
       .state('preduzeca.createCompany', { 
          views:{
             "": {
@@ -199,6 +205,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             isModal: true
         }
       })
+      .state('grupe-roba.editWareGroup.createPDV', {
+        onEnter: generateOnEnterModal("./templates/createPDV.html", "pdvCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('grupe-roba.editWareGroup.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
        .state('grupe-roba.editWareGroup', { 
         url: "/edit/:id",
 
@@ -249,6 +267,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               controller: "editWarehouseCtrl",
             }
           }
+      })
+       .state('magacini.editWarehouse.createPlace', {
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('magacini.editWarehouse.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
       })
       .state('merne-jedinice', {
         url: '/merne-jedinice?naziv&oznaka',
@@ -336,6 +366,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
       })
+      .state('poslovne-godine.createBusinessYear.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('poslovne-godine.editBusinessYear.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
       .state('poslovni-partneri', {
         url: '/poslovni-partneri?mestoId?preduzeceId?naziv&mb&pib',
         templateUrl: './templates/poslovni-partneri.html',
@@ -371,6 +413,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         }
       })
       .state('poslovni-partneri.createPartner.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('poslovni-partneri.editPartner.createPlace', {
+        onEnter: generateOnEnterModal("./templates/createPlace.html", "mestaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('poslovni-partneri.editPartner.createCompany', {
         onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
          data: {
             isModal: true
@@ -486,6 +540,24 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
         }
       })
+     .state('roba.editWares.createCompany', {
+        onEnter: generateOnEnterModal("./templates/createCompany.html", "preduzeceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('roba.editWares.createMeasUnit', {
+        onEnter: generateOnEnterModal("./templates/createMeasUnit.html", "merne-jediniceCtrl"),
+         data: {
+            isModal: true
+        }
+      })
+      .state('roba.editWares.createWareGroup', {
+        onEnter: generateOnEnterModal("./templates/createWareGroup.html", "grupe-robaCtrl"),
+         data: {
+            isModal: true
+        }
+      })
       .state('robne-kartice', {
         url: '/robne-kartice?poslovnaGodinaId&magacinId&robaId',
         templateUrl: './templates/robne-kartice.html',
@@ -573,6 +645,12 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })
       .state('stope-pdv-a.createPDVRate.createPDV', {
+        onEnter: generateOnEnterModal("./templates/createPDV.html", "pdvCtrl"),
+         data: {
+              isModal: true
+          }
+      })
+      .state('stope-pdv-a.editPDVRate.createPDV', {
         onEnter: generateOnEnterModal("./templates/createPDV.html", "pdvCtrl"),
          data: {
               isModal: true
