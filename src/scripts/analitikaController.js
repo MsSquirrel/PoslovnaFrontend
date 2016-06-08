@@ -17,7 +17,7 @@ module.exports = [
 		    { name:'Kolicina_Analitika_magacinske_kartice', width:'20%', displayName: 'Količina', cellTooltip: true, headerTooltip: true},
 		    { name:'Cena_Analitika_magacinske_kartice', width:'20%', displayName: 'Jedinična cena', cellTooltip: true, headerTooltip: true},
 		    { name:'Vrednost_Analitika_magacinske_kartice', width:'20%', displayName: 'Vrednost', cellTooltip: true, headerTooltip: true},
-		   	{ name:'Ukupno_stanje_Analitika_magacinske_kartice', width:'20%', displayName: 'Stanje', cellTooltip: true, headerTooltip: true}
+		   	{ name:'Ukupno_stanje_Analitika_magacinske_kartice', width:'21%', displayName: 'Stanje', cellTooltip: true, headerTooltip: true}
 		  ];
 
 

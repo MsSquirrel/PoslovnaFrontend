@@ -105,6 +105,17 @@ module.exports = [
    			$state.go('robne-kartice', {poslovnaGodinaId: undefined, magacinId: undefined, robaId: undefined});
    		}
 
+   		$scope.izvestaj = function(){
+
+        $http.get('http://localhost:61769/api/pdf/kartica/' + $scope.selectedWareCardId, {responseType: 'arraybuffer'})
+         .success(function (data) {
+             var file = new Blob([data], {type: 'application/pdf'});
+             var fileURL = URL.createObjectURL(file);
+             window.open(fileURL);
+        });
+
+     	}
+
 		function fillData()
 		{
 		  	if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.magacinIdId=='' || $stateParams.magacinId==undefined) && ($stateParams.robaId=='' || $stateParams.robaId==undefined)){
