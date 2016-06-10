@@ -77,9 +77,9 @@
 			    	<div id="search_div">
 						Naziv: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite ceo ili deo naziva preduzeca." class="form-control" ng-model="search.naziv"/>
 						<br/>
-						Matični broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite matični broj preduzeća." class="form-control" ng-model="search.maticni_broj"/>
+						Matični broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite matični broj preduzeća (do 8 cifara)." ng-pattern="/^(\d{1,8})$/" class="form-control" ng-model="search.maticni_broj"/>
 						<br/>
-						PIB: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite PIB preduzeća." class="form-control" ng-model="search.PIB"/>
+						PIB: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite PIB preduzeća (do 10 cifara)." class="form-control" ng-pattern="/^(\d{1,8})$/" ng-model="search.PIB"/>
 					</div>
 			    
 			    </div>
