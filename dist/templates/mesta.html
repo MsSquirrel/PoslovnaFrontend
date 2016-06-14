@@ -79,7 +79,7 @@
 			    	<div id="search_div">
 						Naziv: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite ceo ili deo naziva mesta." class="form-control" ng-model="search.naziv"/>
 						<br/>
-						Poštanski broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite postanski broj mesta." class="form-control" ng-model="search.postanski_broj"/>
+						Poštanski broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite postanski broj mesta (6 cifara)." class="form-control" ng-pattern="/^(\d{5})$/" ng-model="search.postanski_broj"/>
 					</div>
 			    
 			    </div>
