@@ -1,0 +1,56 @@
+<div>
+	<h4>Dodaj novu fakturu</h4>
+	<form class="form" name="createFaktureForm">
+
+		Broj fakture:<span class="necesary">*</span>
+		<input type="text" name="number" class="form-control" ng-model="invoiceNumber" ng-pattern="/^(\d{1,18})$/" required>
+		<span class="writeError" ng-show="createFaktureForm.number.$error.pattern">Unesite do osamnaest cifri!</span><br>
+
+		Poslovna godina:<span class="necesary">*</span>
+		<select class="form-control" name="namey" ng-model="invoiceYear" ng-click="chose_place()" required>
+							<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+						</select><br>
+
+		Poslovni partner:<span class="necesary">*</span>
+		<select class="form-control" name="namep" ng-model="invoicePartner" ng-click="chose_place()" required>
+							<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
+						</select><br>
+
+		Datum fakture:<span class="necesary">*</span>
+		<p class="input-group">
+			<input type="text" class="form-control" name="datef" uib-datepicker-popup="{{format}}" ng-model="dt1" is-open="popup1.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" readonly  required/>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+
+		Datum valute:<span class="necesary">*</span>
+		<p class="input-group">
+			<input type="text" class="form-control" name="datev" uib-datepicker-popup="{{format}}" ng-model="dt2" is-open="popup2.opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" readonly  required/>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+				</span>
+			</p>
+		
+		Ukupan rabat:
+		<input type="text" name="rabat" class="form-control" ng-model="invoiceRabat" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
+		<span class="writeError" ng-show="createFaktureForm.rabat.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+		
+		Ukupan iznos bez PDV-a:<span class="necesary">*</span>
+		<input type="text" name="nopdv" class="form-control" ng-model="invoiceIznosBezPdv" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required>
+		<span class="writeError" ng-show="createFaktureForm.nopdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+		
+		Ukupan PDV:<span class="necesary">*</span>
+		<input type="text" name="pdv" class="form-control" ng-model="invoiceTotalPdv" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/" required>
+		<span class="writeError" ng-show="createFaktureForm.pdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+		
+		Ukupno za placanje:
+		<input type="text" name="total" class="form-control" ng-model="invoiceTotalPlacanje" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
+		<span class="writeError" ng-show="createFaktureForm.total.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+		
+		
+		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_invoice()" ng-disabled="createFaktureForm.$invalid">Sačuvaj</button>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
+	</form>
+</div>

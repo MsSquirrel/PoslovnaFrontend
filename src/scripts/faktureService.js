@@ -9,6 +9,7 @@ module.exports = [
 				return response.data;
 			});
 		}
+		
 
 		function create_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv, invoiceTotalPlacanje)
 		{
@@ -66,6 +67,15 @@ module.exports = [
 			}).error(function(response, data){
 				alert("Neuspešan unos podataka. Broj fakture u okviru poslovne godine mora biti jedinstven.");
 			});
+		}
+
+
+		function get_invoice_by_id(id)
+		{
+			var resUrl = "http://localhost:61769/api/faktura/"+id+"/";
+			return $http.get(resUrl).then(function(response) {
+				return response.data;
+			});	
 		}
 
 		function get_filtered_invoices(filter_params)

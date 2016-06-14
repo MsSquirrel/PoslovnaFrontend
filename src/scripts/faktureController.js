@@ -19,16 +19,6 @@ module.exports = [
 		$scope.selectedRow = {};
 		$scope.selectedInvoiceId = -1;
 
-		$scope.editInvoiceNumber = "";
-		$scope.editInvoiceYear = "";
-		$scope.editInvoicePartner = "";
-		$scope.editInvoiceDate = "";
-		$scope.editInvoiceCurrency = "";
-		$scope.editInvoiceRabat = "";
-		$scope.editInvoiceIznosBezPdv = "";
-		$scope.editInvoiceTotalPdv = "";
-		$scope.editInvoiceTotalPlacanje = "";
-
 		$scope.gridOptions = {
 		    enableRowSelection: true,
 		    enableSelectAll: false,
@@ -61,19 +51,6 @@ module.exports = [
 				$scope.selectedInvoiceIznosBezPdv = $scope.selectedRow.Ukupan_iznos_bez_PDV_a_Faktura;
 				$scope.selectedInvoiceTotalPdv = $scope.selectedRow.Ukupan_PDV_Faktura;
 				$scope.selectedInvoiceTotalPlacanje = $scope.selectedRow.Ukupno_za_placanje_Faktura;
-
-				$scope.editInvoiceNumber = $scope.selectedRow.Broj_fakture_Faktura;
-				$scope.editInvoiceYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
-				$scope.editInvoicePartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
-
-		        $scope.editDt1 = ($scope.selectedRow.Datum_fakture_Faktura).split("T")[0];
-				$scope.editDt2 = ($scope.selectedRow.Datum_valute_Faktura).split("T")[0];
-
-				$scope.editInvoiceRabat = $scope.selectedRow.Ukupan_rabat_Faktura;
-				$scope.editInvoiceIznosBezPdv = $scope.selectedRow.Ukupan_iznos_bez_PDV_a_Faktura;
-				$scope.editInvoiceTotalPdv = $scope.selectedRow.Ukupan_PDV_Faktura;
-				$scope.editInvoiceTotalPlacanje = $scope.selectedRow.Ukupno_za_placanje_Faktura;
-
 				//$('$scope.editDt1').datepicker('setDate', $scope.editDt1);
 				//$('#datetimepicker1').datetimepicker({defaultDate: $scope.editDt1});
 		  });
@@ -161,8 +138,11 @@ module.exports = [
     		var invoiceCurrency = god2+"-"+m2+"-"+$scope.dt2.getDate();
 			console.log("Unesi: "+$scope.invoiceId+", "+$scope.invoiceNumber+", "+$scope.invoiceYear+", "+$scope.invoicePartner+", "+invoiceDate+", "+invoiceCurrency+", "+$scope.invoiceRabat+", "+$scope.invoiceIznosBezPdv+", "+$scope.invoiceTotalPdv+", "+$scope.invoiceTotalPlacanje);
 			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, invoiceDate, invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv, $scope.invoiceTotalPlacanje).then(function(response){
-				fillData();
 				$scope.clear_add();
+				if($scope.isModal){
+					$scope.$close(true);
+				}
+				$state.go('^',{}, {reload:true});
 			});
 		};
 	

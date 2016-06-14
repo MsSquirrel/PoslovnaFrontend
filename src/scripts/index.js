@@ -26,6 +26,7 @@ myApp.controller('editPdvCtrl', require('./editPdvController.js'));
 myApp.controller('editBusinessYearCtrl', require('./editBusinessYearController.js'));
 myApp.controller('editPdvRateCtrl', require('./editPDVRateController.js'));
 myApp.controller('editPartnerCtrl', require('./editPartnerController.js'));
+myApp.controller('editInvoiceCtrl', require('./editInvoiceController.js'));
 myApp.controller('editWaresCtrl', require('./editWaresController.js'));
 myApp.controller('editWareGroupCtrl', require('./editWareGroupController.js'));
 myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
@@ -172,7 +173,31 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('fakture', {
         url: '/fakture?poslovnaGodinaId?partnerId',
         templateUrl: './templates/fakture.html',
-        controller: 'faktureCtrl'
+        controller: 'faktureCtrl',
+        data: {
+          isModal: false
+        }
+      })
+      .state('fakture.createInvoice', { 
+         views:{
+            "": {
+              templateUrl: './templates/createInvoice.html', 
+              controller: "faktureCtrl",
+            }
+          },
+          data: {
+            isModal: false
+          }
+      })
+      .state('fakture.editInvoice', { 
+        url: "/edit/:id",
+
+         views:{
+            "": {
+              templateUrl: './templates/editInvoice.html', 
+              controller: "editInvoiceCtrl",
+            }
+          }
       })
       .state('grupe-roba', {
         url: '/grupe-roba?pdvId?preduzeceId?naziv',
