@@ -15,7 +15,9 @@
     		</div>
 
     		<div>
-				<span style="margin-left: 35px"></span>
+				<span style="margin-left: -5px"></span>
+
+				<button type="button" class="btn btn-default btn-xl" title="Detaljan pregled" ui-sref="robne-kartice.detaljno({id: selectedWareCardId})" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ><span class="glyphicon glyphicon-book"></span></button>
 
 				<button type="button" class="btn btn-default btn-xl" title="Izveštaj" ng-click="izvestaj()" ng-disabled="gridOptions.selection.getSelectedRows().length == 0" ><span class="glyphicon glyphicon-list-alt"></span></button>
 
@@ -26,6 +28,8 @@
 
 	<div ng-show="currentState == 'robne-kartice'"  ui-grid="gridOptions"  ui-grid-selection ui-grid-resize-columns class="grid">
 	 </div>
+
+	 <div ui-view></div>
 
 	 <div id="searchModal" class="modal" role="dialog" data-backdrop="false">
 		<div class="modal-dialog">

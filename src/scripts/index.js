@@ -34,6 +34,7 @@ myApp.controller('editWarehouseCtrl', require('./editWarehouseController.js'));
 myApp.controller('editUserCtrl', require('./editUserController.js'));
 myApp.controller('editWarehouseReceiptCtrl', require('./editWarehouseReceiptController.js'));
 myApp.controller('editDocumentItemCtrl', require('./editDocumentItemController.js'));
+myApp.controller('robnaKarticaDetaljnoCtrl', require('./robnaKarticaDetaljnoController.js'));
 
 
 myApp.filter('true_false', function() {
@@ -586,7 +587,22 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       .state('robne-kartice', {
         url: '/robne-kartice?poslovnaGodinaId&magacinId&robaId',
         templateUrl: './templates/robne-kartice.html',
-        controller: 'robne-karticeCtrl'
+        controller: 'robne-karticeCtrl',
+        data: {
+              isModal: false
+        }
+      })
+      .state('robne-kartice.detaljno', { 
+        url: "/detail/:id",
+          data: {
+              isModal: false
+          },
+         views:{
+            "": {
+              templateUrl: './templates/robna-kartica-detaljno.html', 
+              controller: "robnaKarticaDetaljnoCtrl"
+            }
+          }
       })
       .state('login', {
         url: '/login',
