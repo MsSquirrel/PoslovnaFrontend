@@ -35,7 +35,7 @@ module.exports = [
 		    { name:'Datum_valute_Faktura', width:'15%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupan_rabat_Faktura', width:'20%', displayName: 'Rabat', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupan_iznos_bez_PDV_a_Faktura', width:'20%', displayName: 'Iznos bez PDV-a', cellTooltip: true, headerTooltip: true},
-		    { name:'Ukupno_PDV_Faktura', width:'20%', displayName: 'Ukupan PDV', cellTooltip: true, headerTooltip: true},
+		    { name:'Ukupan_PDV_Faktura', width:'20%', displayName: 'Ukupan PDV', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za plaćanje', cellTooltip: true, headerTooltip: true}
 		];
 
