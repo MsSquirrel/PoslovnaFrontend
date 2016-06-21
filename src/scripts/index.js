@@ -172,7 +172,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'analitikaCtrl'
       })
       .state('fakture', {
-        url: '/fakture?poslovnaGodinaId?partnerId',
+        url: '/fakture?poslovnaGodinaId?partnerId?prijemniDokumentId',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl',
         data: {
@@ -207,6 +207,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('fakture.editInvoice.createPartner', {
         onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+              isModal: true
+          }
+      })
+      .state('fakture.createInvoice.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+              isModal: true
+          }
+      })
+      .state('fakture.editInvoice.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
          data: {
               isModal: true
           }

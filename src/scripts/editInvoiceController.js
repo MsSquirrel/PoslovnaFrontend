@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','$stateParams','$window', '$state', '$rootScope',
-	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, $stateParams, $window, $state, $rootScope){
+	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService','$stateParams','$window', '$state', '$rootScope',
+	function myController($scope, $http, faktureService, poslovneGodineService, partneriService,prijemniDokumentiService, $stateParams, $window, $state, $rootScope){
 	
 		$scope.invoiceId = $stateParams.id;
 
@@ -10,6 +10,7 @@ module.exports = [
 				$scope.editInvoiceNumber = $scope.invoice.Broj_fakture_Faktura;
 				$scope.editInvoiceYear = $scope.invoice.Id_Poslovna_godina;
 				$scope.editInvoicePartner = $scope.invoice.Id_Partner;
+				$scope.editInvoiceReceipt = $scope.invoice.Id_Prijemni_dokument;
 				$scope.editDt1 = $scope.invoice.Datum_fakture_Faktura
 				$scope.editDt2 = $scope.invoice.Datum_valute_Faktura;
 				$scope.editInvoiceRabat = $scope.invoice.Ukupan_rabat_Faktura;
@@ -37,6 +38,10 @@ module.exports = [
 			partneriService.get_all_partners().then(function(response){
 				$scope.allPartners = response;
 			});
+
+			prijemniDokumentiService.get_all_warehouseReceipts().then(function(response){
+				$scope.allWrs = response;
+			});
 		};
 
 		fillData();
@@ -49,7 +54,7 @@ module.exports = [
     		var god2 = $scope.editDt2.getYear()+1900;
     		var m2 = $scope.editDt2.getMonth()+1;
     		var editInvoiceCurrency = god2+"-"+m2+"-"+$scope.editDt2.getDate();
-			faktureService.update_invoice($scope.invoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv).then(function(response){
+			faktureService.update_invoice($scope.invoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, $scope.editInvoiceReceipt, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv).then(function(response){
 				$state.go('^',{}, {reload:true});
 			});
 		};

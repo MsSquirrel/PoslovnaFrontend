@@ -1,10 +1,11 @@
 module.exports = [
-	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService', '$routeParams', '$window','$state','$stateParams',
-	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, $routeParams, $window, $state,$stateParams){
+	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams',
+	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams){
 		
 		$scope.invoiceNumber = "";
 		$scope.invoiceYear = "";
 		$scope.invoicePartner = "";
+		$scope.invoiceReceipt = "";
 		$scope.invoiceDate = "";
 		$scope.invoiceCurrency = "";
 		$scope.invoiceRabat = "";
@@ -47,6 +48,7 @@ module.exports = [
 				$scope.selectedInvoiceNumber = $scope.selectedRow.Broj_fakture_Faktura;
 				$scope.selectedInvoiceYear = $scope.selectedRow.Poslovna_godina.Id_Poslovna_godina;
 				$scope.selectedInvoicePartner = $scope.selectedRow.Poslovni_partner.Id_Partner;
+				$scope.selectedInvoiceReceipt = $scope.selectedRow.Prijemni_dokument.Id_Prijemni_dokument;
 				$scope.selectedDt1 = $scope.selectedRow.Datum_fakture_Faktura;
 				$scope.selectedDt2 = $scope.selectedRow.Datum_valute_Faktura;
 				$scope.selectedInvoiceRabat = $scope.selectedRow.Ukupan_rabat_Faktura;
@@ -74,9 +76,10 @@ module.exports = [
 
 	         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
 	         var partnerId = $stateParams.partnerId;
+	         var documentId = $stateParams.prijemniDokumentId;
 	         console.log("PARAM: "+ poslovnaGodinaId);
 
-	         if(poslovnaGodinaId=='' && partnerId=='')
+	         if(poslovnaGodinaId=='' && partnerId=='' && documentId=='')
 	         {
 	            return;
 	         }
@@ -91,6 +94,11 @@ module.exports = [
             	 url_filter += "Id_Partner eq " + partnerId;   
          	 }
 
+	         if(documentId!='' && documentId!=undefined)
+         	 {
+            	 url_filter += "Id_Prijemni_dokument eq " + documentId;   
+         	 }
+
 	         faktureService.get_filtered_invoices(url_filter).then(function(response){
 	               $scope.gridOptions.data = response;
 	         });
@@ -98,7 +106,7 @@ module.exports = [
 
 
     	function fillData(){
-    		if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined)){
+    		if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined) && ($stateParams.prijemniDokumentId=='' || $stateParams.prijemniDokumentId==undefined)){
 	    		faktureService.get_all_invoices().then(function(response){
 					$scope.gridOptions.data = response;
 				});
@@ -116,6 +124,10 @@ module.exports = [
 			partneriService.get_all_partners().then(function(response){
 				$scope.allPartners = response;
 			});
+
+			prijemniDokumentiService.get_all_warehouseReceipts().then(function(response){
+				$scope.allWrs = response;
+			});
 		};
 
 		fillData();
@@ -124,12 +136,31 @@ module.exports = [
 			$scope.invoiceNumber = "";
 			$scope.invoiceYear = "";
 			$scope.invoicePartner = "";
+			$scope.invoiceReceipt = "";
 			$scope.dt1 = ""; // datum faktude
 			$scope.dt2 = ""; // datum valute
 			$scope.invoiceRabat = "";
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
 			$scope.invoiceTotalPlacanje = "";
+
+	         var godinaId = $stateParams.poslovnaGodinaId;
+	         var partnerId = $stateParams.partnerId;
+	         var dokumentId = $stateParams.prijemniDokumentId;
+
+	         if(godinaId!='' && godinaId!=undefined)
+	         {
+	            $scope.invoiceYear = parseInt(godinaId);
+	         }
+	         if(partnerId!='' && partnerId!=undefined)
+	         {
+	            $scope.invoicePartner = parseInt(partnerId);
+	         }
+	         if(dokumentId!='' && dokumentId!=undefined)
+	         {
+	            $scope.invoiceReceipt = parseInt(dokumentId);
+	         }
+
 			if($scope.isModal)
 			{
 				$scope.$close(true);
@@ -154,7 +185,7 @@ module.exports = [
     		var m2 = $scope.dt2.getMonth()+1;
     		var invoiceCurrency = god2+"-"+m2+"-"+$scope.dt2.getDate();
 			console.log("Unesi: "+$scope.invoiceId+", "+$scope.invoiceNumber+", "+$scope.invoiceYear+", "+$scope.invoicePartner+", "+invoiceDate+", "+invoiceCurrency+", "+$scope.invoiceRabat+", "+$scope.invoiceIznosBezPdv+", "+$scope.invoiceTotalPdv+", "+$scope.invoiceTotalPlacanje);
-			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, invoiceDate, invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv).then(function(response){
+			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, $scope.invoiceReceipt, invoiceDate, invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv).then(function(response){
 				$scope.clear_add();
 				if($scope.isModal){
 					$scope.$close(true);
@@ -180,7 +211,7 @@ module.exports = [
     		var m2 = $scope.editDt2.getMonth()+1;
     		var editInvoiceCurrency = god2+"-"+m2+"-"+$scope.editDt2.getDate();
 			console.log("Promenjena: "+$scope.selectedInvoiceId+", "+$scope.editInvoiceNumber+", "+$scope.editInvoiceYear+", "+$scope.editInvoicePartner+", "+editInvoiceDate+", "+editInvoiceCurrency+", "+$scope.editInvoiceRabat+", "+$scope.editInvoiceIznosBezPdv+", "+$scope.editInvoiceTotalPdv+", "+$scope.editInvoiceTotalPlacanje);
-			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv).then(function(response){
+			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, $scope.editInvoiceReceipt, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv).then(function(response){
 				fillData();
 			});
 		};

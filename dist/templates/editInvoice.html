@@ -24,7 +24,22 @@
 				<select class="form-control" name="namepe" ng-model="editInvoicePartner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners" required></select><br>
 			</div>
 		</div>
-		</br>
+
+		<div class="row">
+			<div class="col-md-1">
+			Prijemni dokument:<span class="necesary">*</span>
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="fakture.editInvoice.createWarehouseReceipt">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				<select class="form-control" name="namer" ng-model="editInvoiceReceipt" ng-options="wr.Id_Prijemni_dokument as wr.Poslovna_godina.Godina_Poslovna_godina+'/'+wr.Redni_broj_Prijemni_dokument for wr in allWrs" required></select><br>
+			</div>
+		</div>
 
 		Datum fakture:<span class="necesary">*</span>
 			<p class="input-group" id="datetimepicker1">

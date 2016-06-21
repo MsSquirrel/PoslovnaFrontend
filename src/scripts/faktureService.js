@@ -11,7 +11,7 @@ module.exports = [
 		}
 		
 
-		function create_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv)
+		function create_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceReceipt, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv)
 		{
 			var total = 1*invoiceTotalPdv+invoiceIznosBezPdv*1;
 			return $http({
@@ -22,6 +22,7 @@ module.exports = [
 						Broj_fakture_Faktura: invoiceNumber,
 						Id_Poslovna_godina: invoiceYear,
 						Id_Partner: invoicePartner,
+						Id_Prijemni_dokument: invoiceReceipt,
 						Datum_fakture_Faktura: invoiceDate,
 						Datum_valute_Faktura: invoiceCurrency,
 						Ukupan_rabat_Faktura: invoiceRabat,
@@ -45,7 +46,7 @@ module.exports = [
 			});
 		}
 
-		function update_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv)
+		function update_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceReceipt, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv)
 		{
 			var total = 1*invoiceTotalPdv+invoiceIznosBezPdv*1;
 			var url = "http://localhost:61769/api/faktura/"+invoiceId+"/";
@@ -57,6 +58,7 @@ module.exports = [
 						Broj_fakture_Faktura: invoiceNumber,
 						Id_Poslovna_godina: invoiceYear,
 						Id_Partner: invoicePartner,
+						Id_Prijemni_dokument: invoiceReceipt,
 						Datum_fakture_Faktura: invoiceDate,
 						Datum_valute_Faktura: invoiceCurrency,
 						Ukupan_rabat_Faktura: invoiceRabat,

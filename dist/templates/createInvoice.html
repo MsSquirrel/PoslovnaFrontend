@@ -7,9 +7,7 @@
 		<span class="writeError" ng-show="createFaktureForm.number.$error.pattern">Unesite do osamnaest cifri!</span><br>
 
 		Poslovna godina:<span class="necesary">*</span>
-		<select class="form-control" name="namey" ng-model="invoiceYear" ng-click="chose_place()" required>
-							<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
-						</select><br>
+			<select class="form-control" name="namey" ng-model="invoiceYear" ng-click="chose_place()" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" required></select><br>
 	
 		<div class="row">
 			<div class="col-md-1">
@@ -26,7 +24,22 @@
 				<select class="form-control" name="namep" ng-model="invoicePartner" ng-click="chose_place()" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners" required></select><br>
 			</div>
 		</div>
-		</br>
+
+		<div class="row">
+			<div class="col-md-1">
+			Prijemni dokument:<span class="necesary">*</span>
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="fakture.createInvoice.createWarehouseReceipt">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				<select class="form-control" name="namer" ng-model="invoiceReceipt" ng-options="wr.Id_Prijemni_dokument as wr.Poslovna_godina.Godina_Poslovna_godina+'/'+wr.Redni_broj_Prijemni_dokument for wr in allWrs" required></select><br>
+			</div>
+		</div>
 
 		Datum fakture:<span class="necesary">*</span>
 		<p class="input-group">
