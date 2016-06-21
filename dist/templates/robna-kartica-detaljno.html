@@ -1,24 +1,66 @@
 <div> 
 
-	<h4>Prikaz</h4>
+<div style="margin-top: 20px">
+	<div class="col-sm-9 col-sm-offset-3">
+		<h4>Magacin:</h4>
+	</div>
+	<div class="col-sm-offset-3 col-sm-3">
+		<p>Naziv: <b>{{data.Magacin.Naziv_Magacin}}</b></p>
+	</div>
+	<div class="col-sm-6">
+		<p>Mesto: <b>{{data.Magacin.Mesto.Naziv_Mesto}}</b></p>
+	</div>
+</div>
 
-	{{data.Id_Robna_kartica}}
-	{{data.Prosecna_cena_Robna_kartica}}
-	{{data.Roba.Naziv_Roba}}
-	{{data.Roba.Jedinica_mere.Oznaka_Jedinica_mere}}
-	{{data.Roba.Jedinica_mere.Naziv_Jedinica_mere}}
-	{{data.Magacin.Naziv_Magacin}}
-	 {{data.Magacin.Mesto.Naziv_Mesto}}
-	{{data.Poslovna_godina.Godina_Poslovna_godina}}
-	{{data.Prosecna_cena_Robna_kartica}}
-	{{data.Poc_stanje_kol_Robna_kartica}}
-	{{data.Promet_ulaza_kol_Robna_kartica}}
-	{{data.Promet_izlaza_kol_Robna_kartica}}
-	{{data.Ukupna_kolicina_Robna_kartica}}
-	{{data.Poc_stanje_vrednost_Robna_kartica}}
-	{{data.Promet_ulaza_vr_Robna_kartica}}
-	{{data.Promet_izlaza_vr_Robna_kartica}}
-	{{data.Ukupna_vrednost_Robna_kartica}}
+<div style="margin-top: 30px">
+	<div class="col-sm-9 col-sm-offset-3">
+		<h4>Roba:</h4>
+	</div>
+	<div class="col-sm-offset-3 col-sm-9">
+		<p>Naziv: <b>{{data.Roba.Naziv_Roba}}</b></p>
+	</div>
+	<div class="col-sm-3 col-sm-offset-3">
+		<p>Merna jedinica: <b>{{data.Roba.Jedinica_mere.Naziv_Jedinica_mere}}</b></p>
+	</div>
+	<div class="col-sm-6">
+		<p>Oznaka: <b>{{data.Roba.Jedinica_mere.Oznaka_Jedinica_mere}}</b></p>
+	</div>
+</div>
 
+<div style="margin-top: 30px">
+	<div class="col-sm-9 col-sm-offset-3">
+		<h4>Podaci:</h4>
+	</div>
+	<div class="col-sm-offset-3 col-sm-9">
+		<p>Prosečna cena: <b>{{data.Prosecna_cena_Robna_kartica | number}} </b></p>
+	</div>
+	<div class="col-sm-3 col-sm-offset-3">
+		<p>Početno stanje količinski: <b>{{data.Poc_stanje_kol_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-6">
+		<p>Početno stanje vrednosno: <b>{{data.Poc_stanje_vrednost_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-3 col-sm-offset-3">
+		<p>Promet ulaza količinski: <b>{{data.Promet_ulaza_kol_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-6">
+		<p>Promet ulaza vrednosno: <b>{{data.Promet_ulaza_vr_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-3 col-sm-offset-3">
+		<p>Promet izlaza količinski: <b>{{data.Promet_izlaza_kol_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-6">
+		<p>Promet izlaza vrednosno: <b>{{data.Promet_izlaza_vr_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-3 col-sm-offset-3">
+		<p>Ukupna količina: <b>{{data.Ukupna_kolicina_Robna_kartica | number}}</b></p>
+	</div>
+	<div class="col-sm-6">
+		<p>Ukupna vrednost: <b>{{data.Ukupna_vrednost_Robna_kartica | number}}</b></p>
+	</div>
+</div>
+
+
+	<a class="btn btn-xl btn-info" role="button" style="margin-left:297px; margin-top: 30px;" href="#/robne-kartice">Nazad</a>
 	
 </div>
