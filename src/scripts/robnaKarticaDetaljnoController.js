@@ -3,6 +3,12 @@ module.exports = [
 	function myController($scope, $http, $stateParams, $window, $state, $rootScope){
 
 		$scope.robnaKarticaId = $stateParams.id;
+
+		$http.get("http://localhost:61769/api/robna_kartica/" + $scope.robnaKarticaId)
+			.then(function(response){
+				$scope.data = response.data;
+			});
+
 		
 		/*$scope.editMeasUnitName = "";
 		$scope.editMeasUnitMark = "";
