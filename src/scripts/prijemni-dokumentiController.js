@@ -93,7 +93,7 @@ module.exports = [
         if(rbr==='' && pg==='' && magacin==='' && pp==='')
           return;
 
-        var url_filter = "?$filter="
+        var url_filter = "?$filter=";
         var prvi= true;
 
         if(rbr != ''){
