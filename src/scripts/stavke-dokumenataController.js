@@ -115,19 +115,16 @@ module.exports = [
 
 			filterData(par_roba, par_pd);
 
-			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
-				.then(function(response){
-				$scope.allWrs = response;
-			});
-
-
-			prijemniDokumentiService.get_all_warehouseReceipts()
-				.then(function(response){
+			prijemniDokumentiService.get_unrecorded_warehouseReceipts().then(function(response){
 				$scope.allAllWrs = response;
 			});
+
+
+			prijemniDokumentiService.get_all_warehouseReceipts().then(function(response){
+				$scope.allWrs = response;
+			});
 				
-			robaService.get_all_goods()
-				.then(function(response){
+			robaService.get_all_goods().then(function(response){
 				$scope.allItems = response;
 			});
 
