@@ -136,6 +136,15 @@ module.exports = [
 
       $scope.clear_add();
 
+
+      $scope.prepareSearch = function() {
+         var pdvId = $stateParams.pdvId;
+         if(pdvId!='' && pdvId!=undefined)
+         {
+          $scope.search.zaPdv = parseInt(pdvId);
+         }
+      }
+
     	$scope.add_PDVRate = function()
     	{
     		var god = $scope.dt.getYear()+1900;

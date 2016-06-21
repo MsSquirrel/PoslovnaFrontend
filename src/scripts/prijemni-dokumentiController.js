@@ -193,6 +193,10 @@ module.exports = [
           .then(function(response){
           $scope.allWhs = response;
         });
+        poslovneGodineService.get_all_businessYears()
+          .then(function(response){
+          $scope.allAllYears = response;
+        });
         partneriService.get_all_partners()
           .then(function(response){
           $scope.allPartners = response;
@@ -243,6 +247,25 @@ module.exports = [
         $scope.clear_add();
         $state.go('^',{}, {reload:true});
       };
+
+
+      $scope.prepareSearch = function() {
+         var godinaId = $stateParams.poslovnaGodinaId;
+         var magacinId = $stateParams.magacinId;
+         var partnerId = $stateParams.partnerId;
+         if(godinaId!='' && godinaId!=undefined)
+         {
+          $scope.search.poslovna_godina = parseInt(godinaId);
+         }
+         if(magacinId!='' && magacinId!=undefined)
+         {
+          $scope.search.magacin = parseInt(magacinId);
+         }
+         if(partnerId!='' && partnerId!=undefined)
+         {
+          $scope.search.poslovni_partner = parseInt(partnerId);
+         }
+      }
 
       $scope.add_warehouseReceipt = function()
     	{
