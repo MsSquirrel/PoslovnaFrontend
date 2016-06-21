@@ -211,6 +211,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
               isModal: true
           }
       })
+      .state('fakture.createInvoice.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+              isModal: true
+          }
+      })
+      .state('fakture.editInvoice.createWarehouseReceipt', {
+        onEnter: generateOnEnterModal("./templates/createWarehouseReceipt.html", "prijemni-dokumentiCtrl"),
+         data: {
+              isModal: true
+          }
+      })
       .state('grupe-roba', {
         url: '/grupe-roba?pdvId?preduzeceId?naziv',
         templateUrl: './templates/grupe-roba.html',
