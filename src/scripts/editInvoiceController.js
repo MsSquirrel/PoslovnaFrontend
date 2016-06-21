@@ -1,7 +1,7 @@
 module.exports = [
 	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','$stateParams','$window', '$state', '$rootScope',
 	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, $stateParams, $window, $state, $rootScope){
-
+	
 		$scope.invoiceId = $stateParams.id;
 
 		function fillData() {

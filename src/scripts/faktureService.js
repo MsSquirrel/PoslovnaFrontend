@@ -94,6 +94,7 @@ module.exports = [
 			remove_invoice: remove_invoice,
 			update_invoice: update_invoice, 
 			get_filtered_invoices: get_filtered_invoices,
+			get_invoice_by_id: get_invoice_by_id
 		};
 
 	}
