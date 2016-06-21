@@ -219,6 +219,15 @@ module.exports = [
 
 	    $scope.clear_add();
 
+
+		$scope.prepareSearch = function() {
+	         var groupId = $stateParams.grupaRobaId;
+	         if(groupId!='' && groupId!=undefined)
+	         {
+	         	$scope.search.grupa_roba = parseInt(groupId);
+	         }
+		}
+
 		$scope.add_goods = function()
 		{
 			robaService.create_goods($scope.goodsId, $scope.goodsName, $scope.goodsCategory, $scope.goodsMeasUnit, $scope.goodsCompany).then(function(response){

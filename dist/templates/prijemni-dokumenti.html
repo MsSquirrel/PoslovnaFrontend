@@ -17,7 +17,7 @@
 		  		<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 			</button>
 
-			<button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
+			<button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal" ng-click="prepareSearch()"><span class="glyphicon glyphicon-search"></span></button>
 
 			<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
 
@@ -154,17 +154,14 @@
 			    	<div id="search_div">
 						Redni broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite redni broj prijemnog dokumenta." class="form-control" ng-model="search.redni_broj"/>
 						<br/>
-						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" required>
-	   										<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
-	   									</select>
+						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allAllYears" >
+	   							<option value=""></option></select>
 						<br/>
-						Magacin: 	<select class="form-control" ng-model="search.magacin" required>
-	   									<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
-	   								</select>
+						Magacin: 	<select class="form-control" ng-model="search.magacin" ng-options="wh.Id_Magacin as wh.Naziv_Magacin for wh in allWhs">
+	   								<option value=""></option></select>
 						<br/>
-						Poslovni partner: 	<select class="form-control" ng-model="search.poslovni_partner">
-	   											<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
-	   										</select>
+						Poslovni partner: 	<select class="form-control" ng-model="search.poslovni_partner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners">
+	   							<option value=""></option></select>
 					</div>
 			    
 			    </div>

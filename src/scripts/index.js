@@ -180,7 +180,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })*/
       .state('analitika', {
-        url: '/analitika?robnaKarticaId',
+        url: '/analitika?robnaKarticaId&magacinId&robaId&vrednostG&vrednostD',//DODACES NEKAD POSLE ROBU. PRvo magacin, pa one vrednosti, pa kad se Kristina probudi i robu.
         templateUrl: './templates/analitika.html',
         controller: 'analitikaCtrl'
       })

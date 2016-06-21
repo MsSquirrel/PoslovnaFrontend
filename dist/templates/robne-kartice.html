@@ -5,7 +5,7 @@
 		<div ng-show="currentState == 'robne-kartice'" class="row">
 			<div class="col-sm-9 col-sm-offset-1">
 
-                <button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal"><span class="glyphicon glyphicon-search"></span></button>
+                <button type="button" title="Pretraži" class="btn btn-info btn-xl" data-toggle="modal" data-target="#searchModal" ng-click="prepareSearch()"><span class="glyphicon glyphicon-search"></span></button>
 
 				<button type="button" title="Osveži" class="btn btn-info btn-xl" ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span></button>
 
@@ -43,17 +43,15 @@
 			    
 			    <div class="modal-body">
 			    	<div id="search_div">
-						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" required>
-	   										<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
+						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allAllYears">
+	   							<option value=""></option>
 	   									</select>
 						<br/>
-						Magacin: 	<select class="form-control" ng-model="search.magacin" required>
-	   									<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
-	   								</select>
+						Magacin: 	<select class="form-control" ng-model="search.magacin" ng-options="wh.Id_Magacin as wh.Naziv_Magacin for wh in allWhs">
+	   								<option value=""></option></select>
 	   					<br/>
-	   					Roba: 	<select class="form-control" ng-model="search.roba" required>
-	   								<option  ng-repeat="item in allItems" ng-value="item.Id_Roba">{{item.Naziv_Roba}}</option>
-	   							</select>
+	   					Roba: 	<select class="form-control" ng-model="search.roba" ng-options="item.Id_Roba as item.Naziv_Roba for item in allItems">
+	   								<option value=""></option></select>
 					</div>
 			    
 			    </div>
