@@ -23,8 +23,7 @@
 		</div>	  
 		<div class="row">
 			<div>
-				<select class="form-control" name="nameg" ng-model="goodsCategory" ng-click="chose_place()" required>
-				<option  ng-repeat="category in allCategories" ng-value="category.Id_Grupa_roba">{{category.Naziv_Grupa_roba}}</option>
+				<select class="form-control" name="nameg" ng-model="goodsCategory" ng-options="category.Id_Grupa_roba as category.Naziv_Grupa_roba for category in allCategories" required>
 				</select><br>
 			</div>
 		</div>
@@ -41,9 +40,7 @@
 		</div>	
 		<div class="row">
 			<div>
-
-				<select class="form-control" name="namem" ng-model="goodsMeasUnit" ng-click="chose_place()" required>
-				<option  ng-repeat="measUnit in allMeasUnits" ng-value="measUnit.Id_Jedinica_mere">{{measUnit.Naziv_Jedinica_mere}}</option>
+				<select class="form-control" name="namem" ng-model="goodsMeasUnit" ng-options="measUnit.Id_Jedinica_mere as measUnit.Naziv_Jedinica_mere for measUnit in allMeasUnits" required>
 				</select><br>
 			</div>
 		</div>

@@ -38,7 +38,7 @@
 		</div>
 		<div class="row">
 			<div>
-				<select class="form-control" name="namep" ng-model="pdvRatePdv" ng-click="chose_place()" required>
+				<select class="form-control" name="namep" ng-model="pdvRatePdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPDVs" required>
 				<option  ng-repeat="pdv in allPDVs" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
 				</select>
 			</div>

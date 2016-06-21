@@ -139,14 +139,9 @@ module.exports = [
 					$scope.gridOptions.data = response;
 			});
 
-			prijemniDokumentiService.get_unrecorded_warehouseReceipts()
-				.then(function(response){
-				$scope.allWrs = response;
-			});
-
 			prijemniDokumentiService.get_all_warehouseReceipts()
 				.then(function(response){
-				$scope.allAllWrs = response;
+				$scope.allWrs = response;
 			});
 
 			robaService.get_all_goods()
@@ -162,15 +157,27 @@ module.exports = [
 	        $scope.nabCena = "";
 	        $scope.nabVrednost = "";
 	        $scope.marza = "";
+
+	         var robaId = $stateParams.robaId;
+	         var primkaId = $stateParams.prijemniDokumentId;
+
+	         if(robaId!='' && robaId!=undefined)
+	         {
+	            $scope.roba = parseInt(robaId);
+	         }
+
+	         if(primkaId!='' && primkaId!=undefined)
+	         {
+	         	 $scope.primka = parseInt(primkaId);
+	         }
+
 			if($scope.isModal)
 			{
 				$scope.$close(true);
-			}
-	        
-
-	        //$scope.changeCompany = "";
-	        
+			}	        
 	      }
+
+	  $scope.clear_add();
 
 	  $scope.closeState = function()
       {

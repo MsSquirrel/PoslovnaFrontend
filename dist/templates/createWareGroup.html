@@ -24,9 +24,7 @@
 	</div>	
 	<div class="row">
 		<div>
-			<select class="form-control" name="namep" ng-model="groupPdv" ng-click="chose_place()" required>
-			<option  ng-repeat="pdv in allPdv" ng-value="pdv.Id_PDV">{{pdv.Naziv_PDV}}</option>
-			</select>
+			<select class="form-control" name="namep" ng-model="groupPdv" ng-options="pdv.Id_PDV as pdv.Naziv_PDV for pdv in allPdv" required></select>
 		</div>
 	</div>
 	

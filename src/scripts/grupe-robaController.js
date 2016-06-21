@@ -155,6 +155,14 @@ module.exports = [
 			$scope.groupName = "";
 			$scope.groupPdv = "";
 			$scope.groupCompany = "";
+
+	         var pdvId = $stateParams.pdvId;
+
+	         if(pdvId!='' && pdvId!=undefined)
+	         {
+	            $scope.groupPdv = parseInt(pdvId);
+	         }
+
 			if($scope.isModal)
 			{
 				$scope.$close(true);

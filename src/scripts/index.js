@@ -192,7 +192,6 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
       })
       .state('fakture.editInvoice', { 
         url: "/edit/:id",
-
          views:{
             "": {
               templateUrl: './templates/editInvoice.html', 

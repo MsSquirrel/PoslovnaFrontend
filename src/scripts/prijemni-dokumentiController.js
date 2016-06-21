@@ -207,6 +207,26 @@ module.exports = [
 	        $scope.warehouseReceiptTransportExpenses = 0;
 	        $scope.warehouseReceiptExpenses = 0;
 	        $scope.warehouseReceiptDate = "";
+
+           var godinaId = $stateParams.poslovnaGodinaId;
+           var magacinId = $stateParams.magacinId;
+           var partnerId = $stateParams.partnerId;
+
+           if(godinaId!='' && godinaId!=undefined)
+           {
+              $scope.warehouseReceiptBusinessYear = parseInt(godinaId);
+           }
+
+           if(magacinId!='' && magacinId!=undefined)
+           {
+             $scope.warehouseReceiptWarehouse1 = parseInt(magacinId);
+           }
+
+           if(partnerId!='' && partnerId!=undefined)
+           {
+             $scope.warehouseReceiptPartner = parseInt(partnerId);
+           }
+
           if($scope.isModal)
           {
             $scope.$close(true);

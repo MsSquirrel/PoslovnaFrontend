@@ -15,9 +15,7 @@
 			</div>	
 			<div class="row">
 				<div>
-					<select class="form-control" name="year" ng-model="warehouseReceiptBusinessYear" required>
-	   				<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
-	   				</select>
+					<select class="form-control" name="year" ng-model="warehouseReceiptBusinessYear" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" required></select>
 				</div>
 			</div></br>
 
@@ -33,9 +31,7 @@
 			</div>	
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="warehouseReceiptWarehouse1" required>
-	   				<option  ng-repeat="wh in allWhs" ng-value="wh.Id_Magacin">{{wh.Naziv_Magacin}}</option>
-	   				</select>
+					<select class="form-control" ng-model="warehouseReceiptWarehouse1" ng-options="wh.Id_Magacin as wh.Naziv_Magacin for wh in allWhs" required></select>
 				</div>
 			</div></br>
 
@@ -63,9 +59,7 @@
 			</div>	
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="warehouseReceiptPartner">
-	   				<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
-	   				</select>
+					<select class="form-control" ng-model="warehouseReceiptPartner" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners"></select>
 				</div>
 			</div></br>
 

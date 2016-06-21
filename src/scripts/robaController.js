@@ -39,19 +39,19 @@ module.exports = [
 				$scope.selectedGoodsCategory = $scope.selectedRow.Grupa_roba.Id_Grupa_roba;
 				$scope.selectedGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
 				$scope.selectedGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
-		
-				$scope.editGoodsName = $scope.selectedRow.Naziv_Roba;
-				$scope.editGoodsCategory = $scope.selectedRow.Grupa_roba.Id_Grupa_roba;
-				$scope.editGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
-				$scope.editGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
+
+				//$scope.editGoodsName = $scope.selectedRow.Naziv_Roba;
+				//$scope.editGoodsCategory = $scope.selectedRow.Grupa_roba.Id_Grupa_roba;
+				//$scope.editGoodsMeasUnit = $scope.selectedRow.Jedinica_mere.Id_Jedinica_mere;
+				//$scope.editGoodsCompany = $scope.selectedRow.Preduzece.Id_Preduzece;
 		 	});
    		};	
-
 
 
    	$scope.search = {};
     $scope.search.naziv = '';
     $scope.search.grupa_roba = '';
+    $scope.goodsMeasUnit = '';
 
 
     $scope.search.iPAS = function(){
@@ -109,9 +109,10 @@ module.exports = [
 
          var jedinicaMereId = $stateParams.jedinicaMereId;
          var preduzeceId = $stateParams.preduzeceId;
+         var grupaRobeId = $stateParams.grupaRobaId;
          console.log("PARAM: "+ jedinicaMereId);
 
-         if(jedinicaMereId==''&& preduzeceId=='')
+         if(jedinicaMereId=='' && preduzeceId=='')
          {
             return;
          }
@@ -119,6 +120,7 @@ module.exports = [
          if(jedinicaMereId!='' && jedinicaMereId!=undefined)
          {
             url_filter += "Id_Jedinica_mere eq " + jedinicaMereId;
+    		
          }
 
          if(preduzeceId!='' && preduzeceId!=undefined)
@@ -144,6 +146,7 @@ module.exports = [
     		{
     			$scope.nextMeh();
     		}
+
 
 			grupeRobaService.get_all_groups().then(function(response){
 				$scope.allCategories = response;
@@ -194,6 +197,20 @@ module.exports = [
 			$scope.goodsCategory = "";
 			$scope.goodsMeasUnit = "";
 			$scope.goodsCompany = "";
+
+	         var jedinicaMereId = $stateParams.jedinicaMereId;
+	         var grupaRobeId = $stateParams.grupaRobaId;
+
+	         if(jedinicaMereId!='' && jedinicaMereId!=undefined)
+	         {
+	            $scope.goodsMeasUnit = parseInt(jedinicaMereId);
+	         }
+
+	         if(grupaRobeId!='' && grupaRobeId!=undefined)
+	         {
+	         	 $scope.goodsCategory = parseInt(grupaRobeId);
+	         }
+
 			if($scope.isModal)
 			{
 				$scope.$close(true);

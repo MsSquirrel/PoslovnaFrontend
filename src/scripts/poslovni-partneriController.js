@@ -237,6 +237,14 @@ module.exports = [
 			$scope.partnerCompany = "";
 			$scope.changeCompany = "";
 			$scope.checkCompany = "";
+
+            var placeId = $stateParams.mestoId;
+
+            if(placeId!='' && placeId!=undefined)
+            {
+               $scope.checkPlace = parseInt(placeId);
+            }
+
          if($scope.isModal)
          {
             $scope.$close(true);

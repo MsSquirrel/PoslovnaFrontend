@@ -182,6 +182,14 @@ module.exports = [
 			$scope.warehouseAddress = "";
 			$scope.warehousePlace = "";
 			$scope.warehouseCompany = "";
+
+	         var placeId = $stateParams.mestoId;
+
+	         if(placeId!='')
+	         {
+	            $scope.warehousePlace = parseInt(placeId);
+	         }
+
 			if($scope.isModal)
 			{
 				$scope.$close(true);

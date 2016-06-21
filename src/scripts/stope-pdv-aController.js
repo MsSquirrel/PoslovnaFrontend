@@ -120,6 +120,14 @@ module.exports = [
         $scope.pdvRate = "";
         $scope.pdvRateDate = "";
         $scope.pdvRatePdv="";
+
+           var pdvId = $stateParams.pdvId;
+
+           if(pdvId!='' && pdvId!=undefined)
+           {
+              $scope.pdvRatePdv = parseInt(pdvId);
+           }
+
         if($scope.isModal)
         {
           $scope.$close(true);

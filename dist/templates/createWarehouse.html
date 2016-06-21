@@ -31,9 +31,7 @@
 	</div>	
 	<div class="row">
 		<div>
-			<select class="form-control" name="namep" ng-model="warehousePlace" required>
-			<option  ng-repeat="place in allPlaces" ng-value="place.Id">{{place.Naziv_Mesto}}</option>
-			</select><br>
+			<select class="form-control" name="namep" ng-model="warehousePlace" ng-options="place.Id as place.Naziv_Mesto for place in allPlaces" required></select><br>
 		</div>
 	</div>
 	

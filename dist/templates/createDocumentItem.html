@@ -15,9 +15,7 @@
 			</div>	
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="primka" required>
-	   				<option  ng-repeat="wr in allWrs" value="{{wr.Id_Prijemni_dokument}}">{{wr.Poslovna_godina.Godina_Poslovna_godina}}/{{wr.Redni_broj_Prijemni_dokument}}</option>
-	   				</select>
+					<select class="form-control" ng-model="primka" ng-options="wr.Id_Prijemni_dokument as wr.Poslovna_godina.Godina_Poslovna_godina+'/'+wr.Redni_broj_Prijemni_dokument for wr in allWrs" required></select>
 				</div>
 			</div></br>
 
@@ -33,9 +31,7 @@
 			</div>	
 			<div class="row">
 				<div>
-					<select class="form-control" ng-model="roba" required>
-	   				<option  ng-repeat="item in allItems" ng-value="item.Id_Roba">{{item.Naziv_Roba}}</option>
-	   				</select>
+					<select class="form-control" ng-model="roba" ng-options="item.Id_Roba as item.Naziv_Roba for item in allItems" required></select>
 				</div>
 			</div></br>
 
