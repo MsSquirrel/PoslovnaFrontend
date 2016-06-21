@@ -199,6 +199,18 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
             }
           }
       })
+      .state('fakture.createInvoice.createPartner', {
+        onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+              isModal: true
+          }
+      })
+      .state('fakture.editInvoice.createPartner', {
+        onEnter: generateOnEnterModal("./templates/createPartner.html", "poslovni-partneriCtrl"),
+         data: {
+              isModal: true
+          }
+      })
       .state('grupe-roba', {
         url: '/grupe-roba?pdvId?preduzeceId?naziv',
         templateUrl: './templates/grupe-roba.html',

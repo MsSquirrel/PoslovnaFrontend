@@ -2,7 +2,6 @@ module.exports = [
 	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService', '$routeParams', '$window','$state','$stateParams',
 	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, $routeParams, $window, $state,$stateParams){
 		
-		$scope.invoiceId = -1;
 		$scope.invoiceNumber = "";
 		$scope.invoiceYear = "";
 		$scope.invoicePartner = "";
@@ -126,6 +125,12 @@ module.exports = [
 			 
 		}
 
+		$scope.closeState = function()
+		{
+			$scope.clear_add();
+			$state.go('^',{}, {reload:true});
+		}
+
 		$scope.clear_add();
 
 		$scope.add_invoice = function()
@@ -137,7 +142,7 @@ module.exports = [
     		var m2 = $scope.dt2.getMonth()+1;
     		var invoiceCurrency = god2+"-"+m2+"-"+$scope.dt2.getDate();
 			console.log("Unesi: "+$scope.invoiceId+", "+$scope.invoiceNumber+", "+$scope.invoiceYear+", "+$scope.invoicePartner+", "+invoiceDate+", "+invoiceCurrency+", "+$scope.invoiceRabat+", "+$scope.invoiceIznosBezPdv+", "+$scope.invoiceTotalPdv+", "+$scope.invoiceTotalPlacanje);
-			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, invoiceDate, invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv, $scope.invoiceTotalPlacanje).then(function(response){
+			faktureService.create_invoice($scope.invoiceId, $scope.invoiceNumber, $scope.invoiceYear, $scope.invoicePartner, invoiceDate, invoiceCurrency, $scope.invoiceRabat, $scope.invoiceIznosBezPdv, $scope.invoiceTotalPdv).then(function(response){
 				$scope.clear_add();
 				if($scope.isModal){
 					$scope.$close(true);
@@ -163,7 +168,7 @@ module.exports = [
     		var m2 = $scope.editDt2.getMonth()+1;
     		var editInvoiceCurrency = god2+"-"+m2+"-"+$scope.editDt2.getDate();
 			console.log("Promenjena: "+$scope.selectedInvoiceId+", "+$scope.editInvoiceNumber+", "+$scope.editInvoiceYear+", "+$scope.editInvoicePartner+", "+editInvoiceDate+", "+editInvoiceCurrency+", "+$scope.editInvoiceRabat+", "+$scope.editInvoiceIznosBezPdv+", "+$scope.editInvoiceTotalPdv+", "+$scope.editInvoiceTotalPlacanje);
-			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv, $scope.editInvoiceTotalPlacanje).then(function(response){
+			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv).then(function(response){
 				fillData();
 			});
 		};

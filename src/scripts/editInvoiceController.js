@@ -41,9 +41,15 @@ module.exports = [
 
 		fillData();
 
-		$scope.edit_selected_pdv = function()
+		$scope.edit_selected_invoice = function()
 		{
-			faktureService.update_invoice($scope.selectedInvoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv, $scope.editInvoiceTotalPlacanje).then(function(response){
+    		var god1 = $scope.editDt1.getYear()+1900;
+    		var m1 = $scope.editDt1.getMonth()+1;
+    		var editInvoiceDate = god1+"-"+m1+"-"+$scope.editDt1.getDate();
+    		var god2 = $scope.editDt2.getYear()+1900;
+    		var m2 = $scope.editDt2.getMonth()+1;
+    		var editInvoiceCurrency = god2+"-"+m2+"-"+$scope.editDt2.getDate();
+			faktureService.update_invoice($scope.invoiceId, $scope.editInvoiceNumber, $scope.editInvoiceYear, $scope.editInvoicePartner, editInvoiceDate, editInvoiceCurrency, $scope.editInvoiceRabat, $scope.editInvoiceIznosBezPdv, $scope.editInvoiceTotalPdv).then(function(response){
 				$state.go('^',{}, {reload:true});
 			});
 		};
