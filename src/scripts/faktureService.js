@@ -11,8 +11,9 @@ module.exports = [
 		}
 		
 
-		function create_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv, invoiceTotalPlacanje)
+		function create_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceReceipt, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv)
 		{
+			var total = 1*invoiceTotalPdv+invoiceIznosBezPdv*1;
 			return $http({
                     method: "post",
                     url: "http://localhost:61769/api/faktura",
@@ -21,12 +22,13 @@ module.exports = [
 						Broj_fakture_Faktura: invoiceNumber,
 						Id_Poslovna_godina: invoiceYear,
 						Id_Partner: invoicePartner,
+						Id_Prijemni_dokument: invoiceReceipt,
 						Datum_fakture_Faktura: invoiceDate,
 						Datum_valute_Faktura: invoiceCurrency,
 						Ukupan_rabat_Faktura: invoiceRabat,
 						Ukupan_iznos_bez_PDV_a_Faktura: invoiceIznosBezPdv,
 						Ukupan_PDV_Faktura: invoiceTotalPdv,
-						Ukupno_za_placanje_Faktura: invoiceTotalPlacanje
+						Ukupno_za_placanje_Faktura: total
 					}
            	}).success(function(response){
 				return response.data;				
@@ -44,8 +46,9 @@ module.exports = [
 			});
 		}
 
-		function update_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv, invoiceTotalPlacanje)
+		function update_invoice(invoiceId, invoiceNumber, invoiceYear, invoicePartner, invoiceReceipt, invoiceDate, invoiceCurrency, invoiceRabat, invoiceIznosBezPdv, invoiceTotalPdv)
 		{
+			var total = 1*invoiceTotalPdv+invoiceIznosBezPdv*1;
 			var url = "http://localhost:61769/api/faktura/"+invoiceId+"/";
 			return $http({
                     method: "put",
@@ -55,12 +58,13 @@ module.exports = [
 						Broj_fakture_Faktura: invoiceNumber,
 						Id_Poslovna_godina: invoiceYear,
 						Id_Partner: invoicePartner,
+						Id_Prijemni_dokument: invoiceReceipt,
 						Datum_fakture_Faktura: invoiceDate,
 						Datum_valute_Faktura: invoiceCurrency,
 						Ukupan_rabat_Faktura: invoiceRabat,
 						Ukupan_iznos_bez_PDV_a_Faktura: invoiceIznosBezPdv,
 						Ukupan_PDV_Faktura: invoiceTotalPdv,
-						Ukupno_za_placanje_Faktura: invoiceTotalPlacanje
+						Ukupno_za_placanje_Faktura: total
 					}
            	}).success(function(response){
 				return response.data;				

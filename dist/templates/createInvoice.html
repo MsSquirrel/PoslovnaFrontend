@@ -7,14 +7,39 @@
 		<span class="writeError" ng-show="createFaktureForm.number.$error.pattern">Unesite do osamnaest cifri!</span><br>
 
 		Poslovna godina:<span class="necesary">*</span>
-		<select class="form-control" name="namey" ng-model="invoiceYear" ng-click="chose_place()" required>
-							<option  ng-repeat="year in allYears" ng-value="year.Id_Poslovna_godina">{{year.Godina_Poslovna_godina}}</option>
-						</select><br>
+			<select class="form-control" name="namey" ng-model="invoiceYear" ng-click="chose_place()" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" required></select><br>
+	
+		<div class="row">
+			<div class="col-md-1">
+			Poslovni partner:<span class="necesary">*</span>
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="fakture.createInvoice.createPartner">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				<select class="form-control" name="namep" ng-model="invoicePartner" ng-click="chose_place()" ng-options="partner.Id_Partner as partner.Naziv_Partner for partner in allPartners" required></select><br>
+			</div>
+		</div>
 
-		Poslovni partner:<span class="necesary">*</span>
-		<select class="form-control" name="namep" ng-model="invoicePartner" ng-click="chose_place()" required>
-							<option  ng-repeat="partner in allPartners" ng-value="partner.Id_Partner">{{partner.Naziv_Partner}}</option>
-						</select><br>
+		<div class="row">
+			<div class="col-md-1">
+			Prijemni dokument:<span class="necesary">*</span>
+			</div>
+			<div class="col-sm-1">
+				<button type="button" class="btn btn-success btn-xs" ui-sref="fakture.createInvoice.createWarehouseReceipt">
+				<span class="glyphicon glyphicon-plus"></span>
+				</button>
+			</div>
+		</div>
+		<div class="row">
+			<div>
+				<select class="form-control" name="namer" ng-model="invoiceReceipt" ng-options="wr.Id_Prijemni_dokument as wr.Poslovna_godina.Godina_Poslovna_godina+'/'+wr.Redni_broj_Prijemni_dokument for wr in allWrs" required></select><br>
+			</div>
+		</div>
 
 		Datum fakture:<span class="necesary">*</span>
 		<p class="input-group">
@@ -22,7 +47,7 @@
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
-			</p>
+			</p><br/>
 
 		Datum valute:<span class="necesary">*</span>
 		<p class="input-group">
@@ -30,7 +55,7 @@
 				<span class="input-group-btn">
 					<button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
 				</span>
-			</p>
+			</p><br/>
 		
 		Ukupan rabat:
 		<input type="text" name="rabat" class="form-control" ng-model="invoiceRabat" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
@@ -45,12 +70,11 @@
 		<span class="writeError" ng-show="createFaktureForm.pdv.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
 		
 		Ukupno za placanje:
-		<input type="text" name="total" class="form-control" ng-model="invoiceTotalPlacanje" ng-pattern="/^(\d{1,10}(\.\d{0,2})?)$/">
-		<span class="writeError" ng-show="createFaktureForm.total.$error.pattern">Unesite pozivtivan broj, sa dve decimale!</span><br/>
+		<input type="text" class="form-control" value="{{invoiceTotalPdv*1+1*invoiceIznosBezPdv | number}}" disabled><br/>
 		
 		
 		<span class="necesaryText">Popunite obavezna polja! Oznacena su zvezdicom (*).</span></br>
 		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="add_invoice()" ng-disabled="createFaktureForm.$invalid">Sačuvaj</button>
-		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="clear_add()">Otkaži</button>
+		<button type="button" class="btn btn-info" data-dismiss="modal" ng-click="closeState()">Otkaži</button>
 	</form>
 </div>
