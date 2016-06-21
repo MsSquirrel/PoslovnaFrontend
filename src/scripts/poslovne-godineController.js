@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window', '$state', '$stateParams',
-	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window, $state, $stateParams){
+	'$scope', '$http', 'poslovneGodineService', 'preduzecaService', '$routeParams','$window', '$state', '$stateParams', '$rootScope', 
+	function myController($scope, $http, poslovneGodineService, preduzecaService, $routeParams, $window, $state, $stateParams, rootScope){
 
 
     $scope.allCompanies = {};
@@ -90,11 +90,9 @@ module.exports = [
   				.then(function(response){
   				$scope.allCompanies = response;
   			});
+
     	};
-       
-
-
-
+      
     	fillData();
 
       $scope.clear_add = function(){

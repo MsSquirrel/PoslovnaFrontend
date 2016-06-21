@@ -176,11 +176,33 @@ module.exports = [
 
 	  $scope.clear_add();
 
+
+	  $scope.prepareSearch = function() {
+         var placeId = $stateParams.mestoId;
+         if(placeId!='' && placeId!=undefined)
+         {
+         	$scope.search.mesto = parseInt(placeId);
+         }
+	  }
+
 	  $scope.closeState = function()
       {
         $scope.clear_add();
         $state.go('^',{}, {reload:true});
       };
+
+		$scope.prepareSearch = function() {
+	         var robaId = $stateParams.robaId;
+	         var dokumentId = $stateParams.prijemniDokumentId;
+	         if(robaId!='' && robaId!=undefined)
+	         {
+	         	$scope.search.roba = parseInt(robaId);
+	         }
+	         if(dokumentId!='' && dokumentId!=undefined)
+	         {
+	         	$scope.search.prijemni_dokument = parseInt(dokumentId);
+	         }
+		}
 
       $scope.add_documentItem = function()
     	{

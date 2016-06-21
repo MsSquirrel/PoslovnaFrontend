@@ -56,7 +56,17 @@
 				          <li><a href="#/pdv">PDV</a></li>
 				          <li><a href="#/stope-pdv-a">Stope PDV-a</a></li>
 				 		</ul>
-			      	</li>  
+			      	</li>
+			      		<li ng-show="currentUser" class="dropdown">
+				        <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer">Promeni poslovnu godinu
+				        <span class="caret"></span></a>
+				        <ul class="dropdown-menu">
+				        	<div ng-repeat= "businessYear in activeBusinessYears">
+				         	 <li><a href="" ng-click="setBusinessYear(businessYear.Id_Poslovna_godina)">{{businessYear.Godina_Poslovna_godina}}</a></li>
+				          	</div><a href="" ng-click="setBusinessYear(-1)">sve godine</a></li>
+				          	<li>
+				 		</ul>
+			      	</li>    
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li ng-hide="currentUser"><a href="#/register"> Registruj se</a></li>

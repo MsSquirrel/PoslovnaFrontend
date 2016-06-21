@@ -105,8 +105,9 @@ module.exports = [
          var url_filter = "?$filter=";
 
          var preduzeceId = $stateParams.preduzeceId;
+         var mestoId = $stateParams.mestoId;
 
-         if(preduzeceId=='')
+         if(preduzeceId=='' && mestoId!='')
          {
             return;
          }
@@ -114,6 +115,11 @@ module.exports = [
          if(preduzeceId!='' && preduzeceId!=undefined)
          {
          	 url_filter += "Id_Preduzece eq " + preduzeceId;	
+         }
+
+         if(mestoId!='' && mestoId!=undefined)
+         {
+         	 url_filter += "Id eq " + mestoId;	
          }
 
          console.log(url_filter);
@@ -125,7 +131,7 @@ module.exports = [
 
 
     	function fillData(){
-    		if(($stateParams.mestaId=='' || $stateParams.mestoId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined)){
+    		if(($stateParams.mestoId=='' || $stateParams.mestoId==undefined) && ($stateParams.preduzeceId=='' || $stateParams.preduzeceId==undefined)){
 	    		magaciniService.get_all_warehouses().then(function(response){
 					$scope.gridOptions.data = response;
 				});
@@ -154,18 +160,6 @@ module.exports = [
 		if($stateParams.naziv == undefined && $stateParams.mestoId == undefined)
 			fillData();
 		else{
-			
-			var par_naziv = '';
-			var par_mesto = '';
-			
-			if($stateParams.naziv != undefined)
-				par_naziv = $stateParams.naziv;
-
-			if($stateParams.mestoId != undefined)
-				par_mesto = $stateParams.mestoId;
-
-
-			filterData(par_naziv, par_mesto);
 
 			mestaService.get_all_places().then(function(response){
 				$scope.allPlaces = response;
@@ -173,7 +167,22 @@ module.exports = [
 
 			preduzecaService.get_all_companies().then(function(response){
 				$scope.allCompanies = response;
+				if($stateParams.mestoId != undefined) {
+					par_mesto = $stateParams.mestoId;
+	         	 }
 			});
+			
+			var par_naziv = '';
+			var par_mesto = '';
+			
+			if($stateParams.naziv != undefined)
+				par_naziv = $stateParams.naziv;
+
+			if($stateParams.mestoId != undefined) {
+				par_mesto = $stateParams.mestoId;
+         	 }
+
+			filterData(par_naziv, par_mesto);
 
 		}
 
@@ -197,6 +206,14 @@ module.exports = [
 		};
 
 		$scope.clear_add();
+
+		$scope.prepareSearch = function() {
+	         var placeId = $stateParams.mestoId;
+	         if(placeId!='' && placeId!=undefined)
+	         {
+	         	$scope.search.mesto = parseInt(placeId);
+	         }
+		}
 
 		$scope.add_warehouse = function()
 		{

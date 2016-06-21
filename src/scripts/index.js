@@ -66,6 +66,19 @@ function generateOnEnterModal(tempUrl, ctrl){
     }]
 };
 
+
+
+/*function setBusinessYear(tempUrl, ctrl){
+   return [
+      '$stateParams', '$state', '$uibModal', '$rootScope' ,
+          function($stateParams, $state, $uibModal, $rootScope) {
+				console.log("Set business year function...");
+				console.log("Current state..."+$rootScope.currentState);
+		}
+	];
+};
+*/
+
 myApp.config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
@@ -167,7 +180,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
           }
       })*/
       .state('analitika', {
-        url: '/analitika?robnaKarticaId',
+        url: '/analitika?robnaKarticaId&magacinId&robaId&vrednostG&vrednostD',//DODACES NEKAD POSLE ROBU. PRvo magacin, pa one vrednosti, pa kad se Kristina probudi i robu.
         templateUrl: './templates/analitika.html',
         controller: 'analitikaCtrl'
       })
@@ -752,7 +765,8 @@ myApp
 .service('analitikaService', require('./analitikaService.js'));
 
 myApp
-.run(require('./run.js'));
+.run(require('./run.js'))
+.run(require('./setBusinessYear.js'));
 
 
 

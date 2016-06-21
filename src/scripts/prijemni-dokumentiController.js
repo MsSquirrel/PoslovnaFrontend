@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http','prijemniDokumentiService' , 'poslovneGodineService', 'magaciniService','partneriService' , '$routeParams','$window', '$state', '$stateParams', 
-	function myController($scope, $http, prijemniDokumentiService,poslovneGodineService, magaciniService,partneriService , $routeParams, $window, $state, $stateParams){
+	'$scope', '$http','prijemniDokumentiService' , 'poslovneGodineService', 'magaciniService','partneriService' , '$routeParams','$window', '$state', '$stateParams', '$rootScope', 
+	function myController($scope, $http, prijemniDokumentiService,poslovneGodineService, magaciniService,partneriService , $routeParams, $window, $state, $stateParams, $rootScope){
 		
 		$scope.allYears = {};
 		$scope.allWarehouses = {};
@@ -93,7 +93,7 @@ module.exports = [
         if(rbr==='' && pg==='' && magacin==='' && pp==='')
           return;
 
-        var url_filter = "?$filter="
+        var url_filter = "?$filter=";
         var prvi= true;
 
         if(rbr != ''){
@@ -163,7 +163,35 @@ module.exports = [
   				.then(function(response){
   				$scope.allPartners = response;
   			});
+
+        setBusinessYearFunction();
+
     	};      
+
+      function setBusinessYearFunction()
+      {
+        if($rootScope.businessYear!=-1 && $rootScope.businessYear!=undefined && $rootScope.businessYear!='')
+        {
+            var url_filter = "?$filter=";
+            var businessYear = $rootScope.businessYear;
+            url_filter += "Id_Poslovna_godina eq " + businessYear;   
+          
+           prijemniDokumentiService.get_filtered_warehouseReceipts(url_filter).then(function(response){
+                $scope.gridOptions.data = response;
+           });
+        }
+        if($rootScope.businessYear==-1)
+        {
+            prijemniDokumentiService.get_all_warehouseReceipts()
+              .then(function(response){
+              $scope.gridOptions.data = response;
+           });  
+        }
+      }
+
+      $rootScope.currentFunction = setBusinessYearFunction;
+
+
 
     	$scope.checkDate = function() {
         if (typeof $scope.dt !== "undefined") {
@@ -192,6 +220,10 @@ module.exports = [
         magaciniService.get_all_warehouses()
           .then(function(response){
           $scope.allWhs = response;
+        });
+        poslovneGodineService.get_all_businessYears()
+          .then(function(response){
+          $scope.allAllYears = response;
         });
         partneriService.get_all_partners()
           .then(function(response){
@@ -243,6 +275,25 @@ module.exports = [
         $scope.clear_add();
         $state.go('^',{}, {reload:true});
       };
+
+
+      $scope.prepareSearch = function() {
+         var godinaId = $stateParams.poslovnaGodinaId;
+         var magacinId = $stateParams.magacinId;
+         var partnerId = $stateParams.partnerId;
+         if(godinaId!='' && godinaId!=undefined)
+         {
+          $scope.search.poslovna_godina = parseInt(godinaId);
+         }
+         if(magacinId!='' && magacinId!=undefined)
+         {
+          $scope.search.magacin = parseInt(magacinId);
+         }
+         if(partnerId!='' && partnerId!=undefined)
+         {
+          $scope.search.poslovni_partner = parseInt(partnerId);
+         }
+      }
 
       $scope.add_warehouseReceipt = function()
     	{
