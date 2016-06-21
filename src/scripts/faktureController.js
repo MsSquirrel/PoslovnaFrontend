@@ -32,6 +32,9 @@ module.exports = [
 		    { name:'Poslovna_godina.Godina_Poslovna_godina', width:'10%', displayName: 'Poslovna godina', cellTooltip: true, headerTooltip: true},
 		    { name:'Datum_fakture_Faktura', width:'15%', displayName: 'Datum fakture', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
 		    { name:'Datum_valute_Faktura', width:'15%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
+		    { name:'Ukupan_rabat_Faktura', width:'20%', displayName: 'Rabat', cellTooltip: true, headerTooltip: true},
+		    { name:'Ukupan_iznos_bez_PDV_a_Faktura', width:'20%', displayName: 'Iznos bez PDV-a', cellTooltip: true, headerTooltip: true},
+		    { name:'Ukupno_PDV_Faktura', width:'20%', displayName: 'Ukupan PDV', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za plaćanje', cellTooltip: true, headerTooltip: true}
 		];
 
@@ -54,6 +57,15 @@ module.exports = [
 				//$('#datetimepicker1').datetimepicker({defaultDate: $scope.editDt1});
 		  });
    		};
+
+   		$scope.knjiga = function(){
+   			$http.get('http://localhost:61769/api/pdf/kuf/8', {responseType: 'arraybuffer'})
+	         .success(function (data) {
+	             var file = new Blob([data], {type: 'application/pdf'});
+	             var fileURL = URL.createObjectURL(file);
+	             window.open(fileURL);
+        });
+   		}
 
    		 $scope.nextMeh = function()
      	 {
