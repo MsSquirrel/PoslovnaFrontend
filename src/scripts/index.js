@@ -66,6 +66,19 @@ function generateOnEnterModal(tempUrl, ctrl){
     }]
 };
 
+
+
+/*function setBusinessYear(tempUrl, ctrl){
+   return [
+      '$stateParams', '$state', '$uibModal', '$rootScope' ,
+          function($stateParams, $state, $uibModal, $rootScope) {
+				console.log("Set business year function...");
+				console.log("Current state..."+$rootScope.currentState);
+		}
+	];
+};
+*/
+
 myApp.config(['$stateProvider', '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
@@ -752,7 +765,8 @@ myApp
 .service('analitikaService', require('./analitikaService.js'));
 
 myApp
-.run(require('./run.js'));
+.run(require('./run.js'))
+.run(require('./setBusinessYear.js'));
 
 
 

@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http','prijemniDokumentiService' , 'poslovneGodineService', 'magaciniService','partneriService' , '$routeParams','$window', '$state', '$stateParams', 
-	function myController($scope, $http, prijemniDokumentiService,poslovneGodineService, magaciniService,partneriService , $routeParams, $window, $state, $stateParams){
+	'$scope', '$http','prijemniDokumentiService' , 'poslovneGodineService', 'magaciniService','partneriService' , '$routeParams','$window', '$state', '$stateParams', '$rootScope', 
+	function myController($scope, $http, prijemniDokumentiService,poslovneGodineService, magaciniService,partneriService , $routeParams, $window, $state, $stateParams, $rootScope){
 		
 		$scope.allYears = {};
 		$scope.allWarehouses = {};
@@ -163,7 +163,35 @@ module.exports = [
   				.then(function(response){
   				$scope.allPartners = response;
   			});
+
+        setBusinessYearFunction();
+
     	};      
+
+      function setBusinessYearFunction()
+      {
+        if($rootScope.businessYear!=-1 && $rootScope.businessYear!=undefined && $rootScope.businessYear!='')
+        {
+            var url_filter = "?$filter=";
+            var businessYear = $rootScope.businessYear;
+            url_filter += "Id_Poslovna_godina eq " + businessYear;   
+          
+           prijemniDokumentiService.get_filtered_warehouseReceipts(url_filter).then(function(response){
+                $scope.gridOptions.data = response;
+           });
+        }
+        if($rootScope.businessYear==-1)
+        {
+            prijemniDokumentiService.get_all_warehouseReceipts()
+              .then(function(response){
+              $scope.gridOptions.data = response;
+           });  
+        }
+      }
+
+      $rootScope.currentFunction = setBusinessYearFunction;
+
+
 
     	$scope.checkDate = function() {
         if (typeof $scope.dt !== "undefined") {
