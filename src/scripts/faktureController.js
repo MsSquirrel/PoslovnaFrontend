@@ -64,9 +64,10 @@ module.exports = [
 
 	         var poslovnaGodinaId = $stateParams.poslovnaGodinaId;
 	         var partnerId = $stateParams.partnerId;
+	         var documentId = $stateParams.prijemniDokumentId;
 	         console.log("PARAM: "+ poslovnaGodinaId);
 
-	         if(poslovnaGodinaId=='' && partnerId=='')
+	         if(poslovnaGodinaId=='' && partnerId=='' && documentId=='')
 	         {
 	            return;
 	         }
@@ -81,6 +82,11 @@ module.exports = [
             	 url_filter += "Id_Partner eq " + partnerId;   
          	 }
 
+	         if(documentId!='' && documentId!=undefined)
+         	 {
+            	 url_filter += "Id_Prijemni_dokument eq " + documentId;   
+         	 }
+
 	         faktureService.get_filtered_invoices(url_filter).then(function(response){
 	               $scope.gridOptions.data = response;
 	         });
@@ -88,7 +94,7 @@ module.exports = [
 
 
     	function fillData(){
-    		if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined)){
+    		if(($stateParams.poslovnaGodinaId=='' || $stateParams.poslovnaGodinaId==undefined) && ($stateParams.partnerId=='' || $stateParams.partnerId==undefined) && ($stateParams.prijemniDokumentId=='' || $stateParams.prijemniDokumentId==undefined)){
 	    		faktureService.get_all_invoices().then(function(response){
 					$scope.gridOptions.data = response;
 				});
@@ -125,6 +131,24 @@ module.exports = [
 			$scope.invoiceIznosBezPdv = "";
 			$scope.invoiceTotalPdv = "";
 			$scope.invoiceTotalPlacanje = "";
+
+	         var godinaId = $stateParams.poslovnaGodinaId;
+	         var partnerId = $stateParams.partnerId;
+	         var dokumentId = $stateParams.prijemniDokumentId;
+
+	         if(godinaId!='' && godinaId!=undefined)
+	         {
+	            $scope.invoiceYear = parseInt(godinaId);
+	         }
+	         if(partnerId!='' && partnerId!=undefined)
+	         {
+	            $scope.invoicePartner = parseInt(partnerId);
+	         }
+	         if(dokumentId!='' && dokumentId!=undefined)
+	         {
+	            $scope.invoiceReceipt = parseInt(dokumentId);
+	         }
+
 			if($scope.isModal)
 			{
 				$scope.$close(true);

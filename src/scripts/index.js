@@ -172,7 +172,7 @@ myApp.config(['$stateProvider', '$urlRouterProvider',
         controller: 'analitikaCtrl'
       })
       .state('fakture', {
-        url: '/fakture?poslovnaGodinaId?partnerId',
+        url: '/fakture?poslovnaGodinaId?partnerId?prijemniDokumentId',
         templateUrl: './templates/fakture.html',
         controller: 'faktureCtrl',
         data: {
