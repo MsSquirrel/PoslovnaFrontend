@@ -59,6 +59,13 @@ module.exports = [
 	         {
 	             url_filter += "Id_Poslovna_godina eq " + poslovnaGodinaId; 
 	             first = false;  
+	         }else{
+	         	if($rootScope.businessYear!= -1){
+
+            		
+			        first = false;
+					url_filter += "Id_Poslovna_godina eq " + $rootScope.businessYear;
+				}
 	         }
 	      
 	      	 if(magacinId!='' && magacinId!=undefined)
