@@ -108,6 +108,18 @@ module.exports = [
             prvi = false;
 
           url_filter += "Id_Poslovna_godina eq " + pg;
+        }else{
+          if($rootScope.businessYear!= -1){
+
+            if(!prvi){
+              url_filter += " and ";
+            }else
+              prvi = false;
+
+            url_filter += "Id_Poslovna_godina eq " + $rootScope.businessYear;
+
+          }
+
         }
 
         if(magacin != ''){

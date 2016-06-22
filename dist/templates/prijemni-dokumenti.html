@@ -154,7 +154,7 @@
 			    	<div id="search_div">
 						Redni broj: <input type="text" data-toggle="tooltip" data-placement="top" title="Unesite redni broj prijemnog dokumenta." class="form-control" ng-model="search.redni_broj"/>
 						<br/>
-						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allAllYears" >
+						Poslovna godina: <select class="form-control" name="year" ng-model="search.poslovna_godina" ng-options="year.Id_Poslovna_godina as year.Godina_Poslovna_godina for year in allYears" >
 	   							<option value=""></option></select>
 						<br/>
 						Magacin: 	<select class="form-control" ng-model="search.magacin" ng-options="wh.Id_Magacin as wh.Naziv_Magacin for wh in allWhs">
