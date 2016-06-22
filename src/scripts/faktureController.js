@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams',
-	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams){
+	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams', '$rootScope',
+	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams, $rootScope){
 		
 		$scope.invoiceNumber = "";
 		$scope.invoiceYear = "";
@@ -61,7 +61,7 @@ module.exports = [
    		};
 
    		$scope.knjiga = function(){
-   			$http.get('http://localhost:61769/api/pdf/kuf/8', {responseType: 'arraybuffer'})
+   			$http.get('http://localhost:61769/api/pdf/kuf/' + $rootScope.businessYear, {responseType: 'arraybuffer'})
 	         .success(function (data) {
 	             var file = new Blob([data], {type: 'application/pdf'});
 	             var fileURL = URL.createObjectURL(file);
