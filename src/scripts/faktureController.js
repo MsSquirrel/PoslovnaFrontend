@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams',
-	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams){
+	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams', '$rootScope', 
+	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams, $rootScope){
 		
 		$scope.invoiceNumber = "";
 		$scope.invoiceYear = "";
@@ -128,7 +128,35 @@ module.exports = [
 			prijemniDokumentiService.get_all_warehouseReceipts().then(function(response){
 				$scope.allWrs = response;
 			});
+
+			setBusinessYearFunction();
+
 		};
+
+		function setBusinessYearFunction()
+      	{
+
+        if($rootScope.businessYear!=-1 && $rootScope.businessYear!=undefined && $rootScope.businessYear!='')
+        {
+            var url_filter = "?$filter=";
+            var businessYear = $rootScope.businessYear;
+            url_filter += "Id_Poslovna_godina eq " + businessYear;   
+          
+            faktureService.get_filtered_invoices(url_filter).then(function(response){
+                $scope.gridOptions.data = response;
+           });
+        }
+        if($rootScope.businessYear==-1)
+        {
+            faktureService.get_all_invoices()
+              .then(function(response){
+              $scope.gridOptions.data = response;
+           });  
+        }
+      }
+
+      $rootScope.currentFunction = setBusinessYearFunction;
+
 
 		fillData();
 
