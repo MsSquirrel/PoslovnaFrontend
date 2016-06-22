@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams',
-	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams){
+	'$scope', '$http', 'faktureService', 'poslovneGodineService', 'partneriService','prijemniDokumentiService' , '$routeParams', '$window','$state','$stateParams', '$rootScope',
+	function myController($scope, $http, faktureService, poslovneGodineService, partneriService, prijemniDokumentiService, $routeParams, $window, $state,$stateParams, $rootScope){
 		
 		$scope.invoiceNumber = "";
 		$scope.invoiceYear = "";
@@ -35,7 +35,7 @@ module.exports = [
 		    { name:'Datum_valute_Faktura', width:'15%', displayName: 'Datum valute', cellFilter: 'date:\'dd.MM.yyyy\'', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupan_rabat_Faktura', width:'20%', displayName: 'Rabat', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupan_iznos_bez_PDV_a_Faktura', width:'20%', displayName: 'Iznos bez PDV-a', cellTooltip: true, headerTooltip: true},
-		    { name:'Ukupno_PDV_Faktura', width:'20%', displayName: 'Ukupan PDV', cellTooltip: true, headerTooltip: true},
+		    { name:'Ukupan_PDV_Faktura', width:'20%', displayName: 'Ukupan PDV', cellTooltip: true, headerTooltip: true},
 		    { name:'Ukupno_za_placanje_Faktura', width:'20%', displayName: 'Ukupno za plaćanje', cellTooltip: true, headerTooltip: true}
 		];
 
@@ -61,7 +61,7 @@ module.exports = [
    		};
 
    		$scope.knjiga = function(){
-   			$http.get('http://localhost:61769/api/pdf/kuf/8', {responseType: 'arraybuffer'})
+   			$http.get('http://localhost:61769/api/pdf/kuf/' + $rootScope.businessYear, {responseType: 'arraybuffer'})
 	         .success(function (data) {
 	             var file = new Blob([data], {type: 'application/pdf'});
 	             var fileURL = URL.createObjectURL(file);

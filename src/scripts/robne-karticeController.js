@@ -1,6 +1,6 @@
 module.exports = [
-	'$scope', '$http', '$state', '$stateParams', 'robneKarticeService', 'robaService', 'poslovneGodineService', 'magaciniService',
-	function myController($scope, $http, $state, $stateParams, robneKarticeService, robaService, poslovneGodineService, magaciniService){
+	'$scope', '$http', '$state', '$stateParams', 'robneKarticeService', 'robaService', 'poslovneGodineService', 'magaciniService', '$rootScope',
+	function myController($scope, $http, $state, $stateParams, robneKarticeService, robaService, poslovneGodineService, magaciniService, $rootScope){
 
 		$scope.selectedWareCardId = -1;
 
@@ -146,7 +146,36 @@ module.exports = [
 				.then(function(response){
 				$scope.allItems = response;
 			});
+
+
+			setBusinessYearFunction();
 		}
+
+		function setBusinessYearFunction()
+      	{
+
+        if($rootScope.businessYear!=-1 && $rootScope.businessYear!=undefined && $rootScope.businessYear!='')
+        {
+            var url_filter = "?$filter=";
+            var businessYear = $rootScope.businessYear;
+            url_filter += "Id_Poslovna_godina eq " + businessYear;   
+          
+           robneKarticeService.get_filtered_robnaKartica(url_filter).then(function(response){
+                $scope.gridOptions.data = response;
+           });
+        }
+        if($rootScope.businessYear==-1)
+        {
+           robneKarticeService.get_all_robnaKartica()
+              .then(function(response){
+              $scope.gridOptions.data = response;
+           });  
+        }
+      }
+
+      $rootScope.currentFunction = setBusinessYearFunction;
+
+
 
 		fillData();
 
